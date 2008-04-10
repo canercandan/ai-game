@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu Apr 10 12:12:48 2008 majdi toumi
+** Last update Thu Apr 10 14:41:51 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -14,7 +14,7 @@
 
 extern t_opt	gl_opt_srv[];
 
-int		parse_args(int argc, char **argv)
+t_info		parse_args(int argc, char **argv)
 {
   t_info	info;
   int		i;
@@ -22,25 +22,26 @@ int		parse_args(int argc, char **argv)
   i = 0;
   while (i < argc)
     {
-      j = 0;
-      if (is_options(argv[i]))
-	i = my_getopt(&info, i);
+      if (is_options(argv[i]) != -1)
+	i = gl_opt_srv[i].fun(&info, argv, i + 1);
       else
 	return (0);
     }
   return (info);
 }
 
-int		is_options()
+
+
+int		is_options(char *args)
 {
   int		i;
 
   i = 0;
   while (gl_opt_srv[i].name != NULL)
     {
-      if (!strcmp(gl_opt_srv[i].name, argv[i]))
-	return (1);
+      if (!strcmp(gl_opt_srv[i].name, args))
+	return (i);
       i++;
     }
-  return (0);
+  return (-1);
 }

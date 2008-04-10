@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 12:10:13 2008 majdi toumi
+** Last update Thu Apr 10 15:05:36 2008 majdi toumi
 */
 
 
@@ -38,6 +38,7 @@ typedef struct		s_opt
 {
   char			*name;
   char			*desc;
+  void			(*fun)();
 }			t_opt;
 
 typedef struct		s_info
@@ -46,16 +47,17 @@ typedef struct		s_info
   int			width;
   int			length;
   t_list		*team;
-  int			nb_client;
-  float			time;
+  int			nb_player;
+  int			time;
 }			t_info;
 
-typedef struct		s_omega
+typedef struct		s_case
 {
-  char			**map;
-  int			is_movible;
-  int			nb_player;
-}			t_omega;
+  char			is_movible;
+  int			id_deco;
+  t_list		*ressources;
+  t_list		*client;	/* data = client */
+}			t_case;
 
 typedef struct		s_team
 {
@@ -66,24 +68,24 @@ typedef struct		s_team
 
 typedef struct		s_client
 {
-  t_team		*team;
-  t_level		*level;
   int			hp;
-  int			x;
-  int			y;
+  int			socket;
+  int			level;
+  t_team		*team;
+  t_inventory		*stock;
+  struct s_client	*next;
 }			t_client;
 
 typedef struct		s_action
 {
   char			*name;
   int			delay;
-  void			(*fun)();
+  char			(*fun)();
 }			t_action;
 
 typedef struct		s_inventory
 {
-  t_rock		*rock;
-  t_client		*client;
+  int			rock;
   unsigned int		qte;
 }			t_inventory;
 
@@ -98,13 +100,6 @@ typedef struct		s_food
   char			*name;
   char			*desc;
 }			t_food;
-
-typedef struct		s_floor
-{
-  int			x;
-  int			y;
-  void			*ressources;	/* @rock or @food */
-}			t_floor;
 
 typedef struct		s_critere
 {
