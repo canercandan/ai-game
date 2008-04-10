@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 15:05:36 2008 majdi toumi
+** Last update Thu Apr 10 16:37:02 2008 majdi toumi
 */
 
 
@@ -38,14 +38,14 @@ typedef struct		s_opt
 {
   char			*name;
   char			*desc;
-  void			(*fun)();
+  int			(*fun)();
 }			t_opt;
 
 typedef struct		s_info
 {
   int			port;
   int			width;
-  int			length;
+  int			lenght;
   t_list		*team;
   int			nb_player;
   int			time;
@@ -53,7 +53,7 @@ typedef struct		s_info
 
 typedef struct		s_case
 {
-  char			is_movible;
+  char			is_moveable;
   int			id_deco;
   t_list		*ressources;
   t_list		*client;	/* data = client */
@@ -65,6 +65,12 @@ typedef struct		s_team
   int			nb;
   int			max;
 }			t_team;
+
+typedef struct		s_inventory
+{
+  int			rock;
+  unsigned int		qte;
+}			t_inventory;
 
 typedef struct		s_client
 {
@@ -83,12 +89,8 @@ typedef struct		s_action
   char			(*fun)();
 }			t_action;
 
-typedef struct		s_inventory
-{
-  int			rock;
-  unsigned int		qte;
-}			t_inventory;
 
+/*
 typedef struct		s_rock
 {
   char			*name;
@@ -100,31 +102,55 @@ typedef struct		s_food
   char			*name;
   char			*desc;
 }			t_food;
+*/
 
+typedef struct		s_ressource
+{
+  char			*name;
+  char			*desc;
+}			t_ressource;
+
+/* lvl is the index */
 typedef struct		s_critere
 {
-  t_rock	 	*rock;
-  t_level		*level;
+  t_ressource	 	*rock;
+  int			lvl;
   int			qte;
 }			t_critere;
 
 typedef struct		s_level
 {
   int			lvl;
-  int			nb_player;
+  int			nb_client;
   char			*desc;
 }			t_level;
 
 /*
 ** Globals:
 */
-t_opt			gl_opt_srv[];
-t_opt			gl_opt_clt[];
+extern t_opt		gl_opt_srv[];
+extern t_opt		gl_opt_clt[];
 
 /*
 ** Function's prototypes:
 */
 void	usage_server();
-int	parse_args(int argc, char **argv);
+t_info	parse_args(int argc, char **argv);
+int	is_options(char *args);
+t_info	init_infos();
+int	check_infos(t_info *info);
+
+/* get_options.c */
+int	get_port(t_info *info, char **argv, int i);
+int	get_width(t_info *info, char **argv, int i);
+int	get_lenght(t_info *info, char **argv, int i);
+int	get_name_team(t_info *info, char **argv, int i);
+int	get_nb_player(t_info *info, char **argv, int i);
+int	get_delay(t_info *info, char **argv, int i);
+
+/*
+** My - library:
+*/
+void	*xmalloc(int size);
 
 #endif /* !__SERVER_H__ */
