@@ -5,11 +5,11 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:05:04 2008 majdi toumi
-** Last update Thu Apr 10 18:15:22 2008 majdi toumi
+** Last update Thu Apr 10 19:07:03 2008 majdi toumi
 */
 
 #include <stdlib.h>
-#include "server.h"
+#include "zappy.h"
 
 t_ressource	gl_rock[] = {
   {LINEMATE, "Linemate"},

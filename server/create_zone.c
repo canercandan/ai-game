@@ -5,31 +5,31 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Thu Apr 10 18:55:20 2008 majdi toumi
+** Last update Thu Apr 10 19:55:28 2008 majdi toumi
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "server.h"
+#include "zappy.h"
 
-t_zone		**create_zone(t_info *info)
+t_zone		**create_zone(int width, int lenght)
 {
   t_zone	**zone;
   int		i;
 
-  if (info->width < 0 || info->lenght < 0)
+  if (width < 0 || lenght < 0)
     {
       fprintf(stdin, "create_zone: your width and lenght must be an integer > 0\n");
       exit(EXIT_FAIL);
     }
-  zone = xmalloc(sizeof(*zone) * info->width);
-  for (i = 0; i < info->width; i++)
+  zone = xmalloc(sizeof(*zone) * width);
+  for (i = 0; i < width; i++)
     {
-      zone[i] = xmalloc(sizeof(**zone) * info->lenght);
-      memset(&zone[i], 0, info->lenght);
+      zone[i] = xmalloc(sizeof(**zone) * lenght);
+      memset(zone[i], 0, sizeof(**zone) * lenght);
     }
-  // AFTER -> function: remplir map objet, ...
-  fill_ressources_zone(zone);
+  // FIXME -> function: remplir map objet, ...
+  fill_ressources_zone(zone, width, lenght);
   return (zone);
 }

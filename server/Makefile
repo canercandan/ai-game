@@ -5,14 +5,14 @@
 ## Login   <toumi_m@epitech.net>
 ## 
 ## Started on  Thu Apr 10 08:41:58 2008 majdi toumi
-## Last update Thu Apr 10 18:50:47 2008 majdi toumi
+## Last update Thu Apr 10 19:56:19 2008 majdi toumi
 ##
 
 CC		=	/usr/bin/gcc
 
 NAME_SRV	=	server
 SRC_SRV		=	server.c		\
-			usage.c			\
+			usage_server.c		\
 			parse_args.c		\
 			is_options.c		\
 			check_flag.c		\
@@ -22,16 +22,16 @@ SRC_SRV		=	server.c		\
 			opt_nb_player.c		\
 			opt_name_team.c		\
 			opt_delay.c		\
-			get_options.c		\
 			create_zone.c		\
-			fill_ressources_zone.c
+			fill_ressources_zone.c	\
+			dump_zone.c
 
 OBJ_SRV		=	$(SRC_SRV:.c=.o)
 
 SRC		=	xmalloc.c
 OBJ		=	$(SRC:.c=.o)
 
-INCLUDES	=	-I.
+INCLUDES	=	-I..
 
 LIBRARIES	=	-L.
 
