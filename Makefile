@@ -5,7 +5,7 @@
 ## Login   <toumi_m@epitech.net>
 ## 
 ## Started on  Thu Apr 10 08:41:58 2008 majdi toumi
-## Last update Thu Apr 10 15:57:43 2008 majdi toumi
+## Last update Thu Apr 10 16:44:04 2008 caner candan
 ##
 
 CC		=	/usr/bin/gcc
@@ -32,10 +32,10 @@ LDFLAGS		=	$(LIBRARIES)
 RM		=	rm -rf
 TAR		=	tar -cvf
 
+all		:	$(NAME_SRV)
+
 $(NAME_SRV)	:	$(OBJ_SRV)
 			$(CC) -o $(NAME_SRV) $(OBJ_SRV) $(LD_FLAGS)
-
-all		:	$(NAME_SRV)
 
 clean		:
 			$(RM) *.o *.core
