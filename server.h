@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 11:16:31 2008 majdi toumi
+** Last update Thu Apr 10 11:52:40 2008 majdi toumi
 */
 
 
@@ -15,9 +15,11 @@
 /*
 ** Defines:
 */
+# define UNIT		010
+# define TIME		100
 
 /*
-** Exits and errors:
+** Exits, debug and errors:
 */
 # define EXIT_SUCC	00
 # define EXIT_FAIL	42
@@ -66,34 +68,48 @@ typedef struct		s_client
 {
   t_team		*team;
   t_level		*level;
+  int			hp;
   int			x;
   int			y;
 }			t_client;
+
+typedef struct		s_action
+{
+  char			*name;
+  int			delay;
+  void			(*fun)();
+}			t_action;
 
 typedef struct		s_inventory
 {
   t_rock		*rock;
   t_client		*client;
-  int			qte;
+  unsigned int		qte;
 }			t_inventory;
 
 typedef struct		s_rock
 {
   char			*name;
+  char			*desc;
 }			t_rock;
+
+typedef struct		s_food
+{
+  char			*name;
+  char			*desc;
+}			t_food;
 
 typedef struct		s_floor
 {
   int			x;
   int			y;
-  t_rock		*rock;
+  void			*ressources;	/* @rock or @food */
 }			t_floor;
 
 typedef struct		s_critere
 {
   t_rock	 	*rock;
   t_level		*level;
-  int			nb_client;
   int			qte;
 }			t_critere;
 

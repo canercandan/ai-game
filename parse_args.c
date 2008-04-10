@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu Apr 10 09:38:50 2008 majdi toumi
+** Last update Thu Apr 10 11:52:24 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -44,11 +44,12 @@ int		parse_args(int argc, char **argv)
   i = 0;
   while (i < argc)
     {
-      j = 0;
-      while (gl_opt[j].name != NULL)
+      while (gl_opt[i].name != NULL)
 	{
-	  if (!strcmp(gl_opt[j].name, argv[i]))
-	    fprintf(stdout, "ok");
+	  if (!strcmp(gl_opt[i].name, argv[i]))
+	    {
+	      fprintf(stdout, "ok");
+	    }
 	  j++;
 	}
       i++;
