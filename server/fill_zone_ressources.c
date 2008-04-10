@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:22:42 2008 majdi toumi
-** Last update Thu Apr 10 18:26:26 2008 majdi toumi
+** Last update Thu Apr 10 18:37:22 2008 majdi toumi
 */
 
 #include "server.h"
@@ -15,5 +15,19 @@ void	fill_ressources_zone(t_zone **zone)
   int	i;
   int	j;
 
-  for (i = 0;)
+  for (i = 0; i < info->width; i++)
+    {
+      for (j = 0; j < info->lenght; j++)
+	{
+	  zone[i][j]->id_deco = 42;
+	}
+    }
+  for (i = 0; i < info->width; i++)
+    {
+      for (j = 0; j < info->lenght; j++)
+	{
+	  printf(" %d ", zone[i][j]->id_deco);
+	}
+      printf("\n");
+    }
 }

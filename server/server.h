@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 18:35:53 2008 caner candan
+** Last update Thu Apr 10 18:56:52 2008 majdi toumi
 */
 
 
@@ -171,7 +171,7 @@ int	get_nb_player(t_info *info, char **argv, int i);
 int	get_delay(t_info *info, char **argv, int i);
 
 t_zone	**create_zone(t_info *info);
-void	fill_ressources_zone(t_zone **zone);
+void	fill_ressources_zone(t_zone **zone, t_info *info);
 
 /*
 ** My/x library:

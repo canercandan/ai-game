@@ -5,14 +5,15 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Thu Apr 10 18:15:39 2008 majdi toumi
+** Last update Thu Apr 10 18:55:20 2008 majdi toumi
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "server.h"
 
-t_zone		create_zone(t_info *info)
+t_zone		**create_zone(t_info *info)
 {
   t_zone	**zone;
   int		i;
@@ -23,7 +24,7 @@ t_zone		create_zone(t_info *info)
       exit(EXIT_FAIL);
     }
   zone = xmalloc(sizeof(*zone) * info->width);
-  for (i = 0; i < info->width)
+  for (i = 0; i < info->width; i++)
     {
       zone[i] = xmalloc(sizeof(**zone) * info->lenght);
       memset(&zone[i], 0, info->lenght);
