@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 09:33:00 2008 majdi toumi
+** Last update Thu Apr 10 09:54:54 2008 caner candan
 */
 
 
@@ -21,6 +21,7 @@
 */
 # define EXIT_SUCC	00
 # define EXIT_FAIL	42
+# define DEBUG		1
 
 /*
 ** Typedef and structs:
