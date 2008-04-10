@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 08:41:26 2008 majdi toumi
+** Last update Thu Apr 10 09:28:37 2008 majdi toumi
 */
 
 
@@ -25,9 +25,21 @@
 /*
 ** Typedef and structs:
 */
+typedef struct		s_opt
+{
+  char			*name;
+  char			*desc;
+}			t_opt;
+
+typedef struct		s_info
+{
+
+}			t_info;
 
 /*
 ** Functions's prototypes:
 */
+void	usage_server();
+int	parse_args(int argc, char **argv);
 
 #endif /* !__SERVER_H__ */
