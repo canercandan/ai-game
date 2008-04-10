@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 18:26:07 2008 majdi toumi
+** Last update Thu Apr 10 18:35:53 2008 caner candan
 */
 
 
@@ -42,6 +42,19 @@
 # define EXIT_FAIL	42
 
 /*
+** Socket:
+*/
+# define HOST_DEFAULT	"127.0.0.1"
+# define PORT_DEFAULT	"12345"
+
+/*
+** Null:
+*/
+# ifndef NULL
+#  define NULL	0
+# endif /* !NULL */
+
+/*
 ** Typedef and structs:
 */
 typedef struct		s_list
@@ -67,6 +80,14 @@ typedef struct		s_info
   int			nb_player;
   int			time;
 }			t_info;
+
+typedef struct		s_cnt
+{
+  char			*host;
+  char			*port;
+  int			s;
+  int			cs;
+}			t_cnt;
 
 typedef struct		s_zone
 {
