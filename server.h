@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 10:02:31 2008 caner candan
+** Last update Thu Apr 10 11:16:31 2008 majdi toumi
 */
 
 
@@ -16,17 +16,12 @@
 ** Defines:
 */
 
-# define DEBUG		1
-
 /*
 ** Exits and errors:
 */
 # define EXIT_SUCC	00
 # define EXIT_FAIL	42
-
-# ifndef NULL
-#  define NULL	0
-# endif /* !NULL */
+# define DEBUG		01
 
 /*
 ** Typedef and structs:
@@ -52,6 +47,62 @@ typedef struct		s_info
   int			nb_client;
   float			time;
 }			t_info;
+
+typedef struct		s_omega
+{
+  char			**map;
+  int			is_movible;
+  int			nb_player;
+}			t_omega;
+
+typedef struct		s_team
+{
+  char			*name;
+  int			nb;
+  int			max;
+}			t_team;
+
+typedef struct		s_client
+{
+  t_team		*team;
+  t_level		*level;
+  int			x;
+  int			y;
+}			t_client;
+
+typedef struct		s_inventory
+{
+  t_rock		*rock;
+  t_client		*client;
+  int			qte;
+}			t_inventory;
+
+typedef struct		s_rock
+{
+  char			*name;
+}			t_rock;
+
+typedef struct		s_floor
+{
+  int			x;
+  int			y;
+  t_rock		*rock;
+}			t_floor;
+
+typedef struct		s_critere
+{
+  t_rock	 	*rock;
+  t_level		*level;
+  int			nb_client;
+  int			qte;
+}			t_critere;
+
+typedef struct		s_level
+{
+  int			lvl;
+  int			nb_player;
+  char			*desc;
+}			t_level;
 
 /*
 ** Functions's prototypes:
