@@ -5,13 +5,16 @@
 ## Login   <toumi_m@epitech.net>
 ## 
 ## Started on  Thu Apr 10 08:41:58 2008 majdi toumi
-## Last update Thu Apr 10 08:49:04 2008 majdi toumi
+## Last update Thu Apr 10 12:10:38 2008 majdi toumi
 ##
 
 CC		=	/usr/bin/gcc
 
 NAME_SRV	=	server
-SRC_SRV		=	server.c
+SRC_SRV		=	server.c	\
+			usage.c		\
+			parse_args.c
+
 OBJ_SRV		=	$(SRC:.c=.o)
 
 INCLUDES	=	-I.

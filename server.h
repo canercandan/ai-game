@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 11:54:14 2008 caner candan
+** Last update Thu Apr 10 12:10:13 2008 majdi toumi
 */
 
 
@@ -116,12 +116,18 @@ typedef struct		s_critere
 typedef struct		s_level
 {
   int			lvl;
-  int			nb_client;
+  int			nb_player;
   char			*desc;
 }			t_level;
 
 /*
-** Functions's prototypes:
+** Globals:
+*/
+t_opt			gl_opt_srv[];
+t_opt			gl_opt_clt[];
+
+/*
+** Function's prototypes:
 */
 void	usage_server();
 int	parse_args(int argc, char **argv);
