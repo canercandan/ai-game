@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu Apr 10 14:41:51 2008 majdi toumi
+** Last update Thu Apr 10 15:59:25 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -19,6 +19,7 @@ t_info		parse_args(int argc, char **argv)
   t_info	info;
   int		i;
 
+  info = init_info();
   i = 0;
   while (i < argc)
     {
@@ -29,8 +30,6 @@ t_info		parse_args(int argc, char **argv)
     }
   return (info);
 }
-
-
 
 int		is_options(char *args)
 {
