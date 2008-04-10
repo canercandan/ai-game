@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu Apr 10 09:27:26 2008 majdi toumi
+** Last update Thu Apr 10 09:38:50 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -36,13 +36,21 @@ void	usage_server()
   exit(EXIT_SUCC);
 }
 
-int	parse_args(int argc, char **argv)
+int		parse_args(int argc, char **argv)
 {
-  int	i;
+  t_info	info;
+  int		i;
 
   i = 0;
   while (i < argc)
     {
-
+      j = 0;
+      while (gl_opt[j].name != NULL)
+	{
+	  if (!strcmp(gl_opt[j].name, argv[i]))
+	    fprintf(stdout, "ok");
+	  j++;
+	}
+      i++;
     }
 }

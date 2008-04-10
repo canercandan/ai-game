@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 09:28:37 2008 majdi toumi
+** Last update Thu Apr 10 09:33:00 2008 majdi toumi
 */
 
 
@@ -25,6 +25,12 @@
 /*
 ** Typedef and structs:
 */
+typedef struct		s_list
+{
+  void			*data;
+  struct s_list		*next;
+}			t_list;
+
 typedef struct		s_opt
 {
   char			*name;
@@ -33,7 +39,12 @@ typedef struct		s_opt
 
 typedef struct		s_info
 {
-
+  int			port;
+  int			width;
+  int			length;
+  t_list		*team;
+  int			nb_client;
+  float			time;
 }			t_info;
 
 /*
