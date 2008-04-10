@@ -5,11 +5,12 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu Apr 10 15:59:25 2008 majdi toumi
+** Last update Thu Apr 10 16:47:50 2008 majdi toumi
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "server.h"
 
 extern t_opt	gl_opt_srv[];
@@ -19,14 +20,14 @@ t_info		parse_args(int argc, char **argv)
   t_info	info;
   int		i;
 
-  info = init_info();
-  i = 0;
+  info = init_infos();
+  i = 1;
   while (i < argc)
     {
       if (is_options(argv[i]) != -1)
 	i = gl_opt_srv[i].fun(&info, argv, i + 1);
       else
-	return (0);
+	break;
     }
   return (info);
 }
