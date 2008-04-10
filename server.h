@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 11:52:40 2008 majdi toumi
+** Last update Thu Apr 10 11:54:14 2008 caner candan
 */
 
 
@@ -116,7 +116,7 @@ typedef struct		s_critere
 typedef struct		s_level
 {
   int			lvl;
-  int			nb_player;
+  int			nb_client;
   char			*desc;
 }			t_level;
 
