@@ -5,7 +5,7 @@
 ## Login   <toumi_m@epitech.net>
 ## 
 ## Started on  Thu Apr 10 08:41:58 2008 majdi toumi
-## Last update Thu Apr 10 16:44:04 2008 caner candan
+## Last update Thu Apr 10 16:51:28 2008 majdi toumi
 ##
 
 CC		=	/usr/bin/gcc
@@ -18,6 +18,9 @@ SRC_SRV		=	server.c	\
 			check_infos.c
 
 OBJ_SRV		=	$(SRC_SRV:.c=.o)
+
+SRC		=	xmalloc.c
+OBJ		=	$(SRC:.c=.o)
 
 INCLUDES	=	-I.
 
@@ -34,8 +37,8 @@ TAR		=	tar -cvf
 
 all		:	$(NAME_SRV)
 
-$(NAME_SRV)	:	$(OBJ_SRV)
-			$(CC) -o $(NAME_SRV) $(OBJ_SRV) $(LD_FLAGS)
+$(NAME_SRV)	:	$(OBJ_SRV) $(OBJ)
+			$(CC) -o $(NAME_SRV) $(OBJ_SRV) $(OBJ) $(LD_FLAGS)
 
 clean		:
 			$(RM) *.o *.core

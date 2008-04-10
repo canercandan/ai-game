@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu Apr 10 16:47:50 2008 majdi toumi
+** Last update Thu Apr 10 17:21:47 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -19,13 +19,14 @@ t_info		parse_args(int argc, char **argv)
 {
   t_info	info;
   int		i;
+  int		idx;
 
   info = init_infos();
   i = 1;
   while (i < argc)
     {
-      if (is_options(argv[i]) != -1)
-	i = gl_opt_srv[i].fun(&info, argv, i + 1);
+      if ((idx = is_options(argv[i])) != -1)
+	i = gl_opt_srv[idx].fun(&info, argv, i + 1);
       else
 	break;
     }
