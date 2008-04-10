@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 08:38:28 2008 majdi toumi
-** Last update Thu Apr 10 16:37:02 2008 majdi toumi
+** Last update Thu Apr 10 17:45:23 2008 majdi toumi
 */
 
 
@@ -18,12 +18,20 @@
 # define UNIT		010
 # define TIME		100
 
+# define FLAG_P		1
+# define FLAG_X		2
+# define FLAG_Y		4
+# define FLAG_N		8
+# define FLAG_C		16
+# define FLAG_T		32
+
 /*
 ** Exits, debug and errors:
 */
+# define DEBUG		01
 # define EXIT_SUCC	00
 # define EXIT_FAIL	42
-# define DEBUG		01
+
 
 /*
 ** Typedef and structs:
@@ -36,6 +44,7 @@ typedef struct		s_list
 
 typedef struct		s_opt
 {
+  int			opt;
   char			*name;
   char			*desc;
   int			(*fun)();
@@ -135,10 +144,9 @@ extern t_opt		gl_opt_clt[];
 ** Function's prototypes:
 */
 void	usage_server();
-t_info	parse_args(int argc, char **argv);
+t_info	*parse_args(int argc, char **argv);
 int	is_options(char *args);
-t_info	init_infos();
-int	check_infos(t_info *info);
+int	check_flag(int flag);
 
 /* get_options.c */
 int	get_port(t_info *info, char **argv, int i);
