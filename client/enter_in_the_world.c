@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Tue Apr 15 18:23:00 2008 caner candan
+** Last update Tue Apr 15 18:46:20 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -80,12 +80,18 @@ static int	step_one(int socket, char *team_name)
 int	enter_in_the_world(int socket, char *team_name, char *hostname, int port)
 {
   t_map	*map;
+  char	*p;
 
   if (step_one(socket, team_name) != -1 &&
       (map = step_two(socket, team_name, hostname, port)) != (t_map *)-1)
     {
       printf("[%d] I enter in the world\n", socket);
-      printf("map X = %d, Y = %d", map->x, map->y);
+      printf("map X = %d, Y = %d\n", map->x, map->y);
+      while ((p = check_response(socket)))
+	{
+	  printf("<-- [%s]", p);
+	  free(p);
+	}
     }
-  close(socket);
+  return (0);
 }
