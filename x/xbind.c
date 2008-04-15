@@ -1,11 +1,11 @@
 /*
-** xbind.c for my_ftp in /home/candan_c/rendu/project/my_ftp_new
+** xbind.c for x in /home/candan_c/rendu/project/zappy
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu Apr  3 09:27:50 2008 caner candan
-** Last update Thu Apr 10 19:24:41 2008 caner candan
+** Last update Tue Apr 15 16:12:58 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "my_ftp.h"
+#include "x.h"
 
 int	xbind(int s, const void *addr, void *addrlen)
 {

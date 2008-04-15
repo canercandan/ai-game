@@ -1,11 +1,11 @@
 /*
-** xopen.c for my_ftp_server in /u/epitech_2010s/hochwe_f/cu/rendu/c/my_ftp/server
+** xopen.c for x in /u/epitech_2010s/hochwe_f/cu/rendu/c/zappy
 ** 
 ** Made by florent hochwelker
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr  3 19:03:47 2008 florent hochwelker
-** Last update Tue Apr 15 15:08:29 2008 florent hochwelker
+** Last update Tue Apr 15 16:23:34 2008 caner candan
 */
 
 #include <sys/socket.h>
@@ -14,16 +14,15 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "my_ftp_server.h"
+#include "x.h"
 
 int	xopen(char *path, int flags)
 {
   int	fd;
 
-  if ((fd = open(path, flags)) > 0)
-    return (fd);
-  else
+  if ((fd = open(path, flags)) < 0)
     {
-      perror("xopen");
+      
     }
+  return (fd);
 }

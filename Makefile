@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Apr 15 16:08:41 2008 caner candan
+## Last update Tue Apr 15 16:10:56 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -23,16 +23,16 @@ PATH_OBJ	=	$(NAME_OBJ)/
 BIN_SRV		=	$(PATH_BIN)$(NAME_SRV)
 BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
 
-SRCS_X		=	xaccept.c		\
-			xbind.c			\
-			xconnect.c		\
-			xgethostbyname.c	\
-			xlisten.c		\
-			xmalloc.c		\
-			xopen.c			\
-			xrecv.c			\
-			xsend.c			\
-			xsocket.c
+SRCS_X		=	$(PATH_X)xaccept.c		\
+			$(PATH_X)xbind.c		\
+			$(PATH_X)xconnect.c		\
+			$(PATH_X)xgethostbyname.c	\
+			$(PATH_X)xlisten.c		\
+			$(PATH_X)xmalloc.c		\
+			$(PATH_X)xopen.c		\
+			$(PATH_X)xrecv.c		\
+			$(PATH_X)xsend.c		\
+			$(PATH_X)xsocket.c
 
 SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)usage_server.c		\
