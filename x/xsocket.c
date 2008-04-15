@@ -1,18 +1,19 @@
 /*
-** xsocket.c for my_ftp_server in /u/epitech_2010s/hochwe_f/cu/rendu/c/my_ftp/server
+** xsocket.c for my_ftp in /home/candan_c/rendu/project/my_ftp_new
 ** 
-** Made by florent hochwelker
-** Login   <hochwe_f@epitech.net>
+** Made by caner candan
+** Login   <candan_c@epitech.net>
 ** 
-** Started on  Wed Apr  2 18:08:03 2008 florent hochwelker
-** Last update Tue Apr 15 15:08:34 2008 florent hochwelker
+** Started on  Thu Apr  3 09:24:30 2008 caner candan
+** Last update Tue Apr  8 15:24:40 2008 caner candan
 */
 
+#include <sys/types.h>
 #include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include "my_ftp.h"
 
 int	xsocket(int domain, int type, int protocol)
 {
@@ -20,7 +21,9 @@ int	xsocket(int domain, int type, int protocol)
 
   if ((s = socket(domain, type, protocol)) < 0)
     {
-      perror("socket");
+      fprintf(stderr, "server - error with socket()\n");
+      close(s);
+      exit(FALSE);
     }
   return (s);
 }

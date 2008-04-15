@@ -1,25 +1,26 @@
 /*
-** xmalloc.c for my_ftp_server in /u/epitech_2010s/hochwe_f/cu/rendu/c/my_ftp/server
+** xmalloc.c for **zappy** in /u/epitech_2010s/toumi_m/cu/rendu/c/zappy/zappy
 ** 
-** Made by florent hochwelker
-** Login   <hochwe_f@epitech.net>
+** Made by majdi toumi
+** Login   <toumi_m@epitech.net>
 ** 
-** Started on  Thu Apr  3 10:58:24 2008 florent hochwelker
-** Last update Fri Apr  4 18:21:08 2008 florent hochwelker
+** Started on  Thu Apr 10 16:32:19 2008 majdi toumi
+** Last update Thu Apr 10 19:08:32 2008 majdi toumi
 */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "zappy.h"
 
 void	*xmalloc(int size)
 {
   void	*p;
 
-  if ((p = malloc(size)))
-    return (p);
-  else
+  p = malloc(size);
+  if (p == NULL)
     {
-      perror("malloc");
-      exit(-1);
+      fprintf(stderr, "xmalloc: not enough memory\n");
+      exit(EXIT_FAIL);
     }
+  return (p);
 }
