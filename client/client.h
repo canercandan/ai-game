@@ -5,13 +5,13 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:11:25 2008 florent hochwelker
-** Last update Thu Apr 10 19:56:39 2008 florent hochwelker
+** Last update Tue Apr 15 14:56:22 2008 florent hochwelker
 */
 
 #ifndef __CLIENT_H__
 # define __CLIENT_H__
 
-# define READ_BUFF	128
+# define READ_BUFF	1014
 # define MSG_WELCOME	"BIENVENUE\n"
 
 char	*server_host;

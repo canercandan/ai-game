@@ -5,20 +5,21 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Thu Apr 10 19:44:24 2008 florent hochwelker
+** Last update Tue Apr 15 15:02:21 2008 florent hochwelker
 */
 
 static int	step_two(int socket)
 {
-  int	count;
-  char	buff[1024];
+  int		count;
+  char		*p;
 
-  if ((count = recv(socket, buff, 1024, 0)) != 1)
+  if ((p = check_response(socket)))
     {
       if (strncmp(buff, MSG_WELCOME, strlen(MSG_WELCOME)) == 0)
 	{
 	  snprintf(buff, 1024, "%s\n", team_name);
 	  send(socket, buff, strlen(buff), 0);
+	  free(p);
 	  return (0);
 	}
     }
@@ -28,26 +29,27 @@ static int	step_two(int socket)
 static int	step_one(int socket, char *team_name)
 {
   int		count;
-  char		buff[1024];
+  char		*p;
 
-  if ((count = recv(socket, buff, 1024, 0)) != 1)
+  if ((p = check_response(socket)))
     {
-      if (strncmp(buff, MSG_WELCOME, strlen(MSG_WELCOME)) == 0)
+      if (strncmp(p, MSG_WELCOME, strlen(MSG_WELCOME)) == 0)
 	{
 	  snprintf(buff, 1024, "%s\n", team_name);
 	  send(socket, buff, strlen(buff), 0);
+	  free(p);
 	  return (0);
 	}
     }
   return (-1);
 }
 
-int	enter_in_the_world(int socket, char *team_name)
-{
-  if (step_one(socket, team_name) != -1 &&
-      step_two(socket) != -1 &&
-      step_three(socket) != -1)
-    {
-      printf("[%d] I enter in the world\n", socket);
-    }
-}
+  int	enter_in_the_world(int socket, char *team_name)
+  {
+    if (step_one(socket, team_name) != -1 &&
+	step_two(socket) != -1 &&
+	step_three(socket) != -1)
+      {
+	printf("[%d] I enter in the world\n", socket);
+      }
+  }
