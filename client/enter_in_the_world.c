@@ -5,22 +5,54 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Tue Apr 15 15:02:21 2008 florent hochwelker
+** Last update Tue Apr 15 17:20:32 2008 florent hochwelker
 */
 
-static int	step_two(int socket)
+#include <ctype.h>
+#include "x.h"
+#include "client.h"
+
+static t_map	*get_x_y_map(int socket, char *buff)
+{
+  t_map		*map;
+
+  map = malloc(sizeof(*map));
+  buff = strchr(buff, '\n');
+  if ((isdigit(*(buff + 1)) && strstr(buff, "\n")))
+    {
+      map->x = atoi(buff);
+      map->y = atoi(strchr(buff, ' '));
+    }
+  else
+    {
+      free(buff);
+      if ((buff = check_response(socket)) && isdigit(*buff)) /* un peu unsafe */
+	{
+	  map->x = atoi(buff);
+	  map->y = atoi(strchr(buff, ' '));
+	}
+      else
+	{
+	  printf("Error not a valid map\n");
+	  exit(-1);
+	}
+    }
+  free(buff);
+  return (map);
+}
+
+static t_map	*step_two(int socket, char *team_name, char *hostname, int port)
 {
   int		count;
   char		*p;
 
   if ((p = check_response(socket)))
     {
-      if (strncmp(buff, MSG_WELCOME, strlen(MSG_WELCOME)) == 0)
+      if (isdigit(*p))
 	{
-	  snprintf(buff, 1024, "%s\n", team_name);
-	  send(socket, buff, strlen(buff), 0);
-	  free(p);
-	  return (0);
+	  if (atoi(p) > 1)
+	    fork_in_the_word(team_name, hostname, port);
+	  return(get_x_y_map(socket, p));
 	}
     }
   return (-1);
@@ -35,8 +67,8 @@ static int	step_one(int socket, char *team_name)
     {
       if (strncmp(p, MSG_WELCOME, strlen(MSG_WELCOME)) == 0)
 	{
-	  snprintf(buff, 1024, "%s\n", team_name);
-	  send(socket, buff, strlen(buff), 0);
+	  xsend(socket, team_name, strlen(team_name), 0);
+	  xsend(socket, "\n", 1, 0);
 	  free(p);
 	  return (0);
 	}
@@ -44,12 +76,15 @@ static int	step_one(int socket, char *team_name)
   return (-1);
 }
 
-  int	enter_in_the_world(int socket, char *team_name)
-  {
-    if (step_one(socket, team_name) != -1 &&
-	step_two(socket) != -1 &&
-	step_three(socket) != -1)
-      {
-	printf("[%d] I enter in the world\n", socket);
-      }
-  }
+int	enter_in_the_world(int socket, char *team_name, char *hostname, int port)
+{
+  t_map	*map;
+
+  if (step_one(socket, team_name) != -1 &&
+      (map = step_two(socket, team_name, hostname, port)) != (t_map *)-1)
+    {
+      printf("[%d] I enter in the world\n", socket);
+      printf("map X = %d, Y = %d", map->x, map->y);
+    }
+  close(socket);
+}

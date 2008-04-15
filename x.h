@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 15:42:08 2008 caner candan
-** Last update Tue Apr 15 16:20:59 2008 caner candan
+** Last update Tue Apr 15 17:16:26 2008 florent hochwelker
 */
 
 #ifndef __X_H__
@@ -36,8 +36,8 @@ int	xaccept(int s, void *addr, void *addrlen);
 int	xbind(int s, const void *addr, void *addrlen);
 int	xconnect(int s, const void *name, void *namelen);
 int	xlisten(int s, int backlog);
-void	*xrecv(int s, void *buf, void *len, int flags);
-void	*xsend(int s, const void *msg, void *len, int flags);
+int	xrecv(int s, void *buf, int len, int flags);
+int	xsend(int s, const void *msg, int len, int flags);
 int	xsocket(int domain, int type, int protocol);
 
 /*

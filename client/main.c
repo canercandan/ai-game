@@ -5,7 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:25:32 2008 florent hochwelker
+<<<<<<< .mine
+** Last update Tue Apr 15 17:35:25 2008 florent hochwelker
+=======
 ** Last update Tue Apr 15 17:30:46 2008 caner candan
+>>>>>>> .r44
 */
 
 #include <sys/types.h>
@@ -18,13 +22,20 @@
 int	main(int ac, char **av)
 {
   int	socket;
+  char	hostname;
 
   if (ac == 5)
-    socket = new_connection(av[2], atoi(av[4]), "localhost");
+    {
+      hostname = "localhost";
+      socket = new_connection(av[2], "localhost", atoi(av[4]));
+    }
   else if (ac == 7)
-    socket = new_connection(av[2], atoi(av[4]), av[6]);
+    {
+      hostname = av[6];
+      socket = new_connection(av[2], av[6], atoi(av[4]));
+    }
   else
-    printf_usage(av[0]);
-  enter_in_the_world(socket, av[2]);
+    print_usage(av[0]);
+  enter_in_the_world(socket, av[2], hostname, atoi(av[4]));
   return (0);
 }

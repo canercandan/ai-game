@@ -5,11 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:56:00 2008 florent hochwelker
-** Last update Thu Apr 10 19:10:39 2008 florent hochwelker
+** Last update Tue Apr 15 17:35:52 2008 florent hochwelker
 */
 
 void	print_usage(char *arg_zero)
 {
-  printf("Usage:\n%s -n team_name -p port [-h host]");
+  printf("Usage:\n%s -n team_name -p port [-h host]\n", arg_zero);
   exit(-1);
 }

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu Apr  3 09:51:31 2008 caner candan
-** Last update Tue Apr 15 16:15:51 2008 caner candan
+** Last update Tue Apr 15 17:25:51 2008 florent hochwelker
 */
 
 #include <sys/types.h>
@@ -15,11 +15,11 @@
 #include <unistd.h>
 #include "x.h"
 
-void	*xsend(int s, const void *msg, void *len, int flags)
+int	xsend(int s, const void *msg, int len, int flags)
 {
-  void	*rc;
+  int	rc;
 
-  if ((int) (rc = (void *) send(s, msg, (size_t) len, flags)) < 0)
+  if ((rc = send(s, msg, (size_t) len, flags)) < 0)
     {
       fprintf(stderr, "Error with send()\n");
       close(s);

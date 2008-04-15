@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:54:47 2008 florent hochwelker
-** Last update Tue Apr 15 14:59:30 2008 florent hochwelker
+** Last update Tue Apr 15 17:18:02 2008 florent hochwelker
 */
 
 /*
@@ -14,6 +14,7 @@
 ** Cette fonction est useless.
 **
 */
+/*
 char		*get_next_line(int socket)
 {
   static int	i = 0;
@@ -43,3 +44,4 @@ char		*get_next_line(int socket)
   else if (!count)
     return (0);
 }
+*/
