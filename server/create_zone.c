@@ -5,12 +5,13 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Thu Apr 10 19:55:28 2008 majdi toumi
+** Last update Tue Apr 15 15:41:35 2008 caner candan
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "x.h"
 #include "zappy.h"
 
 t_zone		**create_zone(int width, int lenght)
@@ -29,7 +30,7 @@ t_zone		**create_zone(int width, int lenght)
       zone[i] = xmalloc(sizeof(**zone) * lenght);
       memset(zone[i], 0, sizeof(**zone) * lenght);
     }
-  // FIXME -> function: remplir map objet, ...
+  /* FIXME -> function: remplir map objet, ...*/
   fill_ressources_zone(zone, width, lenght);
   return (zone);
 }

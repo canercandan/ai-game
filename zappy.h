@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:03:01 2008 majdi toumi
-** Last update Mon Apr 14 15:54:59 2008 caner candan
+** Last update Tue Apr 15 15:43:49 2008 caner candan
 */
 
 #ifndef __ZAPPY_H__
@@ -172,21 +172,5 @@ void	fill_ressources_zone(t_zone **zone, int width, int lenght);
 void	dump_zone(t_zone **zone, int width, int lenght);
 void	dump_ressources(t_list *ressource);
 void	dump_clients(t_list *clients);
-
-/*
-** My/x library:
-*/
-void	*xmalloc(int size);
-
-/*
-** Socket control:
-*/
-int	xaccept(int s, void *addr, void *addrlen);
-int	xbind(int s, const void *addr, void *addrlen);
-int	xconnect(int s, const void *name, void *namelen);
-int	xlisten(int s, int backlog);
-void	*xrecv(int s, void *buf, void *len, int flags);
-void	*xsend(int s, const void *msg, void *len, int flags);
-int	xsocket(int domain, int type, int protocol);
 
 #endif /* !__ZAPPY_H__ */

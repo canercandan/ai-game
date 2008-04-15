@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Apr 15 15:00:21 2008 caner candan
+## Last update Tue Apr 15 16:08:41 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -23,12 +23,37 @@ PATH_OBJ	=	$(NAME_OBJ)/
 BIN_SRV		=	$(PATH_BIN)$(NAME_SRV)
 BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
 
-SRCS_SRV	=	$(PATH_SRV)main.c
+SRCS_X		=	xaccept.c		\
+			xbind.c			\
+			xconnect.c		\
+			xgethostbyname.c	\
+			xlisten.c		\
+			xmalloc.c		\
+			xopen.c			\
+			xrecv.c			\
+			xsend.c			\
+			xsocket.c
+
+SRCS_SRV	=	$(PATH_SRV)main.c			\
+			$(PATH_SRV)usage_server.c		\
+			$(PATH_SRV)parse_args.c			\
+			$(PATH_SRV)is_options.c			\
+			$(PATH_SRV)check_flag.c			\
+			$(PATH_SRV)opt_port.c			\
+			$(PATH_SRV)opt_width.c			\
+			$(PATH_SRV)opt_lenght.c			\
+			$(PATH_SRV)opt_nb_player.c		\
+			$(PATH_SRV)opt_name_team.c		\
+			$(PATH_SRV)opt_delay.c			\
+			$(PATH_SRV)create_zone.c		\
+			$(PATH_SRV)fill_ressources_zone.c	\
+			$(PATH_SRV)dump_zone.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c
 
-OBJS_SRV	=	$(SRCS_SRV:.c=.o)
-OBJS_CLI	=	$(SRCS_CLI:.c=.o)
+OBJS_X		=	$(SRCS_X:.c=.o)
+OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
+OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
 
 INCLUDES	=	-I.
 LIBRARY		=	-L.
@@ -38,6 +63,8 @@ LDFLAGS		=	$(LIBRARY)
 
 CC		=	gcc
 RM		=	rm -rf
+RM_O		=	find . -name '*.o' -exec rm {} \;
+RM_TILD		=	find . -name '*~' -exec rm {} \;
 MK		=	make
 MKD		=	mkdir -p
 
@@ -57,9 +84,8 @@ $(BIN_CLI)	:	$(OBJS_CLI)
 			$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
 
 clean		:
-			$(RM) *~
-			$(RM) *.o
-			$(RM) *.core
+			@$(RM_O)
+			@$(RM_TILD)
 
 fclean		:	clean
 			$(RM) $(BIN_SRV)
