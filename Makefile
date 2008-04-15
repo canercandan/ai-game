@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Apr 15 16:10:56 2008 caner candan
+## Last update Tue Apr 15 17:26:27 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -49,7 +49,11 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)fill_ressources_zone.c	\
 			$(PATH_SRV)dump_zone.c
 
-SRCS_CLI	=	$(PATH_CLI)main.c
+SRCS_CLI	=	$(PATH_CLI)main.c		\
+			$(PATH_CLI)enter_in_the_world.c	\
+			$(PATH_CLI)get_next_line.c	\
+			$(PATH_CLI)new_connection.c	\
+			$(PATH_CLI)print_usage.c
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
