@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Apr 15 17:26:27 2008 caner candan
+## Last update Tue Apr 15 18:33:12 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -59,7 +59,7 @@ OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
 OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
 
-INCLUDES	=	-I.
+INCLUDES	=	-I./include
 LIBRARY		=	-L.
 
 CFLAGS		=	$(INCLUDES) -g -Wall -W -Werror -pedantic -ansi
