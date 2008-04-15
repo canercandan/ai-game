@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:25:32 2008 florent hochwelker
-** Last update Tue Apr 15 18:19:35 2008 florent hochwelker
+** Last update Tue Apr 15 18:23:18 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -13,6 +13,7 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <stdlib.h>
 #include "client.h"
 
 int	main(int ac, char **av)

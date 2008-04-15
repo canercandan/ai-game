@@ -5,9 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Tue Apr 15 17:20:32 2008 florent hochwelker
+** Last update Tue Apr 15 18:23:00 2008 caner candan
 */
 
+#include <stdlib.h>
 #include <ctype.h>
 #include "x.h"
 #include "client.h"
