@@ -5,11 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:25:32 2008 florent hochwelker
-<<<<<<< .mine
-** Last update Tue Apr 15 17:35:25 2008 florent hochwelker
-=======
-** Last update Tue Apr 15 17:30:46 2008 caner candan
->>>>>>> .r44
+** Last update Tue Apr 15 18:19:35 2008 florent hochwelker
 */
 
 #include <sys/types.h>
