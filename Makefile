@@ -5,11 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-<<<<<<< .mine
-## Last update Tue Apr 15 22:32:56 2008 caner candan
-=======
-## Last update Tue Apr 22 09:56:44 2008 florent hochwelker
->>>>>>> .r54
+## Last update Tue Apr 22 10:15:01 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -36,7 +32,8 @@ SRCS_X		=	$(PATH_X)xaccept.c		\
 			$(PATH_X)xopen.c		\
 			$(PATH_X)xrecv.c		\
 			$(PATH_X)xsend.c		\
-			$(PATH_X)xsocket.c
+			$(PATH_X)xsocket.c		\
+			$(PATH_X)xfork.c
 
 SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)usage_server.c		\
@@ -56,7 +53,9 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 SRCS_CLI	=	$(PATH_CLI)main.c		\
 			$(PATH_CLI)enter_in_the_world.c	\
 			$(PATH_CLI)new_connection.c	\
-			$(PATH_CLI)print_usage.c
+			$(PATH_CLI)print_usage.c	\
+			$(PATH_CLI)check_response.c	\
+			$(PATH_CLI)fork_in_the_word.c
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
