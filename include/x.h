@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 15:42:08 2008 caner candan
-** Last update Tue Apr 22 14:21:40 2008 florent hochwelker
+** Last update Tue Apr 22 18:06:50 2008 caner candan
 */
 
 #ifndef __X_H__
@@ -45,5 +45,11 @@ int	xfork(void);
 ** My/x library:
 */
 void	*xmalloc(int size);
+
+/*
+** File's functions:
+*/
+int	xopen(char *path, int flags);
+int	xclose(int fd);
 
 #endif /* !__X_H__ */

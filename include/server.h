@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Tue Apr 22 10:12:56 2008 caner candan
+** Last update Tue Apr 22 18:07:55 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -15,20 +15,17 @@
 # define FD_CLIENT	1
 # define FD_SERVER	2
 
-# define MAX_FD		OPEN_MAX
+# define MAX_FD		100
 
 typedef void	(*fct)();
 
-typedef struct		s_env
+typedef struct	s_env
 {
-  char			fd_type[MAX_FD];
-  fct			fct_read[MAX_FD];
-  fct			fct_write[MAX_FD];
-  int			port;
-  int			fd_max;
-  fd_set		fd_read;
-  struct timeval	tv;
-}			t_env;
+  char		fd_type[MAX_FD];
+  fct		fct_read[MAX_FD];
+  fct		fct_write[MAX_FD];
+  int		port;
+}		t_env;
 
 /*
 **
@@ -37,6 +34,12 @@ typedef struct		s_env
 void	add_client(t_env *e, int s);
 void	add_server(t_env *e);
 void	client_read(t_env *e, int fd);
+void	server_read(t_env *e, int fd);
+void	add_client(t_env *e, int s);
+void	add_server(t_env *e);
+void	client_read(t_env *e, int fd);
+void	server_get(t_env *e, void *tv);
+void	server_init(t_env *e, char *port, void *tv);
 void	server_read(t_env *e, int fd);
 
 #endif /* !__SERVER_H__ */
