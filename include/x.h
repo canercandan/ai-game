@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 15:42:08 2008 caner candan
-** Last update Tue Apr 15 17:16:26 2008 florent hochwelker
+** Last update Tue Apr 22 13:04:11 2008 caner candan
 */
 
 #ifndef __X_H__
@@ -39,6 +39,7 @@ int	xlisten(int s, int backlog);
 int	xrecv(int s, void *buf, int len, int flags);
 int	xsend(int s, const void *msg, int len, int flags);
 int	xsocket(int domain, int type, int protocol);
+int	xfork(void);
 
 /*
 ** My/x library:

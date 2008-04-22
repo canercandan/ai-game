@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Tue Apr 22 09:45:09 2008 caner candan
+** Last update Tue Apr 22 10:12:56 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -19,13 +19,16 @@
 
 typedef void	(*fct)();
 
-typedef struct	s_env
+typedef struct		s_env
 {
-  char		fd_type[MAX_FD];
-  fct		fct_read[MAX_FD];
-  fct		fct_write[MAX_FD];
-  int		port;
-}		t_env;
+  char			fd_type[MAX_FD];
+  fct			fct_read[MAX_FD];
+  fct			fct_write[MAX_FD];
+  int			port;
+  int			fd_max;
+  fd_set		fd_read;
+  struct timeval	tv;
+}			t_env;
 
 /*
 **
