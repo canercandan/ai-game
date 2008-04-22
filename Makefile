@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Apr 22 16:29:51 2008 florent hochwelker
+## Last update Tue Apr 22 18:32:31 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -30,6 +30,7 @@ SRCS_X		=	$(PATH_X)xaccept.c		\
 			$(PATH_X)xlisten.c		\
 			$(PATH_X)xmalloc.c		\
 			$(PATH_X)xopen.c		\
+			$(PATH_X)xclose.c		\
 			$(PATH_X)xrecv.c		\
 			$(PATH_X)xsend.c		\
 			$(PATH_X)xsocket.c		\
