@@ -5,7 +5,7 @@
 ## Login   <toumi_m@epitech.net>
 ## 
 ## Started on  Thu Apr 10 08:41:58 2008 majdi toumi
-## Last update Thu Apr 10 19:56:19 2008 majdi toumi
+## Last update Tue Apr 15 14:29:08 2008 majdi toumi
 ##
 
 CC		=	/usr/bin/gcc
@@ -22,9 +22,9 @@ SRC_SRV		=	server.c		\
 			opt_nb_player.c		\
 			opt_name_team.c		\
 			opt_delay.c		\
-			create_zone.c		\
-			fill_ressources_zone.c	\
-			dump_zone.c
+			create_world.c		\
+			fill_ressources_world.c	\
+			dump_world.c
 
 OBJ_SRV		=	$(SRC_SRV:.c=.o)
 
