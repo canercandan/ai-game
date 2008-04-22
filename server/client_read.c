@@ -5,9 +5,10 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Tue Apr 22 18:08:32 2008 caner candan
+** Last update Tue Apr 22 18:37:32 2008 caner candan
 */
 
+#include <stdio.h>
 #include "server.h"
 #include "x.h"
 #include "zappy.h"
@@ -17,7 +18,7 @@ void	client_read(t_env *e, int fd)
   int	r;
   char	buf[4096];
 
-  if ((r = (int) xrecv(fd, buf, sizeof(buf), NULL)) > 0)
+  if ((r = (int) xrecv(fd, buf, sizeof(buf), 0)) > 0)
     {
       buf[r] = '\0';
       printf("%d: %s\n", fd, buf);

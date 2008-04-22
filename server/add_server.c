@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Tue Apr 22 18:07:34 2008 caner candan
+** Last update Tue Apr 22 18:37:04 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -24,7 +24,7 @@ void	add_server(t_env *e)
   sin.sin_family = AF_INET;
   sin.sin_port = htons(e->port);
   sin.sin_addr.s_addr = INADDR_ANY;
-  xbind(s, (struct sockaddr *) &sin, sizeof(sin));
+  xbind(s, (struct sockaddr *) &sin, (void *) sizeof(sin));
   xlisten(s, 42);
   e->fd_type[s] = FD_SERVER;
   e->fct_read[s] = server_read;
