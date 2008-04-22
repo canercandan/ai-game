@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:03:01 2008 majdi toumi
-** Last update Tue Apr 15 16:20:16 2008 caner candan
+** Last update Tue Apr 22 17:34:46 2008 florent hochwelker
 */
 
 #ifndef __ZAPPY_H__
@@ -30,7 +30,6 @@
 # define MENDIANE	"Mendiane"
 # define PHIRAS		"Phiras"
 # define THYSTAME	"Thystame"
-
 # define MEZZOPASTA	"Mezzopasta"
 
 /*
@@ -109,6 +108,13 @@ typedef struct		s_inventory
   unsigned int		qte;
 }			t_inventory;
 
+typedef struct		s_queue
+{
+  int			action;
+  char			*param;
+  unsigned int		time;
+}			t_queue;
+
 typedef struct		s_client
 {
   int			hp;
@@ -116,14 +122,15 @@ typedef struct		s_client
   int			level;
   t_team		*team;
   t_inventory		*stock;
-  struct s_client	*next;
+  t_queue		queue;
 }			t_client;
 
 typedef struct		s_action
 {
-  char			*name;
-  int			delay;
-  char			(*fun)();
+  int			action;
+  char			*str;
+  unsigned int		delay;
+  int			(*fun)(char *cmd, int socket);
 }			t_action;
 
 typedef struct		s_ressource
@@ -152,6 +159,7 @@ typedef struct		s_level
 extern t_opt		gl_opt_srv[];
 extern t_opt		gl_opt_clt[];
 extern t_ressource	gl_rock[];
+extern t_action		gl_actions[];
 
 /*
 ** Function's prototypes:
@@ -172,5 +180,17 @@ void	fill_ressources_zone(t_zone **zone, int width, int lenght);
 void	dump_zone(t_zone **zone, int width, int lenght);
 void	dump_ressources(t_list *ressource);
 void	dump_clients(t_list *clients);
+
+int	act_up(char *cmd, int socket);
+int	act_right(char *cmd, int socket);
+int	act_left(char *cmd, int socket);
+int	act_see(char *cmd, int socket);
+int	act_inventory(char *cmd, int socket);
+int	act_take_obj(char *cmd, int socket);
+int	act_drop_obj(char *cmd, int socket);
+int	act_kick(char *cmd, int socket);
+int	act_broadcast(char *cmd, int socket);
+int	act_levelup(char *cmd, int socket);
+int	act_fork(char *cmd, int socket);
 
 #endif /* !__ZAPPY_H__ */

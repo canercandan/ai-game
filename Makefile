@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Apr 22 14:00:42 2008 florent hochwelker
+## Last update Tue Apr 22 16:29:51 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -33,7 +33,7 @@ SRCS_X		=	$(PATH_X)xaccept.c		\
 			$(PATH_X)xrecv.c		\
 			$(PATH_X)xsend.c		\
 			$(PATH_X)xsocket.c		\
-			$(PATH_X)xfork.c		
+			$(PATH_X)xfork.c
 
 SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)usage_server.c		\
@@ -48,7 +48,19 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)opt_delay.c			\
 			$(PATH_SRV)create_zone.c		\
 			$(PATH_SRV)fill_ressources_zone.c	\
-			$(PATH_SRV)dump_zone.c
+			$(PATH_SRV)dump_zone.c			\
+			$(PATH_SRV)list_action.c		\
+			$(PATH_SRV)act_up.c			\
+			$(PATH_SRV)act_right.c			\
+			$(PATH_SRV)act_left.c			\
+			$(PATH_SRV)act_see.c			\
+			$(PATH_SRV)act_inventory.c		\
+			$(PATH_SRV)act_take_obj.c		\
+			$(PATH_SRV)act_drop_obj.c		\
+			$(PATH_SRV)act_kick.c			\
+			$(PATH_SRV)act_broadcast.c		\
+			$(PATH_SRV)act_levelup.c		\
+			$(PATH_SRV)act_fork.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c		\
 			$(PATH_CLI)enter_in_the_world.c	\
