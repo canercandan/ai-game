@@ -5,11 +5,13 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Tue Apr 15 19:00:29 2008 florent hochwelker
+** Last update Tue Apr 22 09:56:03 2008 florent hochwelker
 */
 
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
+#include <stdio.h>
 #include "x.h"
 #include "client.h"
 
@@ -45,7 +47,6 @@ static t_map	*get_x_y_map(int socket, char *buff)
 
 static t_map	*step_two(int socket, char *team_name, char *hostname, int port)
 {
-  int		count;
   char		*p;
 
   if ((p = check_response(socket)))
@@ -57,12 +58,11 @@ static t_map	*step_two(int socket, char *team_name, char *hostname, int port)
 	  return(get_x_y_map(socket, p));
 	}
     }
-  return (-1);
+  return ((t_map *)-1);
 }
 
 static int	step_one(int socket, char *team_name)
 {
-  int		count;
   char		*p;
 
   if ((p = check_response(socket)))
