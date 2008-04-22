@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Tue Apr 15 18:46:20 2008 florent hochwelker
+** Last update Tue Apr 15 19:00:29 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -15,9 +15,11 @@
 
 static t_map	*get_x_y_map(int socket, char *buff)
 {
+  char		*save;
   t_map		*map;
 
   map = malloc(sizeof(*map));
+  save = buff;
   buff = strchr(buff, '\n');
   if ((isdigit(*(buff + 1)) && strstr(buff, "\n")))
     {
@@ -26,7 +28,6 @@ static t_map	*get_x_y_map(int socket, char *buff)
     }
   else
     {
-      free(buff);
       if ((buff = check_response(socket)) && isdigit(*buff)) /* un peu unsafe */
 	{
 	  map->x = atoi(buff);
@@ -38,7 +39,7 @@ static t_map	*get_x_y_map(int socket, char *buff)
 	  exit(-1);
 	}
     }
-  free(buff);
+  free(save);
   return (map);
 }
 
@@ -77,7 +78,8 @@ static int	step_one(int socket, char *team_name)
   return (-1);
 }
 
-int	enter_in_the_world(int socket, char *team_name, char *hostname, int port)
+int	enter_in_the_world(int socket, char *team_name,
+			   char *hostname, int port)
 {
   t_map	*map;
   char	*p;
