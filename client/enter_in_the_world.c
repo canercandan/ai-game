@@ -5,13 +5,14 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Tue Apr 22 09:56:03 2008 florent hochwelker
+** Last update Tue Apr 22 14:11:28 2008 florent hochwelker
 */
 
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "x.h"
 #include "client.h"
 
@@ -87,12 +88,15 @@ int	enter_in_the_world(int socket, char *team_name,
   if (step_one(socket, team_name) != -1 &&
       (map = step_two(socket, team_name, hostname, port)) != (t_map *)-1)
     {
+      srandom(getpid());
       printf("[%d] I enter in the world\n", socket);
       printf("map X = %d, Y = %d\n", map->x, map->y);
       while ((p = check_response(socket)))
 	{
 	  printf("<-- [%s]", p);
 	  free(p);
+	  p = get_rnd_action();
+	  xsend(socket, p, strlen(p), 0);
 	}
     }
   return (0);

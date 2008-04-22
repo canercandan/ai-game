@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:11:25 2008 florent hochwelker
-** Last update Tue Apr 22 09:52:04 2008 florent hochwelker
+** Last update Tue Apr 22 14:00:59 2008 florent hochwelker
 */
 
 #ifndef __CLIENT_H__
@@ -29,5 +29,6 @@ char	*check_response(int socket);
 int	enter_in_the_world(int socket, char *team_name,
 			   char *hostname, int port);
 int	fork_in_the_word(char *team_name, char *hostname, int port);
+char	*get_rnd_action();
 
 #endif /* !__CLIENT_H__ */

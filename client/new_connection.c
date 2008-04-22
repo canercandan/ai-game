@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:46:06 2008 florent hochwelker
-** Last update Tue Apr 15 17:22:23 2008 florent hochwelker
+** Last update Tue Apr 22 09:58:48 2008 florent hochwelker
 */
 
 #include <sys/types.h>
@@ -13,6 +13,8 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <stdio.h>
+#include <strings.h>
 
 int			new_connection(char *team_name, char *host, int port)
 {
@@ -22,6 +24,7 @@ int			new_connection(char *team_name, char *host, int port)
   struct hostent	*h;
   struct in_addr	in;
 
+  (void)team_name;
   pe = getprotobyname("tcp");
   if ((s = socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
     perror("socket");

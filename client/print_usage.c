@@ -5,8 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:56:00 2008 florent hochwelker
-** Last update Tue Apr 15 17:35:52 2008 florent hochwelker
+** Last update Tue Apr 22 09:59:49 2008 florent hochwelker
 */
+
+#include <stdio.h>
+#include <stdlib.h>
 
 void	print_usage(char *arg_zero)
 {
