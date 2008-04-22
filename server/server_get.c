@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Tue Apr 22 18:14:26 2008 caner candan
+** Last update Tue Apr 22 18:59:47 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -14,7 +14,7 @@
 #include "server.h"
 #include "zappy.h"
 
-void		server_get(t_env *e, void *tv)
+void		server_get(t_env *e)
 {
   fd_set	fd_read;
   int		fd_max;
@@ -28,7 +28,7 @@ void		server_get(t_env *e, void *tv)
 	FD_SET(i, &fd_read);
 	fd_max = i;
       }
-  if (select(fd_max + 1, &fd_read, NULL, NULL, tv) < 0)
+  if (select(fd_max + 1, &fd_read, NULL, NULL, e->timeout) < 0)
     {
       printf("Error with select()\n");
       exit(-1);

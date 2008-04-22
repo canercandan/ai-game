@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Tue Apr 22 18:07:55 2008 caner candan
+** Last update Tue Apr 22 18:51:34 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -25,6 +25,7 @@ typedef struct	s_env
   fct		fct_read[MAX_FD];
   fct		fct_write[MAX_FD];
   int		port;
+  void		*timeout;
 }		t_env;
 
 /*
@@ -38,8 +39,8 @@ void	server_read(t_env *e, int fd);
 void	add_client(t_env *e, int s);
 void	add_server(t_env *e);
 void	client_read(t_env *e, int fd);
-void	server_get(t_env *e, void *tv);
-void	server_init(t_env *e, char *port, void *tv);
+void	server_init(t_env *e, char *port);
+void	server_get(t_env *e);
 void	server_read(t_env *e, int fd);
 
 #endif /* !__SERVER_H__ */
