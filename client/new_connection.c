@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:46:06 2008 florent hochwelker
-** Last update Tue Apr 22 09:58:48 2008 florent hochwelker
+** Last update Tue Apr 22 14:31:19 2008 florent hochwelker
 */
 
 #include <sys/types.h>
@@ -29,7 +29,7 @@ int			new_connection(char *team_name, char *host, int port)
   if ((s = socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
     perror("socket");
   sin.sin_family = AF_INET;
-  printf("Resolving %s ... ", host);
+  printf("Resolving %s ...\n", host);
   if (!(h = gethostbyname(host)))
     perror("resolv");
   bcopy(h->h_addr, &in, sizeof(in));

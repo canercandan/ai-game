@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Tue Apr 22 14:11:28 2008 florent hochwelker
+** Last update Tue Apr 22 14:33:48 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -91,11 +91,13 @@ int	enter_in_the_world(int socket, char *team_name,
       srandom(getpid());
       printf("[%d] I enter in the world\n", socket);
       printf("map X = %d, Y = %d\n", map->x, map->y);
+      xsend(socket, "voir\n", strlen("voir\n"), 0);
       while ((p = check_response(socket)))
 	{
 	  printf("<-- [%s]", p);
 	  free(p);
 	  p = get_rnd_action();
+	  usleep(500);
 	  xsend(socket, p, strlen(p), 0);
 	}
     }
