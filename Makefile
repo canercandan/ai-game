@@ -5,7 +5,11 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
+<<<<<<< .mine
+## Last update Tue Apr 15 22:32:56 2008 caner candan
+=======
 ## Last update Tue Apr 22 09:56:44 2008 florent hochwelker
+>>>>>>> .r54
 ##
 
 NAME_SRV	=	server
@@ -81,10 +85,10 @@ all		:
 			@$(MK) $(BIN_CLI)
 
 $(BIN_SRV)	:	$(OBJS_SRV)
-			$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
+			@$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
 
 $(BIN_CLI)	:	$(OBJS_CLI)
-			$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
+			@$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
 
 clean		:
 			@$(RM_O)
