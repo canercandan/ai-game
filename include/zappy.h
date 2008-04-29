@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:03:01 2008 majdi toumi
-** Last update Tue Apr 22 17:34:46 2008 florent hochwelker
+** Last update Tue Apr 29 20:51:40 2008 caner candan
 */
 
 #ifndef __ZAPPY_H__
@@ -49,7 +49,7 @@
 ** Null:
 */
 # ifndef NULL
-#  define NULL	0
+#  define NULL	(void *) 0
 # endif /* !NULL */
 
 /*
@@ -164,7 +164,7 @@ extern t_action		gl_actions[];
 /*
 ** Function's prototypes:
 */
-void	usage_server();
+void	usage_server(void);
 t_info	*parse_args(int argc, char **argv);
 int	is_options(char *args);
 int	check_flag(int flag);
@@ -192,5 +192,10 @@ int	act_kick(char *cmd, int socket);
 int	act_broadcast(char *cmd, int socket);
 int	act_levelup(char *cmd, int socket);
 int	act_fork(char *cmd, int socket);
+
+/*
+** Debug's functions
+*/
+void	debug(char *s);
 
 #endif /* !__ZAPPY_H__ */

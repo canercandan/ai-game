@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Apr 22 18:35:35 2008 caner candan
+## Last update Tue Apr 29 21:47:03 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -67,7 +67,11 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)server_read.c		\
 			$(PATH_SRV)add_client.c			\
 			$(PATH_SRV)add_server.c			\
-			$(PATH_SRV)client_read.c
+			$(PATH_SRV)client_read.c		\
+			$(PATH_SRV)debug.c			\
+			$(PATH_SRV)push_list.c			\
+			$(PATH_SRV)pop_list.c			\
+			$(PATH_SRV)pop_all_list.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c		\
 			$(PATH_CLI)enter_in_the_world.c	\
@@ -84,13 +88,17 @@ OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
 INCLUDES	=	-I./include
 LIBRARY		=	-L.
 
-CFLAGS		=	$(INCLUDES) -g -Wall -W -Werror -pedantic -ansi
+DEBUG		=	-g
+PANIC		=	-Wall -W -Werror -pedantic -ansi
+
+CFLAGS		=	$(INCLUDES) $(DEBUG) $(PANIC)
 LDFLAGS		=	$(LIBRARY)
 
 CC		=	gcc
 RM		=	rm -rf
 RM_O		=	find . -name '*.o' -exec rm {} \;
 RM_TILD		=	find . -name '*~' -exec rm {} \;
+RM_CORE		=	find . -name '*.core' -exec rm {} \;
 MK		=	make
 MKD		=	mkdir -p
 
@@ -112,15 +120,15 @@ $(BIN_CLI)	:	$(OBJS_CLI)
 clean		:
 			@$(RM_O)
 			@$(RM_TILD)
+			@$(RM_CORE)
 
 fclean		:	clean
 			$(RM) $(BIN_SRV)
 			$(RM) $(BIN_CLI)
-			$(RM) $(PATH_BIN)
 
 re		:	fclean all
 
 .PHONY		:	all clean fclean re
 
 .c.o		:
-			$(CC) $(CFLAGS) -c $< -o $@ $(LDFLAGS)
+			$(CC) $(CFLAGS) -c $< -o $@

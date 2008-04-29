@@ -5,19 +5,23 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Tue Apr 22 18:08:21 2008 caner candan
+** Last update Tue Apr 29 21:43:58 2008 caner candan
 */
 
+#include "zappy.h"
 #include "server.h"
 #include "x.h"
-#include "zappy.h"
 
 void	add_client(t_env *e, int s)
 {
-  int	cs;
+  int	socket;
+  t_cli	*c;
 
-  cs = xaccept(s, NULL, NULL);
-  e->fd_type[cs] = FD_CLIENT;
-  e->fct_read[cs] = client_read;
-  e->fct_write[cs] = NULL;
+  socket = xaccept(s, NULL, NULL);
+  client_to_list(e, FD_CLIENT, client_read, NULL);
+  c = xmalloc(sizeof(*c));
+  c->fd_type = FD_CLIENT;
+  c->fct_read = client_read;
+  c->fct_write = NULL;
+  push_list(&e->clients, (void *) c);
 }
