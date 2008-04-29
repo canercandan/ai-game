@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:03:01 2008 majdi toumi
-** Last update Tue Apr 29 20:51:40 2008 caner candan
+** Last update Tue Apr 29 22:33:05 2008 caner candan
 */
 
 #ifndef __ZAPPY_H__
@@ -197,5 +197,14 @@ int	act_fork(char *cmd, int socket);
 ** Debug's functions
 */
 void	debug(char *s);
+
+/*
+** List's functions
+*/
+void	push_list(t_list **t, void *data);
+void	*pop_list(t_list **t);
+void	pop_all_list(t_list *t);
+void	*pop_client_from_list(t_list **t, int socket);
+void	*get_client_from_list(t_list *t, int socket);
 
 #endif /* !__ZAPPY_H__ */

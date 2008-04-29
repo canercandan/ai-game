@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Tue Apr 29 21:43:58 2008 caner candan
+** Last update Tue Apr 29 21:47:52 2008 caner candan
 */
 
 #include "zappy.h"
@@ -18,7 +18,6 @@ void	add_client(t_env *e, int s)
   t_cli	*c;
 
   socket = xaccept(s, NULL, NULL);
-  client_to_list(e, FD_CLIENT, client_read, NULL);
   c = xmalloc(sizeof(*c));
   c->fd_type = FD_CLIENT;
   c->fct_read = client_read;

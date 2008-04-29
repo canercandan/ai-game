@@ -5,15 +5,15 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 29 20:32:34 2008 caner candan
-** Last update Tue Apr 29 20:34:21 2008 caner candan
+** Last update Tue Apr 29 22:19:08 2008 caner candan
 */
 
 #include <stdio.h>
 #include "zappy.h"
 
-void		pop_all_list(t_list *t)
+void	pop_all_list(t_list *t)
 {
-  void		*data;
+  void	*data;
 
   while (42)
     {

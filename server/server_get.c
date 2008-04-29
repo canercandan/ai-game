@@ -5,36 +5,53 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Tue Apr 22 18:59:47 2008 caner candan
+** Last update Tue Apr 29 22:50:56 2008 caner candan
 */
 
 #include <sys/select.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "server.h"
 #include "zappy.h"
+#include "server.h"
+
+static void	get_set_fd(t_list *t, fd_set *fd_read, int *fd_max)
+{
+  fd_max = 0;
+  while (t)
+    {
+      if (t->fd_type != FD_FREE)
+	{
+	  FD_SET(t->socket, &fd_read);
+	  fd_max = t->socket;
+	}
+      t = t->next;
+    }
+}
+
+static void	get_isset_fd(t_list *t, fd_set *fd_read)
+{
+  while (t)
+    {
+      if (FD_ISSET(t->socket, &fd_read))
+	t->fct_read(e, i);
+      t = t->next;
+    }
+}
 
 void		server_get(t_env *e)
 {
   fd_set	fd_read;
   int		fd_max;
   int		i;
+  t_list	*t;
 
   FD_ZERO(&fd_read);
-  fd_max = 0;
-  for (i = 0; i < MAX_FD; i++)
-    if (e->fd_type[i] != FD_FREE)
-      {
-	FD_SET(i, &fd_read);
-	fd_max = i;
-      }
+  get_set_fd(e->clients, &fd_read, &fd_max);
   if (select(fd_max + 1, &fd_read, NULL, NULL, e->timeout) < 0)
     {
       printf("Error with select()\n");
       exit(-1);
     }
-  for (i = 0; i < MAX_FD; i++)
-    if (FD_ISSET(i, &fd_read))
-      e->fct_read[i](e, i);
+  get_isset_fd(e->clients, &fd_read);
   printf("waiting...\n");
 }
