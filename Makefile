@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Apr 29 22:34:00 2008 caner candan
+## Last update Wed Apr 30 13:26:56 2008 majdi toumi
 ##
 
 NAME_SRV	=	server
@@ -23,17 +23,17 @@ PATH_OBJ	=	$(NAME_OBJ)/
 BIN_SRV		=	$(PATH_BIN)$(NAME_SRV)
 BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
 
-SRCS_X		=	$(PATH_X)xaccept.c		\
-			$(PATH_X)xbind.c		\
-			$(PATH_X)xconnect.c		\
-			$(PATH_X)xgethostbyname.c	\
-			$(PATH_X)xlisten.c		\
-			$(PATH_X)xmalloc.c		\
-			$(PATH_X)xopen.c		\
-			$(PATH_X)xclose.c		\
-			$(PATH_X)xrecv.c		\
-			$(PATH_X)xsend.c		\
-			$(PATH_X)xsocket.c		\
+SRCS_X		=	$(PATH_X)xaccept.c			\
+			$(PATH_X)xbind.c			\
+			$(PATH_X)xconnect.c			\
+			$(PATH_X)xgethostbyname.c		\
+			$(PATH_X)xlisten.c			\
+			$(PATH_X)xmalloc.c			\
+			$(PATH_X)xopen.c			\
+			$(PATH_X)xclose.c			\
+			$(PATH_X)xrecv.c			\
+			$(PATH_X)xsend.c			\
+			$(PATH_X)xsocket.c			\
 			$(PATH_X)xfork.c
 
 SRCS_SRV	=	$(PATH_SRV)main.c			\
@@ -47,9 +47,9 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)opt_nb_player.c		\
 			$(PATH_SRV)opt_name_team.c		\
 			$(PATH_SRV)opt_delay.c			\
-			$(PATH_SRV)create_zone.c		\
-			$(PATH_SRV)fill_ressources_zone.c	\
-			$(PATH_SRV)dump_zone.c			\
+			$(PATH_SRV)create_world.c		\
+			$(PATH_SRV)fill_ressources_world.c	\
+			$(PATH_SRV)dump_world.c			\
 			$(PATH_SRV)list_action.c		\
 			$(PATH_SRV)act_up.c			\
 			$(PATH_SRV)act_right.c			\
@@ -75,12 +75,12 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)pop_client_from_list.c	\
 			$(PATH_SRV)get_client_from_list.c
 
-SRCS_CLI	=	$(PATH_CLI)main.c		\
-			$(PATH_CLI)enter_in_the_world.c	\
-			$(PATH_CLI)new_connection.c	\
-			$(PATH_CLI)print_usage.c	\
-			$(PATH_CLI)check_response.c	\
-			$(PATH_CLI)fork_in_the_word.c	\
+SRCS_CLI	=	$(PATH_CLI)main.c			\
+			$(PATH_CLI)enter_in_the_world.c		\
+			$(PATH_CLI)new_connection.c		\
+			$(PATH_CLI)print_usage.c		\
+			$(PATH_CLI)check_response.c		\
+			$(PATH_CLI)fork_in_the_word.c		\
 			$(PATH_CLI)get_rnd_action.c
 
 OBJS_X		=	$(SRCS_X:.c=.o)
