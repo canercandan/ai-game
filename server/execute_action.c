@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Wed Apr 30 19:42:34 2008 florent hochwelker
+** Last update Wed Apr 30 19:43:40 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -30,7 +30,10 @@ int		execute_action(char *str, t_client *cli, t_info *info)
 	  new_action->client = cli;
 	  push_list(&info->queue, new_action);
 	  if (((struct timeval *) (info->timeout))->tv_sec > (long)gl_actions[i].delay)
-	    ((struct timeval *) (info->timeout))->tv_sec = gl_actions[i].delay;
+	    {
+	      ((struct timeval *) (info->timeout))->tv_sec = gl_actions[i].delay;
+	      sort_queue_list(&info->queue);
+	    }
 	  i++;
 	}
       return (0);
