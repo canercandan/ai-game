@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed Apr 30 13:12:47 2008 caner candan
+** Last update Wed Apr 30 13:28:03 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -18,6 +18,7 @@ static void	get_set_fd(t_list *t, fd_set *fd_read,
 {
   t_cli		*cli;
 
+  debug("get_set_fd()");
   fd_max = 0;
   while (t)
     {
@@ -38,6 +39,7 @@ static void	get_isset_fd(t_env *e, fd_set *fd_read,
   t_list	*t;
   t_cli		*cli;
 
+  debug("get_isset_fd()");
   t = e->clients;
   while (t)
     {
@@ -56,6 +58,7 @@ void		server_get(t_env *e)
   fd_set	fd_write;
   int		fd_max;
 
+  debug("server_get()");
   FD_ZERO(&fd_read);
   FD_ZERO(&fd_write);
   get_set_fd(e->clients, &fd_read, &fd_write, &fd_max);

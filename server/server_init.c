@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:15:36 2008 caner candan
-** Last update Wed Apr 30 13:13:36 2008 caner candan
+** Last update Wed Apr 30 13:27:20 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -14,6 +14,7 @@
 
 void	server_init(t_env *e, char *port)
 {
+  debug("server_init()");
   e->port = atoi(port);
   add_server(e);
   ((struct timeval *) (e->timeout))->tv_sec = 5;

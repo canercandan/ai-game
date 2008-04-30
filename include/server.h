@@ -1,16 +1,11 @@
 /*
-** server.h for zappy in /u/epitech_2010s/candan_c/cu/rendu/c/zappy/include
+** server.h for zappy in /u/epitech_2010s/candan_c/cu/rendu/c/zappy
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-<<<<<<< .mine
-** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Wed Apr 30 13:36:48 2008 majdi toumi
-=======
-** Started on  Wed Apr 30 13:24:14 2008 caner candan
-** Last update Wed Apr 30 13:24:15 2008 caner candan
->>>>>>> .r91
+** Started on  Wed Apr 30 13:37:20 2008 caner candan
+** Last update Wed Apr 30 13:37:21 2008 caner candan
 */
 
 #ifndef __SERVER_H__
