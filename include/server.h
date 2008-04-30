@@ -5,17 +5,11 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 19:10:02 2008 florent hochwelker
+** Last update Wed Apr 30 19:46:44 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
 # define __SERVER_H__
-
-/*
-** Defines
-*/
-# define UNIT		10
-# define TIME		100
 
 /*
 ** Option's flags
@@ -26,6 +20,14 @@
 # define FLAG_N		8
 # define FLAG_C		16
 # define FLAG_T		32
+
+/*
+** Defines
+*/
+# define UNIT		10
+# define TIME		100
+# define COEFFICIENT	0.3
+# define NB_FOOD	3
 
 /*
 ** Zappy's index names
@@ -69,6 +71,10 @@
 # define MAX_FD		100
 # define MAX_LISTEN	42
 # define MAX_OBJECT	2
+
+/*
+** Macros:
+*/
 
 /*
 ** Alias
@@ -233,32 +239,32 @@ void	server_read(t_info *info, int socket);
 /*
 ** Function's prototypes
 */
-void	usage_server(void);
-t_info	*parse_args(int argc, char **argv);
-int	is_options(char *args);
-int	check_flag(int flag);
-int	opt_port(t_info *info, char **argv, int i);
-int	opt_width(t_info *info, char **argv, int i);
-int	opt_lenght(t_info *info, char **argv, int i);
-int	opt_name_team(t_info *info, char **argv, int i);
-int	opt_nb_player(t_info *info, char **argv, int i);
-int	opt_delay(t_info *info, char **argv, int i);
+void		usage_server(void);
+t_info		*parse_args(int argc, char **argv);
+int		is_options(char *args);
+int		check_flag(int flag);
+int		opt_port(t_info *info, char **argv, int i);
+int		opt_width(t_info *info, char **argv, int i);
+int		opt_lenght(t_info *info, char **argv, int i);
+int		opt_name_team(t_info *info, char **argv, int i);
+int		opt_nb_player(t_info *info, char **argv, int i);
+int		opt_delay(t_info *info, char **argv, int i);
 
-t_zone	**create_world(int width, int lenght);
-void	fill_ressources_world(t_zone **world, int width, int lenght);
-void	dump_world(t_zone **zworld, int width, int lenght);
-
-int	act_up(char *cmd, int socket);
-int	act_right(char *cmd, int socket);
-int	act_left(char *cmd, int socket);
-int	act_see(char *cmd, int socket);
-int	act_inventory(char *cmd, int socket);
-int	act_take_obj(char *cmd, int socket);
-int	act_drop_obj(char *cmd, int socket);
-int	act_kick(char *cmd, int socket);
-int	act_broadcast(char *cmd, int socket);
-int	act_levelup(char *cmd, int socket);
-int	act_fork(char *cmd, int socket);
+t_zone		**create_world(t_info *info);
+void		fill_ressources_world(t_zone **world, t_info *info);
+t_ressource	*generate_ressources(int level_max, int i);
+void		dump_world(t_zone **zworld, int width, int lenght);
+int		act_up(char *cmd, int socket);
+int		act_right(char *cmd, int socket);
+int		act_left(char *cmd, int socket);
+int		act_see(char *cmd, int socket);
+int		act_inventory(char *cmd, int socket);
+int		act_take_obj(char *cmd, int socket);
+int		act_drop_obj(char *cmd, int socket);
+int		act_kick(char *cmd, int socket);
+int		act_broadcast(char *cmd, int socket);
+int		act_levelup(char *cmd, int socket);
+int		act_fork(char *cmd, int socket);
 
 /*
 ** Debug's functions

@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:23:19 2008 majdi toumi
-** Last update Wed Apr 30 17:20:41 2008 majdi toumi
+** Last update Wed Apr 30 18:52:41 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -42,8 +42,10 @@ void		dump_world(t_zone **zone, int width, int lenght)
       for (j = 0; j < lenght; j++)
 	{
 	  fprintf(stdout, "- [%d][%d]:\n", i, j);
-	  fprintf(stdout, " + Id deco: %d and is_movable: %s\n", 
-		  zone[i][j].id_deco, zone[i][j].is_moveable ? "yes" : "no");
+	  /*
+	    fprintf(stdout, "\t + Id deco: %d and is_movable: %s\n", 
+	    zone[i][j].id_deco, zone[i][j].is_moveable ? "yes" : "no");
+	  */
 	  begin = zone[i][j].ressources;
 	  dump_ressources(begin);
 	  fprintf(stdout, "\n");
