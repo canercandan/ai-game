@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 17:08:28 2008 majdi toumi
+** Last update Wed Apr 30 17:12:59 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -14,7 +14,7 @@
 /*
 ** Defines
 */
-# define UNIT		010
+# define UNIT		10
 # define TIME		100
 
 /*
@@ -36,8 +36,8 @@
 /*
 ** Exits, debug and errors
 */
-# define DEBUG		01
-# define EXIT_SUCC	00
+# define DEBUG		1
+# define EXIT_SUCC	0
 # define EXIT_FAIL	42
 
 /*

@@ -5,15 +5,18 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Tue Apr 29 20:38:12 2008 florent hochwelker
+** Last update Wed Apr 30 16:40:38 2008 florent hochwelker
 */
 
+#include <sys/type.h>
+#include <time.h>
 #include "zappy.h"
 
-int		execute_action(char *str, t_client *origin)
+int		execute_action(char *str, t_client *cli, t_info *info)
 {
   int		i;
   t_queue	new_action;
+  time_t	timeout;
 
   i = 0;
   while (gl_actions[i].cmd)
@@ -22,10 +25,13 @@ int		execute_action(char *str, t_client *origin)
 	{
 	  new_action->action = gl_actions[i].action;
 	  new_action->param = strdup(get_word_n(str));
-	  put_in_list(&origin, gl_actions[i]);
-	  gl_actions[i].f(cmd, socket);
+	  put_in_list(&cli->queue, new_action);
+	  timeout = time(0) - gl_actions[i].delay;
+	  if (((struct timeval *) (info->timeout))->tv_sec + timeout <
+	    {
+						       
+	    }
+	    i++;
+	    }
+	  return (0);
 	}
-      i++;
-    }
-  return (0);
-}
