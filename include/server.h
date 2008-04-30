@@ -4,8 +4,13 @@
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
+<<<<<<< .mine
+** Started on  Tue Apr 15 18:31:42 2008 caner candan
+** Last update Wed Apr 30 13:25:12 2008 majdi toumi
+=======
 ** Started on  Wed Apr 30 13:24:14 2008 caner candan
 ** Last update Wed Apr 30 13:24:15 2008 caner candan
+>>>>>>> .r91
 */
 
 #ifndef __SERVER_H__
@@ -253,8 +258,8 @@ int	opt_nb_player(t_info *info, char **argv, int i);
 int	opt_delay(t_info *info, char **argv, int i);
 
 t_zone	**create_world(int width, int lenght);
-void	fill_ressources_world(t_zone **zone, int width, int lenght);
-void	dump_world(t_zone **zone, int width, int lenght);
+void	fill_ressources_world(t_zone **world, int width, int lenght);
+xvoid	dump_world(t_zone **zworld, int width, int lenght);
 void	dump_ressources(t_list *ressource);
 void	dump_clients(t_list *clients);
 
