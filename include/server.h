@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Wed Apr 30 12:34:12 2008 caner candan
+** Last update Wed Apr 30 13:07:34 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -28,15 +28,23 @@
 # define FLAG_T		32
 
 /*
-** Rock's names
+** Zappy's index names
 */
+/* world */
+# define NAME_WORLD	"Trantor"
+
+/* rock */
 # define LINEMATE	"Linemate"
 # define DERAUMERE	"Deraumere"
 # define SIBUR		"Sibur"
 # define MENDIANE	"Mendiane"
 # define PHIRAS		"Phiras"
 # define THYSTAME	"Thystame"
-# define MEZZOPASTA	"Mezzopasta"
+
+/* food */
+# define HAMBURGER	"Hamburger"
+# define FISHBURGER	"Fishburger"
+# define CHEESEBURGER	"Cheeseburger"
 
 /*
 ** Exits, debug and errors
@@ -229,6 +237,7 @@ typedef struct		s_level
 extern t_opt		gl_opt_srv[];
 extern t_opt		gl_opt_clt[];
 extern t_ressource	gl_rock[];
+extern t_ressource	gl_food[];
 extern t_action		gl_actions[];
 
 /*
@@ -255,9 +264,9 @@ int	opt_name_team(t_info *info, char **argv, int i);
 int	opt_nb_player(t_info *info, char **argv, int i);
 int	opt_delay(t_info *info, char **argv, int i);
 
-t_zone	**create_zone(int width, int lenght);
-void	fill_ressources_zone(t_zone **zone, int width, int lenght);
-void	dump_zone(t_zone **zone, int width, int lenght);
+t_zone	**create_world(int width, int lenght);
+void	fill_ressources_world(t_zone **zone, int width, int lenght);
+void	dump_world(t_zone **zone, int width, int lenght);
 void	dump_ressources(t_list *ressource);
 void	dump_clients(t_list *clients);
 
