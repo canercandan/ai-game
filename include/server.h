@@ -1,11 +1,11 @@
 /*
-** server.h for **zappy** in /u/epitech_2010s/candan_c/cu/rendu/c/zappy/include
+** server.h for zappy in /u/epitech_2010s/candan_c/cu/rendu/c/zappy/include
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Wed Apr 30 13:15:20 2008 majdi toumi
+** Started on  Wed Apr 30 13:24:14 2008 caner candan
+** Last update Wed Apr 30 13:24:15 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -231,12 +231,12 @@ extern t_action		gl_actions[];
 /*
 ** Socket's functions
 */
-void	add_client(t_env *e, int s);
+void	add_client(t_env *e, int server);
 void	add_server(t_env *e);
-void	client_read(t_env *e, int fd);
+void	client_read(t_env *e, int socket);
 void	server_init(t_env *e, char *port);
 void	server_get(t_env *e);
-void	server_read(t_env *e, int fd);
+void	server_read(t_env *e, int socket);
 
 /*
 ** Function's prototypes
