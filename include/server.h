@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Wed Apr 30 13:07:34 2008 majdi toumi
+** Last update Wed Apr 30 13:15:20 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -32,19 +32,6 @@
 */
 /* world */
 # define NAME_WORLD	"Trantor"
-
-/* rock */
-# define LINEMATE	"Linemate"
-# define DERAUMERE	"Deraumere"
-# define SIBUR		"Sibur"
-# define MENDIANE	"Mendiane"
-# define PHIRAS		"Phiras"
-# define THYSTAME	"Thystame"
-
-/* food */
-# define HAMBURGER	"Hamburger"
-# define FISHBURGER	"Fishburger"
-# define CHEESEBURGER	"Cheeseburger"
 
 /*
 ** Exits, debug and errors
@@ -207,6 +194,7 @@ typedef struct		s_action
 */
 typedef struct		s_ressource
 {
+  int			idx;
   char			*name;
   char			*desc;
 }			t_ressource;
