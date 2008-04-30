@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed Apr 30 17:53:51 2008 caner candan
+** Last update Wed Apr 30 18:48:34 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -16,18 +16,18 @@
 static void	get_set_fd(t_list *t, fd_set *fd_read,
 			   fd_set *fd_write, int *fd_max)
 {
-  t_cli		*cli;
+  t_client	*client;
 
   debug("get_set_fd()", 2);
   *fd_max = 0;
   while (t)
     {
-      cli = t->data;
-      if (cli->fd_type != FD_FREE)
+      client = t->data;
+      if (client->fd_type != FD_FREE)
 	{
-	  FD_SET(cli->socket, fd_read);
-	  FD_SET(cli->socket, fd_write);
-	  *fd_max = cli->socket;
+	  FD_SET(client->socket, fd_read);
+	  FD_SET(client->socket, fd_write);
+	  *fd_max = client->socket;
 	}
       t = t->next;
     }
@@ -37,18 +37,18 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
 			     fd_set *fd_write)
 {
   t_list	*t;
-  t_cli		*cli;
+  t_client	*client;
 
   debug("get_isset_fd()", 2);
   t = info->clients;
   show_clients_from_list(t);
   while (t)
     {
-      cli = t->data;
-      /*if (FD_ISSET(cli->socket, fd_read))*/
-	cli->fct_read(info, cli->socket);
-      if (FD_ISSET(cli->socket, fd_write))
-	cli->fct_write(info, cli->socket);
+      client = t->data;
+      if (FD_ISSET(client->socket, fd_read))
+	client->fct_read(info, client->socket);
+      if (FD_ISSET(client->socket, fd_write))
+	client->fct_write(info, client->socket);
       t = t->next;
     }
 }

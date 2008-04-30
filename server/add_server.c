@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Wed Apr 30 14:53:49 2008 caner candan
+** Last update Wed Apr 30 18:53:41 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -19,19 +19,20 @@ void			add_server(t_info *info)
 {
   struct sockaddr_in	addr;
   struct protoent	*pe;
-  t_cli			*c;
+  t_client		*client;
 
   debug("add_server()", 2);
   pe = getprotobyname("tcp");
-  c = xmalloc(sizeof(*c));
-  c->socket = xsocket(PF_INET, SOCK_STREAM, pe->p_proto);
+  client = xmalloc(sizeof(*client));
+  client->socket = xsocket(PF_INET, SOCK_STREAM, pe->p_proto);
   addr.sin_family = AF_INET;
   addr.sin_port = htons(info->port);
   addr.sin_addr.s_addr = INADDR_ANY;
-  xbind(c->socket, (struct sockaddr *) &addr, (void *) sizeof(addr));
-  xlisten(c->socket, MAX_LISTEN);
-  c->fd_type = FD_SERVER;
-  c->fct_read = server_read;
-  c->fct_write = NULL;
-  push_list(&info->clients, (void *) c);
+  xbind(client->socket, (struct sockaddr *) &addr,
+	(void *) sizeof(addr));
+  xlisten(client->socket, MAX_LISTEN);
+  client->fd_type = FD_SERVER;
+  client->fct_read = server_read;
+  client->fct_write = NULL;
+  push_list(&info->clients, (void *) client);
 }

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 29 21:51:51 2008 caner candan
-** Last update Wed Apr 30 17:29:20 2008 caner candan
+** Last update Wed Apr 30 18:54:22 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -23,7 +23,7 @@ void		*pop_client_from_list(t_list **t, int socket)
     return ((void *) -1);
   while (elm)
     {
-      if (((t_cli *) elm->data)->socket != socket)
+      if (((t_client *) elm->data)->socket != socket)
 	{
 	  elm = elm->next;
 	  continue;
