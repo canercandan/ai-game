@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Wed Apr 30 14:35:03 2008 florent hochwelker
+## Last update Wed Apr 30 16:33:07 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -94,7 +94,7 @@ LIBRARY		=	-L.
 DEBUG		=	-g
 PANIC		=	-Wall -W -Werror -pedantic -ansi
 
-CFLAGS		=	$(INCLUDES) $(DEBUG) $(PANIC)
+CFLAGS		=	$(INCLUDES) $(PANIC)
 LDFLAGS		=	$(LIBRARY)
 
 CC		=	gcc

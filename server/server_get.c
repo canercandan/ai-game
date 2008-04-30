@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed Apr 30 14:53:05 2008 caner candan
+** Last update Wed Apr 30 16:27:04 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -19,7 +19,7 @@ static void	get_set_fd(t_list *t, fd_set *fd_read,
   t_cli		*cli;
 
   debug("get_set_fd()", 2);
-  fd_max = 0;
+  *fd_max = 0;
   while (t)
     {
       cli = t->data;

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 15:42:08 2008 caner candan
-** Last update Tue Apr 22 18:06:50 2008 caner candan
+** Last update Wed Apr 30 16:29:51 2008 caner candan
 */
 
 #ifndef __X_H__
@@ -14,7 +14,6 @@
 /*
 ** Exits, debug and errors:
 */
-# define DEBUG		01
 # define EXIT_SUCC	00
 # define EXIT_FAIL	42
 
