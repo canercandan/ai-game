@@ -5,11 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-<<<<<<< .mine
-** Last update Wed Apr 30 17:51:31 2008 florent hochwelker
-=======
-** Last update Wed Apr 30 17:16:59 2008 caner candan
->>>>>>> .r123
+** Last update Wed Apr 30 18:11:18 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -89,17 +85,6 @@ typedef struct		s_list
 }			t_list;
 
 /*
-** Clients socket's structure
-*/
-typedef struct	s_cli
-{
-  int		socket;
-  char		fd_type;
-  fct		fct_read;
-  fct		fct_write;
-}		t_cli;
-
-/*
 ** Options' structure
 */
 typedef struct	s_opt
@@ -132,17 +117,20 @@ typedef struct		s_team
 /*
 ** Clients' structure
 */
-typedef struct		s_client
+typedef struct	s_client
 {
-  int			socket;
-  int			level;
-  int			hp;
-  int			x;
-  int			y;
-  int			direction;
-  t_team		*team;
-  t_inventory		*stock;
-}			t_client;
+  int		socket;
+  char		fd_type;
+  fct		fct_read;
+  fct		fct_write;
+  int		level;
+  int		hp;
+  int		x;
+  int		y;
+  int		direction;
+  t_team	*team;
+  t_inventory	*stock;
+}		t_client;
 
 /*
 ** Queue actions' structure

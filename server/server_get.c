@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed Apr 30 17:11:47 2008 caner candan
+** Last update Wed Apr 30 17:53:51 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -45,7 +45,7 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
   while (t)
     {
       cli = t->data;
-      if (FD_ISSET(cli->socket, fd_read))
+      /*if (FD_ISSET(cli->socket, fd_read))*/
 	cli->fct_read(info, cli->socket);
       if (FD_ISSET(cli->socket, fd_write))
 	cli->fct_write(info, cli->socket);
