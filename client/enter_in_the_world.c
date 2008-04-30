@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Wed Apr 30 21:12:02 2008 florent hochwelker
+** Last update Wed Apr 30 21:20:03 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -56,7 +56,8 @@ static t_map	*step_two(int socket, char *team_name, char *hostname, int port)
 	{
 	  if (atoi(p) > 1)
 	    fork_in_the_word(team_name, hostname, port);
-	  xsend(socket, "vive les kebabs\n", 16, 0);
+	  else
+	    xsend(socket, "vive les kebabs\n", 16, 0);
 	  return(get_x_y_map(socket, p));
 	}
     }
