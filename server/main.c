@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:10:57 2008 majdi toumi
-** Last update Wed Apr 30 12:26:47 2008 caner candan
+** Last update Wed Apr 30 13:08:46 2008 majdi toumi
 */
 
 #include <sys/types.h>
@@ -25,6 +25,7 @@ int		main(int ac, char **av)
   server_init(&e, av[1]);
   while (42)
     server_get(&e);
-  zone = create_zone(info->width, info->lenght);
+  zone = create_world(info->width, info->lenght);
+  // FIXME -> jordan's part (initialisation world 3D)
   return (0);
 }

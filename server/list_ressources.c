@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:05:04 2008 majdi toumi
-** Last update Wed Apr 30 13:02:24 2008 majdi toumi
+** Last update Wed Apr 30 13:15:57 2008 majdi toumi
 */
 
 #include <stdlib.h>
@@ -29,18 +29,18 @@ enum
   };
 
 t_ressource	gl_rock[] = {
-  {LINEMATE, "Linemate"},
-  {DERAUMERE, "Deraumere"},
-  {SIBUR, "Sibur"},
-  {MENDIANE, "Mendiane"},
-  {PHIRAS, "Phiras"},
-  {THYSTAME, "Thystame"},
-  {0, 0}
+  {LINEMATE, "Linemate", 0},
+  {DERAUMERE, "Deraumere", 0},
+  {SIBUR, "Sibur", 0},
+  {MENDIANE, "Mendiane", 0},
+  {PHIRAS, "Phiras", 0},
+  {THYSTAME, "Thystame", 0},
+  {0, 0, 0}
 };
 
 t_ressource	gl_food[] = {
-  {HAMBURGER, "Hamburger"},
-  {FISHBURGER, "Fishburger"},
-  {CHEESEBURGER, "CHeeseburger"},
-  {0, 0}
+  {HAMBURGER, "Hamburger", 0},
+  {FISHBURGER, "Fishburger", 0},
+  {CHEESEBURGER, "CHeeseburger", 0},
+  {0, 0, 0}
 };
