@@ -5,10 +5,10 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:47:32 2008 majdi toumi
-** Last update Thu Apr 10 19:04:41 2008 majdi toumi
+** Last update Wed Apr 30 12:34:41 2008 caner candan
 */
 
-#include "zappy.h"
+#include "server.h"
 
 int		check_flag(int flag)
 {

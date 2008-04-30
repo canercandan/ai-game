@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Wed Apr 30 12:33:34 2008 caner candan
+** Last update Wed Apr 30 12:34:12 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -77,6 +77,15 @@
 typedef void	(*fct)();
 
 /*
+** Gerneric list of list chaine
+*/
+typedef struct		s_list
+{
+  void			*data;
+  struct s_list		*next;
+}			t_list;
+
+/*
 ** Clients socket's structure
 */
 typedef struct	s_cli
@@ -96,15 +105,6 @@ typedef struct	s_env
   int		port;
   void		*timeout;
 }		t_env;
-
-/*
-** Gerneric list of list chaine
-*/
-typedef struct		s_list
-{
-  void			*data;
-  struct s_list		*next;
-}			t_list;
 
 /*
 ** Options' structure

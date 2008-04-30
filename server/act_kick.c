@@ -5,10 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue Apr 22 16:44:05 2008 florent hochwelker
+** Last update Wed Apr 30 12:37:03 2008 caner candan
 */
 
-#include <zappy.h>
+#include "server.h"
 
 int	act_kick(char *cmd, int socket)
 {
