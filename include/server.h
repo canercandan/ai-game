@@ -5,7 +5,11 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
+<<<<<<< .mine
+** Last update Wed Apr 30 17:51:31 2008 florent hochwelker
+=======
 ** Last update Wed Apr 30 17:16:59 2008 caner candan
+>>>>>>> .r123
 */
 
 #ifndef __SERVER_H__
@@ -107,30 +111,13 @@ typedef struct	s_opt
 }		t_opt;
 
 /*
-** Info about the game
+** Inventory structure
 */
-typedef struct	s_info
+typedef struct		s_inventory
 {
-  int		port;
-  int		width;
-  int		lenght;
-  t_list	*team;
-  int		nb_player;
-  int		time;
-  t_list	*clients;
-  void		*timeout;
-}		t_info;
-
-/*
-** One case of the map
-*/
-typedef struct		s_zone
-{
-  char			is_moveable;
-  int			id_deco;
-  t_list		*ressources;
-  t_list		*client;
-}			t_zone;
+  int			rock;
+  unsigned int		qte;
+}			t_inventory;
 
 /*
 ** Team's structure
@@ -141,25 +128,6 @@ typedef struct		s_team
   int			nb;
   int			max;
 }			t_team;
-
-/*
-** Inventory structure
-*/
-typedef struct		s_inventory
-{
-  int			rock;
-  unsigned int		qte;
-}			t_inventory;
-
-/*
-** Queue actions' structure
-*/
-typedef struct		s_queue
-{
-  int			action;
-  char			*param;
-  unsigned int		time;
-}			t_queue;
 
 /*
 ** Clients' structure
@@ -174,8 +142,45 @@ typedef struct		s_client
   int			direction;
   t_team		*team;
   t_inventory		*stock;
-  t_queue		queue;
 }			t_client;
+
+/*
+** Queue actions' structure
+*/
+typedef struct		s_queue
+{
+  int			action;
+  char			*param;
+  unsigned int		time;
+  t_client		*client;
+}			t_queue;
+
+/*
+** Info about the game
+*/
+typedef struct	s_info
+{
+  int		port;
+  int		width;
+  int		lenght;
+  t_list	*team;
+  int		nb_player;
+  int		time;
+  t_list	*clients;
+  void		*timeout;
+  t_list	*queue;
+}		t_info;
+
+/*
+** One case of the map
+*/
+typedef struct		s_zone
+{
+  char			is_moveable;
+  int			id_deco;
+  t_list		*ressources;
+  t_list		*client;
+}			t_zone;
 
 /*
 ** Actions list's structure

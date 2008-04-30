@@ -5,12 +5,12 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Wed Apr 30 16:40:38 2008 florent hochwelker
+** Last update Wed Apr 30 17:54:20 2008 florent hochwelker
 */
 
 #include <sys/type.h>
 #include <time.h>
-#include "zappy.h"
+#include "server.h"
 
 int		execute_action(char *str, t_client *cli, t_info *info)
 {
@@ -25,13 +25,12 @@ int		execute_action(char *str, t_client *cli, t_info *info)
 	{
 	  new_action->action = gl_actions[i].action;
 	  new_action->param = strdup(get_word_n(str));
+	  new_action->timeout = time(0) + gl_actions[i].delay;
 	  put_in_list(&cli->queue, new_action);
-	  timeout = time(0) - gl_actions[i].delay;
-	  if (((struct timeval *) (info->timeout))->tv_sec + timeout <
-	    {
-						       
-	    }
-	    i++;
-	    }
-	  return (0);
+	  if (((struct timeval *) (info->timeout))->tv_sec > gl_actions[i].delay)
+	    ((struct timeval *) (info->timeout))->tv_sec = gl_actions[i].delay;
+	  i++;
 	}
+      return (0);
+    }
+}

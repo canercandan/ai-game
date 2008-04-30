@@ -5,15 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-<<<<<<< .mine
-<<<<<<< .mine
-** Last update Wed Apr 30 14:31:02 2008 majdi toumi
-=======
-** Last update Wed Apr 30 14:52:44 2008 caner candan
-=======
-** Last update Wed Apr 30 15:47:10 2008 caner candan
->>>>>>> .r113
->>>>>>> .r110
+** Last update Wed Apr 30 17:48:00 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -35,6 +27,7 @@ static void	fill_default_info(t_info *info)
   opt_name_team(info, gl_default_name_team, 0);
   info->nb_player = DEFAULT_NB_PLAYER;
   info->time = DEFAULT_TIME;
+  info->queue = 0;
 }
 
 t_info		*parse_args(int argc, char **argv)
