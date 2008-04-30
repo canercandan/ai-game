@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed Apr 30 12:28:23 2008 caner candan
+** Last update Wed Apr 30 13:12:47 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -13,26 +13,39 @@
 #include <stdlib.h>
 #include "server.h"
 
-static void	get_set_fd(t_list *t, fd_set *fd_read, int *fd_max)
+static void	get_set_fd(t_list *t, fd_set *fd_read,
+			   fd_set *fd_write, int *fd_max)
 {
+  t_cli		*cli;
+
   fd_max = 0;
   while (t)
     {
-      if (t->fd_type != FD_FREE)
+      cli = t->data;
+      if (cli->fd_type != FD_FREE)
 	{
-	  FD_SET(t->socket, &fd_read);
-	  fd_max = t->socket;
+	  FD_SET(cli->socket, fd_read);
+	  FD_SET(cli->socket, fd_write);
+	  *fd_max = cli->socket;
 	}
       t = t->next;
     }
 }
 
-static void	get_isset_fd(t_list *t, fd_set *fd_read)
+static void	get_isset_fd(t_env *e, fd_set *fd_read,
+			     fd_set *fd_write)
 {
+  t_list	*t;
+  t_cli		*cli;
+
+  t = e->clients;
   while (t)
     {
-      if (FD_ISSET(t->socket, &fd_read))
-	t->fct_read(e, i);
+      cli = t->data;
+      if (FD_ISSET(cli->socket, fd_read))
+	cli->fct_read(e, cli->socket);
+      if (FD_ISSET(cli->socket, fd_write))
+	cli->fct_write(e, cli->socket);
       t = t->next;
     }
 }
@@ -40,17 +53,17 @@ static void	get_isset_fd(t_list *t, fd_set *fd_read)
 void		server_get(t_env *e)
 {
   fd_set	fd_read;
+  fd_set	fd_write;
   int		fd_max;
-  int		i;
-  t_list	*t;
 
   FD_ZERO(&fd_read);
-  get_set_fd(e->clients, &fd_read, &fd_max);
-  if (select(fd_max + 1, &fd_read, NULL, NULL, e->timeout) < 0)
+  FD_ZERO(&fd_write);
+  get_set_fd(e->clients, &fd_read, &fd_write, &fd_max);
+  if (select(fd_max + 1, &fd_read, &fd_write, NULL, e->timeout) < 0)
     {
       printf("Error with select()\n");
       exit(-1);
     }
-  get_isset_fd(e->clients, &fd_read);
+  get_isset_fd(e, &fd_read, &fd_write);
   printf("waiting...\n");
 }
