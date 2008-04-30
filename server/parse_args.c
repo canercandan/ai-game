@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Wed Apr 30 14:09:19 2008 caner candan
+** Last update Wed Apr 30 14:15:43 2008 caner candan
 */
 
 #include <stdio.h>
@@ -25,7 +25,7 @@ static void	fill_default_info(t_info *info)
   info->width = DEFAULT_WIDTH;
   info->lenght = DEFAULT_LENGHT;
   opt_name_team(info, gl_default_name_team, 0);
-  info->nb_player = DEFAULT_NB_CLIENT;
+  info->nb_player = DEFAULT_NB_PLAYER;
   info->time = DEFAULT_TIME;
 }
 
