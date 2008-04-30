@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Wed Apr 30 14:29:56 2008 caner candan
+** Last update Wed Apr 30 14:42:45 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -17,7 +17,6 @@
 
 void			add_server(t_info *info)
 {
-  int			s;
   struct sockaddr_in	addr;
   struct protoent	*pe;
   t_cli			*c;
@@ -29,8 +28,8 @@ void			add_server(t_info *info)
   addr.sin_family = AF_INET;
   addr.sin_port = htons(info->port);
   addr.sin_addr.s_addr = INADDR_ANY;
-  xbind(s, (struct sockaddr *) &addr, (void *) sizeof(addr));
-  xlisten(s, MAX_LISTEN);
+  xbind(c->socket, (struct sockaddr *) &addr, (void *) sizeof(addr));
+  xlisten(c->socket, MAX_LISTEN);
   c->fd_type = FD_SERVER;
   c->fct_read = server_read;
   c->fct_write = NULL;

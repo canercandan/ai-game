@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 29 20:25:24 2008 caner candan
-** Last update Wed Apr 30 12:28:11 2008 caner candan
+** Last update Wed Apr 30 14:43:02 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -16,6 +16,7 @@ void		push_list(t_list **t, void *data)
 {
   t_list	*new;
 
+  debug("push_list()");
   if (!(new = xmalloc(sizeof(*new))))
     exit(-1);
   new->data = data;
