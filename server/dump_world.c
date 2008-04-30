@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:23:19 2008 majdi toumi
-** Last update Wed Apr 30 13:36:20 2008 majdi toumi
+** Last update Wed Apr 30 17:20:41 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -47,7 +47,7 @@ void		dump_world(t_zone **zone, int width, int lenght)
 	  begin = zone[i][j].ressources;
 	  dump_ressources(begin);
 	  fprintf(stdout, "\n");
-	  begin = zone[i][j].clients;
+	  begin = zone[i][j].client;
 	  dump_clients(begin);
 	  fprintf(stdout, "\n");
 	}

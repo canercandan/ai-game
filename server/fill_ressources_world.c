@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Wed Apr 30 17:19:18 2008 majdi toumi
+** Last update Wed Apr 30 17:19:58 2008 majdi toumi
 */
 
 #include "server.h"
@@ -23,7 +23,6 @@ void		fill_ressources_world(t_zone **world, int width, int lenght)
   for (i = 0; i < max;  i++)
     ressource[i] = generate_ressources(1);
 
-  /*
   for (i = 0; i < width; i++)
     {
       for (j = 0; j < lenght; j++)
