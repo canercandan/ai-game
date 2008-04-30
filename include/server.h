@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 19:46:44 2008 majdi toumi
+** Last update Wed Apr 30 20:16:41 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -232,9 +232,11 @@ extern t_action		gl_actions[];
 void	add_client(t_info *info, int server);
 void	add_server(t_info *info);
 void	client_read(t_info *info, int socket);
+void	client_write(t_info *info, int socket);
 void	server_init(t_info *info);
 void	server_get(t_info *info);
 void	server_read(t_info *info, int socket);
+void	server_write(t_info *info, int socket);
 
 /*
 ** Function's prototypes

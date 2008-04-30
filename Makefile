@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Wed Apr 30 19:50:27 2008 majdi toumi
+## Last update Wed Apr 30 20:16:25 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -69,9 +69,11 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)server_get.c			\
 			$(PATH_SRV)server_init.c		\
 			$(PATH_SRV)server_read.c		\
+			$(PATH_SRV)server_write.c		\
 			$(PATH_SRV)add_client.c			\
 			$(PATH_SRV)add_server.c			\
 			$(PATH_SRV)client_read.c		\
+			$(PATH_SRV)client_write.c		\
 			$(PATH_SRV)debug.c			\
 			$(PATH_SRV)push_list.c			\
 			$(PATH_SRV)pop_list.c			\
@@ -104,7 +106,7 @@ CFLAGS		=	$(INCLUDES) $(PANIC)
 LDFLAGS		=	$(LIBRARY)
 
 CC		=	gcc
-RM		=	rm -rf
+RM		=	rm -f
 RM_O		=	find . -name '*.o' -exec rm {} \;
 RM_TILD		=	find . -name '*~' -exec rm {} \;
 RM_CORE		=	find . -name '*.core' -exec rm {} \;

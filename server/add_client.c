@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Wed Apr 30 18:53:05 2008 caner candan
+** Last update Wed Apr 30 20:11:42 2008 caner candan
 */
 
 #include "server.h"
@@ -20,6 +20,6 @@ void		add_client(t_info *info, int server)
   client->socket = xaccept(server, NULL, NULL);
   client->fd_type = FD_CLIENT;
   client->fct_read = client_read;
-  client->fct_write = NULL;
+  client->fct_write = client_write;
   push_list(&info->clients, (void *) client);
 }
