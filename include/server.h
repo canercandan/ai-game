@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Wed Apr 30 12:25:31 2008 caner candan
+** Last update Wed Apr 30 12:26:18 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -72,7 +72,7 @@
 # define MAX_LISTEN	42
 
 /*
-** Globals:
+** Globals
 */
 extern t_opt		gl_opt_srv[];
 extern t_opt		gl_opt_clt[];
@@ -242,7 +242,7 @@ void	server_get(t_env *e);
 void	server_read(t_env *e, int fd);
 
 /*
-** Function's prototypes:
+** Function's prototypes
 */
 void	usage_server(void);
 t_info	*parse_args(int argc, char **argv);
