@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 14:46:51 2008 caner candan
+** Last update Wed Apr 30 14:52:18 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -276,7 +276,7 @@ int	act_fork(char *cmd, int socket);
 /*
 ** Debug's functions
 */
-void	debug(char *s, void *pos);
+void	debug(char *s, int pos);
 
 /*
 ** List chaine's functions

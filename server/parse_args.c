@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Wed Apr 30 14:22:05 2008 caner candan
+** Last update Wed Apr 30 14:52:44 2008 caner candan
 */
 
 #include <stdio.h>
@@ -35,7 +35,7 @@ t_info		*parse_args(int argc, char **argv)
   int		idx;
   int		i;
 
-  debug("parse_args()");
+  debug("parse_args()", 1);
   i = 1;
   flag = 0;
   info = xmalloc(sizeof(*info));

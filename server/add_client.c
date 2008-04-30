@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Wed Apr 30 14:29:16 2008 caner candan
+** Last update Wed Apr 30 14:53:38 2008 caner candan
 */
 
 #include "server.h"
@@ -15,7 +15,7 @@ void	add_client(t_info *info, int server)
 {
   t_cli	*c;
 
-  debug("add_client()");
+  debug("add_client()", 2);
   c = xmalloc(sizeof(*c));
   c->socket = xaccept(server, NULL, NULL);
   c->fd_type = FD_CLIENT;

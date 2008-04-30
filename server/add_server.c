@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Wed Apr 30 14:42:45 2008 caner candan
+** Last update Wed Apr 30 14:53:49 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -21,7 +21,7 @@ void			add_server(t_info *info)
   struct protoent	*pe;
   t_cli			*c;
 
-  debug("add_server()");
+  debug("add_server()", 2);
   pe = getprotobyname("tcp");
   c = xmalloc(sizeof(*c));
   c->socket = xsocket(PF_INET, SOCK_STREAM, pe->p_proto);
