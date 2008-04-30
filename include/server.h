@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 16:30:10 2008 caner candan
+** Last update Wed Apr 30 17:08:28 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -68,6 +68,7 @@
 */
 # define MAX_FD		100
 # define MAX_LISTEN	42
+# define MAX_OBJECT	2
 
 /*
 ** Alias
@@ -128,7 +129,7 @@ typedef struct		s_zone
   char			is_moveable;
   int			id_deco;
   t_list		*ressources;
-  t_list		*clients;
+  t_list		*client;
 }			t_zone;
 
 /*
@@ -165,9 +166,12 @@ typedef struct		s_queue
 */
 typedef struct		s_client
 {
-  int			hp;
   int			socket;
   int			level;
+  int			hp;
+  int			x;
+  int			y;
+  int			direction;
   t_team		*team;
   t_inventory		*stock;
   t_queue		queue;

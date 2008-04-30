@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Wed Apr 30 13:40:24 2008 majdi toumi
+** Last update Wed Apr 30 14:47:35 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -31,6 +31,6 @@ t_zone		**create_world(int width, int lenght)
       memset(world[i], 0, sizeof(**world) * lenght);
     }
   /* FIXME -> function: initialiser map objet, ... */
-  fill_ressources_world(world, width, lenght);
+  fill_ressources_world(world, width, lenght, width * length * OBJECT_COEFF);
   return (world);
 }
