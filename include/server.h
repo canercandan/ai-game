@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 14:52:18 2008 caner candan
+** Last update Wed Apr 30 14:59:00 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -93,16 +93,6 @@ typedef struct	s_cli
   fct		fct_read;
   fct		fct_write;
 }		t_cli;
-
-/*
-** Environnement's structure
-*/
-typedef struct	s_env
-{
-  t_list	*clients;
-  int		port;
-  void		*timeout;
-}		t_env;
 
 /*
 ** Options' structure
