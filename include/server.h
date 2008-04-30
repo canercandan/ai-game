@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 15 18:31:42 2008 caner candan
-** Last update Wed Apr 30 12:26:18 2008 caner candan
+** Last update Wed Apr 30 12:33:34 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -72,14 +72,6 @@
 # define MAX_LISTEN	42
 
 /*
-** Globals
-*/
-extern t_opt		gl_opt_srv[];
-extern t_opt		gl_opt_clt[];
-extern t_ressource	gl_rock[];
-extern t_action		gl_actions[];
-
-/*
 ** Alias
 */
 typedef void	(*fct)();
@@ -126,7 +118,7 @@ typedef struct		s_opt
 }			t_opt;
 
 /*
-** Info on the game
+** Info about the game
 */
 typedef struct		s_info
 {
@@ -230,6 +222,14 @@ typedef struct		s_level
   int			nb_client;
   char			*desc;
 }			t_level;
+
+/*
+** Globals
+*/
+extern t_opt		gl_opt_srv[];
+extern t_opt		gl_opt_clt[];
+extern t_ressource	gl_rock[];
+extern t_action		gl_actions[];
 
 /*
 ** Socket's functions
