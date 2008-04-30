@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 29 21:51:51 2008 caner candan
-** Last update Wed Apr 30 12:28:00 2008 caner candan
+** Last update Wed Apr 30 17:29:20 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -17,6 +17,7 @@ void		*pop_client_from_list(t_list **t, int socket)
   t_list	*tmp;
   void		*data;
 
+  debug("pop_client_from_list()", -1);
   elm = *t;
   if (!elm)
     return ((void *) -1);
