@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 13:37:21 2008 caner candan
+** Last update Wed Apr 30 14:08:35 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -41,10 +41,13 @@
 # define EXIT_FAIL	42
 
 /*
-** Socket
+** Default's values
 */
-# define HOST_DEFAULT	"127.0.0.1"
-# define PORT_DEFAULT	"12345"
+# define DEFAULT_PORT		12345
+# define DEFAULT_WIDTH		100
+# define DEFAULT_LENGHT		100
+# define DEFAULT_NB_PLAYER	10
+# define DEFAULT_TIME		100
 
 /*
 ** Null
