@@ -5,13 +5,14 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Wed Apr 30 16:59:43 2008 majdi toumi
+** Last update Wed Apr 30 17:19:18 2008 majdi toumi
 */
 
 #include "server.h"
 
-void		fill_ressources_world(t_zone **world, int width, int lenght, int max)
+void		fill_ressources_world(t_zone **world, int width, int lenght)
 {
+  /*
   t_ressources	ressource[max];
   int	max;
   int	j;
@@ -33,6 +34,7 @@ void		fill_ressources_world(t_zone **world, int width, int lenght, int max)
 	}
     }
   */
+
   if (DEBUG)
     dump_world(world, width, lenght);
 }
