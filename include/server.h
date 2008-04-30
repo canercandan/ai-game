@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 14:08:35 2008 caner candan
+** Last update Wed Apr 30 14:37:00 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -107,26 +107,28 @@ typedef struct	s_env
 /*
 ** Options' structure
 */
-typedef struct		s_opt
+typedef struct	s_opt
 {
-  int			opt;
-  char			*name;
-  char			*desc;
-  int			(*fun)();
-}			t_opt;
+  int		opt;
+  char		*name;
+  char		*desc;
+  int		(*fun)();
+}		t_opt;
 
 /*
 ** Info about the game
 */
-typedef struct		s_info
+typedef struct	s_info
 {
-  int			port;
-  int			width;
-  int			lenght;
-  t_list		*team;
-  int			nb_player;
-  int			time;
-}			t_info;
+  int		port;
+  int		width;
+  int		lenght;
+  t_list	*team;
+  int		nb_player;
+  int		time;
+  t_list	*clients;
+  void		*timeout;
+}		t_info;
 
 /*
 ** One case of the map
@@ -234,12 +236,12 @@ extern t_action		gl_actions[];
 /*
 ** Socket's functions
 */
-void	add_client(t_env *e, int server);
-void	add_server(t_env *e);
-void	client_read(t_env *e, int socket);
-void	server_init(t_env *e, char *port);
-void	server_get(t_env *e);
-void	server_read(t_env *e, int socket);
+void	add_client(t_info *info, int server);
+void	add_server(t_info *info);
+void	client_read(t_info *info, int socket);
+void	server_init(t_info *info);
+void	server_get(t_info *info);
+void	server_read(t_info *info, int socket);
 
 /*
 ** Function's prototypes
