@@ -5,11 +5,11 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 15:20:39 2008 majdi toumi
-** Last update Tue Apr 22 14:48:43 2008 majdi toumi
+** Last update Wed Apr 30 12:29:45 2008 majdi toumi
 */
 
 #include <stdlib.h>
-#include "zappy.h"
+#include "server.h"
 
 void		put_in_list(t_list **begin, void *data)
 {
@@ -19,10 +19,8 @@ void		put_in_list(t_list **begin, void *data)
   new_begin = malloc(sizeof(*new_begin));
   ressource = malloc(sizeof(*ressource));
   ressource->name = strdup(data);
-  if (*begin)
-    (*begin)->prev = new_begin;
+  new_begin->prev = 0;
   new_begin->data = ressource;
   new_begin->next = *begin;
-  new_begin->prev = 0;
   *begin = new_begin;
 }

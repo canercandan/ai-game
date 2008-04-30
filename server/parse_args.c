@@ -5,13 +5,13 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Tue Apr 15 15:44:29 2008 caner candan
+** Last update Wed Apr 30 12:29:39 2008 majdi toumi
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "server.h"
 #include "x.h"
-#include "zappy.h"
 
 extern t_opt	gl_opt_srv[];
 

@@ -5,11 +5,11 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:36 2008 majdi toumi
-** Last update Tue Apr 15 16:09:53 2008 caner candan
+** Last update Wed Apr 30 12:29:11 2008 majdi toumi
 */
 
 #include "x.h"
-#include "zappy.h"
+#include "server.h"
 
 int		opt_name_team(t_info *info, char **argv, int i)
 {

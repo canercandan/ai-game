@@ -5,11 +5,11 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:57 2008 majdi toumi
-** Last update Thu Apr 10 19:06:34 2008 majdi toumi
+** Last update Wed Apr 30 12:29:17 2008 majdi toumi
 */
 
 #include <stdlib.h>
-#include "zappy.h"
+#include "server.h"
 
 int	opt_nb_player(t_info *info, char **argv, int i)
 {

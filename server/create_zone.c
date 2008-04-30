@@ -5,14 +5,14 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Tue Apr 15 15:41:35 2008 caner candan
+** Last update Wed Apr 30 12:28:16 2008 majdi toumi
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "x.h"
-#include "zappy.h"
+#include "server.h"
 
 t_zone		**create_zone(int width, int lenght)
 {
