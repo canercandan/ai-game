@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Wed Apr 30 14:52:44 2008 caner candan
+** Last update Wed Apr 30 15:47:10 2008 caner candan
 */
 
 #include <stdio.h>
@@ -20,6 +20,7 @@ static char	*gl_default_name_team[] =
 
 static void	fill_default_info(t_info *info)
 {
+  debug("fill_default_info()", 2);
   info->port = DEFAULT_PORT;
   info->width = DEFAULT_WIDTH;
   info->lenght = DEFAULT_LENGHT;
