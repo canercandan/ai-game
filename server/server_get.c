@@ -5,13 +5,12 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Tue Apr 29 22:50:56 2008 caner candan
+** Last update Wed Apr 30 12:28:23 2008 caner candan
 */
 
 #include <sys/select.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "zappy.h"
 #include "server.h"
 
 static void	get_set_fd(t_list *t, fd_set *fd_read, int *fd_max)

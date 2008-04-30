@@ -5,13 +5,12 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:15:36 2008 caner candan
-** Last update Tue Apr 29 19:20:43 2008 caner candan
+** Last update Wed Apr 30 12:28:57 2008 caner candan
 */
 
 #include <stdlib.h>
 #include <sys/time.h>
 #include <string.h>
-#include "zappy.h"
 #include "server.h"
 
 void	server_init(t_env *e, char *port)
