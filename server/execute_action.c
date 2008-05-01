@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Thu May  1 15:48:55 2008 florent hochwelker
+** Last update Thu May  1 17:41:12 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -45,11 +45,10 @@ int		execute_action(char *str, t_client *cli, t_info *info)
 	  new_action->time = time(0) + actions[i].delay;
 	  new_action->client = cli;
 	  push_list(&info->queue, new_action);
-	  if (((struct timeval *) (info->timeout))->tv_sec > (long)actions[i].delay)
-	    {
-	      ((struct timeval *) (info->timeout))->tv_sec = actions[i].delay;
-	      sort_queue_list(&info->queue);
-	    }
+	  sort_queue_list(&info->queue);
+	  if (((struct timeval *) (info->timeout))->tv_sec >
+	      (long)actions[i].delay)
+	    ((struct timeval *) (info->timeout))->tv_sec = actions[i].delay;
 	  i++;
 	}
       return (0);
