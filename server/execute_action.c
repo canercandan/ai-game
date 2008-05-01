@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Thu May  1 17:41:12 2008 florent hochwelker
+** Last update Thu May  1 20:07:25 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -40,7 +40,7 @@ int		execute_action(char *str, t_client *cli, t_info *info)
       if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
 	{
 	  new_action = malloc(sizeof(*new_action));
-	  new_action->action = actions[i].action;
+	  new_action->f = actions[i].f;
 	  new_action->param = strdup(get_word_n(str, 2));
 	  new_action->time = time(0) + actions[i].delay;
 	  new_action->client = cli;
@@ -49,9 +49,9 @@ int		execute_action(char *str, t_client *cli, t_info *info)
 	  if (((struct timeval *) (info->timeout))->tv_sec >
 	      (long)actions[i].delay)
 	    ((struct timeval *) (info->timeout))->tv_sec = actions[i].delay;
-	  i++;
+	  return (0);
 	}
-      return (0);
+      i++;
     }
   return (-1);
 }
