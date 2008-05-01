@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed Apr 30 21:13:56 2008 caner candan
+** Last update Thu May  1 15:19:03 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -22,14 +22,11 @@ static void	get_set_fd(t_list *t, fd_set *fd_read,
   while (t)
     {
       client = t->data;
-      if (client->fd_type != FD_FREE)
-	{
-	  FD_SET(client->socket, fd_read);
-	  if (client->buf_write[0] != 0)
-	    FD_SET(client->socket, fd_write);
-	  if (*fd_max < client->socket)
-	    *fd_max = client->socket;
-	}
+      FD_SET(client->socket, fd_read);
+      if (client->buf_write[0] != 0)
+	FD_SET(client->socket, fd_write);
+      if (*fd_max < client->socket)
+	*fd_max = client->socket;
       t = t->next;
     }
 }

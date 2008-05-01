@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 20:58:46 2008 caner candan
+** Last update Thu May  1 16:01:18 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -28,6 +28,7 @@
 # define TIME		100
 # define COEFFICIENT	0.3
 # define NB_FOOD	3
+# define BUF_SIZE	128
 
 /*
 ** Zappy's index names
@@ -59,11 +60,15 @@
 # endif /* !NULL */
 
 /*
-** Select's descriptors
+** Status client
 */
-# define FD_FREE	0
-# define FD_CLIENT	1
-# define FD_SERVER	2
+typedef	enum
+  {
+    ST_NOT_LOGGED,
+    ST_SERVER,
+    ST_CLIENT,
+    ST_GRAPH_CLIENT
+  }	t_status;
 
 /*
 ** Limits' values
@@ -79,7 +84,7 @@
 /*
 ** Alias
 */
-typedef void	(*fct)();
+  typedef void	(*fct)();
 
 /*
 ** Gerneric list of list chaine
@@ -126,18 +131,18 @@ typedef struct		s_team
 typedef struct	s_client
 {
   int		socket;
-  char		fd_type;
+  t_status	status;
   fct		fct_read;
   fct		fct_write;
   char		buf_read[128];
   char		buf_write[128];
-  int		level;
+  char		level;
   int		hp;
   int		x;
   int		y;
-  int		direction;
+  char		direction;
   t_team	*team;
-  t_inventory	*stock;
+  t_list	*stock;
 }		t_client;
 
 /*
@@ -220,13 +225,30 @@ typedef struct		s_level
 }			t_level;
 
 /*
+** Enum action
+*/
+enum
+  {
+    UP = 1,
+    RIGHT,
+    LEFT,
+    SEE,
+    INVENTORY,
+    TAKE_OBJ,
+    DROP_OBJ,
+    KICK,
+    BROADCAST,
+    LEVELUP,
+    FORK
+  };
+
+/*
 ** Globals
 */
 extern t_opt		gl_opt_srv[];
 extern t_opt		gl_opt_clt[];
 extern t_ressource	gl_rock[];
 extern t_ressource	gl_food[];
-extern t_action		gl_actions[];
 
 /*
 ** Socket's functions
@@ -235,6 +257,7 @@ void	add_client(t_info *info, int server);
 void	add_server(t_info *info);
 void	client_read(t_info *info, int socket);
 void	client_write(t_info *info, int socket);
+void	client_disconnect(t_client *client, t_info *info);
 void	server_init(t_info *info);
 void	server_get(t_info *info);
 void	server_read(t_info *info, int socket);
@@ -253,11 +276,12 @@ int		opt_lenght(t_info *info, char **argv, int i);
 int		opt_name_team(t_info *info, char **argv, int i);
 int		opt_nb_player(t_info *info, char **argv, int i);
 int		opt_delay(t_info *info, char **argv, int i);
-
 t_zone		**create_world(t_info *info);
 void		fill_ressources_world(t_zone **world, t_info *info);
 t_ressource	*generate_ressources(int level_max, int i);
 void		dump_world(t_zone **zworld, int width, int lenght);
+int		execute_action(char *str, t_client *cli, t_info *info);
+
 int		act_up(char *cmd, int socket);
 int		act_right(char *cmd, int socket);
 int		act_left(char *cmd, int socket);

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Wed Apr 30 20:15:24 2008 caner candan
+** Last update Thu May  1 15:26:28 2008 florent hochwelker
 */
 
 #include <sys/types.h>
@@ -31,7 +31,7 @@ void			add_server(t_info *info)
   xbind(client->socket, (struct sockaddr *) &addr,
 	(void *) sizeof(addr));
   xlisten(client->socket, MAX_LISTEN);
-  client->fd_type = FD_SERVER;
+  client->status = ST_SERVER;
   client->fct_read = server_read;
   client->fct_write = server_write;
   push_list(&info->clients, (void *) client);

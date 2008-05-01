@@ -5,41 +5,36 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Wed Apr 30 21:21:54 2008 caner candan
+** Last update Thu May  1 15:34:52 2008 florent hochwelker
 */
 
 #include <stdio.h>
 #include <string.h>
 #include "server.h"
 #include "x.h"
-#include "server.h"
 
 void		client_read(t_info *info, int socket)
 {
   t_client	*client;
   int		r;
-  char		buf[4096];
-  static int	i = 0;
+  char		buf[BUF_SIZE + 1];
+  char		buff_perso[BUF_SIZE + 1];
+  char		*p;
 
-  debug("client_read()", 3);
   client = get_client_from_list(info->clients, socket);
-  if ((r = (int) xrecv(client->socket, buf, sizeof(buf), 0)) > 0)
+  if ((r = (int)xrecv(client->socket, buf, BUF_SIZE, 0)) > 0)
     {
       buf[r] = '\0';
-      printf("%d: %s\n", client->socket, buf);
-      if (i == 1)
-	strcpy(client->buf_write, "1\n");
-      else if (i == 2)
-	strcpy(client->buf_write, "10 10\n");
-      else if (i > 2)
-	strcpy(client->buf_write, "ok\n");
-      i++;
+      strlcat(client->buf_read, buf, BUF_SIZE);
+      while ((p = strstr(client->buf_read, "\n")))
+	{
+	  *p = 0;
+	  strncpy(buff_perso, client->buf_read, BUF_SIZE - 1);
+	  execute_action(buff_perso, client, info);
+	  printf("%d: [%s]\n", client->socket, buf);
+	  strncpy(client->buf_read, p + 1, BUF_SIZE);
+	}
     }
   else
-    {
-      printf("%d: Connection closed\n", client->socket);
-      xclose(client->socket);
-      client->fd_type = FD_FREE;
-      pop_client_from_list(&info->clients, socket);
-    }
+    client_disconnect(client, info);
 }

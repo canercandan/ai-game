@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Wed Apr 30 19:53:47 2008 florent hochwelker
+** Last update Thu May  1 15:48:55 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -13,25 +13,41 @@
 #include <stdlib.h>
 #include "server.h"
 
+static t_action	actions[] =
+  {
+    {UP, "avance", 7, act_up},
+    {RIGHT, "droit", 7, act_right},
+    {LEFT, "gauche", 7, act_left},
+    {SEE, "voir", 1, act_see},
+    {INVENTORY, "inventaire", 1, act_inventory},
+    {TAKE_OBJ, "prend", 7, act_take_obj},
+    {DROP_OBJ, "pose", 7, act_drop_obj},
+    {KICK, "expulse", 7, act_kick},
+    {BROADCAST, "broadcast", 7, act_broadcast},
+    {LEVELUP, "incantation", 300, act_levelup},
+    {FORK, "fork", 42, act_fork},
+    {0, 0, 0, 0}
+  };
+
 int		execute_action(char *str, t_client *cli, t_info *info)
 {
   int		i;
   t_queue	*new_action;
 
   i = 0;
-  while (gl_actions[i].str)
+  while (actions[i].str)
     {
-      if (strncmp(gl_actions[i].str, str, strlen(gl_actions[i].str)) == 0)
+      if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
 	{
 	  new_action = malloc(sizeof(*new_action));
-	  new_action->action = gl_actions[i].action;
+	  new_action->action = actions[i].action;
 	  new_action->param = strdup(get_word_n(str, 2));
-	  new_action->time = time(0) + gl_actions[i].delay;
+	  new_action->time = time(0) + actions[i].delay;
 	  new_action->client = cli;
 	  push_list(&info->queue, new_action);
-	  if (((struct timeval *) (info->timeout))->tv_sec > (long)gl_actions[i].delay)
+	  if (((struct timeval *) (info->timeout))->tv_sec > (long)actions[i].delay)
 	    {
-	      ((struct timeval *) (info->timeout))->tv_sec = gl_actions[i].delay;
+	      ((struct timeval *) (info->timeout))->tv_sec = actions[i].delay;
 	      sort_queue_list(&info->queue);
 	    }
 	  i++;

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Wed Apr 30 21:14:33 2008 caner candan
+** Last update Thu May  1 15:25:22 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -19,7 +19,7 @@ void		add_client(t_info *info, int server)
   debug("add_client()", 2);
   client = xmalloc(sizeof(*client));
   client->socket = xaccept(server, NULL, NULL);
-  client->fd_type = FD_CLIENT;
+  client->status = ST_NOT_LOGGED;
   client->fct_read = client_read;
   client->fct_write = client_write;
   client->buf_read[0] = 0;
