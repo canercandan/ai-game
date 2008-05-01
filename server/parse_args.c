@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Wed Apr 30 17:48:00 2008 florent hochwelker
+** Last update Thu May  1 16:04:51 2008 caner candan
 */
 
 #include <stdio.h>
@@ -15,7 +15,7 @@
 
 extern t_opt	gl_opt_srv[];
 
-static char	*gl_default_name_team[] =
+static char	*default_name_team[] =
   {"-n", "Team1", "Team2", 0};
 
 static void	fill_default_info(t_info *info)
@@ -24,7 +24,7 @@ static void	fill_default_info(t_info *info)
   info->port = DEFAULT_PORT;
   info->width = DEFAULT_WIDTH;
   info->lenght = DEFAULT_LENGHT;
-  opt_name_team(info, gl_default_name_team, 0);
+  opt_name_team(info, default_name_team, 0);
   info->nb_player = DEFAULT_NB_PLAYER;
   info->time = DEFAULT_TIME;
   info->queue = 0;

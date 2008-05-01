@@ -5,34 +5,37 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 29 21:51:51 2008 caner candan
-** Last update Thu May  1 14:43:25 2008 caner candan
+** Last update Thu May  1 16:05:12 2008 caner candan
 */
 
 #include <stdlib.h>
 #include "server.h"
 
+static void	free_client(t_list *t)
+{
+  free(t->data);
+  free(t);
+}
+
 void		*pop_client_from_list(t_list **t, int socket)
 {
   t_list	*elm;
-  t_list	*tmp;
   void		*data;
 
   debug("pop_client_from_list()", -1);
   elm = *t;
   if (!elm)
     return ((void *) -1);
-  while (elm)
+  while (elm->next)
     {
-      if (((t_client *) elm->data)->socket != socket)
+      if (((t_client *) elm->next->data)->socket != socket)
 	{
-	  debug("found!", -1);
 	  elm = elm->next;
 	  continue;
 	}
-      tmp = elm->next;
-      data = elm->data;
-      free(elm);
-      elm = tmp;
+      elm->next = elm->next->next;
+      data = elm->next->data;
+      free_client(elm->next);
       return (data);
     }
   return (NULL);
