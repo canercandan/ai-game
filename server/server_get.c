@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed Apr 30 20:19:44 2008 caner candan
+** Last update Wed Apr 30 21:13:56 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -25,7 +25,8 @@ static void	get_set_fd(t_list *t, fd_set *fd_read,
       if (client->fd_type != FD_FREE)
 	{
 	  FD_SET(client->socket, fd_read);
-	  FD_SET(client->socket, fd_write);
+	  if (client->buf_write[0] != 0)
+	    FD_SET(client->socket, fd_write);
 	  if (*fd_max < client->socket)
 	    *fd_max = client->socket;
 	}
@@ -59,15 +60,15 @@ void		server_get(t_info *info)
   fd_set	fd_write;
   int		fd_max;
 
+  debug("server_get()", 1);
   while (42)
     {
-      debug("server_get()", 1);
       FD_ZERO(&fd_read);
       FD_ZERO(&fd_write);
       fd_max = 0;
       get_set_fd(info->clients, &fd_read, &fd_write, &fd_max);
-      if (select(fd_max + 1, &fd_read, &fd_write,
-		 NULL, (struct timeval *) info->timeout) < 0)
+      if (select(fd_max + 1, &fd_read, NULL,
+		 NULL, info->timeout) < 0)
 	{
 	  printf("Error with select()\n");
 	  exit(-1);

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 18:00:00 2008 caner candan
-** Last update Tue Apr 22 18:37:53 2008 caner candan
+** Last update Thu May  1 14:54:16 2008 caner candan
 */
 
 #include <unistd.h>
@@ -17,6 +17,6 @@ int	xclose(int fd)
   int	rc;
 
   if ((rc = close(fd)) < 0)
-    printf("Error with close()\n");
+    perror("close");
   return (rc);
 }

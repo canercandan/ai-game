@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu Apr  3 09:27:50 2008 caner candan
-** Last update Tue Apr 15 16:12:58 2008 caner candan
+** Last update Thu May  1 14:55:25 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -22,9 +22,8 @@ int	xbind(int s, const void *addr, void *addrlen)
   if ((rc = bind(s, (struct sockaddr *) addr,
 		 (socklen_t) addrlen)) < 0)
     {
-      fprintf(stderr, "server - error with bind()\n");
+      perror("bind");
       close(s);
-      exit(FALSE);
     }
   return (rc);
 }

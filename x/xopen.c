@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr  3 19:03:47 2008 florent hochwelker
-** Last update Tue Apr 22 18:03:57 2008 caner candan
+** Last update Thu May  1 14:54:32 2008 caner candan
 */
 
 #include <sys/socket.h>
@@ -21,6 +21,6 @@ int	xopen(char *path, int flags)
   int	fd;
 
   if ((fd = open(path, flags)) < 0)
-    printf("Error with open()\n");
+    perror("open");
   return (fd);
 }

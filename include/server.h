@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed Apr 30 20:31:33 2008 caner candan
+** Last update Wed Apr 30 20:58:46 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -129,6 +129,8 @@ typedef struct	s_client
   char		fd_type;
   fct		fct_read;
   fct		fct_write;
+  char		buf_read[128];
+  char		buf_write[128];
   int		level;
   int		hp;
   int		x;

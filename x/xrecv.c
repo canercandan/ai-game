@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu Apr  3 09:48:28 2008 caner candan
-** Last update Tue Apr 15 17:25:58 2008 florent hochwelker
+** Last update Thu May  1 14:53:53 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -21,9 +21,8 @@ int	xrecv(int s, void *buf, int len, int flags)
 
   if ((rc = recv(s, buf, (size_t) len, flags)) < 0)
     {
-      fprintf(stderr, "Error with recv()\n");
+      perror("recv");
       close(s);
-      exit(FALSE);
     }
   return (rc);
 }
