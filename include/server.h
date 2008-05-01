@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Thu May  1 16:01:18 2008 florent hochwelker
+** Last update Thu May  1 16:03:28 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -109,7 +109,7 @@ typedef struct	s_opt
 /*
 ** Inventory structure
 */
-typedef struct		s_inventory
+typedef struct		s_inventoryz
 {
   int			rock;
   unsigned int		qte;
