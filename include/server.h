@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Thu May  1 19:03:29 2008 florent hochwelker
+** Last update Thu May  1 20:13:19 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -28,7 +28,7 @@
 # define TIME		100
 # define COEFFICIENT	0.3
 # define NB_FOOD	3
-# define BUF_SIZE	128
+# define BUF_SIZE	1024
 
 /*
 ** Zappy's index names
@@ -309,11 +309,26 @@ void	pop_all_list(t_list *t);
 /*
 ** Clients list chaine's functions
 */
-void	*pop_client_from_list(t_list **t, int socket);
+void	*rm_client_from_list(t_list **t, int socket);
 void	*get_client_from_list(t_list *t, int socket);
 void	show_clients_from_list(t_list *t);
 void	sort_queue_list(t_list **begin);
 int	count_list(t_list *t);
+
+/*
+** Queue list functions
+*/
+void	rm_client_from_queue(t_list **t, int socket);
+
+/*
+** Client's functions
+*/
+void	free_client(t_client *client);
+
+/*
+** Info's functions
+*/
+void	free_info(t_info *info);
 
 /*
 ** Usefull functions
