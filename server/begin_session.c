@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Fri May  2 18:14:14 2008 florent hochwelker
+** Last update Fri May  2 18:25:36 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -41,9 +41,9 @@ int		begin_session(t_info *info, t_client *cli)
       name = trim(cli->buf_read);
       if ((team = get_team(name, info)))
 	{
-	  team->nb--;
+	  team->nb++;
 	  snprintf(cli->buf_write, BUF_SIZE, "%d\n%d %d\n",
-		   team->nb, info->x, info->y);
+		   team->max - team->nb + 1, info->x, info->y);
 	  cli->status = ST_CLIENT;
 	}
       else
