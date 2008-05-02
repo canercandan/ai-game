@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  2 19:31:34 2008 florent hochwelker
+## Last update Fri May  2 21:02:49 2008 jordan aubry
 ##
 
 NAME_SRV	=	server
@@ -124,12 +124,13 @@ LIBRARY_OBS	=	-L/usr/X11R6/lib -L/usr/local/lib 		\
 
 DEBUG		=	-g
 PANIC		=	-Wall -W -Werror -pedantic -ansi
+MINOR		=	-Wall -Werror -pedantic -ansi
 
 CFLAGS		+=	$(INCLUDES) $(PANIC) $(DEBUG)
 LDFLAGS		+=	$(LIBRARY)
 
-CFLAGS_OBS	=	$(CFLAGS) $(INCLUDES_OBS)
-LDFLAGS_OBS	=	$(LDFLAGS) $(LIBRARY_OBS)
+CFLAGS_OBS	=	$(INCLUDES) $(INCLUDES_OBS) $(MINOR)
+LDFLAGS_OBS	=	$(LIBRARY) $(LIBRARY_OBS)
 
 CC		=	gcc
 RM		=	rm -f
