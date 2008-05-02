@@ -5,9 +5,10 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 20:15:33 2008 caner candan
-** Last update Fri May  2 21:51:10 2008 florent hochwelker
+** Last update Fri May  2 21:51:47 2008 florent hochwelker
 */
 
+#include <stdio.h>
 #include "server.h"
 
 void	server_write(t_info *info, int socket)
