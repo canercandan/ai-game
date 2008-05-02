@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 19:15:43 2008 florent hochwelker
+** Last update Fri May  2 19:27:50 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -197,7 +197,7 @@ typedef struct		s_action
   int			action;
   char			*str;
   unsigned int		delay;
-  int			(*f)(char *cmd, int socket);
+  int			(*f)(char *cmd, t_client *cli);
 }			t_action;
 
 /*
