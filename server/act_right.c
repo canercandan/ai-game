@@ -5,9 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  2 21:24:52 2008 florent hochwelker
+** Last update Fri May  2 21:26:56 2008 caner candan
 */
 
+#include <string.h>
 #include "server.h"
 
 int	act_right(char *cmd, t_client *client)
