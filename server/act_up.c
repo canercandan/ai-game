@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  2 21:27:57 2008 florent hochwelker
+** Last update Sat May  3 00:18:31 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -15,6 +15,6 @@ int	act_up(char *cmd, t_client *client)
 {
   (void)cmd;
   (void)client;
-  strcpy(client->buf_write, "UP OK\n");
+  strcat(client->buf_write, "UP OK\n");
   return (0);
 }

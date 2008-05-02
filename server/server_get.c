@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Fri May  2 22:56:23 2008 florent hochwelker
+** Last update Fri May  2 22:58:08 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -82,7 +82,6 @@ void		server_get(t_info *info)
 	  printf("Error with select()\n");
 	  exit(-1);
 	}
-      printf("timestamp = %d\n", time(NULL));
       get_isset_fd(info, &fd_read, &fd_write);
       scheduler_exec(info);
       printf("waiting...\n");
