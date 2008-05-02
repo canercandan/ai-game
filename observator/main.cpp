@@ -15,7 +15,7 @@ int		main(int ac, char **av)
     exit(0);
   init_windows(&w);
   init_map(&w);
-  w.sock = create_socket(av[1], av[2]);
+  //w.sock = create_socket(av[1], av[2]);
   while(w.device->run())
     draw_all(&w);
   free_and_exit(&w);
