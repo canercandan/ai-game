@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Fri May  2 22:42:39 2008 florent hochwelker
+** Last update Fri May  2 22:49:23 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -23,15 +23,12 @@ int		scheduler_exec(t_info *info)
   begin = info->queue;
   while (info->queue && (elem = info->queue->data) && elem->time < cur_time)
     {
-      printf("je suis dans le while de scheduler:\n");
-      printf("elem = %d, elem->client->socket = %d\n",
-	     (int)elem, elem->client->socket);
       elem->f(elem->param, elem->client);
-      printf("ba oue c t sa\n");
       info->queue = info->queue->next;
-      /* pop_list(&info->queue); */
       free(elem->param);
       free(elem);
     }
+  if (info->queue == 0)
+    ((struct timeval *)info->timeout)->tv_sec = 0;
   return (0);
 }
