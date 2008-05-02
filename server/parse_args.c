@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Fri May  2 15:06:20 2008 caner candan
+** Last update Fri May  2 16:41:12 2008 caner candan
 */
 
 #include <stdio.h>
@@ -22,8 +22,8 @@ static void	fill_default_info(t_info *info)
 {
   debug("fill_default_info()", 2);
   info->port = DEFAULT_PORT;
-  info->width = DEFAULT_WIDTH;
-  info->lenght = DEFAULT_LENGHT;
+  info->y = DEFAULT_LENGHT;
+  info->x = DEFAULT_WIDTH;
   opt_name_team(info, default_name_team, 0);
   info->nb_player = DEFAULT_NB_PLAYER;
   info->time = DEFAULT_TIME;
