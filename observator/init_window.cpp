@@ -21,11 +21,11 @@ void    init_windows(t_window *w)
   w->camera->setFarValue(100000);
   w->device->getCursorControl()->setVisible(false);
   w->driver->setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, false);
-  w->smgr->addSkyBoxSceneNode(w->driver->getTexture("Cube/up.tga"),
-                              w->driver->getTexture("Cube/dn.tga"),
-                              w->driver->getTexture("Cube/rt.tga"),
-                              w->driver->getTexture("Cube/lf.tga"),
-                              w->driver->getTexture("Cube/ft.tga"),
-                              w->driver->getTexture("Cube/bk.tga"));
+  w->smgr->addSkyBoxSceneNode(w->driver->getTexture(CUBE_SKY_UP),
+                              w->driver->getTexture(CUBE_SKY_DN),
+                              w->driver->getTexture(CUBE_SKY_RT),
+                              w->driver->getTexture(CUBE_SKY_LF),
+                              w->driver->getTexture(CUBE_SKY_FT),
+                              w->driver->getTexture(CUBE_SKY_BK));
   w->driver->setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, true);
 }

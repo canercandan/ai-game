@@ -20,6 +20,19 @@ using namespace scene;
 using namespace gui;
 using namespace core;
 
+/* Files
+*/
+
+#define MAP_CASE_BMP		"bin/map/case.bmp"
+#define MAP_CASE_JPG		"bin/map/case.jpg"
+
+#define CUBE_SKY_UP		"bin/cube/up.tga"
+#define CUBE_SKY_DN		"bin/cube/dn.tga"
+#define CUBE_SKY_RT		"bin/cube/rt.tga"
+#define CUBE_SKY_LF		"bin/cube/lf.tga"
+#define CUBE_SKY_FT		"bin/cube/ft.tga"
+#define CUBE_SKY_BK		"bin/cube/bk.tga"
+
 /* Structure
 */
 
