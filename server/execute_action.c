@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Thu May  1 20:07:25 2008 florent hochwelker
+** Last update Fri May  2 15:01:55 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -32,23 +32,24 @@ static t_action	actions[] =
 int		execute_action(char *str, t_client *cli, t_info *info)
 {
   int		i;
-  t_queue	*new_action;
+  unsigned int	cur_time;
+  t_queue	*new_queue;
 
   i = 0;
   while (actions[i].str)
     {
       if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
 	{
-	  new_action = malloc(sizeof(*new_action));
-	  new_action->f = actions[i].f;
-	  new_action->param = strdup(get_word_n(str, 2));
-	  new_action->time = time(0) + actions[i].delay;
-	  new_action->client = cli;
-	  push_list(&info->queue, new_action);
+	  cur_time = time(NULL);
+	  new_queue = malloc(sizeof(*new_queue));
+	  new_queue->f = actions[i].f;
+	  new_queue->param = strdup(get_word_n(str, 2));
+	  new_queue->time = cur_time + actions[i].delay;
+	  new_queue->client = cli;
+	  push_list(&info->queue, new_queue);
 	  sort_queue_list(&info->queue);
-	  if (((struct timeval *) (info->timeout))->tv_sec >
-	      (long)actions[i].delay)
-	    ((struct timeval *) (info->timeout))->tv_sec = actions[i].delay;
+	  ((struct timeval *) (info->timeout))->tv_sec =
+	    ((t_queue *)info->queue->data)->time - cur_time;
 	  return (0);
 	}
       i++;

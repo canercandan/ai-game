@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Wed Apr 30 17:53:33 2008 florent hochwelker
-** Last update Wed Apr 30 19:45:33 2008 florent hochwelker
+** Last update Fri May  2 14:56:59 2008 florent hochwelker
 */
 
 #include "server.h"
@@ -19,7 +19,7 @@ void		sort_queue_list(t_list **begin)
   while ((*begin)->next)
     {
       if (((t_queue *)(*begin)->data)->time >
-	  ((t_queue *)((*begin)->next->data))->time)
+	  ((t_queue *)(*begin)->next->data)->time)
 	{
 	  swap = (*begin)->next;
 	  (*begin)->next->data = (*begin)->data;

@@ -5,10 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Thu May  1 20:36:55 2008 florent hochwelker
+** Last update Fri May  2 15:05:08 2008 florent hochwelker
 */
 
 #include <sys/time.h>
+#include <stdlib.h>
 #include "server.h"
 
 int		sheduler_exec(t_info *info)
@@ -24,6 +25,8 @@ int		sheduler_exec(t_info *info)
     {
       elem->f(elem->param, elem->client->socket);
       begin = begin->next;
+      free(elem->param);
+      free(elem);
       elem = begin->data;
     }
   return (0);

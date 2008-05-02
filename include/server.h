@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Thu May  1 20:15:18 2008 florent hochwelker
+** Last update Fri May  2 15:01:25 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -27,8 +27,9 @@
 # define UNIT		10
 # define TIME		100
 # define COEFFICIENT	0.3
-# define NB_FOOD	3
 # define BUF_SIZE	1024
+# define NB_INVENTORY	6
+# define NB_FOOD	3
 
 /*
 ** Zappy's index names
@@ -84,7 +85,7 @@ typedef	enum
 /*
 ** Alias
 */
-  typedef void	(*fct)();
+typedef void	(*fct)();
 
 /*
 ** Gerneric list of list chaine
@@ -105,15 +106,6 @@ typedef struct	s_opt
   char		*desc;
   int		(*fun)();
 }		t_opt;
-
-/*
-** Inventory structure
-*/
-typedef struct		s_inventory
-{
-  int			rock;
-  unsigned int		qte;
-}			t_inventory;
 
 /*
 ** Team's structure
@@ -142,7 +134,7 @@ typedef struct	s_client
   int		y;
   char		direction;
   t_team	*team;
-  t_list	*stock;
+  char		inventory[NB_INVENTORY];
 }		t_client;
 
 /*
@@ -155,6 +147,17 @@ typedef struct		s_queue
   unsigned int		time;
   t_client		*client;
 }			t_queue;
+
+/*
+** One case of the map
+*/
+typedef struct		s_zone
+{
+  char			is_moveable;
+  int			id_deco;
+  t_list		*ressources;
+  t_list		*client;
+}			t_zone;
 
 /*
 ** Info about the game
@@ -170,18 +173,8 @@ typedef struct	s_info
   t_list	*clients;
   void		*timeout;
   t_list	*queue;
+  t_zone	*zone;
 }		t_info;
-
-/*
-** One case of the map
-*/
-typedef struct		s_zone
-{
-  char			is_moveable;
-  int			id_deco;
-  t_list		*ressources;
-  t_list		*client;
-}			t_zone;
 
 /*
 ** Actions list's structure
