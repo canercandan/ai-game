@@ -5,9 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  2 21:25:29 2008 florent hochwelker
+** Last update Fri May  2 21:27:17 2008 florent hochwelker
 */
 
+#include <string.h>
 #include "server.h"
 
 int	act_broadcast(char *cmd, t_client *client)
