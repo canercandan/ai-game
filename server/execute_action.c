@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Fri May  2 15:01:55 2008 florent hochwelker
+** Last update Fri May  2 15:25:04 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -29,6 +29,19 @@ static t_action	actions[] =
     {0, 0, 0, 0}
   };
 
+static t_queue		*create_new_queue(char *str, int act_idx,
+					  unsigned int cur_time, t_client *cli)
+{
+  t_queue	*new_queue;
+
+  new_queue = malloc(sizeof(*new_queue));
+  new_queue->f = actions[act_idx].f;
+  new_queue->param = strdup(get_word_n(str, 2));
+  new_queue->time = cur_time + actions[act_idx].delay;
+  new_queue->client = cli;
+  return (new_queue);
+}
+
 int		execute_action(char *str, t_client *cli, t_info *info)
 {
   int		i;
@@ -41,15 +54,14 @@ int		execute_action(char *str, t_client *cli, t_info *info)
       if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
 	{
 	  cur_time = time(NULL);
-	  new_queue = malloc(sizeof(*new_queue));
-	  new_queue->f = actions[i].f;
-	  new_queue->param = strdup(get_word_n(str, 2));
-	  new_queue->time = cur_time + actions[i].delay;
-	  new_queue->client = cli;
+	  new_queue = create_new_queue(str, i, cur_time, cli);
 	  push_list(&info->queue, new_queue);
 	  sort_queue_list(&info->queue);
-	  ((struct timeval *) (info->timeout))->tv_sec =
-	    ((t_queue *)info->queue->data)->time - cur_time;
+	  if (info->queue)
+	    ((struct timeval *)(info->timeout))->tv_sec =
+	      ((t_queue *)info->queue->data)->time - cur_time;
+	  else
+	    ((struct timeval *)(info->timeout))->tv_sec = 0;
 	  return (0);
 	}
       i++;
