@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Fri May  2 22:29:57 2008 florent hochwelker
+** Last update Fri May  2 22:30:59 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -29,7 +29,7 @@ int		scheduler_exec(t_info *info)
 		 (int)elem, elem->client->socket);
 	  elem->f(elem->param, elem->client);
 	  printf("ba oue c t sa\n");
-	  pop_list(&begin);
+	  /* 	  pop_list(&begin); */
 	  /* 	  free(elem->param); */
 	  /* 	  free(elem); */
 	}
