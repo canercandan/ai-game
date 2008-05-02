@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Fri May  2 17:23:51 2008 caner candan
+** Last update Fri May  2 18:00:00 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -22,7 +22,7 @@ void		fill_ressources_world(t_zone **world, t_info *info)
 
   debug("fill_ressources_world()", 2);
   max = info->y * info->x * info->nb_player * COEFFICIENT;
-  *ressource = xmalloc(sizeof(*ressource) * max);
+  ressource = xmalloc(sizeof(*ressource) * max);
   for (i = 0; i < max;  i++)
     ressource[i] = generate_ressources(1, i);
   for (i = 0; i < max; i++)
