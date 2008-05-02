@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Fri May  2 15:05:08 2008 florent hochwelker
+** Last update Fri May  2 19:21:19 2008 caner candan
 */
 
 #include <sys/time.h>
@@ -23,7 +23,7 @@ int		sheduler_exec(t_info *info)
   elem = begin->data;
   while (elem->time < cur_time)
     {
-      elem->f(elem->param, elem->client->socket);
+      elem->f(elem->param, elem->client);
       begin = begin->next;
       free(elem->param);
       free(elem);

@@ -5,14 +5,14 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed Apr 30 12:36:23 2008 caner candan
+** Last update Fri May  2 19:23:53 2008 caner candan
 */
 
 #include "server.h"
 
-int	act_inventory(char *cmd, int socket)
+int	act_inventory(char *cmd, t_client *client)
 {
   (void)cmd;
-  (void)socket;
+  (void)client;
   return (0);
 }
