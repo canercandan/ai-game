@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Fri May  2 15:25:04 2008 florent hochwelker
+** Last update Fri May  2 21:35:30 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -62,9 +62,10 @@ int		execute_action(char *str, t_client *cli, t_info *info)
 	      ((t_queue *)info->queue->data)->time - cur_time;
 	  else
 	    ((struct timeval *)(info->timeout))->tv_sec = 0;
+	  strcpy(cli->buf_write, "OK\n");
 	  return (0);
 	}
       i++;
-    }
+    } 
   return (-1);
 }
