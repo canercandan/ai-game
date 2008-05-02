@@ -6,23 +6,26 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  2 17:32:56 2008 caner candan
+## Last update Fri May  2 17:53:11 2008 jordan aubry
 ##
 
 NAME_SRV	=	server
 NAME_CLI	=	client
+NAME_OBS	=	observator
 NAME_X		=	x
 NAME_BIN	=	bin
 NAME_OBJ	=	obj
 
 PATH_SRV	=	$(NAME_SRV)/
 PATH_CLI	=	$(NAME_CLI)/
+PATH_OBS	=	$(NAME_OBS)/
 PATH_X		=	$(NAME_X)/
 PATH_BIN	=	$(NAME_BIN)/
 PATH_OBJ	=	$(NAME_OBJ)/
 
 BIN_SRV		=	$(PATH_BIN)$(NAME_SRV)
 BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
+BIN_OBS		=	$(PATH_BIN)$(NAME_OBS)
 
 SRCS_X		=	$(PATH_X)xaccept.c			\
 			$(PATH_X)xbind.c			\
@@ -100,18 +103,29 @@ SRCS_CLI	=	$(PATH_CLI)main.c			\
 			$(PATH_CLI)fork_in_the_word.c		\
 			$(PATH_CLI)get_rnd_action.c
 
+SRCS_OBS	=	$(PATH_OBS)main.cpp
+
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
 OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
+OBJS_OBS	=	$(SRCS_OBS:.cpp=.o) $(OBJS_X)
 
 INCLUDES	=	-I./include
 LIBRARY		=	-L.
 
+INCLUDES_OBS	=	-I/usr/local/include/irrlicht -I/usr/X11R6/include
+LIBRARY_OBS	=	-L/usr/X11R6/lib -L/usr/local/lib 		\
+			-lGL -lGLU -lXxf86vm -lXext -lX11 -lpng -ljpeg	\
+			-lIrrlicht
+
 DEBUG		=	-g
 PANIC		=	-Wall -W -Werror -pedantic -ansi
 
-CFLAGS		=	$(INCLUDES) $(PANIC)
-LDFLAGS		=	$(LIBRARY)
+CFLAGS		+=	$(INCLUDES) $(PANIC)
+LDFLAGS		+=	$(LIBRARY)
+
+CFLAGS_OBS	=	$(CFLAGS) $(INCLUDES_OBS)
+LDFLAGS_OBS	=	$(LDFLAGS) $(LIBRARY_OBS)
 
 CC		=	gcc
 RM		=	rm -f
@@ -122,19 +136,25 @@ MK		=	make
 MKD		=	mkdir -p
 
 .SUFFIXES	:	.c.o
+.SUFFIXES	:	.cpp.o
 
 all		:
 			@$(MKD) $(PATH_SRV)
 			@$(MKD) $(PATH_CLI)
+			@$(MKD) $(PATH_OBS)
 			@$(MKD) $(PATH_BIN)
 			@$(MK) $(BIN_SRV)
 			@$(MK) $(BIN_CLI)
+			@$(MK) $(BIN_OBS)
 
 $(BIN_SRV)	:	$(OBJS_SRV)
 			@$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
 
 $(BIN_CLI)	:	$(OBJS_CLI)
 			@$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
+
+$(BIN_OBS)	:	$(OBJS_OBS)
+			@$(CC) $(CFLAGS_OBS) -o $@ $(OBJS_OBS) $(LDFLAGS_OBS)
 
 clean		:
 			@$(RM_O)
@@ -144,6 +164,7 @@ clean		:
 fclean		:	clean
 			$(RM) $(BIN_SRV)
 			$(RM) $(BIN_CLI)
+			$(RM) $(BIN_OBS)
 
 re		:	fclean all
 
@@ -151,3 +172,6 @@ re		:	fclean all
 
 .c.o		:
 			$(CC) $(CFLAGS) -c $< -o $@
+
+.cpp.o		:
+			$(CC) $(CFLAGS_OBS) -c $< -o $@
