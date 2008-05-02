@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 15:01:25 2008 florent hochwelker
+** Last update Fri May  2 15:09:23 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -257,10 +257,10 @@ void	server_read(t_info *info, int socket);
 void	server_write(t_info *info, int socket);
 
 /*
-** Function's prototypes
+** Options' functions
 */
 void		usage_server(void);
-t_info		*parse_args(int argc, char **argv);
+t_info		*parse_args(int argc, char **argv, t_info *info);
 int		is_options(char *args);
 int		check_flag(int flag);
 int		opt_port(t_info *info, char **argv, int i);
@@ -275,6 +275,9 @@ t_ressource	*generate_ressources(int level_max, int i);
 void		dump_world(t_zone **zworld, int width, int lenght);
 int		execute_action(char *str, t_client *cli, t_info *info);
 
+/*
+** Actions' functions
+*/
 int		act_up(char *cmd, int socket);
 int		act_right(char *cmd, int socket);
 int		act_left(char *cmd, int socket);
@@ -321,6 +324,7 @@ void	free_client(t_client *client);
 /*
 ** Info's functions
 */
+t_info	*init_info();
 void	free_info(t_info *info);
 
 /*

@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu May  1 16:04:51 2008 caner candan
+** Last update Fri May  2 15:06:20 2008 caner candan
 */
 
 #include <stdio.h>
@@ -30,9 +30,8 @@ static void	fill_default_info(t_info *info)
   info->queue = 0;
 }
 
-t_info		*parse_args(int argc, char **argv)
+t_info		*parse_args(int argc, char **argv, t_info *info)
 {
-  t_info	*info;
   int		flag;
   int		idx;
   int		i;
@@ -40,7 +39,6 @@ t_info		*parse_args(int argc, char **argv)
   debug("parse_args()", 1);
   i = 1;
   flag = 0;
-  info = xmalloc(sizeof(*info));
   while (i < argc)
     {
       if (((idx = is_options(argv[i])) != -1) && argv[++i])
