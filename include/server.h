@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 15:28:24 2008 caner candan
+** Last update Fri May  2 16:07:58 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -326,6 +326,11 @@ void	free_client(t_client *client);
 */
 t_info	*init_info();
 void	free_info(t_info *info);
+
+/*
+** Zone's functions
+*/
+t_zone	**init_zone(t_info *info);
 
 /*
 ** Usefull functions
