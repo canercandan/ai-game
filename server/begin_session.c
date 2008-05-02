@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Fri May  2 18:35:59 2008 florent hochwelker
+** Last update Fri May  2 18:44:09 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -19,7 +19,6 @@ static t_team	*get_team(char *name, t_info *info)
   list_team = info->team;
   while (list_team)
     {
-      printf("current team = [%s]\n", ((t_team *)list_team->data)->name);
       if (strcmp(name, ((t_team *)list_team->data)->name) == 0)
 	return (list_team->data);
       list_team = list_team->next;

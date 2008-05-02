@@ -5,14 +5,15 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed Apr 30 12:36:52 2008 caner candan
+** Last update Fri May  2 19:17:41 2008 florent hochwelker
 */
 
 #include "server.h"
 
-int	act_drop_obj(char *cmd, int socket)
+int	act_drop_obj(char *cmd, int socket, t_info *info)
 {
   (void)cmd;
   (void)socket;
+  
   return (0);
 }
