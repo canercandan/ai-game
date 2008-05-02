@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 21:19:54 2008 caner candan
+** Last update Fri May  2 21:40:23 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -50,7 +50,7 @@
 # define DEFAULT_PORT		12345
 # define DEFAULT_WIDTH		10
 # define DEFAULT_LENGHT		10
-# define DEFAULT_NB_PLAYER	10
+# define DEFAULT_NB_PLAYER	1
 # define DEFAULT_TIME		100
 
 /*

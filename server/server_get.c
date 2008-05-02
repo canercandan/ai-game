@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Fri May  2 14:59:38 2008 caner candan
+** Last update Fri May  2 21:38:47 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -40,7 +40,7 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
 
   debug("get_isset_fd()", 2);
   t = info->clients;
-  show_clients_from_list(t);
+  /* show_clients_from_list(t); */
   while (t)
     {
       client = t->data;
