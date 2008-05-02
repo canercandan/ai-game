@@ -268,6 +268,8 @@ void		server_init(t_info *info);
 void		server_get(t_info *info);
 void		server_read(t_info *info, int socket);
 void		server_write(t_info *info, int socket);
+int		execute_action(char *str, t_client *cli, t_info *info);
+int		scheduler_exec(t_info *info);
 
 /*
 ** Options' functions
@@ -295,7 +297,6 @@ int		begin_session(t_info *i, t_client *cli);
 /*
 ** Actions' functions
 */
-int		execute_action(char *str, t_client *cli, t_info *info);
 int		act_up(char *cmd, t_client *client);
 int		act_right(char *cmd, t_client *client);
 int		act_left(char *cmd, t_client *client);
