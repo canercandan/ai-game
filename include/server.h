@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 19:28:57 2008 caner candan
+** Last update Fri May  2 19:33:13 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -155,7 +155,7 @@ typedef struct	s_client
 */
 typedef struct		s_queue
 {
-  int			(*f)(char *cmd, int socket);
+  int			(*f)(char *cmd, t_client *cli);
   char			*param;
   unsigned int		time;
   t_client		*client;
