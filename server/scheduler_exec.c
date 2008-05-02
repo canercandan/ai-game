@@ -5,11 +5,12 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Fri May  2 22:20:59 2008 florent hochwelker
+** Last update Fri May  2 22:27:47 2008 florent hochwelker
 */
 
 #include <sys/time.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "server.h"
 
 int		scheduler_exec(t_info *info)
@@ -23,6 +24,9 @@ int		scheduler_exec(t_info *info)
     {
       while ((elem = begin->data) && elem->time < cur_time)
 	{
+	  printf("je suis dans le while de scheduler:\n");
+	  printf("elem = %d, elem->client->socket = %d\n",
+		 (int)elem, elem->client->socket);
 	  elem->f(elem->param, elem->client);
 	  pop_list(&begin);
 	  free(elem->param);
