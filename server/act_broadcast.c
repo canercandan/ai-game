@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  2 19:21:36 2008 caner candan
+** Last update Fri May  2 21:23:19 2008 florent hochwelker
 */
 
 #include "server.h"
@@ -14,5 +14,6 @@ int	act_broadcast(char *cmd, t_client *client)
 {
   (void)cmd;
   (void)client;
+  strcpy(client->buf_write, "BROADCAST OK\n");
   return (0);
 }
