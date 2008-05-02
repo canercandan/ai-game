@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Fri May  2 17:56:06 2008 florent hochwelker
+** Last update Fri May  2 21:56:14 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -82,7 +82,7 @@ int	enter_in_the_world(int socket, char *team_name,
 	  printf("<-- [%s]", p);
 	  free(p);
 	  p = get_rnd_action();
-	  sleep(1);
+	  sleep(10);
 	  xsend(socket, p, strlen(p), 0);
 	}
     }
