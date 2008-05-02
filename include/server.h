@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 19:33:13 2008 florent hochwelker
+** Last update Fri May  2 21:19:54 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -103,11 +103,11 @@ typedef void	(*fct)();
 /*
 ** Gerneric list of list chaine
 */
-typedef struct		s_list
+typedef struct	s_list
 {
-  void			*data;
-  struct s_list		*next;
-}			t_list;
+  void		*data;
+  struct s_list	*next;
+}		t_list;
 
 /*
 ** Options' structure
@@ -123,12 +123,12 @@ typedef struct	s_opt
 /*
 ** Team's structure
 */
-typedef struct		s_team
+typedef struct	s_team
 {
-  char			*name;
-  int			nb;
-  int			max;
-}			t_team;
+  char		*name;
+  int		nb;
+  int		max;
+}		t_team;
 
 /*
 ** Clients' structure
