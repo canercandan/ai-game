@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 19:27:50 2008 florent hochwelker
+** Last update Fri May  2 19:28:57 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -296,17 +296,17 @@ int		begin_session(t_info *i, t_client *cli);
 ** Actions' functions
 */
 int		execute_action(char *str, t_client *cli, t_info *info);
-int		act_up(char *cmd, int socket);
-int		act_right(char *cmd, int socket);
-int		act_left(char *cmd, int socket);
-int		act_see(char *cmd, int socket);
-int		act_inventory(char *cmd, int socket);
-int		act_take_obj(char *cmd, int socket);
-int		act_drop_obj(char *cmd, int socket);
-int		act_kick(char *cmd, int socket);
-int		act_broadcast(char *cmd, int socket);
-int		act_levelup(char *cmd, int socket);
-int		act_fork(char *cmd, int socket);
+int		act_up(char *cmd, t_client *client);
+int		act_right(char *cmd, t_client *client);
+int		act_left(char *cmd, t_client *client);
+int		act_see(char *cmd, t_client *client);
+int		act_inventory(char *cmd, t_client *client);
+int		act_take_obj(char *cmd, t_client *client);
+int		act_drop_obj(char *cmd, t_client *client);
+int		act_kick(char *cmd, t_client *client);
+int		act_broadcast(char *cmd, t_client *client);
+int		act_levelup(char *cmd, t_client *client);
+int		act_fork(char *cmd, t_client *client);
 
 /*
 ** Debug's functions
