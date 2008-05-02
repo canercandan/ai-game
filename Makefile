@@ -6,7 +6,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  2 17:53:11 2008 jordan aubry
+## Last update Fri May  2 18:05:01 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -139,22 +139,23 @@ MKD		=	mkdir -p
 .SUFFIXES	:	.cpp.o
 
 all		:
-			@$(MKD) $(PATH_SRV)
-			@$(MKD) $(PATH_CLI)
-			@$(MKD) $(PATH_OBS)
 			@$(MKD) $(PATH_BIN)
 			@$(MK) $(BIN_SRV)
 			@$(MK) $(BIN_CLI)
-			@$(MK) $(BIN_OBS)
 
 $(BIN_SRV)	:	$(OBJS_SRV)
+			@$(MKD) $(PATH_SRV)
 			@$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
 
 $(BIN_CLI)	:	$(OBJS_CLI)
+			@$(MKD) $(PATH_CLI)
 			@$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
 
 $(BIN_OBS)	:	$(OBJS_OBS)
+			@$(MKD) $(PATH_OBS)
 			@$(CC) $(CFLAGS_OBS) -o $@ $(OBJS_OBS) $(LDFLAGS_OBS)
+
+obs		:	$(BIN_OBS)
 
 clean		:
 			@$(RM_O)
