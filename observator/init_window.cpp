@@ -20,7 +20,6 @@ void    init_windows(t_window *w)
   w->camera->setTarget(core::vector3df(100, 100, 100));
   w->camera->setFarValue(100000);
   w->device->getCursorControl()->setVisible(false);
-  //w->driver->setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, false);
   w->driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, false);
   w->smgr->addSkyBoxSceneNode(w->driver->getTexture(CUBE_SKY_UP),
                               w->driver->getTexture(CUBE_SKY_DN),

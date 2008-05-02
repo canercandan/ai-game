@@ -2,6 +2,12 @@
 #ifndef __ZAPPY_GRAPH_H__
 # define __ZAPPY_GRAPH_H__
 
+using namespace irr;
+using namespace video;
+using namespace scene;
+using namespace gui;
+using namespace core;
+
 /* Define
 */
 
@@ -13,12 +19,6 @@
 #define MAP_WEIGHT		10
 
 #define SOCK_ERROR		"ERROR : Can't connect !"
-
-using namespace irr;
-using namespace video;
-using namespace scene;
-using namespace gui;
-using namespace core;
 
 /* Files
 */
@@ -71,6 +71,6 @@ void	init_map(t_window *w);
 void	draw_all(t_window *w);
 void	free_and_exit(t_window *w);
 
-int	create_socket(char *name, char *port);
+void	create_socket(int sock, char *name, char *port);
 
 #endif
