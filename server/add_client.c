@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Thu May  1 15:25:22 2008 florent hochwelker
+** Last update Fri May  2 15:33:10 2008 caner candan
 */
 
 #include <string.h>
@@ -24,6 +24,6 @@ void		add_client(t_info *info, int server)
   client->fct_write = client_write;
   client->buf_read[0] = 0;
   client->buf_write[0] = 0;
-  strcpy(client->buf_write, "BIENVENUE\n");
+/*   strcpy(client->buf_write, "BIENVENUE\n"); */
   push_list(&info->clients, (void *) client);
 }
