@@ -1,3 +1,4 @@
+
 ##
 ## Makefile for make in /home/candan_c/cu/rendu/test/make
 ## 
@@ -5,7 +6,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  2 16:30:53 2008 caner candan
+## Last update Fri May  2 17:26:25 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -66,6 +67,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)act_broadcast.c		\
 			$(PATH_SRV)act_levelup.c		\
 			$(PATH_SRV)act_fork.c			\
+			$(PATH_SRV)begin_session.c		\
 			$(PATH_SRV)server_get.c			\
 			$(PATH_SRV)server_init.c		\
 			$(PATH_SRV)server_read.c		\
@@ -87,7 +89,8 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)sort_queue_list.c		\
 			$(PATH_SRV)count_list.c			\
 			$(PATH_SRV)init_info.c			\
-			$(PATH_SRV)free_info.c
+			$(PATH_SRV)free_info.c			\
+			$(PATH_SRV)trim.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c			\
 			$(PATH_CLI)enter_in_the_world.c		\

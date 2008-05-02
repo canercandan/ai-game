@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Thu May  1 20:18:58 2008 caner candan
+** Last update Fri May  2 16:26:40 2008 florent hochwelker
 */
 
 #include <sys/types.h>
@@ -34,5 +34,7 @@ void			add_server(t_info *info)
   client->status = ST_SERVER;
   client->fct_read = server_read;
   client->fct_write = server_write;
+  client->buf_write[0] = 0;
+  client->buf_read[0] = 0;
   push_list(&info->clients, (void *) client);
 }

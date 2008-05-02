@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Thu May  1 15:34:52 2008 florent hochwelker
+** Last update Fri May  2 17:22:19 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -30,7 +30,10 @@ void		client_read(t_info *info, int socket)
 	{
 	  *p = 0;
 	  strncpy(buff_perso, client->buf_read, BUF_SIZE - 1);
-	  execute_action(buff_perso, client, info);
+	  if (client->status < ST_CLIENT)
+	    begin_session(info, client);
+	  else
+	    execute_action(buff_perso, client, info);
 	  printf("%d: [%s]\n", client->socket, buf);
 	  strncpy(client->buf_read, p + 1, BUF_SIZE);
 	}

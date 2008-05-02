@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 16:40:23 2008 caner candan
+** Last update Fri May  2 17:29:55 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -61,11 +61,18 @@
 # endif /* !NULL */
 
 /*
+** Macro usefull
+*/
+# define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
+
+/*
 ** Status client
 */
 typedef	enum
   {
     ST_NOT_LOGGED,
+    ST_WELCOME_OK,
+    ST_TEAM_NAME_OK,
     ST_SERVER,
     ST_CLIENT,
     ST_GRAPH_CLIENT
@@ -193,7 +200,7 @@ typedef struct		s_action
 typedef struct		s_ressource
 {
   int			idx;
-  char			*name;
+  char			*name; 
   char			*desc;
 }			t_ressource;
 
@@ -246,15 +253,15 @@ extern t_ressource	gl_food[];
 /*
 ** Socket's functions
 */
-void	add_client(t_info *info, int server);
-void	add_server(t_info *info);
-void	client_read(t_info *info, int socket);
-void	client_write(t_info *info, int socket);
-void	client_disconnect(t_client *client, t_info *info);
-void	server_init(t_info *info);
-void	server_get(t_info *info);
-void	server_read(t_info *info, int socket);
-void	server_write(t_info *info, int socket);
+t_client	*add_client(t_info *info, int server);
+void		add_server(t_info *info);
+void		client_read(t_info *info, int socket);
+void		client_write(t_info *info, int socket);
+void		client_disconnect(t_client *client, t_info *info);
+void		server_init(t_info *info);
+void		server_get(t_info *info);
+void		server_read(t_info *info, int socket);
+void		server_write(t_info *info, int socket);
 
 /*
 ** Options' functions
@@ -277,6 +284,7 @@ t_zone		**create_world(t_info *info);
 void		fill_ressources_world(t_zone **world, t_info *info);
 t_ressource	*generate_ressources(int level_max, int i);
 void		dump_world(t_zone **zworld, int y, int x);
+int		begin_session(t_info *i, t_client *cli);
 
 /*
 ** Actions' functions
@@ -335,5 +343,6 @@ void	free_info(t_info *info);
 ** Usefull functions
 */
 char	*get_word_n(char *str, int n);
+char	*trim(char *str);
 
 #endif /* !__SERVER_H__ */
