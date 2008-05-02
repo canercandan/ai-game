@@ -5,12 +5,13 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Fri May  2 21:55:57 2008 florent hochwelker
+** Last update Fri May  2 22:12:15 2008 florent hochwelker
 */
 
 #include <sys/time.h>
 #include <string.h>
 #include <stdlib.h>
+#include "x.h"
 #include "server.h"
 
 static t_action	actions[] =
@@ -34,7 +35,7 @@ static t_queue		*create_new_queue(char *str, int act_idx,
 {
   t_queue	*new_queue;
 
-  new_queue = malloc(sizeof(*new_queue));
+  new_queue = xmalloc(sizeof(*new_queue));
   new_queue->f = actions[act_idx].f;
   new_queue->param = strdup(get_word_n(str, 2));
   new_queue->time = cur_time + actions[act_idx].delay;
