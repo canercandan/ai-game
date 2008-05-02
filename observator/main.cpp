@@ -17,13 +17,7 @@ int		main(int ac, char **av)
   init_map(&w);
   w.sock = create_socket(av[1], av[2]);
   while(w.device->run())
-  {
-	w.driver->beginScene(true, true, 0);
-	w.smgr->drawAll();
-	w.env->drawAll();
-	w.device->getGUIEnvironment()->drawAll();
-	w.driver->endScene();
-  }
+    draw_all(&w);
   w.device->drop();
   return (0);
 }

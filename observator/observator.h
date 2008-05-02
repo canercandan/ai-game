@@ -54,8 +54,10 @@ typedef struct		s_window
 
 void	init_windows(t_window *w);
 void	init_map(t_window *w);
+
+void	draw_all(t_window *w);
 void	free_and_exit(t_window *w);
 
-int	create_socket(char *port, char *name);
+int	create_socket(char *name, char *port);
 
 #endif
