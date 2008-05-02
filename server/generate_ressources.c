@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:55:01 2008 majdi toumi
-** Last update Wed Apr 30 19:43:04 2008 majdi toumi
+** Last update Fri May  2 16:37:49 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -26,5 +26,5 @@ t_ressource	*generate_ressources(int level_max, int i)
       alea = (int)(rand() / (double)RAND_MAX * (NB_FOOD - 1));
       ressource = &gl_food[alea];
     }
-  return(ressource);
+  return (ressource);
 }

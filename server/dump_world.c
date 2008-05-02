@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:23:19 2008 majdi toumi
-** Last update Wed Apr 30 18:52:41 2008 majdi toumi
+** Last update Fri May  2 16:39:04 2008 caner candan
 */
 
 #include <stdio.h>
@@ -31,15 +31,15 @@ static void		dump_clients(t_list *clients)
     }
 }
 
-void		dump_world(t_zone **zone, int width, int lenght)
+void		dump_world(t_zone **zone, int y, int x)
 {
   int		i;
   int		j;
   t_list	*begin;
 
-  for (i = 0; i < width; i++)
+  for (i = 0; i < y; i++)
     {
-      for (j = 0; j < lenght; j++)
+      for (j = 0; j < x; j++)
 	{
 	  fprintf(stdout, "- [%d][%d]:\n", i, j);
 	  /*

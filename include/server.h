@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 16:07:58 2008 caner candan
+** Last update Fri May  2 16:40:23 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -165,8 +165,8 @@ typedef struct		s_zone
 typedef struct	s_info
 {
   int		port;
-  int		width;
-  int		lenght;
+  int		y;
+  int		x;
   t_list	*team;
   int		nb_player;
   int		time;
@@ -269,15 +269,19 @@ int		opt_lenght(t_info *info, char **argv, int i);
 int		opt_name_team(t_info *info, char **argv, int i);
 int		opt_nb_player(t_info *info, char **argv, int i);
 int		opt_delay(t_info *info, char **argv, int i);
+
+/*
+** Zones' functions
+*/
 t_zone		**create_world(t_info *info);
 void		fill_ressources_world(t_zone **world, t_info *info);
 t_ressource	*generate_ressources(int level_max, int i);
-void		dump_world(t_zone **zworld, int width, int lenght);
-int		execute_action(char *str, t_client *cli, t_info *info);
+void		dump_world(t_zone **zworld, int y, int x);
 
 /*
 ** Actions' functions
 */
+int		execute_action(char *str, t_client *cli, t_info *info);
 int		act_up(char *cmd, int socket);
 int		act_right(char *cmd, int socket);
 int		act_left(char *cmd, int socket);
@@ -326,11 +330,6 @@ void	free_client(t_client *client);
 */
 t_info	*init_info();
 void	free_info(t_info *info);
-
-/*
-** Zone's functions
-*/
-t_zone	**init_zone(t_info *info);
 
 /*
 ** Usefull functions

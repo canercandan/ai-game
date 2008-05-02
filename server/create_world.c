@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Wed Apr 30 17:29:13 2008 majdi toumi
+** Last update Fri May  2 16:37:20 2008 caner candan
 */
 
 #include <stdio.h>
@@ -19,16 +19,16 @@ t_zone		**create_world(t_info *info)
   t_zone	**world;
   int		i;
 
-  if (info->width < 0 || info->lenght < 0)
+  if (info->y < 0 || info->x < 0)
     {
       fprintf(stdin, "create_world: your width and lenght must be an integer\n");
       exit(EXIT_FAIL);
     }
-  world = xmalloc(sizeof(*world) * info->width);
-  for (i = 0; i < info->width; i++)
+  world = xmalloc(sizeof(*world) * info->y);
+  for (i = 0; i < info->y; i++)
     {
-      world[i] = xmalloc(sizeof(**world) * info->lenght);
-      memset(world[i], 0, sizeof(**world) * info->lenght);
+      world[i] = xmalloc(sizeof(**world) * info->x);
+      memset(world[i], 0, sizeof(**world) * info->x);
     }
   /* FIXME -> function: initialiser map objet, ... */
   fill_ressources_world(world, info);
