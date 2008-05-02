@@ -1,4 +1,3 @@
-
 ##
 ## Makefile for make in /home/candan_c/cu/rendu/test/make
 ## 
@@ -6,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  2 18:05:01 2008 caner candan
+## Last update Fri May  2 18:07:36 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -121,7 +120,7 @@ LIBRARY_OBS	=	-L/usr/X11R6/lib -L/usr/local/lib 		\
 DEBUG		=	-g
 PANIC		=	-Wall -W -Werror -pedantic -ansi
 
-CFLAGS		+=	$(INCLUDES) $(PANIC)
+CFLAGS		+=	$(INCLUDES) $(PANIC) $(DEBUG)
 LDFLAGS		+=	$(LIBRARY)
 
 CFLAGS_OBS	=	$(CFLAGS) $(INCLUDES_OBS)

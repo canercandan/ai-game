@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Wed Apr 30 21:20:03 2008 florent hochwelker
+** Last update Fri May  2 17:56:06 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -16,32 +16,16 @@
 #include "x.h"
 #include "client.h"
 
-static t_map	*get_x_y_map(int socket, char *buff)
+static t_map	*get_x_y_map(char *buff)
 {
   char		*save;
   t_map		*map;
 
-  map = malloc(sizeof(*map));
   save = buff;
+  map = malloc(sizeof(*map));
   buff = strchr(buff, '\n');
-  if ((isdigit(*(buff + 1)) && strstr(buff, "\n")))
-    {
-      map->x = atoi(buff);
-      map->y = atoi(strchr(buff, ' '));
-    }
-  else
-    {
-      if ((buff = check_response(socket)) && isdigit(*buff)) /* un peu unsafe */
-	{
-	  map->x = atoi(buff);
-	  map->y = atoi(strchr(buff, ' '));
-	}
-      else
-	{
-	  printf("Error not a valid map\n");
-	  exit(-1);
-	}
-    }
+  map->x = atoi(buff);
+  map->y = atoi(strchr(buff, ' '));
   free(save);
   return (map);
 }
@@ -57,8 +41,7 @@ static t_map	*step_two(int socket, char *team_name, char *hostname, int port)
 	  if (atoi(p) > 1)
 	    fork_in_the_word(team_name, hostname, port);
 	  else
-	    xsend(socket, "vive les kebabs\n", 16, 0);
-	  return(get_x_y_map(socket, p));
+	    return(get_x_y_map(p));
 	}
     }
   return ((t_map *)-1);

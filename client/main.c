@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:25:32 2008 florent hochwelker
-** Last update Tue Apr 15 18:39:10 2008 florent hochwelker
+** Last update Fri May  2 18:03:25 2008 florent hochwelker
 */
 
 #include <sys/types.h>
@@ -32,7 +32,10 @@ int	main(int ac, char **av)
       socket = new_connection(av[2], av[6], atoi(av[4]));
     }
   else
-    print_usage(av[0]);
+    {
+      print_usage(av[0]);
+      return (0);
+    }
   enter_in_the_world(socket, av[2], hostname, atoi(av[4]));
   return (0);
 }
