@@ -15,6 +15,6 @@ int	act_inventory(char *cmd, t_client *client)
 {
   (void)cmd;
   (void)client;
-  strcpy(client->buf_write, "Inventory OK\n");
+  strcat(client->buf_write, "Inventory OK\n");
   return (0);
 }

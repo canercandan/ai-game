@@ -15,6 +15,6 @@ int	act_left(char *cmd, t_client *client)
 {
   (void)cmd;
   (void)client;
-  strcpy(client->buf_write, "LEFT OK\n");
+  strcat(client->buf_write, "LEFT OK\n");
   return (0);
 }

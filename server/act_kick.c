@@ -15,6 +15,6 @@ int	act_kick(char *cmd, t_client *client)
 {
   (void)cmd;
   (void)client;
-  strcpy(client->buf_write, "KICK OK\n");
+  strcat(client->buf_write, "KICK OK\n");
   return (0);
 }

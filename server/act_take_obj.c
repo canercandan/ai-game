@@ -15,6 +15,6 @@ int	act_take_obj(char *cmd, t_client *client)
 {
   (void)cmd;
   (void)client;
-  strcpy(client->buf_write, "Take_obj OK\n");
+  strcat(client->buf_write, "Take_obj OK\n");
   return (0);
 }

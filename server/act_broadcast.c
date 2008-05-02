@@ -15,6 +15,6 @@ int	act_broadcast(char *cmd, t_client *client)
 {
   (void)cmd;
   (void)client;
-  strcpy(client->buf_write, "BROADCAST OK\n");
+  strcat(client->buf_write, "BROADCAST OK\n");
   return (0);
 }

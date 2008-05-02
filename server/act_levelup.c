@@ -15,6 +15,6 @@ int	act_levelup(char *cmd, t_client *client)
 {
   (void)cmd;
   (void)client;
-  strcpy(client->buf_write, "LEVELUP OK\n");
+  strcat(client->buf_write, "LEVELUP OK\n");
   return (0);
 }
