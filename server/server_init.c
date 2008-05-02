@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:15:36 2008 caner candan
-** Last update Wed Apr 30 21:06:17 2008 caner candan
+** Last update Fri May  2 14:47:14 2008 caner candan
 */
 
 #include <sys/time.h>
@@ -19,7 +19,7 @@ void			server_init(t_info *info)
   debug("server_init()", 1);
   timeout = xmalloc(sizeof(*timeout));
   add_server(info);
-  timeout->tv_sec = 1;
+  timeout->tv_sec = 0;
   timeout->tv_usec = 0;
   info->timeout = timeout;
 }
