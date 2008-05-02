@@ -18,6 +18,6 @@ int		main(int ac, char **av)
   w.sock = create_socket(av[1], av[2]);
   while(w.device->run())
     draw_all(&w);
-  w.device->drop();
+  free_and_exit(&w);
   return (0);
 }
