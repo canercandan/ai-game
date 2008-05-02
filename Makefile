@@ -6,7 +6,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  2 17:26:25 2008 florent hochwelker
+## Last update Fri May  2 17:32:56 2008 caner candan
 ##
 
 NAME_SRV	=	server

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 17:29:55 2008 florent hochwelker
+** Last update Fri May  2 17:32:09 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -48,8 +48,8 @@
 ** Default's values
 */
 # define DEFAULT_PORT		12345
-# define DEFAULT_WIDTH		100
-# define DEFAULT_LENGHT		100
+# define DEFAULT_WIDTH		10
+# define DEFAULT_LENGHT		10
 # define DEFAULT_NB_PLAYER	10
 # define DEFAULT_TIME		100
 
@@ -200,7 +200,7 @@ typedef struct		s_action
 typedef struct		s_ressource
 {
   int			idx;
-  char			*name; 
+  char			*name;
   char			*desc;
 }			t_ressource;
 

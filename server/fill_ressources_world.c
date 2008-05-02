@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Fri May  2 16:37:04 2008 caner candan
+** Last update Fri May  2 17:23:51 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -15,11 +15,12 @@
 void		fill_ressources_world(t_zone **world, t_info *info)
 {
   t_ressource	**ressource;
-  int	max;
-  int	i;
-  int	x;
-  int	y;
+  int		max;
+  int		i;
+  int		x;
+  int		y;
 
+  debug("fill_ressources_world()", 2);
   max = info->y * info->x * info->nb_player * COEFFICIENT;
   *ressource = xmalloc(sizeof(*ressource) * max);
   for (i = 0; i < max;  i++)
@@ -28,8 +29,8 @@ void		fill_ressources_world(t_zone **world, t_info *info)
     {
       x = (int)(rand() / (double)RAND_MAX * (info->x - 1));
       y = (int)(rand() / (double)RAND_MAX * (info->y - 1));
-      push_list(&(world[x][y].ressources), ressource[i]);
+      push_list(&(world[y][x].ressources), ressource[i]);
     }
   if (DEBUG)
-    dump_world(world, info->x, info->y);
+    dump_world(world, info->y, info->x);
 }
