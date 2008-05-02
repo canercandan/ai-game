@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 15:09:23 2008 caner candan
+** Last update Fri May  2 15:28:24 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -173,7 +173,7 @@ typedef struct	s_info
   t_list	*clients;
   void		*timeout;
   t_list	*queue;
-  t_zone	*zone;
+  t_zone	**zone;
 }		t_info;
 
 /*
