@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Fri May  2 22:27:47 2008 florent hochwelker
+** Last update Fri May  2 22:29:08 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -30,7 +30,7 @@ int		scheduler_exec(t_info *info)
 	  elem->f(elem->param, elem->client);
 	  pop_list(&begin);
 	  free(elem->param);
-	  free(elem);
+	  /* 	  free(elem); */
 	}
     }
   return (0);
