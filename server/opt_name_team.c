@@ -5,26 +5,27 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:36 2008 majdi toumi
-** Last update Wed Apr 30 12:29:11 2008 majdi toumi
+** Last update Fri May  2 18:40:20 2008 caner candan
 */
 
-#include "x.h"
+#include <stdio.h>
 #include "server.h"
+#include "x.h"
 
 int		opt_name_team(t_info *info, char **argv, int i)
 {
-  t_list	*begin;
-  t_list	*new_elt;
+  t_team	*team;
 
-  begin = 0;
+  debug("opt_name_team()", -1);
   while (argv[i] && (is_options(argv[i]) == -1))
     {
-      new_elt = xmalloc(sizeof(*new_elt));
-      new_elt->data = argv[i];
-      new_elt->next = begin;
-      begin = new_elt;
+      printf("Name %s is added\n", argv[i]);
+      team = xmalloc(sizeof(*team));
+      team->name = argv[i];
+      team->nb = 0;
+      team->max = info->nb_player;
+      push_list(&info->team, team);
       i++;
     }
-  info->team = begin;
- return (i);
+  return (i);
 }

@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:45:37 2008 majdi toumi
-** Last update Wed Apr 30 12:34:31 2008 caner candan
+** Last update Fri May  2 18:41:29 2008 caner candan
 */
 
 #include <string.h>
@@ -15,7 +15,7 @@ extern t_opt	gl_opt_srv[];
 
 int	is_options(char *args)
 {
-  int		i;
+  int	i;
 
   i = 0;
   while (gl_opt_srv[i].opt != 0)

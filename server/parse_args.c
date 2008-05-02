@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Fri May  2 16:41:12 2008 caner candan
+** Last update Fri May  2 19:00:21 2008 caner candan
 */
 
 #include <stdio.h>
@@ -16,7 +16,7 @@
 extern t_opt	gl_opt_srv[];
 
 static char	*default_name_team[] =
-  {"-n", "Team1", "Team2", 0};
+  {"Team1", "Team2", 0};
 
 static void	fill_default_info(t_info *info)
 {
@@ -24,19 +24,20 @@ static void	fill_default_info(t_info *info)
   info->port = DEFAULT_PORT;
   info->y = DEFAULT_LENGHT;
   info->x = DEFAULT_WIDTH;
-  opt_name_team(info, default_name_team, 0);
   info->nb_player = DEFAULT_NB_PLAYER;
+  opt_name_team(info, default_name_team, 0);
   info->time = DEFAULT_TIME;
   info->queue = 0;
 }
 
-t_info		*parse_args(int argc, char **argv, t_info *info)
+t_info	*parse_args(int argc, char **argv, t_info *info)
 {
-  int		flag;
-  int		idx;
-  int		i;
+  int	flag;
+  int	idx;
+  int	i;
 
   debug("parse_args()", 1);
+  fill_default_info(info);
   i = 1;
   flag = 0;
   while (i < argc)
@@ -49,7 +50,7 @@ t_info		*parse_args(int argc, char **argv, t_info *info)
       else
 	return (0);
     }
-  if (!check_flag(flag))
-    fill_default_info(info);
+/*   if (!check_flag(flag)) */
+/*     exit(-1); */
   return (info);
 }

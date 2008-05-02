@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Fri May  2 17:13:44 2008 caner candan
+** Last update Fri May  2 18:35:42 2008 caner candan
 */
 
 #include <stdio.h>
@@ -22,7 +22,7 @@ t_zone		**create_world(t_info *info)
   debug("create_world()", 1);
   if (info->y < 0 || info->x < 0)
     {
-      fprintf(stdin, "create_world: your width and lenght must be an integer\n");
+      fprintf(stdin, ERR_SIZE_MAP);
       exit(EXIT_FAIL);
     }
   world = xmalloc(sizeof(*world) * info->y);

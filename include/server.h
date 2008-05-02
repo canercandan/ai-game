@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  2 17:32:09 2008 caner candan
+** Last update Fri May  2 18:54:04 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -52,6 +52,12 @@
 # define DEFAULT_LENGHT		10
 # define DEFAULT_NB_PLAYER	10
 # define DEFAULT_TIME		100
+
+/*
+** Error's messages
+*/
+# define ERR_SIZE_MAP	"create_world: your width and lenght must"	\
+			"be an integer\n"
 
 /*
 ** Null
