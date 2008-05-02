@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Fri May  2 17:22:19 2008 florent hochwelker
+** Last update Fri May  2 21:44:04 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -34,7 +34,7 @@ void		client_read(t_info *info, int socket)
 	    begin_session(info, client);
 	  else
 	    execute_action(buff_perso, client, info);
-	  printf("%d: [%s]\n", client->socket, buf);
+	  printf("%d: [%s]\n", client->socket, buff_perso);
 	  strncpy(client->buf_read, p + 1, BUF_SIZE);
 	}
     }
