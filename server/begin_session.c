@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Sat May  3 15:22:26 2008 florent hochwelker
+** Last update Sat May  3 17:50:37 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -38,6 +38,7 @@ static void	check_team_and_connect(t_client *cli, t_info *info)
     {
       team->nb++;
       cli->status = ST_CLIENT;
+      cli->team = team;
       snprintf(cli->buf_write, BUF_SIZE, "%d\n%d %d\n",
 	       team->max - team->nb + 1, info->x, info->y);
     }

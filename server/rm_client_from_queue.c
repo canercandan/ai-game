@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 17:35:17 2008 caner candan
-** Last update Sat May  3 16:26:16 2008 florent hochwelker
+** Last update Sat May  3 17:52:23 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -13,9 +13,12 @@
 
 static void	first_elm(t_list **t)
 {
+  t_list	*tmp;
+
   debug("first_elm()", -1);
+  tmp = *t;
   *t = (*t)->next;
-  free(*t);
+  free(tmp);
 }
 
 static void	loop_elm(t_list *elm, int socket)
