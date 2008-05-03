@@ -5,13 +5,13 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  2 21:27:52 2008 florent hochwelker
+** Last update Sat May  3 13:54:59 2008 caner candan
 */
 
 #include <string.h>
 #include "server.h"
 
-int	act_see(char *cmd, t_client *client)
+int	act_see(char *param, t_client *client, t_info *info)
 {
   (void)cmd;
   (void)client;

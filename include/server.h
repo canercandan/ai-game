@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 13:49:48 2008 caner candan
+** Last update Sat May  3 13:53:31 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -308,17 +308,17 @@ int		begin_session(t_info *i, t_client *cli);
 /*
 ** Actions' functions
 */
-int		act_up(char *cmd, t_client *client, t_info *info);
-int		act_right(char *cmd, t_client *client, t_info *info);
-int		act_left(char *cmd, t_client *client, t_info *info);
-int		act_see(char *cmd, t_client *client, t_info *info);
-int		act_inventory(char *cmd, t_client *client, t_info *info);
-int		act_take_obj(char *cmd, t_client *client, t_info *info);
-int		act_drop_obj(char *cmd, t_client *client, t_info *info);
-int		act_kick(char *cmd, t_client *client, t_info *info);
-int		act_broadcast(char *cmd, t_client *client, t_info *info);
-int		act_levelup(char *cmd, t_client *client, t_info *info);
-int		act_fork(char *cmd, t_client *client, t_info *info);
+int	act_up(char *param, t_client *client, t_info *info);
+int	act_right(char *param, t_client *client, t_info *info);
+int	act_left(char *param, t_client *client, t_info *info);
+int	act_see(char *param, t_client *client, t_info *info);
+int	act_inventory(char *param, t_client *client, t_info *info);
+int	act_take_obj(char *param, t_client *client, t_info *info);
+int	act_drop_obj(char *param, t_client *client, t_info *info);
+int	act_kick(char *param, t_client *client, t_info *info);
+int	act_broadcast(char *param, t_client *client, t_info *info);
+int	act_levelup(char *param, t_client *client, t_info *info);
+int	act_fork(char *param, t_client *client, t_info *info);
 
 /*
 ** Debug's functions

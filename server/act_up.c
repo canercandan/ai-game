@@ -5,17 +5,13 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-<<<<<<< .mine
-** Last update Thu May  1 16:48:37 2008 majdi toumi
-=======
-** Last update Sat May  3 00:18:31 2008 florent hochwelker
->>>>>>> .r224
+** Last update Sat May  3 13:56:33 2008 caner candan
 */
 
 #include <string.h>
 #include "server.h"
 
-int	act_up(char *cmd, t_client *client)
+int	act_up(char *param, t_client *client, t_info *info)
 {
   (void)cmd;
   (void)client;
