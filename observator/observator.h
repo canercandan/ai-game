@@ -12,6 +12,7 @@ using namespace core;
 */
 
 #define OBS_MAGIC		"OBS_MAGIC\n"
+#define OBS_CASE		192
 
 #define MODE_GRAPH		EDT_BURNINGSVIDEO
 #define WIN_WEIGHT		640
@@ -84,6 +85,6 @@ void	free_and_exit(t_window *w);
 
 void	create_socket(int sock, char *name, char *port);
 void	create_matrix(t_matrix **m, int size_x, int size_y);
-void	create_map(t_window *w, int size_x, int size_y);
+void	create_case(t_window *w, int size_x, int size_y);
 
 #endif
