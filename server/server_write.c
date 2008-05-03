@@ -5,16 +5,16 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 20:15:33 2008 caner candan
-** Last update Fri May  2 21:51:47 2008 florent hochwelker
+** Last update Sat May  3 15:21:10 2008 caner candan
 */
 
 #include <stdio.h>
 #include "server.h"
 
-void	server_write(t_info *info, int socket)
+void	server_write(t_info *info, t_client *client)
 {
+  (void) info;
+  (void) client;
   debug("server_write()", -1);
   printf("Je suis dans server_write\n");
-  (void) info;
-  (void) socket;
 }

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Sat May  3 14:52:35 2008 florent hochwelker
+** Last update Sat May  3 15:17:43 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -49,9 +49,9 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
     {
       client = t->data;
       if (FD_ISSET(client->socket, fd_read))
-	client->fct_read(info, client->socket);
+	client->fct_read(info, client);
       if (FD_ISSET(client->socket, fd_write))
-	client->fct_write(info, client->socket);
+	client->fct_write(info, client);
       t = t->next;
     }
 }

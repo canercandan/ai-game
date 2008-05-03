@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 16:04:50 2008 florent hochwelker
+** Last update Sat May  3 16:18:15 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -104,8 +104,33 @@ typedef enum
 # define MAX_OBJECT	2
 
 /*
-** Macros:
+** Command's defines
 */
+# define START_CMD	"{"
+# define END_CMD	"}"
+
+/*
+** Rocks' enum
+*/
+typedef enum
+  {
+    LINEMATE = 1,
+    DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME
+  }	t_rock;
+
+/*
+** Foods' enum
+*/
+typedef enum
+  {
+    HAMBURGER = 1,
+    FISHBURGER,
+    CHEESEBURGER
+  }	t_food;
 
 /*
 ** Alias
@@ -165,13 +190,13 @@ typedef struct	s_client
 /*
 ** One case of the map
 */
-typedef struct		s_zone
+typedef struct	s_zone
 {
-  char			is_moveable;
-  int			id_deco;
-  t_list		*ressources;
-  t_list		*client;
-}			t_zone;
+  char		is_moveable;
+  int		id_deco;
+  t_list	*ressources;
+  t_list	*client;
+}		t_zone;
 
 /*
 ** Info about the game
@@ -201,7 +226,6 @@ typedef struct		s_queue
   unsigned int		time;
   t_client		*client;
 }			t_queue;
-
 
 /*
 ** Actions list's strutcture
@@ -275,12 +299,12 @@ extern t_ressource	gl_food[];
 */
 t_client	*add_client(t_info *info, int server);
 void		add_server(t_info *info);
-void		client_read(t_info *info, int socket);
-void		client_write(t_info *info, int socket);
+void		client_read(t_info *info, t_client *client);
+void		client_write(t_info *info, t_client *client);
 void		client_disconnect(t_client *client, t_info *info);
 void		server_get(t_info *info);
-void		server_read(t_info *info, int socket);
-void		server_write(t_info *info, int socket);
+void		server_read(t_info *info, t_client *client);
+void		server_write(t_info *info, t_client *client);
 int		execute_action(char *str, t_client *cli, t_info *info);
 int		scheduler_exec(t_info *info);
 void		send_info_to_obs(t_client *client, t_info *info);

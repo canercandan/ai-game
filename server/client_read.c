@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Fri May  2 21:44:04 2008 florent hochwelker
+** Last update Sat May  3 15:19:17 2008 caner candan
 */
 
 #include <stdio.h>
@@ -13,15 +13,13 @@
 #include "server.h"
 #include "x.h"
 
-void		client_read(t_info *info, int socket)
+void		client_read(t_info *info, t_client *client)
 {
-  t_client	*client;
   int		r;
   char		buf[BUF_SIZE + 1];
   char		buff_perso[BUF_SIZE + 1];
   char		*p;
 
-  client = get_client_from_list(info->clients, socket);
   if ((r = (int)xrecv(client->socket, buf, BUF_SIZE, 0)) > 0)
     {
       buf[r] = '\0';

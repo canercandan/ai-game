@@ -5,12 +5,29 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:55:01 2008 majdi toumi
-** Last update Sat May  3 14:14:02 2008 caner candan
+** Last update Sat May  3 16:14:57 2008 caner candan
 */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "server.h"
+
+t_ressource	gl_rock[] = {
+  {LINEMATE, "Linemate", 0},
+  {DERAUMERE, "Deraumere", 0},
+  {SIBUR, "Sibur", 0},
+  {MENDIANE, "Mendiane", 0},
+  {PHIRAS, "Phiras", 0},
+  {THYSTAME, "Thystame", 0},
+  {0, 0, 0}
+};
+
+t_ressource	gl_food[] = {
+  {HAMBURGER, "Hamburger", 0},
+  {FISHBURGER, "Fishburger", 0},
+  {CHEESEBURGER, "CHeeseburger", 0},
+  {0, 0, 0}
+};
 
 t_ressource	*generate_ressources(int level_max, int i)
 {
