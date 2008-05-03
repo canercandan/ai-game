@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 14:37:50 2008 caner candan
+** Last update Sat May  3 16:04:50 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -283,6 +283,7 @@ void		server_read(t_info *info, int socket);
 void		server_write(t_info *info, int socket);
 int		execute_action(char *str, t_client *cli, t_info *info);
 int		scheduler_exec(t_info *info);
+void		send_info_to_obs(t_client *client, t_info *info);
 
 /*
 ** Options' functions
@@ -347,6 +348,8 @@ int	count_list(t_list *t);
 ** Queue list functions
 */
 void	rm_client_from_queue(t_list **t, int socket);
+t_queue		*create_new_queue(char *str, int (*f)(),
+				  unsigned int cur_time, t_client *cli);
 
 /*
 ** Client's functions

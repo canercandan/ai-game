@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Sat May  3 00:20:12 2008 florent hochwelker
+** Last update Sat May  3 16:05:30 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -30,19 +30,6 @@ static t_action	actions[] =
     {0, 0, 0, 0}
   };
 
-static t_queue		*create_new_queue(char *str, int act_idx,
-					  unsigned int cur_time, t_client *cli)
-{
-  t_queue	*new_queue;
-
-  new_queue = xmalloc(sizeof(*new_queue));
-  new_queue->f = actions[act_idx].f;
-  new_queue->param = strdup(get_word_n(str, 2));
-  new_queue->time = cur_time + actions[act_idx].delay;
-  new_queue->client = cli;
-  return (new_queue);
-}
-
 int		execute_action(char *str, t_client *cli, t_info *info)
 {
   int		i;
@@ -50,23 +37,26 @@ int		execute_action(char *str, t_client *cli, t_info *info)
   t_queue	*new_queue;
 
   i = 0;
-  while (actions[i].str)
-    {
-      if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
-	{
-	  cur_time = time(NULL);
-	  new_queue = create_new_queue(str, i, cur_time, cli);
-	  push_list(&info->queue, new_queue);
-	  sort_queue_list(&info->queue);
-	  if (info->queue)
-	    ((struct timeval *)(info->timeout))->tv_sec =
-	      ((t_queue *)info->queue->data)->time - cur_time;
-	  else
-	    ((struct timeval *)(info->timeout))->tv_sec = 0;
-	  strcpy(cli->buf_write, "OK\n");
-	  return (0);
-	}
-      i++;
-    } 
+  if (cli->status == ST_CLIENT)
+    while (actions[i].str)
+      {
+	if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
+	  {
+	    cur_time = time(NULL);
+	    new_queue = create_new_queue(str, actions[i].f,
+					 cur_time + actions[i].delay,
+					 cli);
+	    push_list(&info->queue, new_queue);
+	    sort_queue_list(&info->queue);
+	    /* 	    if (info->queue) */
+	    /* 	      ((struct timeval *)(info->timeout))->tv_sec = */
+	    /* 		((t_queue *)info->queue->data)->time - cur_time; */
+	    /* 	    else */
+	    /* 	      ((struct timeval *)(info->timeout))->tv_sec = 0; */
+	    /* 	    strcpy(cli->buf_write, "OK\n"); */
+	    return (0);
+	  }
+	i++;
+      } 
   return (-1);
 }

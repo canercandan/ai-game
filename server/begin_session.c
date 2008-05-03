@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Sat May  3 14:47:03 2008 florent hochwelker
+** Last update Sat May  3 15:22:26 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -34,7 +34,7 @@ static void	check_team_and_connect(t_client *cli, t_info *info)
   t_team	*team;
 
   name = trim(cli->buf_read);
-  if ((team = get_team(name, info)) > (t_team*)1)
+  if ((team = get_team(name, info)) > (t_team*)1) /* team OK */
     {
       team->nb++;
       cli->status = ST_CLIENT;
@@ -43,11 +43,9 @@ static void	check_team_and_connect(t_client *cli, t_info *info)
     }
   else if (team == (t_team*)1)	/* le client est un observateur */
     {
-      /* faire une fonction qui repond a Jordan la c vite fait */
       cli->status = ST_OBS_CLIENT;
-      snprintf(cli->buf_write, BUF_SIZE, "%d %d\n",
-	       info->x, info->y);
       push_list(&info->observator, cli);
+      send_info_to_obs(cli, info);
     }
   else if (team == 0)
     {
