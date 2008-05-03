@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 14:38:04 2008 florent hochwelker
+** Last update Sat May  3 14:37:50 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -92,7 +92,7 @@ typedef enum
   {
     NORTH,
     EAST,
-    WEAST,
+    WEST,
     SOUTH
   }	t_direction;
 

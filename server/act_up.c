@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sat May  3 14:27:00 2008 caner candan
+** Last update Sat May  3 14:38:29 2008 caner candan
 */
 
 #include <string.h>
@@ -31,7 +31,7 @@ int		act_up(char *param, t_client *client, t_info *info)
   else
     client->y = (client->y == (info->y - 1) ? 0 : client->y - 1);
   list = info->zone[x][y].client;
-  push_list(&list, client->socket);
+  push_list(&list, client);
   info->zone[x][y].client = list;
   strcat(client->buf_write, "UP OK\n");
   return (0);
