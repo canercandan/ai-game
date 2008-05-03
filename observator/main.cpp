@@ -1,9 +1,9 @@
 #include <irrlicht.h>
 #include "observator.h"
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
-  t_obs		*obs;
+  t_obs	*obs;
 
   if (ac < 3)
     main_usage();

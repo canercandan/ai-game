@@ -1,12 +1,12 @@
 #include <irrlicht.h>
+#include <stdlib.h>
 #include "observator.h"
-#include "x.h"
 
 t_window	*init_window()
 {
   t_window	*w;
 
-  w = (t_window *) xmalloc(sizeof(*w));
+  w = (t_window *) malloc(sizeof(*w));
   w->device = createDevice(EDT_BURNINGSVIDEO,
                            dimension2d<s32>(WIN_WEIGHT, WIN_HEIGHT));
   w->driver = w->device->getVideoDriver();
