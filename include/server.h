@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 14:25:34 2008 caner candan
+** Last update Sat May  3 14:35:52 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -30,6 +30,7 @@
 # define BUF_SIZE	1024
 # define NB_INVENTORY	6
 # define NB_FOOD	3
+# define MAGIC_OBS	"OBS_CLIENT"
 
 /*
 ** Zappy's index names
@@ -67,7 +68,7 @@
 # endif /* !NULL */
 
 /*
-** Macro usefull
+** Macro useful
 */
 # define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
 
@@ -81,7 +82,7 @@ typedef	enum
     ST_TEAM_NAME_OK,
     ST_SERVER,
     ST_CLIENT,
-    ST_GRAPH_CLIENT
+    ST_OBS_CLIENT
   }	t_status;
 
 /*
@@ -166,7 +167,7 @@ typedef struct	s_client
 */
 typedef struct		s_queue
 {
-  int			(*f)(char *cmd, t_client *cli);
+  int			(*f)(char *cmd, t_client *cli, t_info *info);
   char			*param;
   unsigned int		time;
   t_client		*client;
@@ -198,7 +199,7 @@ typedef struct	s_info
   void		*timeout;
   t_list	*queue;
   t_zone	**zone;
-  t_client	*observator;
+  t_list	*observator;
 }		t_info;
 
 /*
@@ -209,7 +210,7 @@ typedef struct		s_action
   int			action;
   char			*str;
   unsigned int		delay;
-  int			(*f)(char *cmd, t_client *cli);
+  int			(*f)(char *cmd, t_client *cli, t_info *info);
 }			t_action;
 
 /*
