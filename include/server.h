@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 16:18:15 2008 caner candan
+** Last update Sat May  3 17:19:48 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -107,10 +107,12 @@ typedef enum
 ** Command's defines
 */
 # define START_CMD	"{"
-# define END_CMD	"}"
+# define END_CMD	"}\n"
+# define SEPARATOR_CMD	","
+# define SEPARATOR_ELM	" "
 
 /*
-** Rocks' enum
+** Ressources' enum
 */
 typedef enum
   {
@@ -119,18 +121,11 @@ typedef enum
     SIBUR,
     MENDIANE,
     PHIRAS,
-    THYSTAME
-  }	t_rock;
-
-/*
-** Foods' enum
-*/
-typedef enum
-  {
-    HAMBURGER = 1,
+    THYSTAME,
+    HAMBURGER,
     FISHBURGER,
     CHEESEBURGER
-  }	t_food;
+  }	t_idx_ressource;
 
 /*
 ** Alias
@@ -243,7 +238,7 @@ typedef struct		s_action
 */
 typedef struct		s_ressource
 {
-  int			idx;
+  t_idx_ressource	idx;
   char			*name;
   char			*desc;
 }			t_ressource;
@@ -329,7 +324,6 @@ int		opt_delay(t_info *info, char **argv, int i);
 t_zone		**create_world(t_info *info);
 void		fill_ressources_world(t_zone **world, t_info *info);
 t_ressource	*generate_ressources(int level_max, int i);
-void		dump_world(t_zone **zworld, int y, int x);
 int		begin_session(t_info *i, t_client *cli);
 
 /*
@@ -351,6 +345,8 @@ int	act_fork(char *param, t_client *client, t_info *info);
 ** Debug's functions
 */
 void	debug(char *s, int pos);
+void	dump_world(t_zone **zworld, int y, int x);
+void	dump_client_position(t_list *client);
 
 /*
 ** List chaine's functions
@@ -391,5 +387,10 @@ void	free_info(t_info *info);
 */
 char	*get_word_n(char *str, int n);
 char	*trim(char *str);
+
+/*
+** Random's functions
+*/
+int	get_random(int max);
 
 #endif /* !__SERVER_H__ */
