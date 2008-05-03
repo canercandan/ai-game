@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 14:35:52 2008 florent hochwelker
+** Last update Sat May  3 14:38:04 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -163,17 +163,6 @@ typedef struct	s_client
 }		t_client;
 
 /*
-** Queue actions' structure
-*/
-typedef struct		s_queue
-{
-  int			(*f)(char *cmd, t_client *cli, t_info *info);
-  char			*param;
-  unsigned int		time;
-  t_client		*client;
-}			t_queue;
-
-/*
 ** One case of the map
 */
 typedef struct		s_zone
@@ -203,7 +192,19 @@ typedef struct	s_info
 }		t_info;
 
 /*
-** Actions list's structure
+** Queue actions' structure
+*/
+typedef struct		s_queue
+{
+  int			(*f)(char *cmd, t_client *cli, t_info *info);
+  char			*param;
+  unsigned int		time;
+  t_client		*client;
+}			t_queue;
+
+
+/*
+** Actions list's strutcture
 */
 typedef struct		s_action
 {
