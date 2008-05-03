@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 20:07:40 2008 caner candan
-** Last update Sat May  3 16:22:09 2008 caner candan
+** Last update Sat May  3 16:22:38 2008 caner candan
 */
 
 #include <string.h>
@@ -14,6 +14,7 @@
 
 void		client_write(t_info *info, t_client *client)
 {
+  (void) info;
   debug("client_write()", -1);
   xsend(client->socket, client->buf_write, strlen(client->buf_write), 0);
   client->buf_write[0] = 0;
