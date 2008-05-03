@@ -1,17 +1,11 @@
 #include <irrlicht.h>
 #include "observator.h"
 
-using namespace irr;
-using namespace video;
-using namespace scene;
-using namespace gui;
-using namespace core;
-
-void	draw_all(t_window *w)
+void	draw_all(t_obs *obs)
 {
-  w->driver->beginScene(true, true, 0);
-  w->smgr->drawAll();
-  w->env->drawAll();
-  w->device->getGUIEnvironment()->drawAll();
-  w->driver->endScene();
+  obs->window->driver->beginScene(true, true, 0);
+  obs->window->smgr->drawAll();
+  obs->window->env->drawAll();
+  obs->window->device->getGUIEnvironment()->drawAll();
+  obs->window->driver->endScene();
 }

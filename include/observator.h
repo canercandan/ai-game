@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sat May  3 18:44:37 2008 jordan aubry
+** Last update Sat May  3 20:28:48 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -21,13 +21,13 @@ using namespace core;
 */
 
 #define OBS_MAGIC		"OBS_MAGIC\n"
+#define OBS_USAGE		"Usage :\n./observator (host) (port)\n"
 #define OBS_CASE		192
 
 #define MODE_GRAPH		EDT_BURNINGSVIDEO
+#define FAR_VALUE		100000
 #define WIN_WEIGHT		640
 #define WIN_HEIGHT		480
-#define	MAP_HEIGHT		10
-#define MAP_WEIGHT		10
 
 #define NB_RESSOURCE		10
 
@@ -37,32 +37,19 @@ using namespace core;
 /* Files
 */
 
-#define MAP_CASE_BMP		"bin/map/case.bmp"
-#define MAP_CASE_JPG		"bin/map/case.jpg"
+#define MAP_CASE_BSP		"maps/case.bsp"
 
-#define CUBE_SKY_UP		"bin/cube/up.tga"
-#define CUBE_SKY_DN		"bin/cube/dn.tga"
-#define CUBE_SKY_RT		"bin/cube/rt.tga"
-#define CUBE_SKY_LF		"bin/cube/lf.tga"
-#define CUBE_SKY_FT		"bin/cube/ft.tga"
-#define CUBE_SKY_BK		"bin/cube/bk.tga"
+#define SKY_UP			"env/up.jpg"
+#define SKY_DN			"env/dn.jpg"
+#define SKY_RT			"env/rt.jpg"
+#define SKY_LF			"env/lf.jpg"
+#define SKY_FT			"env/ft.jpg"
+#define SKY_BK			"env/bk.jpg"
 
 /* Structure
 */
 
-typedef struct		s_player
-{
-  char			*team;
-  int			id;
-  int			level;
-  int			x;
-  int			y;
-  int			z;
-  int			item[NB_RESSOURCE];
-  char			*next;
-}			t_player;
-
-typedef struct		s_matrice
+typedef struct		s_matrix
 {
   int			move;
   int			level;
@@ -77,23 +64,30 @@ typedef struct		s_window
   IGUIEnvironment	*env;
   ICameraSceneNode	*camera;
   ITerrainSceneNode	*map;
-  int			sock;
 }			t_window;
+
+typedef struct		s_obs
+{
+  t_window		*window;
+  t_matrix		**matrix;
+  int			x;
+  int			y;
+  int			sock;
+}			t_obs;
 
 /* Function
 */
 
-void	init_windows(t_window *w);
-void	init_map(t_window *w);
-void	init_matrix(t_window *w, t_matrix **m);
+void		main_usage();
 
-int	extract_num(char *buf, int num);
+t_obs		*init_obs();
+t_window	*init_window();
+t_matrix	**init_matrix(t_obs *obs);
+void		init_map_size(t_obs *obs);
+void		init_case(t_obs *obs);
+void		init_socket(t_obs *obs, char *name, char *port);
 
-void	draw_all(t_window *w);
-void	free_and_exit(t_window *w);
+void		draw_all(t_obs *obs);
+void		free_obs(t_obs *obs);
 
-void	create_socket(int sock, char *name, char *port);
-void	create_matrix(t_matrix **m, int size_x, int size_y);
-void	create_case(t_window *w, int size_x, int size_y);
-
-#endif /* !__OBSERVATOR_H__ */
+#endif
