@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  2 21:02:49 2008 jordan aubry
+## Last update Sat May  3 13:20:58 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -71,7 +71,6 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)act_fork.c			\
 			$(PATH_SRV)begin_session.c		\
 			$(PATH_SRV)server_get.c			\
-			$(PATH_SRV)server_init.c		\
 			$(PATH_SRV)server_read.c		\
 			$(PATH_SRV)server_write.c		\
 			$(PATH_SRV)add_client.c			\

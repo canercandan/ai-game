@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 13:18:46 2008 caner candan
+** Last update Sat May  3 13:21:07 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -265,7 +265,6 @@ void		add_server(t_info *info);
 void		client_read(t_info *info, int socket);
 void		client_write(t_info *info, int socket);
 void		client_disconnect(t_client *client, t_info *info);
-void		server_init(t_info *info);
 void		server_get(t_info *info);
 void		server_read(t_info *info, int socket);
 void		server_write(t_info *info, int socket);
