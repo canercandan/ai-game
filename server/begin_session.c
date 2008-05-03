@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Sat May  3 14:31:44 2008 florent hochwelker
+** Last update Sat May  3 14:47:03 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -20,30 +20,31 @@ static t_team	*get_team(char *name, t_info *info)
   while (list_team)
     {
       if (strcmp(name, ((t_team *)list_team->data)->name) == 0)
-	{
-	  cli->status = ST_CLIENT;
-	  return (list_team->data);
-	}
+	return (list_team->data);
       list_team = list_team->next;
     }
-  if (strcmp(name, OBS_CLIENT) == 0)
-    return (1);
+  if (strcmp(name, MAGIC_OBS) == 0)
+    return ((t_team*)1);
   return (0);
 }
 
-static void	check_team_and_connect(t_client *cli, char *name,
-				       t_info *info, t_team *team)
+static void	check_team_and_connect(t_client *cli, t_info *info)
 {
+  char		*name;
+  t_team	*team;
+
   name = trim(cli->buf_read);
-  if ((team = get_team(name, info)) > 1)
+  if ((team = get_team(name, info)) > (t_team*)1)
     {
       team->nb++;
+      cli->status = ST_CLIENT;
       snprintf(cli->buf_write, BUF_SIZE, "%d\n%d %d\n",
 	       team->max - team->nb + 1, info->x, info->y);
     }
-  else if (team == 1)	/* le client est un observateur */
+  else if (team == (t_team*)1)	/* le client est un observateur */
     {
       /* faire une fonction qui repond a Jordan la c vite fait */
+      cli->status = ST_OBS_CLIENT;
       snprintf(cli->buf_write, BUF_SIZE, "%d %d\n",
 	       info->x, info->y);
       push_list(&info->observator, cli);
@@ -57,15 +58,12 @@ static void	check_team_and_connect(t_client *cli, char *name,
 
 int		begin_session(t_info *info, t_client *cli)
 {
-  t_team	*team;
-  char		*name;
-
   if (cli->status == ST_NOT_LOGGED)
     {
       strcpy(cli->buf_write, "BIENVENUE\n");
       cli->status = ST_WELCOME_OK;
     }
   else if (cli->status == ST_WELCOME_OK)
-    check_team_and_connect(cli, name, info, team);
+    check_team_and_connect(cli, info);
   return (0);
 }
