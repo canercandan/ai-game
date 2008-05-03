@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Sat May  3 00:31:16 2008 florent hochwelker
+** Last update Sat May  3 13:52:08 2008 caner candan
 */
 
 #include <sys/time.h>
@@ -20,7 +20,7 @@ int		scheduler_exec(t_info *info)
   cur_time = time(0);
   while (info->queue && (elem = info->queue->data) && elem->time <= cur_time)
     {
-      elem->f(elem->param, elem->client);
+      elem->f(elem->param, elem->client, info);
       info->queue = info->queue->next;
       free(elem->param);
       free(elem);

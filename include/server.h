@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 13:21:07 2008 caner candan
+** Last update Sat May  3 13:49:48 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -85,6 +85,17 @@ typedef	enum
   }	t_status;
 
 /*
+** Directions
+*/
+typedef enum
+  {
+    NORTH,
+    EAST,
+    WEAST,
+    SOUTH
+  }	t_direction;
+
+/*
 ** Limits' values
 */
 # define MAX_FD		100
@@ -145,7 +156,7 @@ typedef struct	s_client
   int		hp;
   int		x;
   int		y;
-  char		direction;
+  t_direction	direction;
   t_team	*team;
   char		inventory[NB_INVENTORY];
 }		t_client;
@@ -297,17 +308,17 @@ int		begin_session(t_info *i, t_client *cli);
 /*
 ** Actions' functions
 */
-int		act_up(char *cmd, t_client *client);
-int		act_right(char *cmd, t_client *client);
-int		act_left(char *cmd, t_client *client);
-int		act_see(char *cmd, t_client *client);
-int		act_inventory(char *cmd, t_client *client);
-int		act_take_obj(char *cmd, t_client *client);
-int		act_drop_obj(char *cmd, t_client *client);
-int		act_kick(char *cmd, t_client *client);
-int		act_broadcast(char *cmd, t_client *client);
-int		act_levelup(char *cmd, t_client *client);
-int		act_fork(char *cmd, t_client *client);
+int		act_up(char *cmd, t_client *client, t_info *info);
+int		act_right(char *cmd, t_client *client, t_info *info);
+int		act_left(char *cmd, t_client *client, t_info *info);
+int		act_see(char *cmd, t_client *client, t_info *info);
+int		act_inventory(char *cmd, t_client *client, t_info *info);
+int		act_take_obj(char *cmd, t_client *client, t_info *info);
+int		act_drop_obj(char *cmd, t_client *client, t_info *info);
+int		act_kick(char *cmd, t_client *client, t_info *info);
+int		act_broadcast(char *cmd, t_client *client, t_info *info);
+int		act_levelup(char *cmd, t_client *client, t_info *info);
+int		act_fork(char *cmd, t_client *client, t_info *info);
 
 /*
 ** Debug's functions
