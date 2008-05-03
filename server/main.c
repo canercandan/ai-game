@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:10:57 2008 majdi toumi
-** Last update Sat May  3 13:21:28 2008 caner candan
+** Last update Sat May  3 14:57:09 2008 caner candan
 */
 
 #include <sys/types.h>
@@ -24,6 +24,7 @@ int		main(int ac, char **av)
   if (info == 0)
     usage_server();
   info->zone = create_world(info);
+  add_server(info);
   server_get(info);
   free_info(info);
   return (0);
