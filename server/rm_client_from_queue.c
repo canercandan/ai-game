@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 17:35:17 2008 caner candan
-** Last update Thu May  1 19:59:05 2008 caner candan
+** Last update Sat May  3 16:26:16 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -41,7 +41,7 @@ void		rm_client_from_queue(t_list **t, int socket)
   debug("rm_client_from_queue()", -1);
   if (*t)
     {
-      if (((t_queue *) (*t)->data)->client->socket == socket)
+      if (((t_queue *)(*t)->data)->client->socket == socket)
 	first_elm(t);
       else
 	loop_elm(*t, socket);

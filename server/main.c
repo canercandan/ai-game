@@ -5,15 +5,11 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:10:57 2008 majdi toumi
-** Last update Sat May  3 17:29:48 2008 caner candan
+** Last update Sat May  3 17:46:42 2008 florent hochwelker
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
+#include <stdlib.h>
 #include <sys/time.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "server.h"
 
 int		main(int ac, char **av)

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 29 21:51:51 2008 caner candan
-** Last update Thu May  1 20:08:42 2008 caner candan
+** Last update Sat May  3 17:43:34 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -13,12 +13,14 @@
 
 static void	*first_elm(t_list **t)
 {
+  t_list	*tmp;
   void		*data;
 
   debug("first_elm()", -1);
+  tmp = *t;
   data = (*t)->data;
   *t = (*t)->next;
-  free(*t);
+  free(tmp);
   return (data);
 }
 

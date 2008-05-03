@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Sat May  3 15:17:43 2008 caner candan
+** Last update Sat May  3 17:37:43 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -26,10 +26,7 @@ static void	get_set_fd(t_list *t, fd_set *fd_read,
       client = t->data;
       FD_SET(client->socket, fd_read);
       if (client->buf_write[0] != 0)
-	{
-	  printf("socket: %d, buf_write: %s\n", client->socket, client->buf_write);
-	  FD_SET(client->socket, fd_write);
-	}
+	FD_SET(client->socket, fd_write);
       if (*fd_max < client->socket)
 	*fd_max = client->socket;
       t = t->next;
@@ -44,14 +41,14 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
 
   debug("get_isset_fd()", 2);
   t = info->clients;
-  /* show_clients_from_list(t); */
+  /*   show_clients_from_list(t); */
   while (t)
     {
       client = t->data;
-      if (FD_ISSET(client->socket, fd_read))
-	client->fct_read(info, client);
       if (FD_ISSET(client->socket, fd_write))
 	client->fct_write(info, client);
+      if (FD_ISSET(client->socket, fd_read))
+	client->fct_read(info, client);
       t = t->next;
     }
 }
