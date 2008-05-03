@@ -19,5 +19,5 @@ void	init_matrix(t_window *w, t_matrix **m)
   size_x = extract_num(buf, 1);
   size_y = extract_num(buf, 2);
   create_matrix(m, size_x, size_y);
-  create_map(w, size_x, size_y);
+  create_case(w, size_x, size_y);
 }
