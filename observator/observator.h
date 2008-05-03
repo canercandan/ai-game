@@ -11,14 +11,18 @@ using namespace core;
 /* Define
 */
 
+#define OBS_MAGIC		"OBS_MAGIC\n"
+
 #define MODE_GRAPH		EDT_BURNINGSVIDEO
 #define WIN_WEIGHT		640
 #define WIN_HEIGHT		480
-
 #define	MAP_HEIGHT		10
 #define MAP_WEIGHT		10
 
+#define NB_RESSOURCE		10
+
 #define SOCK_ERROR		"ERROR : Can't connect !"
+
 
 /* Files
 */
@@ -38,17 +42,22 @@ using namespace core;
 
 typedef struct		s_player
 {
-  int				name;
-  int				from_x;
-  int				from_y;
-  int				from_z;
-  int				to_x;
-  int				to_y;
-  int				to_z;
-  int				action;
-  int				time;
-  s_player			*next;
-}					t_player;
+  char			*team;
+  int			id;
+  int			level;
+  int			x;
+  int			y;
+  int			z;
+  int			item[NB_RESSOURCE];
+  char			*next;
+}			t_player;
+
+typedef struct		s_matrice
+{
+  int			move;
+  int			level;
+  int			item[NB_RESSOURCE];
+}			t_matrix;
 
 typedef struct		s_window
 {
@@ -59,18 +68,22 @@ typedef struct		s_window
   ICameraSceneNode	*camera;
   ITerrainSceneNode	*map;
   int			sock;
-  t_player			*player;
-}				t_window;
+}			t_window;
 
 /* Function
 */
 
 void	init_windows(t_window *w);
 void	init_map(t_window *w);
+void	init_matrix(t_window *w, t_matrix **m);
+
+int	extract_num(char *buf, int num);
 
 void	draw_all(t_window *w);
 void	free_and_exit(t_window *w);
 
 void	create_socket(int sock, char *name, char *port);
+void	create_matrix(t_matrix **m, int size_x, int size_y);
+void	create_map(t_window *w, int size_x, int size_y);
 
 #endif

@@ -19,7 +19,7 @@ void			create_socket(int sock, char *name, char *port)
       exit(0);
     }
   host = gethostbyname(name);
-  memcpy(&sin.sin_addr, host->h_addr_list[0], sizeof(host->h_addr));
+  memcpy(&sin.sin_addr.s_addr, host->h_addr, sizeof(host->h_addr));
   sin.sin_family = AF_INET;
   sin.sin_port = htons(atoi(port));
   if ((connect(sock, (struct sockaddr*)&sin, sizeof(sin))) < 0)
