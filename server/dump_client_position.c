@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat May  3 17:06:56 2008 caner candan
-** Last update Sat May  3 17:27:10 2008 caner candan
+** Last update Sat May  3 17:51:01 2008 caner candan
 */
 
 #include <stdio.h>
@@ -19,7 +19,8 @@ void		dump_client_position(t_list *clients)
     {
       c = (t_client *) clients->data;
       if (c->status == ST_CLIENT)
-	printf("Client %d [%d][%d]\n", c->socket, c->x, c->y);
+	printf("Client %d [%d][%d] [%d]\n",
+	       c->socket, c->x, c->y, c->direction);
       clients = clients->next;
     }
 }
