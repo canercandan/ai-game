@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Sat May  3 16:20:16 2008 caner candan
+## Last update Sat May  3 16:54:40 2008 jordan aubry
 ##
 
 NAME_SRV	=	server
@@ -105,9 +105,13 @@ SRCS_CLI	=	$(PATH_CLI)main.c			\
 SRCS_OBS	=	$(PATH_OBS)main.cpp			\
 			$(PATH_OBS)init_window.cpp		\
 			$(PATH_OBS)init_map.cpp			\
-			$(PATH_OBS)free_and_exit.cpp		\
+			$(PATH_OBS)init_matrix.cpp		\
 			$(PATH_OBS)create_socket.cpp		\
-			$(PATH_OBS)draw_all.cpp
+			$(PATH_OBS)create_matrix.cpp		\
+			$(PATH_OBS)create_map.cpp		\
+			$(PATH_OBS)draw_all.cpp			\
+			$(PATH_OBS)extract_num.cpp		\
+			$(PATH_OBS)free_and_exit.cpp
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
