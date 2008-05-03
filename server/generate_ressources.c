@@ -5,10 +5,15 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:55:01 2008 majdi toumi
+<<<<<<< .mine
+** Last update Thu May  1 15:20:22 2008 majdi toumi
+=======
 ** Last update Fri May  2 16:37:49 2008 caner candan
+>>>>>>> .r224
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "server.h"
 
 t_ressource	*generate_ressources(int level_max, int i)
@@ -16,14 +21,14 @@ t_ressource	*generate_ressources(int level_max, int i)
   t_ressource	*ressource;
   int		alea;
 
-  if (i % 2 == 0)
+  if ((i % 2) == 0)
     {
-      alea = (int)(rand() / (double)RAND_MAX * (level_max - 1));
+      alea = (int)(rand() / (double)RAND_MAX * (level_max + 1));
       ressource = &gl_rock[alea];
     }
   else
     {
-      alea = (int)(rand() / (double)RAND_MAX * (NB_FOOD - 1));
+      alea = (int)(rand() / (double)RAND_MAX * (NB_FOOD));
       ressource = &gl_food[alea];
     }
   return (ressource);

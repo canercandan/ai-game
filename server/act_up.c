@@ -5,7 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
+<<<<<<< .mine
+** Last update Thu May  1 16:48:37 2008 majdi toumi
+=======
 ** Last update Sat May  3 00:18:31 2008 florent hochwelker
+>>>>>>> .r224
 */
 
 #include <string.h>
