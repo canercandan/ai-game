@@ -11,18 +11,26 @@
 void			create_socket(int sock, char *name, char *port)
 {
   struct sockaddr_in	sin;
-  struct hostent	*host;
+  struct hostent	*h;
+  struct protoent	*pe;
+  struct in_addr	in;
 
-  if ((sock = socket(PF_INET, SOCK_STREAM, 0)) < 0)
+  pe = getprotobyname("tcp");
+  if ((sock = socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
     {
       write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
       exit(0);
     }
-  host = gethostbyname(name);
-  memcpy(&sin.sin_addr.s_addr, host->h_addr, sizeof(host->h_addr));
   sin.sin_family = AF_INET;
+  if (!(h = gethostbyname(name)))
+    {
+      write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
+      exit(0);
+    }
+  bcopy(h->h_addr, &in, sizeof(in));
   sin.sin_port = htons(atoi(port));
-  if ((connect(sock, (struct sockaddr*)&sin, sizeof(sin))) < 0)
+  sin.sin_addr.s_addr = inet_addr(inet_ntoa(in));
+  if (connect(sock, (struct sockaddr*)&sin, sizeof(sin)) < 0)
     {
       write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
       exit(0);
