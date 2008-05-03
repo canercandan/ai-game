@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 13:53:31 2008 caner candan
+** Last update Sat May  3 14:25:34 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -189,8 +189,8 @@ typedef struct		s_zone
 typedef struct	s_info
 {
   int		port;
-  int		y;
   int		x;
+  int		y;
   t_list	*team;
   int		nb_player;
   int		time;

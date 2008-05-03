@@ -5,11 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:55:01 2008 majdi toumi
-<<<<<<< .mine
-** Last update Thu May  1 15:20:22 2008 majdi toumi
-=======
-** Last update Fri May  2 16:37:49 2008 caner candan
->>>>>>> .r224
+** Last update Sat May  3 14:14:02 2008 caner candan
 */
 
 #include <stdlib.h>

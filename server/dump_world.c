@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:23:19 2008 majdi toumi
-** Last update Fri May  2 17:23:11 2008 caner candan
+** Last update Sat May  3 14:13:53 2008 caner candan
 */
 
 #include <stdio.h>
@@ -38,9 +38,9 @@ void		dump_world(t_zone **zone, int y, int x)
   t_list	*begin;
 
   debug("dump_world()", 3);
-  for (i = 0; i < y; i++)
+  for (i = 0; i < x; i++)
     {
-      for (j = 0; j < x; j++)
+      for (j = 0; j < y; j++)
 	{
 	  /* fprintf(stdout, "- [%d][%d]:\n", i, j); */
 	  /*
