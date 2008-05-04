@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat May  3 20:32:36 2008 caner candan
+** Last update Sun May  4 11:43:52 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -30,6 +30,7 @@
 # define BUF_SIZE	1024
 # define NB_INVENTORY	6
 # define NB_FOOD	3
+# define START_LEVEL	1
 # define MAGIC_OBS	"OBS_CLIENT"
 
 /*
@@ -391,6 +392,7 @@ char	*trim(char *str);
 /*
 ** Random's functions
 */
+void	init_random(void);
 int	get_random(int max);
 
 #endif /* !__SERVER_H__ */
