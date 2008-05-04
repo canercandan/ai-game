@@ -5,13 +5,13 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Sun May  4 15:14:51 2008 jordan aubry
+** Last update Sun May  4 15:36:19 2008 jordan aubry
 */
 
 #ifndef __COMMON_H__
 # define __COMMON_H__
 
-# define MAGIC_OBS	"OBS_CLIENT\n"
+# define MAGIC_OBS	"OBS_CLIENT"
 
 /*
 ** Command's defines
