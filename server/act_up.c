@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sat May  3 18:26:50 2008 caner candan
+** Last update Sun May  4 13:39:59 2008 caner candan
 */
 
 #include <string.h>
@@ -29,6 +29,6 @@ int		act_up(char *param, t_client *client, t_info *info)
   list = info->zone[client->x][client->y].client;
   push_list(&list, client);
   info->zone[client->x][client->y].client = list;
-  strcat(client->buf_write, "UP OK\n");
+  strcat(client->buf_write, MESG_RET);
   return (0);
 }

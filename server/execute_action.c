@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Sat May  3 16:05:30 2008 florent hochwelker
+** Last update Sun May  4 14:02:12 2008 caner candan
 */
 
 #include <sys/time.h>
@@ -16,9 +16,9 @@
 
 static t_action	actions[] =
   {
-    {UP, "avance", 7, act_up},
-    {RIGHT, "droit", 7, act_right},
-    {LEFT, "gauche", 7, act_left},
+    {UP, "avance", 1, act_up},
+    {RIGHT, "droit", /*7*/1, act_right},
+    {LEFT, "gauche", /*7*/1, act_left},
     {SEE, "voir", 1, act_see},
     {INVENTORY, "inventaire", 1, act_inventory},
     {TAKE_OBJ, "prend", 7, act_take_obj},

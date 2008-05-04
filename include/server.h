@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sun May  4 11:43:52 2008 caner candan
+** Last update Sun May  4 13:39:54 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -26,7 +26,7 @@
 */
 # define UNIT		10
 # define TIME		100
-# define COEFFICIENT	0.3
+# define COEFFICIENT	0.1
 # define BUF_SIZE	1024
 # define NB_INVENTORY	6
 # define NB_FOOD	3
@@ -60,6 +60,11 @@
 */
 # define ERR_SIZE_MAP	"create_world: your width and lenght must"	\
 			"be an integer\n"
+
+/*
+** Others messages
+*/
+# define MESG_RET	"OK\n"
 
 /*
 ** Null
