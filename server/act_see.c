@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sun May  4 15:24:12 2008 caner candan
+** Last update Sun May  4 17:44:13 2008 caner candan
 */
 
 #include <string.h>
@@ -16,9 +16,9 @@
 static void	is_in_map(t_info *info, int *x, int *y)
 {
   if (*x < 0)
-    *x = info->x - *x;
+    *x = info->x - ABS(*x);
   if (*y < 0)
-    *y = info->y - *y;
+    *y = info->y - ABS(*y);
   *x %= info->x;
   *y %= info->y;
 }
@@ -39,10 +39,10 @@ static int	get_y(t_client *client, int x_diff, int y_diff)
   if (client->direction == EAST)
     return (client->y + x_diff);
   if (client->direction == SOUTH)
-    return (client->y - y_diff);
+    return (client->y + y_diff);
   if (client->direction == WEST)
     return (client->y - x_diff);
-  return (client->y + y_diff);
+  return (client->y - y_diff);
 }
 
 static int	send_ressources(t_info *info, t_client *client,

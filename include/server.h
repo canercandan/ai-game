@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sun May  4 15:22:03 2008 caner candan
+** Last update Sun May  4 17:05:14 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -25,7 +25,7 @@
 ** Defines
 */
 # define UNIT		10
-# define COEFFICIENT	0.1
+# define COEFFICIENT	0.05
 # define BUF_SIZE	1024
 # define NB_INVENTORY	6
 # define NB_FOOD	3
@@ -48,8 +48,8 @@
 ** Default's values
 */
 # define DEFAULT_PORT		12345
-# define DEFAULT_WIDTH		5
-# define DEFAULT_LENGHT		5
+# define DEFAULT_WIDTH		10
+# define DEFAULT_LENGHT		10
 # define DEFAULT_NB_PLAYER	6
 # define DEFAULT_TIME		1
 
@@ -70,6 +70,7 @@
 ** Macro useful
 */
 # define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
+# define ABS(x)			(((x) < 0) ? (x) * -1 : (x))
 
 /*
 ** Status client
