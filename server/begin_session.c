@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Sat May  3 18:04:56 2008 florent hochwelker
+** Last update Sun May  4 14:30:48 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -28,7 +28,27 @@ static t_team	*get_team(char *name, t_info *info)
   return (0);
 }
 
-static void	check_team_and_connect(t_client *cli, t_info *info)
+static void	bye(t_error err, t_client *cli, t_info *info)
+{
+  if (err == ERR_WRONG_TEAM_NAME)
+    printf("%d: Wrong team name  ... bye\n", cli->socket);
+  else if (err == ERR_MAX_CLIENT)
+    printf("%d: Max client ... try to fork :) bye\n", cli->socket);
+  client_disconnect(cli, info);
+}
+
+static int	inc_and_check_max_user(t_team *team, t_client *client, t_info *info)
+{
+  if (team->nb == team->max)
+    {
+      bye(ERR_MAX_CLIENT, client, info);
+      return (0);
+    }
+  team->nb++;
+  return (1);
+}
+
+static int	check_team_and_connect(t_client *cli, t_info *info)
 {
   char		*name;
   t_team	*team;
@@ -36,7 +56,8 @@ static void	check_team_and_connect(t_client *cli, t_info *info)
   name = trim(cli->buf_read);
   if ((team = get_team(name, info)) > (t_team*)1) /* team OK */
     {
-      team->nb++;
+      if (!inc_and_check_max_user(team, cli, info))
+	return (0);
       cli->status = ST_CLIENT;
       cli->team = team;
       snprintf(cli->buf_write, BUF_SIZE, "%d\n%d %d\n",
@@ -49,10 +70,8 @@ static void	check_team_and_connect(t_client *cli, t_info *info)
       send_info_to_obs(cli, info);
     }
   else if (team == 0)
-    {
-      printf("%d: Wrong team name (%s)\n", cli->socket, name);
-      client_disconnect(cli, info);
-    }
+    bye(ERR_WRONG_TEAM_NAME, cli, info);
+  return (1);
 }
 
 int		begin_session(t_info *info, t_client *cli)

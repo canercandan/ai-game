@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sun May  4 13:39:59 2008 caner candan
+** Last update Sun May  4 14:10:50 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -17,7 +17,7 @@ int		act_up(char *param, t_client *client, t_info *info)
 
   (void) param;
   list = info->zone[client->x][client->y].client;
-  rm_client_from_list(&list, client->socket);
+  rm_client_from_list(&list, client);
   if (client->direction == NORTH)
     client->y = (client->y == 0 ? info->y - 1 : client->y + 1);
   else if (client->direction == EAST)

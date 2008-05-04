@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sun May  4 13:39:54 2008 caner candan
+** Last update Sun May  4 14:08:12 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -25,7 +25,6 @@
 ** Defines
 */
 # define UNIT		10
-# define TIME		100
 # define COEFFICIENT	0.1
 # define BUF_SIZE	1024
 # define NB_INVENTORY	6
@@ -52,8 +51,8 @@
 # define DEFAULT_PORT		12345
 # define DEFAULT_WIDTH		10
 # define DEFAULT_LENGHT		10
-# define DEFAULT_NB_PLAYER	10
-# define DEFAULT_TIME		100
+# define DEFAULT_NB_PLAYER	6
+# define DEFAULT_TIME		1
 
 /*
 ** Error's messages
@@ -101,6 +100,12 @@ typedef enum
     SOUTH,
     WEST
   }	t_direction;
+
+typedef enum
+  {
+    ERR_WRONG_TEAM_NAME,
+    ERR_MAX_CLIENT
+  }	t_error;
 
 /*
 ** Limits' values
@@ -209,7 +214,7 @@ typedef struct	s_info
   int		y;
   t_list	*team;
   int		nb_player;
-  int		time;
+  float		time;
   t_list	*clients;
   void		*timeout;
   t_list	*queue;
@@ -364,7 +369,7 @@ void	pop_all_list(t_list *t);
 /*
 ** Clients list chaine's functions
 */
-void	*rm_client_from_list(t_list **t, int socket);
+void	*rm_client_from_list(t_list **t, void *data);
 void	*get_client_from_list(t_list *t, int socket);
 void	show_clients_from_list(t_list *t);
 void	sort_queue_list(t_list **begin);

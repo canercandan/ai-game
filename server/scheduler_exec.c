@@ -5,19 +5,38 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Sat May  3 19:50:48 2008 caner candan
+** Last update Sun May  4 14:27:37 2008 florent hochwelker
 */
 
 #include <sys/time.h>
 #include <stdlib.h>
 #include "server.h"
 
+static void		calculate_timeout(t_info *info, unsigned int cur_time)
+{
+  struct timeval	tp;
+  struct timezone	tzp;
+
+  gettimeofday(&tp, &tzp);
+  if (info->time >= 1)
+    {
+      if (info->queue == 0)
+	{
+	  ((struct timeval *)info->timeout)->tv_sec = 0;
+	  ((struct timeval *)info->timeout)->tv_usec = 0;
+	}
+      else
+	((struct timeval *)info->timeout)->tv_sec =
+	  ((t_queue *)info->queue->data)->time - cur_time;
+    }
+}
+
 int		scheduler_exec(t_info *info)
 {
-  unsigned int	cur_time;
   t_queue	*elem;
+  unsigned int	cur_time;
 
-  cur_time = time(0);
+  cur_time = time(NULL);
   while (info->queue && (elem = info->queue->data) && elem->time <= cur_time)
     {
       dump_client_position(info->clients);
@@ -27,10 +46,6 @@ int		scheduler_exec(t_info *info)
       free(elem->param);
       free(elem);
     }
-  if (info->queue == 0)
-    ((struct timeval *)info->timeout)->tv_sec = 0;
-  else
-    ((struct timeval *)info->timeout)->tv_sec =
-      ((t_queue *)info->queue->data)->time - cur_time;
+  calculate_timeout(info, cur_time);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 29 21:51:51 2008 caner candan
-** Last update Sat May  3 17:43:34 2008 florent hochwelker
+** Last update Sun May  4 13:53:10 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -24,34 +24,34 @@ static void	*first_elm(t_list **t)
   return (data);
 }
 
-static void	*loop_elm(t_list *elm, int socket)
+static void	*loop_elm(t_list *elm, void *data)
 {
   t_list	*next;
-  void		*data;
+  void		*ret_data;
 
   debug("loop_elm()", -1);
   while (elm->next)
     {
-      if (((t_client *) elm->next->data)->socket != socket)
+      if (elm->next->data != data)
 	{
 	  elm = elm->next;
 	  continue;
 	}
       next = elm->next->next;
-      data = elm->next->data;
+      ret_data = elm->next->data;
       free(elm->next);
       elm->next = next;
-      return (data);
+      return (ret_data);
     }
   return (NULL);
 }
 
-void		*rm_client_from_list(t_list **t, int socket)
+void		*rm_client_from_list(t_list **t, void *data)
 {
   debug("rm_client_from_list()", -1);
   if (!(*t))
     return ((void *) -1);
-  if (((t_client *) (*t)->data)->socket == socket)
+  if ((*t)->data == data)
     return (first_elm(t));
-  return (loop_elm(*t, socket));
+  return (loop_elm(*t, data));
 }
