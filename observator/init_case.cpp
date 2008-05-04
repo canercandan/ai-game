@@ -9,7 +9,7 @@ void		init_case(t_obs *obs)
   int		j;
 
   obs->window->device->getFileSystem()->addZipFileArchive("map.pk3");
-  map = obs->window->smgr->getMesh("maps/case.bsp");
+  map = obs->window->smgr->getMesh(MAP_CASE_BSP);
   if (map)
     {
       for (i = 0; i < obs->x; i++)
