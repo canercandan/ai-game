@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sun May  4 13:57:28 2008 jordan aubry
+** Last update Sun May  4 14:07:49 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -33,9 +33,10 @@ using namespace core;
 
 #define SOCK_ERROR		"ERROR : Can't connect !"
 
-
 /* Files
 */
+
+#define OBS_PK3			"bin/map.pk3"
 
 #define MAP_CASE_BSP		"maps/case.bsp"
 
