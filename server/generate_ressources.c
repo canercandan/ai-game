@@ -5,13 +5,11 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:55:01 2008 majdi toumi
-** Last update Sun May  4 14:55:56 2008 florent hochwelker
+** Last update Sun May  4 15:24:00 2008 caner candan
 */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "common.h"
 #include "server.h"
+#include "common.h"
 
 t_ressource	gl_rock[] = {
   {LINEMATE, "Linemate", 0},
@@ -37,12 +35,12 @@ t_ressource	*generate_ressources(int level_max, int i)
 
   if ((i % 2) == 0)
     {
-      alea = (int)(rand() / (double)RAND_MAX * (level_max + 1));
+      alea = get_random(level_max + 1);
       ressource = &gl_rock[alea];
     }
   else
     {
-      alea = (int)(rand() / (double)RAND_MAX * (NB_FOOD));
+      alea = get_random(NB_FOOD);
       ressource = &gl_food[alea];
     }
   return (ressource);

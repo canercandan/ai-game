@@ -5,13 +5,13 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sun May  4 14:56:47 2008 florent hochwelker
+** Last update Sun May  4 15:24:12 2008 caner candan
 */
 
 #include <string.h>
 #include <stdio.h>
-#include "common.h"
 #include "server.h"
+#include "common.h"
 
 static void	is_in_map(t_info *info, int *x, int *y)
 {
@@ -77,7 +77,7 @@ int	act_see(char *param, t_client *client, t_info *info)
       {
 	printf("i: [%d], j: [%d]\n", i, j);
 	send_ressources(info, client, j, i);
-	if (i != client->level || j != i)
+	if (i != client->level || j != 0 - i)
 	  strcat(client->buf_write, SEPARATOR_CMD);
       }
   strcat(client->buf_write, END_CMD);

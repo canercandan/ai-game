@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sun May  4 14:55:35 2008 florent hochwelker
+** Last update Sun May  4 15:22:03 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -48,8 +48,8 @@
 ** Default's values
 */
 # define DEFAULT_PORT		12345
-# define DEFAULT_WIDTH		10
-# define DEFAULT_LENGHT		10
+# define DEFAULT_WIDTH		5
+# define DEFAULT_LENGHT		5
 # define DEFAULT_NB_PLAYER	6
 # define DEFAULT_TIME		1
 
@@ -338,8 +338,8 @@ int	count_list(t_list *t);
 ** Queue list functions
 */
 void	rm_client_from_queue(t_list **t, int socket);
-t_queue		*create_new_queue(char *str, int (*f)(),
-				  unsigned int cur_time, t_client *cli);
+t_queue	*create_new_queue(char *str, int (*f)(),
+			  unsigned int cur_time, t_client *cli);
 
 /*
 ** Client's functions
