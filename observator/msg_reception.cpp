@@ -10,7 +10,7 @@ void				msg_reception(t_obs *obs)
   if (invader)
     {
       anim = obs->window->smgr->createFlyStraightAnimator(vector3df(1000, 24, 1000),
-							  vector3df(2000, 24, 2000),
+							  vector3df(1000, 24, 1000),
 							  1000, true);
       invader->addAnimator(anim);
       anim->drop();
