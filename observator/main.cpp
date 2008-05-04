@@ -9,7 +9,10 @@ int	main(int ac, char **av)
     main_usage();
   obs = init_obs(av[1], av[2]);
   while(obs->window->device->run())
-    draw_all(obs);
+    {
+      msg_reception(obs);
+      draw_all(obs);
+    }
   free_obs(obs);
   return (0);
 }

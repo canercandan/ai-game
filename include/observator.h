@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sun May  4 14:46:04 2008 jordan aubry
+** Last update Sun May  4 15:07:29 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -20,7 +20,6 @@ using namespace core;
 /* Define
 */
 
-#define OBS_MAGIC		"OBS_CLIENT\n"
 #define OBS_USAGE		"Usage :\n./observator (host) (port)\n"
 #define OBS_CASE		192
 
@@ -87,7 +86,10 @@ t_matrix	**init_matrix(t_obs *obs);
 void		init_map_size(t_obs *obs);
 void		init_case(t_obs *obs);
 void		init_socket(t_obs *obs, char *host, char *port);
+
 int		extract_num(char *buf, int num);
+
+void		msg_reception(t_obs *obs);
 
 void		draw_all(t_obs *obs);
 void		free_obs(t_obs *obs);
