@@ -5,47 +5,51 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Sun May  4 14:34:44 2008 florent hochwelker
+** Last update Sun May  4 18:59:49 2008 florent hochwelker
 */
 
 #include <sys/time.h>
 #include <stdlib.h>
 #include "server.h"
 
-static void		calculate_timeout(t_info *info, unsigned int cur_time)
+static void		calculate_timeout(t_info *info, struct timeval *tp)
 {
-  struct timeval	tp;
-  struct timezone	tzp;
-
-  gettimeofday(&tp, &tzp);
   if (info->queue == 0)
     {
       ((struct timeval *)info->timeout)->tv_sec = 0;
       ((struct timeval *)info->timeout)->tv_usec = 0;
     }
-  else if (info->time >= 1)
-    ((struct timeval *)info->timeout)->tv_sec =
-      ((t_queue *)info->queue->data)->time * info->time - cur_time;
   else
-    ((struct timeval *)info->timeout)->tv_usec =
-      ((t_queue *)info->queue->data)->time * info->time - cur_time;
+    {
+      ((struct timeval *)info->timeout)->tv_sec =
+	((struct timeval *)((t_queue *)info->queue->data)->time)->tv_sec
+	- tp->tv_sec;
+      ((struct timeval *)info->timeout)->tv_usec =
+	((struct timeval *)((t_queue *)info->queue->data)->time)->tv_usec
+	- tp->tv_usec;
+      if (((struct timeval *)info->timeout)->tv_usec < 0)
+	((struct timeval *)info->timeout)->tv_usec = 0;
+    }
 }
 
-int		scheduler_exec(t_info *info)
+int			scheduler_exec(t_info *info)
 {
-  t_queue	*elem;
-  unsigned int	cur_time;
+  t_queue		*elem;
+  struct timeval	tp;
 
-  cur_time = time(NULL);
-  while (info->queue && (elem = info->queue->data) && elem->time <= cur_time)
+  gettimeofday(&tp, NULL);
+  while (info->queue && (elem = info->queue->data)
+	 && ((struct timeval *)elem->time)->tv_sec <= tp.tv_sec
+	 && ((struct timeval *)elem->time)->tv_usec <= tp.tv_usec)
     {
-      dump_client_position(info->clients);
+      dump_client_position(info->clients); /* debug pour see */
       elem->f(elem->param, elem->client, info);
-      dump_client_position(info->clients);
+      dump_client_position(info->clients); /* debug pour see */
       info->queue = info->queue->next;
       free(elem->param);
+      free(elem->time);
       free(elem);
     }
-  calculate_timeout(info, cur_time);
+  calculate_timeout(info, &tp);
   return (0);
 }

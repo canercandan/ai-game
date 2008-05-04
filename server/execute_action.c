@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Sun May  4 14:09:03 2008 florent hochwelker
+** Last update Sun May  4 19:21:42 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -13,12 +13,13 @@
 #include <stdlib.h>
 #include "x.h"
 #include "server.h"
+#include "common.h"
 
 static t_action	actions[] =
   {
-    {UP, "avance", 1, act_up},
-    {RIGHT, "droit", /*7*/1, act_right},
-    {LEFT, "gauche", /*7*/1, act_left},
+    {UP, "avance", 7, act_up},
+    {RIGHT, "droite", 7, act_right},
+    {LEFT, "gauche", 7, act_left},
     {SEE, "voir", 1, act_see},
     {INVENTORY, "inventaire", 1, act_inventory},
     {TAKE_OBJ, "prend", 7, act_take_obj},
@@ -30,11 +31,28 @@ static t_action	actions[] =
     {0, 0, 0, 0}
   };
 
-int		execute_action(char *str, t_client *cli, t_info *info)
+static struct timeval	*set_timeout(float delay,
+				     t_info *info,
+				     struct timeval *cur)
 {
-  int		i;
-  unsigned int	cur_time;
-  t_queue	*new_queue;
+  float		tmp;
+
+  cur->tv_sec += info->time * delay;
+  tmp = info->time * delay - (int)(info->time * delay);
+  cur->tv_usec += tmp * 10e5;
+  if (cur->tv_usec > 10e5)
+    {
+      cur->tv_sec++;
+      cur->tv_usec -= 10e5;
+    }
+  return (cur);
+}
+
+int			execute_action(char *str, t_client *cli, t_info *info)
+{
+  int			i;
+  t_queue		*new_queue;
+  struct timeval	tp;
 
   i = 0;
   if (cli->status == ST_CLIENT)
@@ -42,21 +60,17 @@ int		execute_action(char *str, t_client *cli, t_info *info)
       {
 	if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
 	  {
-	    cur_time = time(NULL);
+	    gettimeofday(&tp, NULL);
 	    new_queue = create_new_queue(str, actions[i].f,
-					 cur_time + actions[i].delay,
+					 set_timeout(actions[i].delay, info,
+						     &tp),
 					 cli);
 	    push_list(&info->queue, new_queue);
 	    sort_queue_list(&info->queue);
-	    /* 	    if (info->queue) */
-	    /* 	      ((struct timeval *)(info->timeout))->tv_sec = */
-	    /* 		((t_queue *)info->queue->data)->time - cur_time; */
-	    /* 	    else */
-	    /* 	      ((struct timeval *)(info->timeout))->tv_sec = 0; */
-	    /* 	    strcpy(cli->buf_write, "OK\n"); */
 	    return (0);
 	  }
 	i++;
-      } 
+      }
+  strcat(cli->buf_write, KO);
   return (-1);
 }

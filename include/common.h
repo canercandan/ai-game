@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Sun May  4 15:36:19 2008 jordan aubry
+** Last update Sun May  4 19:21:00 2008 florent hochwelker
 */
 
 #ifndef __COMMON_H__
@@ -24,8 +24,8 @@
 /*
 ** Messages
 */
-# define OK	"OK\n"
-# define KO	"KO\n"
+# define OK	"ok\n"
+# define KO	"ko\n"
 
 /*
 ** Directions
