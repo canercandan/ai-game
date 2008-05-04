@@ -11,11 +11,12 @@ void				msg_reception(t_obs *obs)
     {
       anim = obs->window->smgr->createFlyStraightAnimator(vector3df(1000, 24, 1000),
 							  vector3df(1000, 24, 1000),
-							  1000, true);
+							  1, true);
       invader->addAnimator(anim);
       anim->drop();
       invader->setFrameLoop(1, 300);
       invader->setAnimationSpeed(1);
+      invader->setMaterialFlag(EMF_LIGHTING, false);
       invader->setMaterialTexture(0, obs->window->driver->getTexture("models/alien.bmp"));
     }
 }
