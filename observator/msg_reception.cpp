@@ -10,12 +10,12 @@ void				msg_reception(t_obs *obs)
   if (invader)
     {
       anim = obs->window->smgr->createFlyStraightAnimator(vector3df(1000, 24, 1000),
-							  vector3df(10000, 24, 10000),
+							  vector3df(2000, 24, 2000),
 							  1000, true);
       invader->addAnimator(anim);
       anim->drop();
       invader->setFrameLoop(1, 300);
-      invader->setAnimationSpeed(40);
-      invader->setMaterialTexture(0, obs->window->driver->getTexture("models/sally.bmp"));
+      invader->setAnimationSpeed(1);
+      invader->setMaterialTexture(0, obs->window->driver->getTexture("models/aliens.bmp"));
     }
 }
