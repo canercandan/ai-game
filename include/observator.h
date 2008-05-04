@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sun May  4 14:41:18 2008 jordan aubry
+** Last update Sun May  4 14:43:47 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -86,7 +86,7 @@ t_window	*init_window();
 t_matrix	**init_matrix(t_obs *obs);
 void		init_map_size(t_obs *obs);
 void		init_case(t_obs *obs);
-void		init_socket(t_obs *obs, char *name, char *port);
+void		init_socket(t_obs *obs, char *host, char *port);
 int		extract_num(char *buf, int num);
 
 void		draw_all(t_obs *obs);

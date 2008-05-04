@@ -8,7 +8,7 @@
 #include <irrlicht.h>
 #include "observator.h"
 
-void			init_socket(t_obs *obs, char *name, char *port)
+void			init_socket(t_obs *obs, char *host, char *port)
 {
   struct sockaddr_in	sin;
   struct hostent	*h;
@@ -22,7 +22,7 @@ void			init_socket(t_obs *obs, char *name, char *port)
       free_obs(obs);
     }
   sin.sin_family = AF_INET;
-  if (!(h = gethostbyname(name)))
+  if (!(h = gethostbyname(host)))
     {
       write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
       free_obs(obs);
