@@ -15,4 +15,5 @@ void	init_map_size(t_obs *obs)
   recv(obs->sock, buf, 32, 0);
   obs->x = extract_num(buf, 1);
   obs->y = extract_num(buf, 2);
+  printf("taille map : %d x %d\n", obs->x, obs->y);
 }

@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sat May  3 20:45:06 2008 caner candan
+** Last update Sun May  4 13:57:28 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -39,12 +39,12 @@ using namespace core;
 
 #define MAP_CASE_BSP		"maps/case.bsp"
 
-#define SKY_UP			"env/up.jpg"
-#define SKY_DN			"env/dn.jpg"
-#define SKY_RT			"env/rt.jpg"
-#define SKY_LF			"env/lf.jpg"
-#define SKY_FT			"env/ft.jpg"
-#define SKY_BK			"env/bk.jpg"
+#define SKY_UP			"env/up.tga"
+#define SKY_DN			"env/dn.tga"
+#define SKY_RT			"env/rt.tga"
+#define SKY_LF			"env/lf.tga"
+#define SKY_FT			"env/ft.tga"
+#define SKY_BK			"env/bk.tga"
 
 /* Structure
 */

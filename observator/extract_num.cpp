@@ -12,7 +12,8 @@ int	extract_num(char *buf, int num)
     {
       while (buf[i] != '\n' && (buf[i] < '0' || buf[i] > '9'))
 	i++;
-      if (++j < num)
+      j++;
+      if (j < num)
 	{
 	  while (buf[i] != '\n' && buf[i] >= '0' && buf[i] <= '9')
 	    i++;

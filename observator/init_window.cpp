@@ -18,8 +18,8 @@ t_window	*init_window()
   w->camera->setTarget(vector3df(100, 100, 100));
   w->camera->setFarValue(FAR_VALUE);
   w->device->getCursorControl()->setVisible(false);
-  w->driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, false);
   w->device->getFileSystem()->addZipFileArchive("map.pk3");
+  w->driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, false);
   w->smgr->addSkyBoxSceneNode(w->driver->getTexture(SKY_UP),
                               w->driver->getTexture(SKY_DN),
                               w->driver->getTexture(SKY_RT),
