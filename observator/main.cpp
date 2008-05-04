@@ -8,9 +8,10 @@ int	main(int ac, char **av)
   if (ac < 3)
     main_usage();
   obs = init_obs(av[1], av[2]);
+  msg_reception(obs);
   while(obs->window->device->run())
     {
-      msg_reception(obs);
+      //msg_reception(obs);
       draw_all(obs);
     }
   free_obs(obs);
