@@ -1,8 +1,7 @@
 #include <irrlicht.h>
 #include "observator.h"
 
-t_obs		*init_obs(char *host, char *port
-)
+t_obs		*init_obs(char *host, char *port)
 {
   t_obs		*obs;
 
