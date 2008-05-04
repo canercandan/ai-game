@@ -16,6 +16,6 @@ void				msg_reception(t_obs *obs)
       anim->drop();
       invader->setFrameLoop(1, 300);
       invader->setAnimationSpeed(1);
-      invader->setMaterialTexture(0, obs->window->driver->getTexture("models/aliens.bmp"));
+      invader->setMaterialTexture(0, obs->window->driver->getTexture("models/alien.bmp"));
     }
 }
