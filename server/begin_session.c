@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Sun May  4 15:01:01 2008 florent hochwelker
+** Last update Sun May  4 15:03:22 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -32,9 +32,9 @@ static t_team	*get_team(char *name, t_info *info)
 static void	bye(t_error err, t_client *cli)
 {
   if (err == ERR_WRONG_TEAM_NAME)
-    printf("%d: Wrong team name  ... bye\n", cli->socket);
+    printf("%d: Wrong team name  ...\n", cli->socket);
   else if (err == ERR_MAX_CLIENT)
-    printf("%d: Max client ... try to fork :) bye\n", cli->socket);
+    printf("%d: Max client ... try to fork :)\n", cli->socket);
   strcat(cli->buf_write, KO);
 }
 

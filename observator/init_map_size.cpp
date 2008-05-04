@@ -13,8 +13,8 @@ void	init_map_size(t_obs *obs)
 
   printf("Map size :\n");
   i = recv(obs->sock, buf, 32, 0);
-  send(obs->sock, MAGIC_OBS, sizeof(MAGIC_OBS), 0);
-  send(obs->sock, "\n", 2, 0);
+  send(obs->sock, MAGIC_OBS, strlen(MAGIC_OBS), 0);
+  send(obs->sock, "\n", 1, 0);
   i = recv(obs->sock, buf, 32, 0);
   buf[i] = '\0';
   printf(" %s\n", buf);
