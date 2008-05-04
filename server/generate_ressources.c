@@ -5,11 +5,12 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:55:01 2008 majdi toumi
-** Last update Sat May  3 16:14:57 2008 caner candan
+** Last update Sun May  4 14:55:56 2008 florent hochwelker
 */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "common.h"
 #include "server.h"
 
 t_ressource	gl_rock[] = {

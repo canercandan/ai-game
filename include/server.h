@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sun May  4 14:08:12 2008 florent hochwelker
+** Last update Sun May  4 14:55:35 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -30,7 +30,6 @@
 # define NB_INVENTORY	6
 # define NB_FOOD	3
 # define START_LEVEL	1
-# define MAGIC_OBS	"OBS_CLIENT"
 
 /*
 ** Zappy's index names
@@ -61,11 +60,6 @@
 			"be an integer\n"
 
 /*
-** Others messages
-*/
-# define MESG_RET	"OK\n"
-
-/*
 ** Null
 */
 # ifndef NULL
@@ -90,17 +84,6 @@ typedef	enum
     ST_OBS_CLIENT
   }	t_status;
 
-/*
-** Directions
-*/
-typedef enum
-  {
-    NORTH,
-    EAST,
-    SOUTH,
-    WEST
-  }	t_direction;
-
 typedef enum
   {
     ERR_WRONG_TEAM_NAME,
@@ -113,30 +96,6 @@ typedef enum
 # define MAX_FD		100
 # define MAX_LISTEN	42
 # define MAX_OBJECT	2
-
-/*
-** Command's defines
-*/
-# define START_CMD	"{"
-# define END_CMD	"}\n"
-# define SEPARATOR_CMD	","
-# define SEPARATOR_ELM	" "
-
-/*
-** Ressources' enum
-*/
-typedef enum
-  {
-    LINEMATE = 1,
-    DERAUMERE,
-    SIBUR,
-    MENDIANE,
-    PHIRAS,
-    THYSTAME,
-    HAMBURGER,
-    FISHBURGER,
-    CHEESEBURGER
-  }	t_idx_ressource;
 
 /*
 ** Alias
@@ -188,7 +147,7 @@ typedef struct	s_client
   int		hp;
   int		x;
   int		y;
-  t_direction	direction;
+  char		direction;
   t_team	*team;
   char		inventory[NB_INVENTORY];
 }		t_client;
@@ -249,7 +208,7 @@ typedef struct		s_action
 */
 typedef struct		s_ressource
 {
-  t_idx_ressource	idx;
+  char			idx;
   char			*name;
   char			*desc;
 }			t_ressource;

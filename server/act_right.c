@@ -5,10 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sun May  4 13:40:19 2008 caner candan
+** Last update Sun May  4 14:56:26 2008 florent hochwelker
 */
 
 #include <string.h>
+#include "common.h"
 #include "server.h"
 
 int	act_right(char *param, t_client *client, t_info *info)
@@ -23,6 +24,6 @@ int	act_right(char *param, t_client *client, t_info *info)
     client->direction = WEST;
   else if (client->direction == WEST)
     client->direction = NORTH;
-  strcat(client->buf_write, MESG_RET);
+  strcat(client->buf_write, OK);
   return (0);
 }

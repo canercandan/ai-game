@@ -5,10 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sun May  4 14:10:50 2008 florent hochwelker
+** Last update Sun May  4 14:56:12 2008 florent hochwelker
 */
 
 #include <string.h>
+#include "common.h"
 #include "server.h"
 
 int		act_up(char *param, t_client *client, t_info *info)
@@ -29,6 +30,6 @@ int		act_up(char *param, t_client *client, t_info *info)
   list = info->zone[client->x][client->y].client;
   push_list(&list, client);
   info->zone[client->x][client->y].client = list;
-  strcat(client->buf_write, MESG_RET);
+  strcat(client->buf_write, OK);
   return (0);
 }

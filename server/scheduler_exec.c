@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Sun May  4 14:27:37 2008 florent hochwelker
+** Last update Sun May  4 14:34:44 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -18,17 +18,17 @@ static void		calculate_timeout(t_info *info, unsigned int cur_time)
   struct timezone	tzp;
 
   gettimeofday(&tp, &tzp);
-  if (info->time >= 1)
+  if (info->queue == 0)
     {
-      if (info->queue == 0)
-	{
-	  ((struct timeval *)info->timeout)->tv_sec = 0;
-	  ((struct timeval *)info->timeout)->tv_usec = 0;
-	}
-      else
-	((struct timeval *)info->timeout)->tv_sec =
-	  ((t_queue *)info->queue->data)->time - cur_time;
+      ((struct timeval *)info->timeout)->tv_sec = 0;
+      ((struct timeval *)info->timeout)->tv_usec = 0;
     }
+  else if (info->time >= 1)
+    ((struct timeval *)info->timeout)->tv_sec =
+      ((t_queue *)info->queue->data)->time * info->time - cur_time;
+  else
+    ((struct timeval *)info->timeout)->tv_usec =
+      ((t_queue *)info->queue->data)->time * info->time - cur_time;
 }
 
 int		scheduler_exec(t_info *info)

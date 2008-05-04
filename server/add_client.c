@@ -5,10 +5,11 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Sun May  4 13:27:11 2008 caner candan
+** Last update Sun May  4 14:57:17 2008 florent hochwelker
 */
 
 #include <string.h>
+#include "common.h"
 #include "server.h"
 #include "x.h"
 
