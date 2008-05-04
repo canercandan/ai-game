@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sun May  4 14:43:47 2008 jordan aubry
+** Last update Sun May  4 14:46:04 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -20,7 +20,7 @@ using namespace core;
 /* Define
 */
 
-#define OBS_MAGIC		"OBS_MAGIC\n"
+#define OBS_MAGIC		"OBS_CLIENT\n"
 #define OBS_USAGE		"Usage :\n./observator (host) (port)\n"
 #define OBS_CASE		192
 
