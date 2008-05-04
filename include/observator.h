@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sun May  4 14:07:49 2008 jordan aubry
+** Last update Sun May  4 14:41:18 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -81,7 +81,7 @@ typedef struct		s_obs
 
 void		main_usage();
 
-t_obs		*init_obs();
+t_obs		*init_obs(char *host, char *port);
 t_window	*init_window();
 t_matrix	**init_matrix(t_obs *obs);
 void		init_map_size(t_obs *obs);

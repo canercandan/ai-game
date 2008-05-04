@@ -28,7 +28,7 @@ void			init_socket(t_obs *obs, char *name, char *port)
       free_obs(obs);
     }
   bcopy(h->h_addr, &in, sizeof(in));
-  sin.sin_port = htons(atoi(port));
+  sin.sin_port = htons(extract_num(port, 1));
   sin.sin_addr.s_addr = inet_addr(inet_ntoa(in));
   if (connect(obs->sock, (struct sockaddr*)&sin, sizeof(sin)) < 0)
     {
