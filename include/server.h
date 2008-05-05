@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May  5 17:52:13 2008 caner candan
+** Last update Mon May  5 18:09:07 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -26,14 +26,15 @@
 */
 # define START_UNIT_LIFE	10
 # define START_LEVEL		1
-# define MAX_LEVEL		7
+# define MAX_LEVEL		8
 
-# define FOOD_UNIT	126
+# define FOOD_HP	126
 # define COEFFICIENT	0.05
 # define BUF_SIZE	1024
 # define NB_INVENTORY	7
 # define NB_FOOD	3
 # define MAX_QUEUE	10
+# define LOOP_FOR_SEND	1337
 
 /*
 ** Zappy's index names
@@ -269,8 +270,8 @@ t_client	*add_client(t_info *info, int server);
 void		add_server(t_info *info);
 void		client_read(t_info *info, t_client *client);
 void		client_write(t_info *info, t_client *client);
-void		client_disconnect(t_client *client, t_info *info);
-void		server_get(t_info *info);
+void		client_disconnect(t_client *client, t_info *info, int dead);
+  void		server_get(t_info *info);
 void		server_read(t_info *info, t_client *client);
 void		server_write(t_info *info, t_client *client);
 int		execute_action(char *str, t_client *cli, t_info *info);
