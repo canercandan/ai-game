@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu Apr  3 09:51:31 2008 caner candan
-** Last update Thu May  1 14:53:31 2008 caner candan
+** Last update Mon May  5 17:06:55 2008 florent hochwelker
 */
 
 #include <sys/types.h>
@@ -19,7 +19,8 @@ int	xsend(int s, const void *msg, int len, int flags)
 {
   int	rc;
 
-  if ((rc = send(s, msg, (size_t) len, flags)) < 0)
+  printf("envoie de [%s]\n", (char *)msg);
+  if ((rc = send(s, msg, (size_t)len, flags)) < 0)
     {
       perror("send");
       close(s);

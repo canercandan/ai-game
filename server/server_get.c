@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Sun May  4 18:58:54 2008 florent hochwelker
+** Last update Mon May  5 16:43:01 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -55,8 +55,8 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
 
 static void	*get_timeout(t_info *info)
 {
-  if (((struct timeval *) info->timeout)->tv_sec == 0 &&
-      ((struct timeval *) info->timeout)->tv_usec == 0)
+  if (((struct timeval *)info->timeout)->tv_sec == -1 &&
+      ((struct timeval *)info->timeout)->tv_usec == -1)
     return (NULL);
   return (info->timeout);
 }

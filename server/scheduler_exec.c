@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Sun May  4 18:59:49 2008 florent hochwelker
+** Last update Mon May  5 18:28:03 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -16,8 +16,8 @@ static void		calculate_timeout(t_info *info, struct timeval *tp)
 {
   if (info->queue == 0)
     {
-      ((struct timeval *)info->timeout)->tv_sec = 0;
-      ((struct timeval *)info->timeout)->tv_usec = 0;
+      ((struct timeval *)info->timeout)->tv_sec = -1;
+      ((struct timeval *)info->timeout)->tv_usec = -1;
     }
   else
     {
@@ -27,10 +27,27 @@ static void		calculate_timeout(t_info *info, struct timeval *tp)
       ((struct timeval *)info->timeout)->tv_usec =
 	((struct timeval *)((t_queue *)info->queue->data)->time)->tv_usec
 	- tp->tv_usec;
+      if (((struct timeval *)info->timeout)->tv_sec < 0)
+       	((struct timeval *)info->timeout)->tv_sec = 0;
       if (((struct timeval *)info->timeout)->tv_usec < 0)
 	((struct timeval *)info->timeout)->tv_usec = 0;
     }
 }
+
+/* static void		check_dead_clients(t_info *info) */
+/* { */
+/*   t_list		*clients; */
+
+/*   clients = info->clients; */
+/*   while (clients) */
+/*     { */
+/*       /\*       if (((t_client *)clients->data)->status == ST_CLIENT) *\/ */
+/*       /\* 	{ *\/ */
+/*       /\* 	  ((t_client *)clients->data)->hp -= info-> *\/ */
+/*       /\* 	    } *\/ */
+/*       clients = clients->next; */
+/*     } */
+/* } */
 
 int			scheduler_exec(t_info *info)
 {
@@ -38,12 +55,14 @@ int			scheduler_exec(t_info *info)
   struct timeval	tp;
 
   gettimeofday(&tp, NULL);
+  /*   check_dead_clients(info); */
   while (info->queue && (elem = info->queue->data)
 	 && ((struct timeval *)elem->time)->tv_sec <= tp.tv_sec
 	 && ((struct timeval *)elem->time)->tv_usec <= tp.tv_usec)
     {
       dump_client_position(info->clients); /* debug pour see */
-      elem->f(elem->param, elem->client, info);
+      if (elem->f(elem->param, elem->client, info) == LOOP_FOR_SEND)
+	return (0);
       dump_client_position(info->clients); /* debug pour see */
       info->queue = info->queue->next;
       free(elem->param);

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Sun May  4 14:57:17 2008 florent hochwelker
+** Last update Mon May  5 15:31:15 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -30,6 +30,7 @@ t_client	*add_client(t_info *info, int server)
   client->y = get_random(info->y - 1);
   client->direction = get_random(WEST);
   client->team = NULL;
+  client->hp = START_UNIT_LIFE * FOOD_HP * info->time;
   push_list(&info->clients, (void *) client);
   return (client);
 }
