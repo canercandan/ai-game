@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May  5 08:59:19 2008 caner candan
+** Last update Mon May  5 14:25:45 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -24,12 +24,15 @@
 /*
 ** Defines
 */
-# define UNIT		10
+# define START_UNIT_LIFE	10
+# define START_LEVEL		1
+
+# define FOOD_UNIT	126
 # define COEFFICIENT	0.05
 # define BUF_SIZE	1024
 # define NB_INVENTORY	6
 # define NB_FOOD	3
-# define START_LEVEL	1
+# define MAX_QUEUE	10
 
 /*
 ** Zappy's index names
@@ -79,7 +82,6 @@ typedef	enum
   {
     ST_NOT_LOGGED,
     ST_WELCOME_OK,
-    ST_TEAM_NAME_OK,
     ST_SERVER,
     ST_CLIENT,
     ST_OBS_CLIENT

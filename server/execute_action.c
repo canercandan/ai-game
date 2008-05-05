@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Sun May  4 19:21:42 2008 florent hochwelker
+** Last update Mon May  5 14:11:46 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -48,6 +48,31 @@ static struct timeval	*set_timeout(float delay,
   return (cur);
 }
 
+static int		get_last_action(struct timeval *empty,
+					t_list *queue, t_client *client)
+{
+  int			i;
+
+  i = 0;
+  while (queue && i < MAX_QUEUE)
+    {
+      if (((t_queue*)queue->data)->client == client)
+	{
+	  empty->tv_sec =
+	    ((struct timeval *)((t_queue*)queue->data)->time)->tv_sec;
+	  empty->tv_usec =
+	    ((struct timeval *)((t_queue*)queue->data)->time)->tv_usec;
+	  i++;
+	}
+      queue = queue->next;
+    }
+  if (i == MAX_QUEUE)
+    return (0);
+  if (i == 0)
+    gettimeofday(empty, NULL);
+  return (1);
+}
+
 int			execute_action(char *str, t_client *cli, t_info *info)
 {
   int			i;
@@ -60,13 +85,15 @@ int			execute_action(char *str, t_client *cli, t_info *info)
       {
 	if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
 	  {
-	    gettimeofday(&tp, NULL);
-	    new_queue = create_new_queue(str, actions[i].f,
-					 set_timeout(actions[i].delay, info,
-						     &tp),
-					 cli);
-	    push_list(&info->queue, new_queue);
-	    sort_queue_list(&info->queue);
+	    if (get_last_action(&tp, info->queue, cli))
+	      {
+		new_queue = create_new_queue(str, actions[i].f,
+					     set_timeout(actions[i].delay, info,
+							 &tp),
+					     cli);
+		push_list(&info->queue, new_queue);
+		sort_queue_list(&info->queue);
+	      }
 	    return (0);
 	  }
 	i++;

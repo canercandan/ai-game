@@ -5,12 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:39:12 2008 florent hochwelker
-** Last update Sun May  4 18:53:26 2008 florent hochwelker
+** Last update Mon May  5 13:06:34 2008 florent hochwelker
 */
 
 #include <sys/time.h>
 #include <string.h>
-#include <stdio.h>		/* a vire printf */
 #include "x.h"
 #include "server.h"
 
