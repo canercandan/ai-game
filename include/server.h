@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May  5 14:25:45 2008 florent hochwelker
+** Last update Mon May  5 16:46:38 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -26,11 +26,12 @@
 */
 # define START_UNIT_LIFE	10
 # define START_LEVEL		1
+# define MAX_LEVEL		7
 
 # define FOOD_UNIT	126
 # define COEFFICIENT	0.05
 # define BUF_SIZE	1024
-# define NB_INVENTORY	6
+# define NB_INVENTORY	8
 # define NB_FOOD	3
 # define MAX_QUEUE	10
 
@@ -131,8 +132,8 @@ typedef struct	s_opt
 typedef struct	s_team
 {
   char		*name;
-  int		nb;
-  int		max;
+  int		nb;	/* nb de client connecte */
+  int		max;	/* nb max de client */
 }		t_team;
 
 /*
@@ -163,7 +164,7 @@ typedef struct	s_zone
   char		is_moveable;
   int		id_deco;
   t_list	*ressources;
-  t_list	*client;
+  t_list	*clients;
 }		t_zone;
 
 /*
@@ -219,22 +220,22 @@ typedef struct		s_ressource
 /*
 ** Criteres list's structure
 */
-typedef struct	s_critere
+typedef struct		s_critere
 {
-  int		lvl;
-  char		idx_ressource;
-  int		qte;
-}		t_critere;
+  int			lvl;
+  char			idx_ressource;
+  int			qte;
+}			t_critere;
 
 /*
 ** Level list's structure
 */
-typedef struct	s_level
+typedef struct		s_level
 {
-  int		lvl;
-  int		nb_client;
-  char		*desc;
-}		t_level;
+  int			lvl;
+  int			nb_client;
+  char			*desc;
+}			t_level;
 
 /*
 ** Enum action
@@ -255,12 +256,9 @@ enum
   };
 
 /*
-** Globals
+** Global:
 */
-extern t_opt		gl_opt_srv[];
-extern t_opt		gl_opt_clt[];
-extern t_ressource	gl_rock[];
-extern t_ressource	gl_food[];
+extern t_ressource	gl_ressource[];
 
 /*
 ** Socket's functions
@@ -281,16 +279,16 @@ int		send_buf_to_client(t_client *client, char *buf);
 /*
 ** Options' functions
 */
-void	usage_server(void);
-t_info	*parse_args(int argc, char **argv, t_info *info);
-int	is_options(char *args);
-int	check_flag(int flag);
-int	opt_port(t_info *info, char **argv, int i);
-int	opt_width(t_info *info, char **argv, int i);
-int	opt_lenght(t_info *info, char **argv, int i);
-int	opt_name_team(t_info *info, char **argv, int i);
-int	opt_nb_player(t_info *info, char **argv, int i);
-int	opt_delay(t_info *info, char **argv, int i);
+void		usage_server();
+int		is_options(char *args);
+t_info		*parse_args(int argc, char **argv, t_info *info);
+int		check_flag(int flag);
+int		opt_port(t_info *info, char **argv, int i);
+int		opt_width(t_info *info, char **argv, int i);
+int		opt_lenght(t_info *info, char **argv, int i);
+int		opt_name_team(t_info *info, char **argv, int i);
+int		opt_nb_player(t_info *info, char **argv, int i);
+int		opt_delay(t_info *info, char **argv, int i);
 
 /*
 ** Zones' functions
@@ -303,69 +301,69 @@ int		begin_session(t_info *i, t_client *cli);
 /*
 ** Actions' functions
 */
-int	act_up(char *param, t_client *client, t_info *info);
-int	act_right(char *param, t_client *client, t_info *info);
-int	act_left(char *param, t_client *client, t_info *info);
-int	act_see(char *param, t_client *client, t_info *info);
-int	act_inventory(char *param, t_client *client, t_info *info);
-int	act_take_obj(char *param, t_client *client, t_info *info);
-int	act_drop_obj(char *param, t_client *client, t_info *info);
-int	act_kick(char *param, t_client *client, t_info *info);
-int	act_broadcast(char *param, t_client *client, t_info *info);
-int	act_levelup(char *param, t_client *client, t_info *info);
-int	act_fork(char *param, t_client *client, t_info *info);
+int		act_up(char *param, t_client *client, t_info *info);
+int		act_right(char *param, t_client *client, t_info *info);
+int		act_left(char *param, t_client *client, t_info *info);
+int		act_see(char *param, t_client *client, t_info *info);
+int		act_inventory(char *param, t_client *client, t_info *info);
+int		act_take_obj(char *param, t_client *client, t_info *info);
+int		act_drop_obj(char *param, t_client *client, t_info *info);
+int		act_kick(char *param, t_client *client, t_info *info);
+int		act_broadcast(char *param, t_client *client, t_info *info);
+int		act_levelup(char *param, t_client *client, t_info *info);
+int		act_fork(char *param, t_client *client, t_info *info);
 
 /*
 ** Debug's functions
 */
-void	debug(char *s, int pos);
-void	dump_world(t_zone **zworld, int y, int x);
-void	dump_client_position(t_list *client);
+void		debug(char *s, int pos);
+void		dump_world(t_zone **zworld, int y, int x);
+void		dump_client_position(t_list *client);
 
 /*
 ** List chaine's functions
 */
-void	push_list(t_list **t, void *data);
-void	*pop_list(t_list **t);
-void	pop_all_list(t_list *t);
+void		push_list(t_list **t, void *data);
+void		*pop_list(t_list **t);
+void		pop_all_list(t_list *t);
 
 /*
 ** Clients list chaine's functions
 */
-void	*rm_client_from_list(t_list **t, void *data);
-void	*get_client_from_list(t_list *t, int socket);
-void	show_clients_from_list(t_list *t);
-void	sort_queue_list(t_list **begin);
-int	count_list(t_list *t);
+void		*rm_client_from_list(t_list **t, void *data);
+void		*get_client_from_list(t_list *t, int socket);
+void		show_clients_from_list(t_list *t);
+void		sort_queue_list(t_list **begin);
+int		count_list(t_list *t);
 
 /*
 ** Queue list functions
 */
-void	rm_client_from_queue(t_list **t, int socket);
-t_queue	*create_new_queue(char *str, int (*f)(),
+void		rm_client_from_queue(t_list **t, int socket);
+t_queue		*create_new_queue(char *str, int (*f)(),
 			  void *new_time, t_client *cli);
 
 /*
 ** Client's functions
 */
-void	free_client(t_client *client);
+void		free_client(t_client *client);
 
 /*
 ** Info's functions
 */
-t_info	*init_info();
-void	free_info(t_info *info);
+t_info		*init_info();
+void		free_info(t_info *info);
 
 /*
 ** Usefull functions
 */
-char	*get_word_n(char *str, int n);
-char	*trim(char *str);
+char		*get_word_n(char *str, int n);
+char		*trim(char *str);
 
 /*
 ** Random's functions
 */
-void	init_random(void);
-int	get_random(int max);
+void		init_random(void);
+int		get_random(int max);
 
 #endif /* !__SERVER_H__ */

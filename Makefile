@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May  5 08:21:54 2008 caner candan
+## Last update Mon May  5 15:32:24 2008 majdi toumi
 ##
 
 NAME_SRV	=	server
@@ -40,9 +40,7 @@ SRCS_X		=	$(PATH_X)xaccept.c			\
 			$(PATH_X)xfork.c
 
 SRCS_SRV	=	$(PATH_SRV)main.c			\
-			$(PATH_SRV)usage_server.c		\
-			$(PATH_SRV)parse_args.c			\
-			$(PATH_SRV)is_options.c			\
+			$(PATH_SRV)options.c			\
 			$(PATH_SRV)check_flag.c			\
 			$(PATH_SRV)opt_port.c			\
 			$(PATH_SRV)opt_width.c			\
