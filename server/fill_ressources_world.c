@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Mon May  5 15:58:42 2008 majdi toumi
+** Last update Mon May  5 17:25:26 2008 majdi toumi
 */
 
 #include <stdlib.h>
@@ -27,7 +27,7 @@ void		fill_ressources_world(t_zone **world, t_info *info)
     {
       x = get_random(info->x - 1);
       y = get_random(info->y - 1);
-      ressource = generate_ressources(MAX_LEVEL, i);
+      ressource = generate_ressources(i);
       push_list(&(world[x][y].ressources), ressource);
       printf("#DUMP WORLD#\t[%d][%d] -> [%s]\n", x, y, ressource->name);
     }

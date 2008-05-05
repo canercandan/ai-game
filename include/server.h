@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May  5 17:05:50 2008 caner candan
+** Last update Mon May  5 17:21:00 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -31,7 +31,7 @@
 # define FOOD_UNIT	126
 # define COEFFICIENT	0.05
 # define BUF_SIZE	1024
-# define NB_INVENTORY	8
+# define NB_INVENTORY	7
 # define NB_FOOD	3
 # define MAX_QUEUE	10
 
@@ -155,7 +155,7 @@ typedef struct	s_client
   int		y;
   char		direction;
   t_team	*team;
-  char		inventory[NB_INVENTORY];
+  int		qte_ressource[NB_INVENTORY];
 }		t_client;
 
 /*
@@ -297,7 +297,7 @@ int		opt_delay(t_info *info, char **argv, int i);
 */
 t_zone		**create_world(t_info *info);
 void		fill_ressources_world(t_zone **world, t_info *info);
-t_ressource	*generate_ressources(int level_max, int i);
+t_ressource	*generate_ressources(int i);
 int		begin_session(t_info *i, t_client *cli);
 
 /*
