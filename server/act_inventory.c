@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May  5 17:17:02 2008 majdi toumi
+** Last update Mon May  5 18:06:19 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -27,7 +27,7 @@ static int	get_size_inventory(t_client *client)
     {
       qte = client->qte_ressource[i];
       snprintf(nb, 3, "%d", qte);
-      len += strlen(SEPARATOR_ELM) + strlen(gl_ressource[i].name) + 
+      len += strlen(SEPARATOR_ELM) + strlen(gl_ressource[i].name) +
 	strlen(SEPARATOR_ELM) + strlen(nb);
       if (i != (NB_INVENTORY - 1))
 	len += strlen(SEPARATOR_CMD);
@@ -79,7 +79,12 @@ int		act_inventory(char *param, t_client *client, t_info *info)
       s = get_inventory(client, len);
     }
   bzero(client->buf_write, BUF_SIZE);
-  send_buf_to_client(client, OK);
+  strncpy(client->buf_write, &s[i], BUF_SIZE);
+  if (strlen(client->buf_write) == BUF_SIZE)
+    {
+      i = BUF_SIZE;
+      return(LOOP_FOR_SEND);
+    }
   return (0);
 }
 
