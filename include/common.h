@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon May  5 17:06:00 2008 caner candan
+** Last update Mon May  5 19:01:12 2008 caner candan
 */
 
 #ifndef __COMMON_H__
@@ -27,6 +27,7 @@
 # define OK		"ok\n"
 # define KO		"ko\n"
 # define LVLUP_PROCESS	"elevation en cours\n"
+# define MESSAGE	"message "
 
 /*
 ** Directions
