@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May  5 16:46:38 2008 majdi toumi
+** Last update Mon May  5 17:05:50 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -75,6 +75,7 @@
 */
 # define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
 # define ABS(x)			(((x) < 0) ? (x) * -1 : (x))
+# define PWR(x)			(1 << (x))
 
 /*
 ** Status client
@@ -88,6 +89,9 @@ typedef	enum
     ST_OBS_CLIENT
   }	t_status;
 
+/*
+** Errors' enum
+*/
 typedef enum
   {
     ERR_WRONG_TEAM_NAME,
@@ -97,9 +101,7 @@ typedef enum
 /*
 ** Limits' values
 */
-# define MAX_FD		100
 # define MAX_LISTEN	42
-# define MAX_OBJECT	2
 
 /*
 ** Alias
@@ -188,34 +190,34 @@ typedef struct	s_info
 /*
 ** Queue actions' structure
 */
-typedef struct		s_queue
+typedef struct	s_queue
 {
-  int			(*f)(char *cmd, t_client *cli, t_info *info);
-  char			*param;
-  void			*time;
-  t_client		*client;
-}			t_queue;
+  int		(*f)(char *cmd, t_client *cli, t_info *info);
+  char		*param;
+  void		*time;
+  t_client	*client;
+}		t_queue;
 
 /*
 ** Actions list's strutcture
 */
-typedef struct		s_action
+typedef struct	s_action
 {
-  int			action;
-  char			*str;
-  unsigned int		delay;
-  int			(*f)(char *cmd, t_client *cli, t_info *info);
-}			t_action;
+  int	       	action;
+  char		*str;
+  unsigned int 	delay;
+  int	       	(*f)(char *cmd, t_client *cli, t_info *info);
+}	       	t_action;
 
 /*
 ** Ressources list's structure
 */
-typedef struct		s_ressource
+typedef struct	s_ressource
 {
-  char			idx;
-  char			*name;
-  char			*desc;
-}			t_ressource;
+  char		idx;
+  char		*name;
+  char		*desc;
+}		t_ressource;
 
 /*
 ** Criteres list's structure
@@ -301,17 +303,18 @@ int		begin_session(t_info *i, t_client *cli);
 /*
 ** Actions' functions
 */
-int		act_up(char *param, t_client *client, t_info *info);
-int		act_right(char *param, t_client *client, t_info *info);
-int		act_left(char *param, t_client *client, t_info *info);
-int		act_see(char *param, t_client *client, t_info *info);
-int		act_inventory(char *param, t_client *client, t_info *info);
-int		act_take_obj(char *param, t_client *client, t_info *info);
-int		act_drop_obj(char *param, t_client *client, t_info *info);
-int		act_kick(char *param, t_client *client, t_info *info);
-int		act_broadcast(char *param, t_client *client, t_info *info);
-int		act_levelup(char *param, t_client *client, t_info *info);
-int		act_fork(char *param, t_client *client, t_info *info);
+int	act_up(char *param, t_client *client, t_info *info);
+int	act_right(char *param, t_client *client, t_info *info);
+int	act_left(char *param, t_client *client, t_info *info);
+int	act_see(char *param, t_client *client, t_info *info);
+int	act_inventory(char *param, t_client *client, t_info *info);
+int	act_take_obj(char *param, t_client *client, t_info *info);
+int	act_drop_obj(char *param, t_client *client, t_info *info);
+int	act_kick(char *param, t_client *client, t_info *info);
+int	act_broadcast(char *param, t_client *client, t_info *info);
+int	is_levelup(t_info *info, t_client *client);
+int	act_levelup(char *param, t_client *client, t_info *info);
+int	act_fork(char *param, t_client *client, t_info *info);
 
 /*
 ** Debug's functions

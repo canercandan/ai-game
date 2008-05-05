@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon May  5 16:00:27 2008 majdi toumi
+** Last update Mon May  5 17:06:00 2008 caner candan
 */
 
 #ifndef __COMMON_H__
@@ -24,8 +24,9 @@
 /*
 ** Messages
 */
-# define OK	"ok\n"
-# define KO	"ko\n"
+# define OK		"ok\n"
+# define KO		"ko\n"
+# define LVLUP_PROCESS	"elevation en cours\n"
 
 /*
 ** Directions
@@ -43,7 +44,7 @@ typedef enum
 */
 typedef enum
   {
-    LINEMATE = 1,
+    LINEMATE,
     DERAUMERE,
     SIBUR,
     MENDIANE,
