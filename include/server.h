@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May  5 08:30:16 2008 caner candan
+** Last update Mon May  5 08:59:19 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -217,22 +217,22 @@ typedef struct		s_ressource
 /*
 ** Criteres list's structure
 */
-typedef struct		s_critere
+typedef struct	s_critere
 {
-  t_ressource	 	*rock;
-  int			lvl;
-  int			qte;
-}			t_critere;
+  int		lvl;
+  char		idx_ressource;
+  int		qte;
+}		t_critere;
 
 /*
 ** Level list's structure
 */
-typedef struct		s_level
+typedef struct	s_level
 {
-  int			lvl;
-  int			nb_client;
-  char			*desc;
-}			t_level;
+  int		lvl;
+  int		nb_client;
+  char		*desc;
+}		t_level;
 
 /*
 ** Enum action
