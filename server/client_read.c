@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Sat May  3 17:34:37 2008 florent hochwelker
+** Last update Mon May  5 16:35:04 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -37,8 +37,5 @@ void		client_read(t_info *info, t_client *client)
 	}
     }
   else
-    {
-      printf("dans client_read: ");
-      client_disconnect(client, info);
-    }
+    client_disconnect(client, info, 0);
 }
