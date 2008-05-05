@@ -5,17 +5,17 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sat May  3 14:40:01 2008 caner candan
+** Last update Mon May  5 08:28:01 2008 caner candan
 */
 
 #include <string.h>
 #include "server.h"
+#include "common.h"
 
 int	act_kick(char *param, t_client *client, t_info *info)
 {
   (void)param;
-  (void)client;
   (void)info;
-  strcat(client->buf_write, "KICK OK\n");
+  send_buf_to_client(client, OK);
   return (0);
 }

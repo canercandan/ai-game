@@ -5,12 +5,12 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sun May  4 16:02:37 2008 caner candan
+** Last update Mon May  5 08:28:34 2008 caner candan
 */
 
 #include <string.h>
-#include "common.h"
 #include "server.h"
+#include "common.h"
 
 int		act_up(char *param, t_client *client, t_info *info)
 {
@@ -30,6 +30,6 @@ int		act_up(char *param, t_client *client, t_info *info)
   list = info->zone[client->x][client->y].client;
   push_list(&list, client);
   info->zone[client->x][client->y].client = list;
-  strcat(client->buf_write, OK);
+  send_buf_to_client(client, OK);
   return (0);
 }

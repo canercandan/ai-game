@@ -5,17 +5,17 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sat May  3 14:39:41 2008 caner candan
+** Last update Mon May  5 08:27:47 2008 caner candan
 */
 
 #include <string.h>
 #include "server.h"
+#include "common.h"
 
 int	act_drop_obj(char *param, t_client *client, t_info *info)
 {
   (void)param;
-  (void)client;
   (void)info;
-  strcat(client->buf_write, "DROP_OBJ OK\n");
+  send_buf_to_client(client, OK);
   return (0);
 }

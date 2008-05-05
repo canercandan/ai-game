@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Sun May  4 16:52:00 2008 caner candan
+## Last update Mon May  5 08:21:54 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -95,7 +95,8 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)trim.c			\
 			$(PATH_SRV)dump_client_position.c	\
 			$(PATH_SRV)init_random.c		\
-			$(PATH_SRV)get_random.c
+			$(PATH_SRV)get_random.c			\
+			$(PATH_SRV)send_buf_to_client.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c			\
 			$(PATH_CLI)enter_in_the_world.c		\

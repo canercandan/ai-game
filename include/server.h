@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sun May  4 19:30:56 2008 florent hochwelker
+** Last update Mon May  5 08:30:16 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -274,20 +274,21 @@ void		server_write(t_info *info, t_client *client);
 int		execute_action(char *str, t_client *cli, t_info *info);
 int		scheduler_exec(t_info *info);
 void		send_info_to_obs(t_client *client, t_info *info);
+int		send_buf_to_client(t_client *client, char *buf);
 
 /*
 ** Options' functions
 */
-void		usage_server(void);
-t_info		*parse_args(int argc, char **argv, t_info *info);
-int		is_options(char *args);
-int		check_flag(int flag);
-int		opt_port(t_info *info, char **argv, int i);
-int		opt_width(t_info *info, char **argv, int i);
-int		opt_lenght(t_info *info, char **argv, int i);
-int		opt_name_team(t_info *info, char **argv, int i);
-int		opt_nb_player(t_info *info, char **argv, int i);
-int		opt_delay(t_info *info, char **argv, int i);
+void	usage_server(void);
+t_info	*parse_args(int argc, char **argv, t_info *info);
+int	is_options(char *args);
+int	check_flag(int flag);
+int	opt_port(t_info *info, char **argv, int i);
+int	opt_width(t_info *info, char **argv, int i);
+int	opt_lenght(t_info *info, char **argv, int i);
+int	opt_name_team(t_info *info, char **argv, int i);
+int	opt_nb_player(t_info *info, char **argv, int i);
+int	opt_delay(t_info *info, char **argv, int i);
 
 /*
 ** Zones' functions

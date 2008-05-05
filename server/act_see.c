@@ -5,10 +5,9 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sun May  4 17:44:13 2008 caner candan
+** Last update Mon May  5 08:27:34 2008 caner candan
 */
 
-#include <string.h>
 #include <stdio.h>
 #include "server.h"
 #include "common.h"
@@ -16,9 +15,9 @@
 static void	is_in_map(t_info *info, int *x, int *y)
 {
   if (*x < 0)
-    *x = info->x - ABS(*x);
+    *x = info->x - ABS(*x % info->x);
   if (*y < 0)
-    *y = info->y - ABS(*y);
+    *y = info->y - ABS(*y % info->x);
   *x %= info->x;
   *y %= info->y;
 }
@@ -55,11 +54,12 @@ static int	send_ressources(t_info *info, t_client *client,
   x = get_x(client, x_diff, y_diff);
   y = get_y(client, x_diff, y_diff);
   is_in_map(info, &x, &y);
+  printf("x: [%d], y: [%d]\n", x, y);
   ressources = info->zone[x][y].ressources;
   while (ressources)
     {
-      strcat(client->buf_write, SEPARATOR_ELM);
-      strcat(client->buf_write, ((t_ressource *) ressources->data)->name);
+      send_buf_to_client(client, SEPARATOR_ELM);
+      send_buf_to_client(client, ((t_ressource *) ressources->data)->name);
       ressources = ressources->next;
     }
   return (0);
@@ -71,15 +71,14 @@ int	act_see(char *param, t_client *client, t_info *info)
   int	j;
 
   (void) param;
-  strcat(client->buf_write, START_CMD);
+  send_buf_to_client(client, START_CMD);
   for (i = 0; i <= client->level; i++)
     for (j = 0 - i; j <= i; j++)
       {
-	printf("i: [%d], j: [%d]\n", i, j);
 	send_ressources(info, client, j, i);
-	if (i != client->level || j != 0 - i)
-	  strcat(client->buf_write, SEPARATOR_CMD);
+	if (i != client->level || j != i)
+	  send_buf_to_client(client, SEPARATOR_CMD);
       }
-  strcat(client->buf_write, END_CMD);
+  send_buf_to_client(client, END_CMD);
   return (0);
 }
