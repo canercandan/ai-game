@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May  5 18:09:07 2008 florent hochwelker
+** Last update Mon May  5 18:13:02 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -339,6 +339,7 @@ void		*get_client_from_list(t_list *t, int socket);
 void		show_clients_from_list(t_list *t);
 void		sort_queue_list(t_list **begin);
 int		count_list(t_list *t);
+int		exist_data_from_list(t_list *t, void *data);
 
 /*
 ** Queue list functions
@@ -357,6 +358,7 @@ void		free_client(t_client *client);
 */
 t_info		*init_info();
 void		free_info(t_info *info);
+int		get_ressource_idx(char *data);
 
 /*
 ** Usefull functions
