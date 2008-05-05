@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May  5 18:31:32 2008 florent hochwelker
+** Last update Mon May  5 19:08:58 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -17,7 +17,7 @@
 static int	get_size_inventory(t_client *client)
 {
   int		qte;
-  char		*nb;
+  char		nb[2];
   int		len;
   int		i;
 
@@ -26,7 +26,8 @@ static int	get_size_inventory(t_client *client)
   while (i < NB_INVENTORY)
     {
       qte = client->qte_ressource[i];
-      snprintf(nb, 3, "%d", qte);
+      printf("qte = %d\n", qte);
+      snprintf(nb, 2, "%d", qte);
       len += strlen(SEPARATOR_ELM) + strlen(gl_ressource[i].name) +
 	strlen(SEPARATOR_ELM) + strlen(nb);
       if (i != (NB_INVENTORY - 1))
@@ -41,7 +42,7 @@ static int	get_size_inventory(t_client *client)
 static char	*get_inventory(t_client *client, int len)
 {
   int		qte;
-  char		*nb;
+  char		nb[2];
   char		*s;
   int		i;
 
@@ -51,7 +52,8 @@ static char	*get_inventory(t_client *client, int len)
   while (i < NB_INVENTORY)
     {
       qte = client->qte_ressource[i];
-      snprintf(nb, 3, "%d", qte);
+      printf("qte2 = %d\n", qte);
+      snprintf(nb, 2, "%d", qte);
       strcat(s, SEPARATOR_ELM);
       strcat(s, gl_ressource[i].name);
       strcat(s, SEPARATOR_ELM);

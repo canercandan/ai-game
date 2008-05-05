@@ -5,17 +5,21 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Mon May  5 17:53:30 2008 majdi toumi
-** Last update Mon May  5 18:04:31 2008 majdi toumi
+** Last update Mon May  5 18:47:14 2008 majdi toumi
 */
 
 #include <string.h>
 #include "server.h"
+#include <stdio.h>
 
-int	exist_data_from_list(t_list *t, void *data)
+int		exist_data_from_list(t_list *t, void *data)
 {
+  t_ressource	*res;
+
   while (t)
     {
-      if (!strcmp(t->data, (char *)data))
+      res = (t_ressource *)t->data;
+      if (!strcmp(res->name, (char *)data))
 	return (1);
       t = t->next;
     }

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Mon May  5 15:31:15 2008 florent hochwelker
+** Last update Mon May  5 18:54:18 2008 majdi toumi
 */
 
 #include <string.h>
@@ -16,6 +16,7 @@
 t_client	*add_client(t_info *info, int server)
 {
   t_client	*client;
+  int		i;
 
   debug("add_client()", 2);
   client = xmalloc(sizeof(*client));
@@ -30,6 +31,9 @@ t_client	*add_client(t_info *info, int server)
   client->y = get_random(info->y - 1);
   client->direction = get_random(WEST);
   client->team = NULL;
+  i = 0;
+  while (i < NB_INVENTORY)
+    client->qte_ressource[i++] = 0;
   client->hp = START_UNIT_LIFE * FOOD_HP * info->time;
   push_list(&info->clients, (void *) client);
   return (client);
