@@ -1,11 +1,11 @@
 /*
-** rm_client_from_list.c for zappy in /home/candan_c/cu/rendu/project/zappy
+** rm_data_from_list.c for zappy in /u/epitech_2010s/candan_c/cu/rendu/c/zappy/server
 ** 
 ** Made by caner candan
 ** Login   <candan_c@epitech.net>
 ** 
-** Started on  Tue Apr 29 21:51:51 2008 caner candan
-** Last update Sun May  4 13:53:10 2008 florent hochwelker
+** Started on  Mon May  5 17:46:20 2008 caner candan
+** Last update Mon May  5 17:48:20 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -46,9 +46,9 @@ static void	*loop_elm(t_list *elm, void *data)
   return (NULL);
 }
 
-void		*rm_client_from_list(t_list **t, void *data)
+void		*rm_data_from_list(t_list **t, void *data)
 {
-  debug("rm_client_from_list()", -1);
+  debug("rm_data_from_list()", -1);
   if (!(*t))
     return ((void *) -1);
   if ((*t)->data == data)
