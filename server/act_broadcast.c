@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May  6 17:52:27 2008 caner candan
+** Last update Tue May  6 19:05:04 2008 caner candan
 */
 
 #include <string.h>
@@ -65,19 +65,19 @@ static int	give_me_the_k(t_info *info, t_client *dst,
   int		diff_x;
   int		diff_y;
 
-  if (!(src->x - dst->x) && !(src->y - dst->y) &&
-      square_root(power(ABS(src->x - dst->x), 2) +
-		  power(ABS(src->y - dst->y), 2)) >
-      square_root(power(info->x, 2) - power(info->y, 2)) / 2)
+  if ((!(src->x - dst->x) && !(src->y - dst->y) &&
+       (square_root(power(ABS(src->x - dst->x), 2) +
+		    power(ABS(src->y - dst->y), 2)) >
+	square_root(power(info->x, 2) - power(info->y, 2)) / 2)) ||
+      (!(src->x - dst->x) && ABS(src->y - dst->y) > info->y / 2) ||
+      (!(src->y - dst->y) && ABS(src->x - dst->x) > info->x / 2))
     {
       diff_x = info->x - ABS(src->x - dst->x);
       diff_y = info->y - ABS(src->y - dst->y);
+      return (return_res_k(diff_x, diff_y));
     }
-  else
-    {
-      diff_x = src->x - dst->x;
-      diff_y = src->y - dst->y;
-    }
+  diff_x = dst->x - src->x;
+  diff_y = dst->y - src->y;
   return (return_res_k(diff_x, diff_y));
 }
 
