@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May  5 19:13:39 2008 majdi toumi
+** Last update Tue May  6 15:44:22 2008 majdi toumi
 */
 
 #include <string.h>
@@ -14,7 +14,7 @@
 
 int		act_drop_obj(char *param, t_client *client, t_info *info)
 {
-  t_list	*list;
+  t_ressource	*ressource;
   int		idx;
 
   idx = get_ressource_idx(param);
@@ -22,10 +22,15 @@ int		act_drop_obj(char *param, t_client *client, t_info *info)
     send_buf_to_client(client, KO);
   else
     {
-      list = info->zone[client->x][client->y].ressources;
-      push_list(&list, param);
-      client->qte_ressource[idx] -= 1;
-      send_buf_to_client(client, OK);
+      if (client->qte_ressource[idx] > 0)
+	{
+	  client->qte_ressource[idx] -= 1;
+	  ressource = &gl_ressource[idx];
+	  push_list(&(info->zone[client->x][client->y].ressources), ressource);
+	  send_buf_to_client(client, OK);
+	}
+      else
+	send_buf_to_client(client, KO);
     }
   return (0);
 }

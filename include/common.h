@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Tue May  6 16:12:24 2008 florent hochwelker
+** Last update Tue May  6 16:23:43 2008 majdi toumi
 */
 
 #ifndef __COMMON_H__
@@ -52,7 +52,7 @@ typedef enum
     MENDIANE,
     PHIRAS,
     THYSTAME,
-    HAMBURGER
+    NOURRITURE
   }	t_idx_ressource;
 
 #endif /* !__COMMON_H__ */

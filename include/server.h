@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May  6 16:16:17 2008 florent hochwelker
+** Last update Tue May  6 16:22:29 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -323,6 +323,8 @@ int	act_fork(char *param, t_client *client, t_info *info);
 */
 void		debug(char *s, int pos);
 void		dump_world(t_zone **zworld, int y, int x);
+void		dump_ressources(t_list *ressource);
+void		dump_clients(t_list *clients);
 void		dump_client_position(t_list *client);
 
 /*

@@ -5,20 +5,20 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:55:01 2008 majdi toumi
-** Last update Mon May  5 17:20:15 2008 majdi toumi
+** Last update Tue May  6 15:52:00 2008 majdi toumi
 */
 
 #include "server.h"
 #include "common.h"
 
 t_ressource	gl_ressource[] = {
-  {LINEMATE, "Linemate", 0},
-  {DERAUMERE, "Deraumere", 0},
-  {SIBUR, "Sibur", 0},
-  {MENDIANE, "Mendiane", 0},
-  {PHIRAS, "Phiras", 0},
-  {THYSTAME, "Thystame", 0},
-  {HAMBURGER, "Hamburger", 0},
+  {LINEMATE, "linemate", 0},
+  {DERAUMERE, "deraumere", 0},
+  {SIBUR, "sibur", 0},
+  {MENDIANE, "mendiane", 0},
+  {PHIRAS, "phiras", 0},
+  {THYSTAME, "thystame", 0},
+  {NOURRITURE, "nourriture", 0},
   {-1, 0, 0}
 };
 

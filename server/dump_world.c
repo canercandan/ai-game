@@ -1,35 +1,15 @@
 /*
-** dump_zone.c for **zappy** in /u/epitech_2010s/toumi_m/cu/rendu/c/zappy/zappy/server
+** dump_world.c for **zappy** in /u/epitech_2010s/toumi_m/cu/rendu/c/zappy/zappy/server
 ** 
 ** Made by majdi toumi
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:23:19 2008 majdi toumi
-** Last update Mon May  5 17:40:08 2008 majdi toumi
+** Last update Tue May  6 15:21:56 2008 majdi toumi
 */
 
 #include <stdio.h>
 #include "server.h"
-
-static void		dump_ressources(t_list *ressource)
-{
-  debug("dump_ressources()", 4);
-  while (ressource)
-    {
-      fprintf(stdout, "%s ", (char *)ressource->data);
-      ressource = ressource->next;
-    }
-}
-
-static void		dump_clients(t_list *clients)
-{
-  debug("dump_clients()", 4);
-  while (clients)
-    {
-      fprintf(stdout, "%s ", (char *)clients->data);
-      clients = clients->next;
-    }
-}
 
 void		dump_world(t_zone **zone, int y, int x)
 {

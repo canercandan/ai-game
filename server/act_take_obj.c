@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May  6 16:12:36 2008 florent hochwelker
+** Last update Tue May  6 16:21:27 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -21,7 +21,6 @@ static void	*get_param_from_list(t_list *list, char *param)
   while (list)
     {
       res = (t_ressource *)list->data;
-      printf("res = %s\n", res->name);
       if (!strcmp(res->name, param))
 	return (list->data);
       list = list->next;
@@ -32,7 +31,7 @@ static void	*get_param_from_list(t_list *list, char *param)
 int		act_take_obj(char *param, t_client *client, t_info *info)
 {
   t_list	*list;
-  t_list	*pos;
+  void		*data;
   int		idx;
 
   list = info->zone[client->x][client->y].ressources;
@@ -41,19 +40,18 @@ int		act_take_obj(char *param, t_client *client, t_info *info)
   else
     {
       idx = get_ressource_idx(param);
-      if (idx == -1)
+      data = get_param_from_list(list, param);
+      if (data == (void *)-1)
 	send_buf_to_client(client, KO);
       else
 	{
-	  pos = get_param_from_list(list, param);
-	  if (pos == (void *)-1)
-	    send_buf_to_client(client, KO);
-	  else
-	    {
-	      rm_data_from_list(&list, pos);
-	      client->qte_ressource[idx] += 1;
-	      send_buf_to_client(client, OK);
-	    }
+	  printf("BEFORE\n");
+	  dump_ressources(list);
+	  rm_data_from_list(&list, data);
+	  printf("AFTER\n");
+	  dump_ressources(list);
+	  client->qte_ressource[idx] += 1;
+	  send_buf_to_client(client, OK);
 	}
     }
   return (0);
