@@ -13,9 +13,9 @@ t_window	*init_window()
   w->smgr = w->device->getSceneManager();
   w->env = w->device->getGUIEnvironment();
   w->driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, true);
-  w->camera = w->smgr->addCameraSceneNodeFPS(0, 100, 1000);
-  w->camera->setPosition(vector3df(0, 100, 0));
-  w->camera->setTarget(vector3df(100, 100, 100));
+  w->camera = w->smgr->addCameraSceneNodeFPS(0, 100, 10);
+  w->camera->setPosition(vector3df(0, 0, 0));
+  w->camera->setTarget(vector3df(10, 0, 10));
   w->camera->setFarValue(FAR_VALUE);
   w->device->getCursorControl()->setVisible(false);
   w->device->getFileSystem()->addZipFileArchive(OBS_PK3);

@@ -9,9 +9,9 @@ void				msg_reception(t_obs *obs)
   invader = obs->window->smgr->addAnimatedMeshSceneNode(obs->window->smgr->getMesh("models/perso.md2"));
   if (invader)
     {
-      anim = obs->window->smgr->createFlyStraightAnimator(vector3df(100, 24, 100),
-							  vector3df(100, 24, 100),
-							  1, true);
+      anim = obs->window->smgr->createFlyStraightAnimator(vector3df(0, 0, 0),
+							  vector3df(0, 0, 0),
+							  1000, true);
       invader->addAnimator(anim);
       anim->drop();
       invader->setFrameLoop(1, 300);
