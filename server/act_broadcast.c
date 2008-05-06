@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May  6 17:26:47 2008 caner candan
+** Last update Tue May  6 17:52:27 2008 caner candan
 */
 
 #include <string.h>
@@ -68,7 +68,7 @@ static int	give_me_the_k(t_info *info, t_client *dst,
   if (!(src->x - dst->x) && !(src->y - dst->y) &&
       square_root(power(ABS(src->x - dst->x), 2) +
 		  power(ABS(src->y - dst->y), 2)) >
-      square_root(power(info->x, 2) - power(info->y, 2)))
+      square_root(power(info->x, 2) - power(info->y, 2)) / 2)
     {
       diff_x = info->x - ABS(src->x - dst->x);
       diff_y = info->y - ABS(src->y - dst->y);
