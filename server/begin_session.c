@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Tue May  6 09:10:06 2008 florent hochwelker
+** Last update Tue May  6 16:22:17 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -47,7 +47,7 @@ static int	inc_and_check_max_user(t_team *team, t_client *client, t_info *info)
       return (0);
     }
   team->nb++;
-  client->hp = time(NULL) + START_UNIT_LIFE * FOOD_HP * info->time;
+  client->hp = time(NULL) + START_UNIT_LIFE * FOOD_HP; /* * info->time; */
   return (1);
 }
 
