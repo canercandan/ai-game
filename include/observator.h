@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sun May  4 15:07:29 2008 jordan aubry
+** Last update Tue May  6 17:26:32 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -37,7 +37,7 @@ using namespace core;
 
 #define OBS_PK3			"bin/map.pk3"
 
-#define MAP_CASE_BSP		"maps/case.bsp"
+#define MAP_CASE		"maps/case.bmp"
 
 #define SKY_UP			"env/up.tga"
 #define SKY_DN			"env/dn.tga"
@@ -45,6 +45,8 @@ using namespace core;
 #define SKY_LF			"env/lf.tga"
 #define SKY_FT			"env/ft.tga"
 #define SKY_BK			"env/bk.tga"
+
+
 
 /* Structure
 */
@@ -92,6 +94,8 @@ int		extract_num(char *buf, int num);
 void		msg_reception(t_obs *obs);
 
 void		draw_all(t_obs *obs);
+void		draw_rock(t_obs *obs, int x, int y);
+
 void		free_obs(t_obs *obs);
 
 #endif
