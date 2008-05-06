@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May  6 16:22:29 2008 majdi toumi
+** Last update Tue May  6 17:42:41 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -338,6 +338,7 @@ void		pop_all_list(t_list *t);
 ** Clients list chaine's functions
 */
 void		*rm_data_from_list(t_list **t, void *data);
+void		rm_ressource_from_list(t_list **t, char *name);
 void		*get_client_from_list(t_list *t, int socket);
 void		show_clients_from_list(t_list *t);
 void		sort_queue_list(t_list **begin);

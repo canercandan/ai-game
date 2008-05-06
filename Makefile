@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue May  6 17:35:07 2008 jordan aubry
+## Last update Tue May  6 17:53:14 2008 majdi toumi
 ##
 
 NAME_SRV	=	server
@@ -81,6 +81,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)pop_all_list.c		\
 			$(PATH_SRV)rm_data_from_list.c		\
 			$(PATH_SRV)rm_client_from_queue.c	\
+			$(PATH_SRV)rm_ressource_from_list.c	\
 			$(PATH_SRV)free_client.c		\
 			$(PATH_SRV)get_client_from_list.c	\
 			$(PATH_SRV)show_clients_from_list.c	\
