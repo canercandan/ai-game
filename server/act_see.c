@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May  5 08:27:34 2008 caner candan
+** Last update Tue May  6 17:32:17 2008 caner candan
 */
 
 #include <stdio.h>
@@ -50,15 +50,17 @@ static int	send_ressources(t_info *info, t_client *client,
   t_list	*ressources;
   int		x;
   int		y;
+  int		i;
 
   x = get_x(client, x_diff, y_diff);
   y = get_y(client, x_diff, y_diff);
   is_in_map(info, &x, &y);
   printf("x: [%d], y: [%d]\n", x, y);
   ressources = info->zone[x][y].ressources;
-  while (ressources)
+  for (i = 0; ressources; i++)
     {
-      send_buf_to_client(client, SEPARATOR_ELM);
+      if (x_diff != 0 || y_diff != 0 || i != 0)
+	send_buf_to_client(client, SEPARATOR_ELM);
       send_buf_to_client(client, ((t_ressource *) ressources->data)->name);
       ressources = ressources->next;
     }
