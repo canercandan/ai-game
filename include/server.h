@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May  6 17:42:41 2008 majdi toumi
+** Last update Tue May  6 18:45:02 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -275,7 +275,7 @@ void		server_get(t_info *info);
 void		server_read(t_info *info, t_client *client);
 void		server_write(t_info *info, t_client *client);
 int		execute_action(char *str, t_client *cli, t_info *info);
-int		scheduler_exec(t_info *info);
+int		scheduler_exec(t_info *info, void *tp);
 void		calculate_timeout(t_info *info, void *tp);
 void		send_info_to_obs(t_client *client, t_info *info);
 int		send_buf_to_client(t_client *client, char *buf);

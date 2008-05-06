@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Tue May  6 09:24:53 2008 florent hochwelker
+** Last update Tue May  6 17:20:26 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -82,6 +82,21 @@ static void		check_death_clients(t_info *info, unsigned int timestamp)
     }
 }
 
+/* debug */
+void	show_list(t_list *list)
+{
+  if (list == 0)
+    {
+      printf("liste queue vide\n");
+    }
+  while (list)
+    {
+      printf("queue, id socket: %d\n", ((t_queue*)(list->data))->client->socket);
+      list = list->next;
+    }
+}
+/* debug */
+
 void			server_get(t_info *info)
 {
   fd_set		fd_read;
@@ -104,8 +119,9 @@ void			server_get(t_info *info)
 	}
       gettimeofday(&tp, NULL);
       check_death_clients(info, tp.tv_sec);
+      show_list(info->queue);
       get_isset_fd(info, &fd_read, &fd_write);
-      scheduler_exec(info);
+      scheduler_exec(info, &tp);
       printf("waiting...\n");
     }
 }
