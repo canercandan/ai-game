@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Tue May  6 20:24:47 2008 caner candan
+** Last update Tue May  6 21:31:51 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -26,6 +26,8 @@ t_client	*add_client(t_info *info, int server)
   client->fct_write = client_write;
   client->buf_read[0] = 0;
   client->buf_write[0] = 0;
+  client->buf_read[BUF_SIZE] = 0;
+  client->buf_write[BUF_SIZE] = 0;
   client->level = START_LEVEL;
   client->x = get_random(info->x);
   client->y = get_random(info->y);
