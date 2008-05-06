@@ -3,21 +3,14 @@
 
 void		init_case(t_obs *obs)
 {
-  IAnimatedMesh *map;
   ISceneNode	*node;
-  int		i;
-  int		j;
 
-  map = obs->window->smgr->getMesh(MAP_CASE_BSP);
-  if (map)
+  node = obs->window->smgr->addCubeSceneNode();
+  if (node)
     {
-      for (i = 0; i < obs->x; i++)
-	{
-	  for (j = 0; j < obs->y; j++)
-	    {
-	      node = obs->window->smgr->addOctTreeSceneNode(map->getMesh(0));
-	      node->setPosition(vector3df((i * OBS_CASE), 0, (j * OBS_CASE)));
-	    }
-	}
+      node->setScale(vector3df((obs->x * 10), 1, (obs->y * 10)));
+      node->setMaterialTexture(0, obs->window->driver->getTexture("textures/case.bmp"));
+      node->setMaterialFlag(EMF_LIGHTING, false);
+      node->setPosition(vector3df(0, -1, 0));
     }
 }
