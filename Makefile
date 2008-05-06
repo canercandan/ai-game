@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May  5 18:05:13 2008 majdi toumi
+## Last update Tue May  6 15:29:55 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -13,14 +13,12 @@ NAME_CLI	=	client
 NAME_OBS	=	observator
 NAME_X		=	x
 NAME_BIN	=	bin
-NAME_OBJ	=	obj
 
 PATH_SRV	=	$(NAME_SRV)/
 PATH_CLI	=	$(NAME_CLI)/
 PATH_OBS	=	$(NAME_OBS)/
 PATH_X		=	$(NAME_X)/
 PATH_BIN	=	$(NAME_BIN)/
-PATH_OBJ	=	$(NAME_OBJ)/
 
 BIN_SRV		=	$(PATH_BIN)$(NAME_SRV)
 BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
