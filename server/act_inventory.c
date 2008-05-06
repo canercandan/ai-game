@@ -5,83 +5,55 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May  5 20:22:15 2008 florent hochwelker
+** Last update Tue May  6 20:51:46 2008 majdi toumi
 */
 
 #include <stdio.h>
+#include <time.h>
 #include <string.h>
 #include "server.h"
 #include "common.h"
 #include "x.h"
 
-static int	get_size_inventory(t_client *client)
+static void	get_inventory(t_client *client, char *buff)
 {
-  int		qte;
-  char		nb[2];
-  int		len;
+  char		qte[3];
+  char		hp[5];
   int		i;
 
   i = 0;
-  len =  strlen(START_CMD);
-  while (i < NB_INVENTORY)
+  strcpy(buff, START_CMD);
+  snprintf(hp, 4, "%d", (client->hp - time(NULL)) / FOOD_HP);
+  strcat(buff, gl_ressource[NB_INVENTORY - 1].name);
+  strcat(buff, SEPARATOR_ELM);
+  strcat(buff, hp);
+  while (i < NB_INVENTORY - 1)
     {
-      qte = client->qte_ressource[i];
-      printf("qte = %d\n", qte);
-      snprintf(nb, 2, "%d", qte);
-      len += strlen(SEPARATOR_ELM) + strlen(gl_ressource[i].name) +
-	strlen(SEPARATOR_ELM) + strlen(nb);
-      if (i != (NB_INVENTORY - 1))
-	len += strlen(SEPARATOR_CMD);
+      if (i != (NB_INVENTORY - 2))
+	strcat(strcat(buff, SEPARATOR_CMD), SEPARATOR_ELM);
+      snprintf(qte, 3, "%d", client->qte_ressource[i]);
+      strcat(buff, gl_ressource[i].name);
+      strcat(buff, SEPARATOR_ELM);
+      strcat(buff, qte);
       i++;
     }
-  len += strlen(SEPARATOR_ELM);
-  len += strlen(END_CMD);
-  return (len);
-}
-
-static char	*get_inventory(t_client *client, int len)
-{
-  int		qte;
-  char		nb[2];
-  char		*s;
-  int		i;
-
-  i = 0;
-  s = xmalloc(sizeof(*s) * len);
-  strcpy(s, START_CMD);
-  while (i < NB_INVENTORY)
-    {
-      qte = client->qte_ressource[i];
-      printf("qte2 = %d\n", qte);
-      snprintf(nb, 2, "%d", qte);
-      strcat(s, SEPARATOR_ELM);
-      strcat(s, gl_ressource[i].name);
-      strcat(s, SEPARATOR_ELM);
-      strcat(s, nb);
-      if (i != (NB_INVENTORY - 1))
-	strcat(s, SEPARATOR_CMD);
-      i++;
-    }
-  strcat(s, SEPARATOR_ELM);
-  strcat(s, END_CMD);
-  return (s);
+  strcat(buff, END_CMD);
 }
 
 int		act_inventory(char *param, t_client *client, t_info *info)
 {
+  static char	buff[LEN_INVENTORY];
   static int	i = 0;
-  static char	*s;
-  int		len;
 
   (void)param;
   (void)info;
   if (i == 0)
     {
-      len = get_size_inventory(client);
-      s = get_inventory(client, len);
+      bzero(buff, sizeof(buff));
+      get_inventory(client, buff);
     }
   bzero(client->buf_write, BUF_SIZE);
-  strncpy(client->buf_write, s + i, BUF_SIZE);
+  strncpy(client->buf_write, &buff[i], BUF_SIZE);
   if (strlen(client->buf_write) == BUF_SIZE)
     {
       i = BUF_SIZE;

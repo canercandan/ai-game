@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May  6 18:45:02 2008 florent hochwelker
+** Last update Tue May  6 20:56:01 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -32,6 +32,7 @@
 # define COEFFICIENT	0.05
 # define BUF_SIZE	1024
 # define NB_INVENTORY	7
+# define LEN_INVENTORY	512
 # define MAX_QUEUE	10
 # define LOOP_FOR_SEND	1337
 
