@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May  6 20:56:01 2008 majdi toumi
+** Last update Tue May  6 21:01:18 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -24,11 +24,11 @@
 /*
 ** Defines
 */
-# define START_UNIT_LIFE	10
+# define START_UNIT_LIFE	10.0	/* en float */
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
-# define FOOD_HP	126
+# define FOOD_HP	126.0		/* en float */
 # define COEFFICIENT	0.05
 # define BUF_SIZE	1024
 # define NB_INVENTORY	7
@@ -152,7 +152,7 @@ typedef struct	s_client
   char		buf_read[BUF_SIZE + 1];
   char		buf_write[BUF_SIZE + 1];
   char		level;
-  unsigned int	hp;
+  double	hp;
   int		x;
   int		y;
   char		direction;

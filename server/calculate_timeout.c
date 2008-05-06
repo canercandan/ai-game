@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Mon May  5 20:46:08 2008 florent hochwelker
-** Last update Tue May  6 18:45:19 2008 florent hochwelker
+** Last update Tue May  6 20:54:31 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -21,12 +21,26 @@ static void	check_timeout_death(struct timeval *timeout,
   clients = info->clients;
   while (clients)
     {
-      if (((t_client *)clients->data)->status == ST_CLIENT
-	  && ((t_client *)clients->data)->hp < (unsigned int)(timeout->tv_sec))
+      if (((t_client *)clients->data)->status == ST_CLIENT &&
+	  (((unsigned int)((t_client *)clients->data)->hp) <
+	   (unsigned int)(timeout->tv_sec) + ((struct timeval *)tp)->tv_sec ||
+	   (((unsigned int)((t_client *)clients->data)->hp) ==
+	    (unsigned int)(timeout->tv_sec) + ((struct timeval *)tp)->tv_sec &&
+	    ((((t_client *)clients->data)->hp -
+	      (int)((t_client *)clients->data)->hp)) * 1e6 <
+	    (unsigned int)(timeout->tv_usec) + ((struct timeval *)tp)->tv_usec)))
 	{
 	  timeout->tv_sec = ((t_client *)clients->data)->hp -
 	    ((struct timeval *)tp)->tv_sec;
-	  timeout->tv_usec = 0;
+	  timeout->tv_usec =
+	    (((t_client *)clients->data)->hp -
+	     (int)((t_client *)clients->data)->hp) * 1e6 -
+	    ((struct timeval *)tp)->tv_usec;
+	  if (timeout->tv_usec < 0)
+	    {
+	      timeout->tv_usec += 1e6;
+	      timeout->tv_sec--;
+	    }
 	}
       clients = clients->next;
     }

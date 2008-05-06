@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Tue May  6 18:35:36 2008 florent hochwelker
+** Last update Tue May  6 19:41:52 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -39,17 +39,20 @@ static void	bye(t_error err, t_client *cli)
   strcat(cli->buf_write, KO);
 }
 
-static int	inc_and_check_max_user(t_team *team, t_client *client, t_info *info)
+static int		inc_and_check_max_user(t_team *team, t_client *client,
+					       t_info *info)
 {
-  (void)info;			/* tmp pour pas crever */
+  struct timeval	tp;
+
+  gettimeofday(&tp, NULL);
   if (team->nb == team->max)
     {
       bye(ERR_MAX_CLIENT, client);
       return (0);
     }
   team->nb++;
-  client->hp = time(NULL) + START_UNIT_LIFE * FOOD_HP; /* * info->time; */
-  printf("hp = %d\n", client->hp);
+  client->hp = tp.tv_sec + START_UNIT_LIFE * FOOD_HP * info->time;
+  printf("hp = %f\n", client->hp);
   return (1);
 }
 

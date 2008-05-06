@@ -5,10 +5,9 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 17:35:17 2008 caner candan
-** Last update Tue May  6 17:45:45 2008 florent hochwelker
+** Last update Tue May  6 19:04:28 2008 florent hochwelker
 */
 
-#include <stdio.h>		/* a virer printf */
 #include <stdlib.h>
 #include <sys/time.h>
 #include "server.h"
@@ -20,10 +19,10 @@ static void	first_elm(t_list **t)
   debug("first_elm()", -1);
   tmp = *t;
   *t = (*t)->next;
-  /*   free(((t_queue *)tmp)->param); */
-  /*   free(((t_queue *)tmp)->time); */
+  free(((t_queue *)tmp->data)->param);
+  free(((t_queue *)tmp->data)->time);
+  free(tmp->data);
   free(tmp);
-  printf("first delete\n");
 }
 
 static void	loop_elm(t_list *elm, int socket)
@@ -33,18 +32,18 @@ static void	loop_elm(t_list *elm, int socket)
   debug("loop_elm()", -1);
   while (elm->next)
     {
-      printf("while socket = %d\n", ((t_queue *)elm->data)->client->socket);
       if (((t_queue *)elm->next->data)->client->socket != socket)
 	{
 	  elm = elm->next;
 	  continue;
 	}
       next = elm->next->next;
-      /*       free(((t_queue *)elm->next)->param); */
-      /*       free(((t_queue *)elm->next)->time); */
+      free(((t_queue *)elm->data)->param);
+      free(((t_queue *)elm->data)->time);
+      free(elm->data);
+      free(elm);
       free(elm->next);
       elm->next = next;
-      printf("loop delete\n");
     }
 }
 
