@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Mon May  5 20:46:08 2008 florent hochwelker
-** Last update Tue May  6 20:54:31 2008 florent hochwelker
+** Last update Tue May  6 21:18:07 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "server.h"
 
-static void	check_timeout_death(struct timeval *timeout,
+static void	check_timeout_death(struct timeval *timeout, /* a mettre a la norme */
 				    t_info *info, void *tp)
 {
   t_list	*clients;
