@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr  1 11:13:29 2008 florent hochwelker
-** Last update Wed Apr 30 14:36:21 2008 florent hochwelker
+** Last update Tue May  6 18:47:44 2008 florent hochwelker
 */
 
 char	*get_word_n(char *str, int n)
@@ -17,9 +17,12 @@ char	*get_word_n(char *str, int n)
   count = n;
   while (--count)
     {
-      while (str[i] != ' ')
+      while (str[i] && str[i] != ' ')
 	i++;
-      i++;
+      if (str[i] != '\0')
+	i++;
+      else
+	return (str - 1);
     }
   return (str + i);
 }
