@@ -5,11 +5,12 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Sun May  4 15:03:22 2008 florent hochwelker
+** Last update Tue May  6 09:10:06 2008 florent hochwelker
 */
 
 #include <server.h>
 #include <stdio.h>
+#include <sys/time.h>
 #include "common.h"
 #include "string.h"
 
@@ -38,7 +39,7 @@ static void	bye(t_error err, t_client *cli)
   strcat(cli->buf_write, KO);
 }
 
-static int	inc_and_check_max_user(t_team *team, t_client *client)
+static int	inc_and_check_max_user(t_team *team, t_client *client, t_info *info)
 {
   if (team->nb == team->max)
     {
@@ -46,6 +47,7 @@ static int	inc_and_check_max_user(t_team *team, t_client *client)
       return (0);
     }
   team->nb++;
+  client->hp = time(NULL) + START_UNIT_LIFE * FOOD_HP * info->time;
   return (1);
 }
 
@@ -57,7 +59,7 @@ static int	check_team_and_connect(t_client *cli, t_info *info)
   name = trim(cli->buf_read);
   if ((team = get_team(name, info)) > (t_team*)1) /* team OK */
     {
-      if (!inc_and_check_max_user(team, cli))
+      if (!inc_and_check_max_user(team, cli, info))
 	return (0);
       cli->status = ST_CLIENT;
       cli->team = team;

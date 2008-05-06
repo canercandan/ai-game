@@ -5,13 +5,12 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Mon May  5 18:24:40 2008 florent hochwelker
+** Last update Mon May  5 21:56:09 2008 florent hochwelker
 */
 
 #include <sys/time.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>		/* a vire pour le printf */
 #include "x.h"
 #include "server.h"
 #include "common.h"
@@ -32,6 +31,7 @@ static t_action	actions[] =
     {0, 0, 0, 0}
   };
 
+
 static struct timeval	*set_timeout(float delay,
 				     t_info *info,
 				     struct timeval *cur)
@@ -40,11 +40,11 @@ static struct timeval	*set_timeout(float delay,
 
   cur->tv_sec += info->time * delay;
   tmp = info->time * delay - (int)(info->time * delay);
-  cur->tv_usec += tmp * 10e5;
-  if (cur->tv_usec > 10e5)
+  cur->tv_usec += tmp * 1e6;
+  if (cur->tv_usec > 1e6)
     {
       cur->tv_sec++;
-      cur->tv_usec -= 10e5;
+      cur->tv_usec -= 1e6;
     }
   return (cur);
 }
@@ -90,8 +90,7 @@ int			execute_action(char *str, t_client *cli, t_info *info)
 	      {
 		new_queue = create_new_queue(str, actions[i].f,
 					     set_timeout(actions[i].delay, info,
-							 &tp),
-					     cli);
+							 &tp), cli);
 		push_list(&info->queue, new_queue);
 		sort_queue_list(&info->queue);
 	      }

@@ -5,13 +5,15 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Mon May  5 16:43:01 2008 florent hochwelker
+** Last update Tue May  6 09:24:53 2008 florent hochwelker
 */
 
 #include <sys/select.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/time.h>
+#include <string.h>
+#include "common.h"
 #include "server.h"
 
 static void	get_set_fd(t_list *t, fd_set *fd_read,
@@ -53,7 +55,7 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
     }
 }
 
-static void	*get_timeout(t_info *info)
+static void		*get_timeout(t_info *info)
 {
   if (((struct timeval *)info->timeout)->tv_sec == -1 &&
       ((struct timeval *)info->timeout)->tv_usec == -1)
@@ -61,11 +63,31 @@ static void	*get_timeout(t_info *info)
   return (info->timeout);
 }
 
-void		server_get(t_info *info)
+static void		check_death_clients(t_info *info, unsigned int timestamp)
 {
-  fd_set	fd_read;
-  fd_set	fd_write;
-  int		fd_max;
+  t_list		*clients;
+
+  clients = info->clients;
+  while (clients)
+    {
+      if (((t_client *)clients->data)->status == ST_CLIENT
+	  && ((t_client *)clients->data)->hp <= timestamp)
+	{
+	  rm_client_from_queue(&info->queue,
+			       ((t_client *)clients->data)->socket, info);
+	  ((t_client *)clients->data)->status = ST_DEATH;
+	  strcpy(((t_client *)clients->data)->buf_write, DEAD);
+	}
+      clients = clients->next;
+    }
+}
+
+void			server_get(t_info *info)
+{
+  fd_set		fd_read;
+  fd_set		fd_write;
+  int			fd_max;
+  struct timeval	tp;
 
   debug("server_get()", 1);
   while (42)
@@ -80,6 +102,8 @@ void		server_get(t_info *info)
 	  printf("Error with select()\n");
 	  exit(-1);
 	}
+      gettimeofday(&tp, NULL);
+      check_death_clients(info, tp.tv_sec);
       get_isset_fd(info, &fd_read, &fd_write);
       scheduler_exec(info);
       printf("waiting...\n");

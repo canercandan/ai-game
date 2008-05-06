@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue May  6 15:29:55 2008 caner candan
+## Last update Tue May  6 16:12:13 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -95,7 +95,8 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)send_buf_to_client.c		\
 			$(PATH_SRV)is_levelup.c			\
 			$(PATH_SRV)exist_data_from_list.c	\
-			$(PATH_SRV)get_ressource_idx.c
+			$(PATH_SRV)get_ressource_idx.c		\
+			$(PATH_SRV)calculate_timeout.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c			\
 			$(PATH_CLI)enter_in_the_world.c		\

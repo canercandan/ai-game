@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Mon May  5 18:54:18 2008 majdi toumi
+** Last update Tue May  6 09:09:18 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -34,7 +34,6 @@ t_client	*add_client(t_info *info, int server)
   i = 0;
   while (i < NB_INVENTORY)
     client->qte_ressource[i++] = 0;
-  client->hp = START_UNIT_LIFE * FOOD_HP * info->time;
   push_list(&info->clients, (void *) client);
   return (client);
 }

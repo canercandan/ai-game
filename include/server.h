@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May  5 18:13:02 2008 majdi toumi
+** Last update Tue May  6 16:16:17 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -32,14 +32,12 @@
 # define COEFFICIENT	0.05
 # define BUF_SIZE	1024
 # define NB_INVENTORY	7
-# define NB_FOOD	3
 # define MAX_QUEUE	10
 # define LOOP_FOR_SEND	1337
 
 /*
 ** Zappy's index names
 */
-/* world */
 # define NAME_WORLD	"Trantor"
 
 /*
@@ -68,7 +66,7 @@
 ** Null
 */
 # ifndef NULL
-#  define NULL	(void *) 0
+#  define NULL	(void *)0
 # endif /* !NULL */
 
 /*
@@ -77,6 +75,7 @@
 # define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
 # define ABS(x)			(((x) < 0) ? (x) * -1 : (x))
 # define PWR(x)			(1 << (x))
+# define IN_TIMEVAL(data)	((struct timeval *)(data))
 
 /*
 ** Status client
@@ -87,7 +86,8 @@ typedef	enum
     ST_WELCOME_OK,
     ST_SERVER,
     ST_CLIENT,
-    ST_OBS_CLIENT
+    ST_OBS_CLIENT,
+    ST_DEATH
   }	t_status;
 
 /*
@@ -151,7 +151,7 @@ typedef struct	s_client
   char		buf_read[BUF_SIZE + 1];
   char		buf_write[BUF_SIZE + 1];
   char		level;
-  int		hp;
+  unsigned int	hp;
   int		x;
   int		y;
   char		direction;
@@ -271,11 +271,12 @@ void		add_server(t_info *info);
 void		client_read(t_info *info, t_client *client);
 void		client_write(t_info *info, t_client *client);
 void		client_disconnect(t_client *client, t_info *info, int dead);
-  void		server_get(t_info *info);
+void		server_get(t_info *info);
 void		server_read(t_info *info, t_client *client);
 void		server_write(t_info *info, t_client *client);
 int		execute_action(char *str, t_client *cli, t_info *info);
 int		scheduler_exec(t_info *info);
+void		calculate_timeout(t_info *info, void *tp);
 void		send_info_to_obs(t_client *client, t_info *info);
 int		send_buf_to_client(t_client *client, char *buf);
 
@@ -344,7 +345,7 @@ int		exist_data_from_list(t_list *t, void *data);
 /*
 ** Queue list functions
 */
-void		rm_client_from_queue(t_list **t, int socket);
+void		rm_client_from_queue(t_list **t, int socket, t_info *info);
 t_queue		*create_new_queue(char *str, int (*f)(),
 			  void *new_time, t_client *cli);
 

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May  5 19:08:58 2008 majdi toumi
+** Last update Mon May  5 20:22:15 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -89,4 +89,3 @@ int		act_inventory(char *param, t_client *client, t_info *info)
     }
   return (0);
 }
-
