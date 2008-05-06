@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May  6 21:01:18 2008 florent hochwelker
+** Last update Tue May  6 21:25:42 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -24,7 +24,7 @@
 /*
 ** Defines
 */
-# define START_UNIT_LIFE	10.0	/* en float */
+# define START_UNIT_LIFE	10000.0	/* en float */
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
