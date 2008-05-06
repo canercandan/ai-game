@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Tue May  6 16:22:17 2008 florent hochwelker
+** Last update Tue May  6 16:23:18 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -41,6 +41,7 @@ static void	bye(t_error err, t_client *cli)
 
 static int	inc_and_check_max_user(t_team *team, t_client *client, t_info *info)
 {
+  (void)info;			/* tmp pour pas crever */
   if (team->nb == team->max)
     {
       bye(ERR_MAX_CLIENT, client);
