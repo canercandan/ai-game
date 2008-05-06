@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May  6 17:32:17 2008 caner candan
+** Last update Tue May  6 21:02:49 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -69,18 +69,23 @@ static int	send_ressources(t_info *info, t_client *client,
 
 int	act_see(char *param, t_client *client, t_info *info)
 {
+  char	*s;
+  int	len;
   int	i;
   int	j;
 
   (void) param;
-  send_buf_to_client(client, START_CMD);
+  len = act_see_len(client, info);
+  s = xmalloc(sizeof(*s) * len);
+  send_buf_to_client(s, START_CMD);
   for (i = 0; i <= client->level; i++)
     for (j = 0 - i; j <= i; j++)
       {
-	send_ressources(info, client, j, i);
+	send_ressources(info, s, j, i);
 	if (i != client->level || j != i)
-	  send_buf_to_client(client, SEPARATOR_CMD);
+	  send_buf_to_client(s, SEPARATOR_CMD);
       }
-  send_buf_to_client(client, END_CMD);
+  send_buf_to_client(s, END_CMD);
+
   return (0);
 }
