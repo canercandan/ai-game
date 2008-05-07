@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed May  7 10:59:40 2008 majdi toumi
+** Last update Wed May  7 11:13:22 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -318,6 +318,12 @@ int	act_broadcast(char *param, t_client *client, t_info *info);
 int	is_levelup(t_info *info, t_client *client);
 int	act_levelup(char *param, t_client *client, t_info *info);
 int	act_fork(char *param, t_client *client, t_info *info);
+
+/*
+** Mathematical's functions
+*/
+int	power(int nb, int pwr);
+int	square_root(int nb);
 
 /*
 ** Debug's functions

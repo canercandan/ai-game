@@ -5,38 +5,12 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May  6 20:59:52 2008 caner candan
+** Last update Wed May  7 11:10:14 2008 caner candan
 */
 
-#include <string.h>
 #include <stdio.h>
 #include "server.h"
 #include "common.h"
-
-static int	square_root(int nb)
-{
-  int		i;
-
-  for (i = 0; i * i <= nb; i++);
-  if (i * i == nb)
-    return (i);
-  return (i - 1);
-}
-
-static int	power(int nb, int pwr)
-{
-  int		res;
-  int		i;
-
-  if (!pwr)
-    return (1);
-  if (pwr < 0)
-    return (0);
-  res = nb;
-  for (i = 1; i < pwr; i++)
-    res *= nb;
-  return (res);
-}
 
 static int	return_res_k(int diff_x, int diff_y)
 {

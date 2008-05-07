@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Tue May  6 16:23:43 2008 majdi toumi
+** Last update Wed May  7 10:46:19 2008 caner candan
 */
 
 #ifndef __COMMON_H__
@@ -29,6 +29,7 @@
 # define DEAD		"mort\n"
 # define LVLUP_PROCESS	"elevation en cours\n"
 # define MESSAGE	"message "
+# define KICKIT		"deplacement "
 
 /*
 ** Directions
