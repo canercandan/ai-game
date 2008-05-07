@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 11:11:51 2008 caner candan
+** Last update Wed May  7 12:10:04 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -29,7 +29,7 @@ int		act_take_obj(char *param, t_client *client, t_info *info)
       else
 	{
 	  if (!strcmp(param, gl_ressource[NB_INVENTORY - 1].name))
-	    client->hp += FOOD_HP;
+	    client->hp += FOOD_HP * info->time;
 	  else
 	    client->qte_ressource[idx] += 1;
 	  rm_ressource_from_list(&list, param);

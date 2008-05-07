@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Tue May  6 19:41:52 2008 florent hochwelker
+** Last update Wed May  7 12:01:14 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -69,7 +69,7 @@ static int	check_team_and_connect(t_client *cli, t_info *info)
       cli->status = ST_CLIENT;
       cli->team = team;
       snprintf(cli->buf_write, BUF_SIZE, "%d\n%d %d\n",
-	       team->max - team->nb + 1, info->x, info->y);
+	       team->max - team->nb, info->x, info->y);
     }
   else if (team == (t_team*)1)	/* le client est un observateur */
     {

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 11:12:12 2008 caner candan
+** Last update Wed May  7 12:10:28 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -26,7 +26,7 @@ int		act_drop_obj(char *param, t_client *client,
       if (client->qte_ressource[idx] > 0)
 	{
 	  if (!strcmp(param, gl_ressource[NB_INVENTORY - 1].name))
-	    client->hp -= FOOD_HP;
+	    client->hp -= FOOD_HP * info->time;
 	  else
 	    client->qte_ressource[idx] -= 1;
 	  ressource = &gl_ressource[idx];
