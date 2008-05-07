@@ -25,6 +25,6 @@ void		init_item(t_obs *obs)
     {
       obs->item[i].x = i * 10;
       obs->item[i].y = 0;
-      obs->item[i].z = 1;
+      obs->item[i].z = -18;
     }
 }

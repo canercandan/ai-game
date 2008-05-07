@@ -13,6 +13,7 @@ int	main(int ac, char **av)
   while(DEVICE(obs->window->device)->run())
     {
       //msg_reception(obs);
+      draw_rock(obs, 0, 0, 2);
       draw_all(obs);
     }
   free_obs(obs);

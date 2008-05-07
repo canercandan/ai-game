@@ -14,7 +14,8 @@ void		draw_rock(t_obs *obs, int x, int y, int type)
   if (rock)
     {
       rock->setScale(vector3df(1, 1, 1));
-      rock->setPosition(vector3df(x, 0, y));
+      rock->setPosition(vector3df(x, obs->item[type].z, y));
       rock->setMaterialFlag(EMF_LIGHTING, false);
+      rock->setMaterialTexture(0, TEXTURE(obs->item[type].img));
     }
 }
