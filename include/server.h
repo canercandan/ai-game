@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed May  7 12:03:21 2008 florent hochwelker
+** Last update Wed May  7 12:11:21 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -378,6 +378,7 @@ int		get_see_len(t_client *client, t_info *info);
 */
 char		*get_word_n(char *str, int n);
 char		*trim(char *str);
+void		putnbr(int nb, char *buff);
 
 /*
 ** Random's functions
