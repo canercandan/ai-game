@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Wed May  7 15:00:03 2008 jordan aubry
+## Last update Wed May  7 15:34:59 2008 jordan aubry
 ##
 
 NAME_SRV	=	server
@@ -122,6 +122,7 @@ SRCS_OBS	=	$(PATH_OBS)main.cpp			\
 			$(PATH_OBS)init_matrix.cpp		\
 			$(PATH_OBS)init_map_size.cpp		\
 			$(PATH_OBS)init_case.cpp		\
+			$(PATH_OBS)init_item.cpp		\
 			$(PATH_OBS)draw_all.cpp			\
 			$(PATH_OBS)draw_rock.cpp		\
 			$(PATH_OBS)extract_num.cpp		\
