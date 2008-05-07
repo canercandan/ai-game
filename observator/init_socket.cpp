@@ -8,6 +8,13 @@
 #include <string.h>
 #include "observator.h"
 
+static void		error(t_obs *obs)
+{
+  write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
+  free_obs(obs);
+  exit(-1);
+}
+
 void			init_socket(t_obs *obs, char *host, char *port)
 {
   struct sockaddr_in	sin;
@@ -17,22 +24,13 @@ void			init_socket(t_obs *obs, char *host, char *port)
 
   pe = getprotobyname("tcp");
   if ((obs->sock = socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
-    {
-      write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
-      free_obs(obs);
-    }
+    error(obs);
   sin.sin_family = AF_INET;
   if (!(h = gethostbyname(host)))
-    {
-      write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
-      free_obs(obs);
-    }
+    error(obs);
   bcopy(h->h_addr, &in, sizeof(in));
   sin.sin_port = htons(extract_num(port, 1));
   sin.sin_addr.s_addr = inet_addr(inet_ntoa(in));
   if (connect(obs->sock, (struct sockaddr*)&sin, sizeof(sin)) < 0)
-    {
-      write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
-      free_obs(obs);
-    }
+    error(obs);
 }

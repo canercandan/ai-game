@@ -10,10 +10,10 @@ int	main(int ac, char **av)
   if (ac < 3)
     main_usage();
   obs = init_obs(av[1], av[2]);
+  draw_rock(obs, 0, 0, 2);
   while(DEVICE(obs->window->device)->run())
     {
       //msg_reception(obs);
-      draw_rock(obs, 0, 0, 2);
       draw_all(obs);
     }
   free_obs(obs);

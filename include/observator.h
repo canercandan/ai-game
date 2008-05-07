@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Wed May  7 17:42:16 2008 jordan aubry
+** Last update Wed May  7 17:53:38 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_H__
@@ -26,7 +26,7 @@
 
 #define NB_RESSOURCE		10
 
-#define SOCK_ERROR		"ERROR : Can't connect !"
+#define SOCK_ERROR		"ERROR : Can't connect !\n"
 
 /* Files
 */
