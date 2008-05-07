@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed May  7 10:58:12 2008 florent hochwelker
+** Last update Wed May  7 10:59:40 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -30,7 +30,7 @@
 
 # define FOOD_HP	126.0		/* en float */
 # define COEFFICIENT	0.05
-# define BUF_SIZE	1024
+# define BUF_SIZE	10
 # define NB_INVENTORY	7
 # define LEN_INVENTORY	512
 # define MAX_QUEUE	10
@@ -364,6 +364,7 @@ void		free_client(t_client *client);
 t_info		*init_info();
 void		free_info(t_info *info);
 int		get_ressource_idx(char *data);
+int		get_see_len(t_client *client, t_info *info);
 
 /*
 ** Usefull functions

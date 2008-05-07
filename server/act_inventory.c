@@ -5,7 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
+<<<<<<< .mine
+** Last update Wed May  7 10:59:08 2008 majdi toumi
+=======
 ** Last update Tue May  6 21:37:22 2008 florent hochwelker
+>>>>>>> .r335
 */
 
 #include <stdio.h>
@@ -29,7 +33,7 @@ static void	get_inventory(t_client *client, char *buff)
   strcat(buff, hp);
   while (i < NB_INVENTORY - 1)
     {
-      if (i != (NB_INVENTORY - 2))
+      if (i != (NB_INVENTORY - 1))
 	strcat(strcat(buff, SEPARATOR_CMD), SEPARATOR_ELM);
       snprintf(qte, 3, "%d", client->qte_ressource[i]);
       strcat(buff, gl_ressource[i].name);
@@ -51,9 +55,11 @@ int		act_inventory(char *param, t_client *client, t_info *info)
     {
       bzero(buff, sizeof(buff));
       get_inventory(client, buff);
+      printf("[buff %s]\n", buff);
     }
   bzero(client->buf_write, BUF_SIZE);
-  strncpy(client->buf_write, &buff[i], BUF_SIZE);
+  strncpy(client->buf_write, buff + i, BUF_SIZE);
+  printf("[client %s]\n", client->buf_write);
   if (strlen(client->buf_write) == BUF_SIZE)
     {
       i = BUF_SIZE;

@@ -5,12 +5,14 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May  6 21:24:55 2008 florent hochwelker
+** Last update Wed May  7 10:52:59 2008 majdi toumi
 */
 
+#include <string.h>
 #include <stdio.h>
 #include "server.h"
 #include "common.h"
+#include "x.h"
 
 static void	is_in_map(t_info *info, int *x, int *y)
 {
@@ -44,7 +46,7 @@ static int	get_y(t_client *client, int x_diff, int y_diff)
   return (client->y - y_diff);
 }
 
-static int	send_ressources(t_info *info, t_client *client,
+static int	send_ressources(t_info *info, t_client *client, char **buff,
 				int x_diff, int y_diff)
 {
   t_list	*ressources;
@@ -60,33 +62,43 @@ static int	send_ressources(t_info *info, t_client *client,
   for (i = 0; ressources; i++)
     {
       if (x_diff != 0 || y_diff != 0 || i != 0)
-	send_buf_to_client(client, SEPARATOR_ELM);
-      send_buf_to_client(client, ((t_ressource *) ressources->data)->name);
+	strcat(*buff, SEPARATOR_ELM);
+      strcat(*buff, ((t_ressource *) ressources->data)->name);
       ressources = ressources->next;
     }
   return (0);
 }
 
-int	act_see(char *param, t_client *client, t_info *info)
+int		act_see(char *param, t_client *client, t_info *info)
 {
-  char	*s;
-  int	len;
-  int	i;
-  int	j;
+  static int	idx = 0;
+  static char	*buff;
+  int		len;
+  int		i;
+  int		j;
 
-  (void)s;
-  (void)len;
-  (void)param;
-  /*   len = act_see_len(client, info); */
-  /*   s = xmalloc(sizeof(*s) * len); */
-  send_buf_to_client(client, START_CMD);
-  for (i = 0; i <= client->level; i++)
-    for (j = 0 - i; j <= i; j++)
-      {
-	send_ressources(info, client, j, i);
-	if (i != client->level || j != i)
-	  send_buf_to_client(client, SEPARATOR_CMD);
-      }
-  send_buf_to_client(client, END_CMD);
+  (void) param;
+  if (idx == 0)
+    {
+      len = get_see_len(client, info);
+      buff = xmalloc(sizeof(*buff) * len);
+      bzero(buff, sizeof(buff));
+      strcpy(buff, START_CMD);
+      for (i = 0; i <= client->level; i++)
+	for (j = 0 - i; j <= i; j++)
+	  {
+	    send_ressources(info, client, &buff, j, i);
+	    if (i != client->level || j != i)
+	      strcat(buff, SEPARATOR_CMD);
+	  }
+      strcat(buff, END_CMD);
+    }
+  printf("[DEBUG SEE] %s\n", buff);
+  strncpy(client->buf_write, buff + idx, BUF_SIZE);
+  if (strlen(client->buf_write) == BUF_SIZE)
+    {
+      idx = BUF_SIZE;
+      return (LOOP_FOR_SEND);
+    }
   return (0);
 }
