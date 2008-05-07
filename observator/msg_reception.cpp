@@ -3,9 +3,10 @@
 
 void				msg_reception(t_obs *obs)
 {
-  IAnimatedMeshSceneNode	*invader;
-  ISceneNodeAnimator		*anim;
+  //IAnimatedMeshSceneNode	*invader;
+  //ISceneNodeAnimator		*anim;
 
+  /*
   invader = obs->window->smgr->addAnimatedMeshSceneNode(obs->window->smgr->getMesh("models/perso.md2"));
   if (invader)
     {
@@ -19,4 +20,5 @@ void				msg_reception(t_obs *obs)
       invader->setMaterialFlag(EMF_LIGHTING, false);
       invader->setMaterialTexture(0, obs->window->driver->getTexture("models/alien.bmp"));
     }
+  */
 }

@@ -1,11 +1,16 @@
 #include <irrlicht.h>
 #include "observator.h"
 
-void		draw_rock(t_obs *obs, int x, int y)
+using namespace irr;
+using namespace video;
+using namespace scene;
+using namespace core;
+
+void		draw_rock(t_obs *obs, int x, int y, int type)
 {
   ISceneNode	*rock;
 
-  rock = obs->window->smgr->addSphereSceneNode();
+  rock = MANAGER(obs->window->smgr)->addSphereSceneNode();
   if (rock)
     {
       rock->setScale(vector3df(1, 1, 1));

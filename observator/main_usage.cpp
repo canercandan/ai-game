@@ -1,4 +1,3 @@
-#include <irrlicht.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "observator.h"

@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include "observator.h"
 
+using namespace irr;
+using namespace video;
+using namespace scene;
+using namespace gui;
+using namespace core;
+
 t_window	*init_window()
 {
   t_window	*w;
@@ -9,23 +15,23 @@ t_window	*init_window()
   w = (t_window *) malloc(sizeof(*w));
   w->device = createDevice(EDT_BURNINGSVIDEO,
                            dimension2d<s32>(WIN_WEIGHT, WIN_HEIGHT));
-  w->driver = w->device->getVideoDriver();
-  w->smgr = w->device->getSceneManager();
-  w->env = w->device->getGUIEnvironment();
-  w->driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, true);
-  w->camera = w->smgr->addCameraSceneNodeFPS(0, 100, 1000);
-  w->camera->setPosition(vector3df(0, 0, 0));
-  w->camera->setTarget(vector3df(10, 0, 10));
-  w->camera->setFarValue(FAR_VALUE);
-  w->device->getCursorControl()->setVisible(false);
-  w->device->getFileSystem()->addZipFileArchive(OBS_PK3);
-  w->driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, false);
-  w->smgr->addSkyBoxSceneNode(w->driver->getTexture(SKY_UP),
-                              w->driver->getTexture(SKY_DN),
-                              w->driver->getTexture(SKY_RT),
-                              w->driver->getTexture(SKY_LF),
-                              w->driver->getTexture(SKY_FT),
-                              w->driver->getTexture(SKY_BK));
-  w->driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, true);
+  w->driver = DEVICE(w->device)->getVideoDriver();
+  w->smgr = DEVICE(w->device)->getSceneManager();
+  w->env = DEVICE(w->device)->getGUIEnvironment();
+  DRIVER(w->driver)->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, true);
+  w->camera = MANAGER(w->smgr)->addCameraSceneNodeFPS(0, 100, CAMERA_SPEED);
+  CAMERA(w->camera)->setPosition(vector3df(0, 0, 0));
+  CAMERA(w->camera)->setTarget(vector3df(10, 0, 10));
+  CAMERA(w->camera)->setFarValue(FAR_VALUE);
+  DEVICE(w->device)->getCursorControl()->setVisible(false);
+  DEVICE(w->device)->getFileSystem()->addZipFileArchive(OBS_PK3);
+  DRIVER(w->driver)->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, false);
+  MANAGER(w->smgr)->addSkyBoxSceneNode(DRIVER(w->driver)->getTexture(SKY_UP),
+                              DRIVER(w->driver)->getTexture(SKY_DN),
+                              DRIVER(w->driver)->getTexture(SKY_RT),
+                              DRIVER(w->driver)->getTexture(SKY_LF),
+                              DRIVER(w->driver)->getTexture(SKY_FT),
+                              DRIVER(w->driver)->getTexture(SKY_BK));
+  DRIVER(w->driver)->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, true);
   return (w);
 }

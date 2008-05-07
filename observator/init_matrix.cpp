@@ -1,7 +1,6 @@
-#include <irrlicht.h>
 #include <stdlib.h>
 #include "observator.h"
-#include "x.h"
+#include "common.h"
 
 t_matrix	**init_matrix(t_obs *obs)
 {

@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <netdb.h>
-#include <irrlicht.h>
+#include <string.h>
 #include "observator.h"
 
 void			init_socket(t_obs *obs, char *host, char *port)

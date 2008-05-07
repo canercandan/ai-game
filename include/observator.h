@@ -5,17 +5,12 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Tue May  6 17:26:32 2008 jordan aubry
+** Last update Wed May  7 14:50:29 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
 # define __OBSERVATOR_H__
 
-using namespace irr;
-using namespace video;
-using namespace scene;
-using namespace gui;
-using namespace core;
 
 /* Define
 */
@@ -27,6 +22,7 @@ using namespace core;
 #define FAR_VALUE		100000
 #define WIN_WEIGHT		640
 #define WIN_HEIGHT		480
+#define	CAMERA_SPEED		1000
 
 #define NB_RESSOURCE		10
 
@@ -37,8 +33,6 @@ using namespace core;
 
 #define OBS_PK3			"bin/map.pk3"
 
-#define MAP_CASE		"maps/case.bmp"
-
 #define SKY_UP			"env/up.tga"
 #define SKY_DN			"env/dn.tga"
 #define SKY_RT			"env/rt.tga"
@@ -46,36 +40,75 @@ using namespace core;
 #define SKY_FT			"env/ft.tga"
 #define SKY_BK			"env/bk.tga"
 
+#define MAP_CASE                "maps/case.bmp"
 
+#define	ROCK_0			"textures/rock_0.bmp"
+#define ROCK_1                  "textures/rock_1.bmp"
+#define ROCK_2                  "textures/rock_2.bmp"
+#define ROCK_3                  "textures/rock_3.bmp"
+#define ROCK_4                  "textures/rock_4.bmp"
+#define ROCK_5                  "textures/rock_5.bmp"
+#define ROCK_6                  "textures/rock_6.bmp"
+#define ROCK_7                  "textures/rock_7.bmp"
+#define ROCK_8                  "textures/rock_8.bmp"
+#define ROCK_9                  "textures/rock_9.bmp"
+
+/*
+** Mask structure
+*/
+
+/*
+using namespace irr;
+using namespace video;
+using namespace scene;
+using namespace gui;
+using namespace core;
+*/
+
+#define DEVICE(data)	((IrrlichtDevice *) (data))
+#define DRIVER(data)	((IVideoDriver *) (data))
+#define MANAGER(data)	((ISceneManager *) (data))
+#define	ENV(data)	((IGUIEnvironment *) (data))
+#define CAMERA(data)	((ICameraSceneNode *) (data))
+#define TERRAIN(data)	((ITerrainSceneNode *) (data))
 
 /* Structure
 */
 
-typedef struct		s_matrix
+typedef struct	s_matrix
 {
-  int			move;
-  int			level;
-  int			item[NB_RESSOURCE];
-}			t_matrix;
+  int		move;
+  int		level;
+  int		item[NB_RESSOURCE];
+}		t_matrix;
 
-typedef struct		s_window
+typedef struct	s_window
 {
-  IrrlichtDevice	*device;
-  IVideoDriver		*driver;
-  ISceneManager		*smgr;
-  IGUIEnvironment	*env;
-  ICameraSceneNode	*camera;
-  ITerrainSceneNode	*map;
-}			t_window;
+  void		*device;
+  void		*driver;
+  void		*smgr;
+  void		*env;
+  void		*camera;
+  void		*map;
+}		t_window;
 
-typedef struct		s_obs
+typedef struct	s_rock
 {
-  t_window		*window;
-  t_matrix		**matrix;
-  int			x;
-  int			y;
-  int			sock;
-}			t_obs;
+  void		*img;
+  int		x;
+  int		y;
+  int		z;
+}		t_rock;
+
+typedef struct	s_obs
+{
+  t_window	*window;
+  t_matrix	**matrix;
+  t_rock	*rock;
+  int		x;
+  int		y;
+  int		sock;
+}		t_obs;
 
 /* Function
 */
@@ -85,6 +118,7 @@ void		main_usage();
 t_obs		*init_obs(char *host, char *port);
 t_window	*init_window();
 t_matrix	**init_matrix(t_obs *obs);
+t_rock		*rock(t_obs *obs);
 void		init_map_size(t_obs *obs);
 void		init_case(t_obs *obs);
 void		init_socket(t_obs *obs, char *host, char *port);

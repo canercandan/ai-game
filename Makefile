@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Wed May  7 12:06:58 2008 majdi toumi
+## Last update Wed May  7 15:00:03 2008 jordan aubry
 ##
 
 NAME_SRV	=	server
@@ -131,7 +131,7 @@ SRCS_OBS	=	$(PATH_OBS)main.cpp			\
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
 OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
-OBJS_OBS	=	$(SRCS_OBS:.cpp=.o) $(OBJS_X)
+OBJS_OBS	=	$(SRCS_OBS:.cpp=.o)
 
 INCLUDES	=	-I./include
 LIBRARY		=	-L.

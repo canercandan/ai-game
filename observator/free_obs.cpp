@@ -1,7 +1,14 @@
-#include <irrlicht.h>
+#include <stdlib.h>
 #include "observator.h"
 
 void	free_obs(t_obs *obs)
 {
-  exit(0);
+  int	i;
+
+  for (i = 0; i < obs->x; i++)
+    free(obs->matrix[i]);
+  free(obs->matrix);
+  free(obs->window);
+  free(obs->rock);
+  free(obs);
 }

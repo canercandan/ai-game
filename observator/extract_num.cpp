@@ -1,4 +1,3 @@
-#include <irrlicht.h>
 #include "observator.h"
 
 int	extract_num(char *buf, int num)
