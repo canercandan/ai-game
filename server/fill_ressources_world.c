@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Wed May  7 16:04:17 2008 caner candan
+** Last update Wed May  7 20:15:18 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -27,6 +27,8 @@ t_ressource	gl_ressource[] = {
 
 void		fill_ressources_world(t_zone **world, t_info *info)
 {
+  static int	last_x = -1;
+  static int	last_y = -1;
   t_ressource	*ressource;
   int		max;
   int		i;
@@ -37,8 +39,10 @@ void		fill_ressources_world(t_zone **world, t_info *info)
   max = info->x * info->y * info->nb_player * COEFFICIENT;
   for (i = 0; i < max; i++)
     {
-      x = get_random(info->x);
-      y = get_random(info->y);
+      x = get_random(info->x, last_x);
+      y = get_random(info->y, last_y);
+      last_x = x;
+      last_y = y;
       ressource = &gl_ressource[i % NB_INVENTORY];
       push_list(&(world[x][y].ressources), ressource);
       printf("#DUMP WORLD#\t[%d][%d] -> [%s]\n", x, y, ressource->name);

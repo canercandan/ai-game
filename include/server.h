@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed May  7 15:34:12 2008 caner candan
+** Last update Wed May  7 19:44:08 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -224,22 +224,21 @@ typedef struct	s_ressource
 /*
 ** Criteres list's structure
 */
-typedef struct		s_critere
+typedef struct	s_critere
 {
-  int			lvl;
-  char			idx_ressource;
-  int			qte;
+  int		lvl;
+  char		idx_ressource;
+  int		qte;
 }			t_critere;
 
 /*
 ** Level list's structure
 */
-typedef struct		s_level
+typedef struct	s_level
 {
-  int			lvl;
-  int			nb_client;
-  char			*desc;
-}			t_level;
+  int		lvl;
+  int		nb_client;
+}		t_level;
 
 /*
 ** Enum action
@@ -316,7 +315,6 @@ int	act_take_obj(char *param, t_client *client, t_info *info);
 int	act_drop_obj(char *param, t_client *client, t_info *info);
 int	act_kick(char *param, t_client *client, t_info *info);
 int	act_broadcast(char *param, t_client *client, t_info *info);
-int	is_levelup(t_info *info, t_client *client);
 int	act_levelup(char *param, t_client *client, t_info *info);
 int	act_fork(char *param, t_client *client, t_info *info);
 
@@ -384,6 +382,6 @@ void		putnbr(int nb, char *buff);
 ** Random's functions
 */
 void		init_random(void);
-int		get_random(int max);
+int		get_random(int max, int diff);
 
 #endif /* !__SERVER_H__ */

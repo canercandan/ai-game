@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 29 20:27:36 2008 caner candan
-** Last update Wed Apr 30 17:30:06 2008 caner candan
+** Last update Wed May  7 20:27:29 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -18,7 +18,7 @@ void		*pop_list(t_list **t)
 
   debug("pop_list()", -1);
   if (!(*t))
-    return ((void *) -1);
+    return (NULL);
   tmp = (*t)->next;
   data = (*t)->data;
   free(*t);
