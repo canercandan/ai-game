@@ -1,6 +1,8 @@
 #include <irrlicht.h>
 #include "observator.h"
 
+using namespace irr;
+
 int	main(int ac, char **av)
 {
   t_obs	*obs;
