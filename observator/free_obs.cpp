@@ -9,6 +9,6 @@ void	free_obs(t_obs *obs)
     free(obs->matrix[i]);
   free(obs->matrix);
   free(obs->window);
-  free(obs->rock);
+  free(obs->item);
   free(obs);
 }
