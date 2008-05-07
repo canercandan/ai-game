@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Wed May  7 11:13:04 2008 caner candan
+## Last update Wed May  7 11:16:46 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -102,7 +102,8 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)calculate_timeout.c		\
 			$(PATH_SRV)power.c			\
 			$(PATH_SRV)square_root.c		\
-			$(PATH_SRV)get_see_len.c
+			$(PATH_SRV)get_see_len.c		\
+			$(PATH_SRV)move_up.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c			\
 			$(PATH_CLI)enter_in_the_world.c		\

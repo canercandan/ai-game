@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed May  7 11:13:22 2008 caner candan
+** Last update Wed May  7 11:17:13 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -306,6 +306,7 @@ int		begin_session(t_info *i, t_client *cli);
 /*
 ** Actions' functions
 */
+int	move_up(t_client *client, t_info *info);
 int	act_up(char *param, t_client *client, t_info *info);
 int	act_right(char *param, t_client *client, t_info *info);
 int	act_left(char *param, t_client *client, t_info *info);
