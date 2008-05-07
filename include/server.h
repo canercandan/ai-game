@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed May  7 11:17:13 2008 caner candan
+** Last update Wed May  7 11:34:40 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -30,7 +30,7 @@
 
 # define FOOD_HP	126.0		/* en float */
 # define COEFFICIENT	0.05
-# define BUF_SIZE	10
+# define BUF_SIZE	1024
 # define NB_INVENTORY	7
 # define LEN_INVENTORY	512
 # define MAX_QUEUE	10

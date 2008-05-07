@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 11:20:09 2008 caner candan
+** Last update Wed May  7 11:33:52 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -15,7 +15,7 @@
 #include "common.h"
 #include "x.h"
 
-static void	get_inventory(t_client *client, char *buff)
+static void		get_inventory(t_client *client, char *buff)
 {
   char		qte[3];
   char		hp[5];
@@ -40,10 +40,10 @@ static void	get_inventory(t_client *client, char *buff)
   strcat(buff, END_CMD);
 }
 
-int		act_inventory(char *param, t_client *client, t_info *info)
+int			act_inventory(char *param, t_client *client, t_info *info)
 {
-  static char	buff[LEN_INVENTORY];
-  static int	i = 0;
+  static char		buff[LEN_INVENTORY];
+  static unsigned int	i = 0;
 
   (void)param;
   (void)info;
@@ -51,15 +51,12 @@ int		act_inventory(char *param, t_client *client, t_info *info)
     {
       bzero(buff, sizeof(buff));
       get_inventory(client, buff);
-      printf("[buff %s]\n", buff);
     }
   bzero(client->buf_write, BUF_SIZE);
   strncpy(client->buf_write, buff + i, BUF_SIZE);
-  printf("[client %s]\n", client->buf_write);
-  if (strlen(client->buf_write) == BUF_SIZE)
-    {
-      i = BUF_SIZE;
-      return (LOOP_FOR_SEND);
-    }
+  i  += strlen(client->buf_write);
+  if (i <= strlen(buff) && strlen(buff + i) > 0)
+    return (LOOP_FOR_SEND);
+  i = 0;
   return (0);
 }
