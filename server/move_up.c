@@ -5,18 +5,16 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May  7 11:07:13 2008 caner candan
-** Last update Wed May  7 11:28:22 2008 caner candan
+** Last update Wed May  7 15:15:17 2008 caner candan
 */
 
 #include "server.h"
 #include "common.h"
 
-int		move_up(t_client *client, int direction, t_info *info)
+int	move_up(t_client *client, char direction, t_info *info)
 {
-  t_list	*list;
-
-  list = info->zone[client->x][client->y].clients;
-  rm_data_from_list(&list, client);
+  rm_data_from_list(&(info->zone[client->x][client->y].clients),
+		    client);
   if (direction == NORTH)
     client->y = (client->y == 0 ? info->y - 1 : client->y - 1);
   else if (direction == EAST)
@@ -25,8 +23,6 @@ int		move_up(t_client *client, int direction, t_info *info)
     client->x = (client->x == 0 ? info->x - 1 : client->x - 1);
   else
     client->y = (client->y == (info->y - 1) ? 0 : client->y + 1);
-  list = info->zone[client->x][client->y].clients;
-  push_list(&list, client);
-  info->zone[client->x][client->y].clients = list;
+  push_list(&(info->zone[client->x][client->y].clients), client);
   return (0);
 }

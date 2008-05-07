@@ -5,25 +5,34 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 13:18:27 2008 caner candan
+** Last update Wed May  7 13:59:50 2008 caner candan
 */
 
 #include "server.h"
 #include "common.h"
 
-/* static int	give_me_the_k(t_client *dst, t_client *src, */
-/* 			      t_info *info) */
-/* { */
-/*   if (dst->direction == src->direction) */
-/*     return (1); */
-/*   return (0); */
-/* } */
+static int	give_me_the_k(t_client *dst, t_client *src)
+{
+  if ((src->direction == NORTH && dst->direction == SOUTH) ||
+      (src->direction == WEST && dst->direction == EAST) ||
+      (src->direction == SOUTH && dst->direction == NORTH) ||
+      (src->direction == EAST && dst->direction == WEST))
+    return (1);
+  if ((src->direction == NORTH && dst->direction == WEST) ||
+      (src->direction == WEST && dst->direction == SOUTH) ||
+      (src->direction == SOUTH && dst->direction == EAST) ||
+      (src->direction == EAST && dst->direction == NORTH))
+    return (3);
+  if (src->direction == dst->direction)
+    return (5);
+  return (7);
+}
 
 static int	kick_it(t_client *dst, t_client *src, t_info *info)
 {
   move_up(dst, src->direction, info);
   send_buf_to_client(dst, KICKIT);
-  
+  putnbr(give_me_the_k(dst, src), dst->buf_write);
   send_buf_to_client(dst, "\n");
   return (0);
 }

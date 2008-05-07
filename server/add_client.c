@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Tue May  6 21:31:51 2008 florent hochwelker
+** Last update Wed May  7 14:51:15 2008 caner candan
 */
 
 #include <string.h>
@@ -31,6 +31,7 @@ t_client	*add_client(t_info *info, int server)
   client->level = START_LEVEL;
   client->x = get_random(info->x);
   client->y = get_random(info->y);
+  push_list(&(info->zone[client->x][client->y].clients), client);
   client->direction = get_random(WEST);
   client->team = NULL;
   i = 0;
