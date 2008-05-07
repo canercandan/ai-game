@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 12:11:55 2008 majdi toumi
+** Last update Wed May  7 15:03:10 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -21,7 +21,6 @@ static void		get_inventory(t_client *client, char *buff)
 
   i = 0;
   strcpy(buff, START_CMD);
-  /*  snprintf(hp, 4, "0"); (int)(client->hp - time(NULL)) / FOOD_HP); */
   strcat(buff, gl_ressource[NB_INVENTORY - 1].name);
   strcat(buff, SEPARATOR_ELM);
   putnbr(42, buff);
