@@ -5,13 +5,25 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Tue May  6 20:25:00 2008 caner candan
+** Last update Wed May  7 16:04:17 2008 caner candan
 */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "server.h"
+#include "common.h"
 #include "x.h"
+
+t_ressource	gl_ressource[] = {
+  {LINEMATE, "linemate", 0},
+  {DERAUMERE, "deraumere", 0},
+  {SIBUR, "sibur", 0},
+  {MENDIANE, "mendiane", 0},
+  {PHIRAS, "phiras", 0},
+  {THYSTAME, "thystame", 0},
+  {NOURRITURE, "nourriture", 0},
+  {-1, 0, 0}
+};
 
 void		fill_ressources_world(t_zone **world, t_info *info)
 {
@@ -27,10 +39,8 @@ void		fill_ressources_world(t_zone **world, t_info *info)
     {
       x = get_random(info->x);
       y = get_random(info->y);
-      ressource = generate_ressources(i);
+      ressource = &gl_ressource[i % NB_INVENTORY];
       push_list(&(world[x][y].ressources), ressource);
       printf("#DUMP WORLD#\t[%d][%d] -> [%s]\n", x, y, ressource->name);
     }
-/*   if (DEBUG) */
-/*     dump_world(world, info->x, info->y); */
 }
