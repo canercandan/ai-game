@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 11:10:14 2008 caner candan
+** Last update Wed May  7 11:54:09 2008 caner candan
 */
 
 #include <stdio.h>
@@ -52,8 +52,8 @@ static int	with_direction(int val, t_client *client)
   return (val);
 }
 
-static int	give_me_the_k(t_info *info, t_client *dst,
-			      t_client *src)
+static int	give_me_the_k(t_client *dst, t_client *src,
+			      t_info *info)
 {
   int		diff_x;
   int		diff_y;
@@ -91,7 +91,7 @@ int		act_broadcast(char *param, t_client *client,
 	{
 	  send_buf_to_client(c, MESSAGE);
 	  snprintf(buf, sizeof(buf), "%d ",
-		   give_me_the_k(info, c, client));
+		   give_me_the_k(c, client, info));
 	  send_buf_to_client(c, buf);
 	  send_buf_to_client(c, param);
 	  send_buf_to_client(c, "\n");

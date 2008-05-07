@@ -5,16 +5,26 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 11:10:49 2008 caner candan
+** Last update Wed May  7 11:55:07 2008 caner candan
 */
 
 #include "server.h"
 #include "common.h"
 
-static int	kick_it(t_client *dst, t_client *src)
+static int	give_me_the_k(t_client *dst, t_client *src,
+			      t_info *info)
 {
-  (void) dst;
-  (void) src;
+  if (dst->direction == src->direction)
+    return (1);
+  return (0);
+}
+
+static int	kick_it(t_client *dst, t_client *src, t_info *info)
+{
+  move_up(dst, src->direction, info);
+  send_buf_to_client(dst, KICKIT);
+  
+  send_buf_to_client(dst, "\n");
   return (0);
 }
 
@@ -31,7 +41,7 @@ int		act_kick(char *param, t_client *client, t_info *info)
     {
       c = clients->data;
       if (c != client)
-	if (!kick_it(c, client))
+	if (!kick_it(c, client, info))
 	  nb_kick++;
       clients = clients->next;
     }
