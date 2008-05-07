@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Wed May  7 16:57:04 2008 jordan aubry
+** Last update Wed May  7 17:42:16 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
@@ -42,13 +42,13 @@
 
 #define MAP_CASE                "maps/case.bmp"
 
-#define	ITEM_0			"textures/rock_0.bmp"
-#define ITEM_1                  "textures/rock_1.bmp"
-#define ITEM_2                  "textures/rock_2.bmp"
-#define ITEM_3                  "textures/rock_3.bmp"
-#define ITEM_4                  "textures/rock_4.bmp"
-#define ITEM_5                  "textures/rock_5.bmp"
-#define ITEM_6                  "textures/rock_6.bmp"
+#define	ITEM_0			"textures/rpck_0.bmp"
+#define ITEM_1                  "textures/water.bmp"
+#define ITEM_2                  "textures/gold.bmp"
+#define ITEM_3                  "textures/rock.bmp"
+#define ITEM_4                  "textures/purple.bmp"
+#define ITEM_5                  "textures/grass.bmp"
+#define ITEM_6                  "textures/lava.bmp"
 #define ITEM_7                  "textures/rock_7.bmp"
 #define ITEM_8                  "textures/rock_8.bmp"
 #define ITEM_9                  "textures/rock_9.bmp"
