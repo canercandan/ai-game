@@ -5,19 +5,19 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 11:55:07 2008 caner candan
+** Last update Wed May  7 13:18:27 2008 caner candan
 */
 
 #include "server.h"
 #include "common.h"
 
-static int	give_me_the_k(t_client *dst, t_client *src,
-			      t_info *info)
-{
-  if (dst->direction == src->direction)
-    return (1);
-  return (0);
-}
+/* static int	give_me_the_k(t_client *dst, t_client *src, */
+/* 			      t_info *info) */
+/* { */
+/*   if (dst->direction == src->direction) */
+/*     return (1); */
+/*   return (0); */
+/* } */
 
 static int	kick_it(t_client *dst, t_client *src, t_info *info)
 {
