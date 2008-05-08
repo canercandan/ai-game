@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Fri May  2 15:02:46 2008 caner candan
-** Last update Thu May  8 13:43:47 2008 caner candan
+** Last update Thu May  8 13:45:03 2008 caner candan
 */
 
 #include "server.h"
@@ -19,10 +19,10 @@ static void	free_list(t_list *list)
     free(data);
 }
 
-static void	free_clients(t_list *list)
-{
+/* static void	free_clients(t_list *list) */
+/* { */
 
-}
+/* } */
 
 static void	free_zones(t_info *info)
 {
