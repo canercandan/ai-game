@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Thu May  8 13:41:04 2008 caner candan
+** Last update Thu May  8 13:44:15 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -14,12 +14,12 @@
 /*
 ** Option's flags
 */
-# define FLAG_P		1
-# define FLAG_X		2
-# define FLAG_Y		4
-# define FLAG_N		8
-# define FLAG_C		16
-# define FLAG_T		32
+# define FLAG_P			1
+# define FLAG_X			2
+# define FLAG_Y			4
+# define FLAG_N			8
+# define FLAG_C			16
+# define FLAG_T			32
 
 /*
 ** Defines
@@ -28,13 +28,13 @@
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
-# define FOOD_HP	126.0		/* en float */
-# define COEFFICIENT	0.05
-# define BUF_SIZE	1024
-# define NB_INVENTORY	7
-# define LEN_INVENTORY	512
-# define MAX_QUEUE	10
-# define LOOP_FOR_SEND	1337
+# define FOOD_HP		126.0		/* en float */
+# define COEFFICIENT		0.05
+# define BUF_SIZE		1024
+# define NB_INVENTORY		7
+# define LEN_INVENTORY		512
+# define MAX_QUEUE		10
+# define LOOP_FOR_SEND		1337
 
 /*
 ** Zappy's index names
@@ -44,9 +44,9 @@
 /*
 ** Exits, debug and errors
 */
-# define DEBUG		0
-# define EXIT_SUCC	0
-# define EXIT_FAIL	42
+# define DEBUG			0
+# define EXIT_SUCC		0
+# define EXIT_FAIL		42
 
 /*
 ** Default's values
@@ -56,6 +56,11 @@
 # define DEFAULT_LENGHT		10
 # define DEFAULT_NB_PLAYER	6
 # define DEFAULT_TIME		1
+
+/*
+** Limits' values
+*/
+# define MAX_LISTEN	42
 
 /*
 ** Error's messages
@@ -72,7 +77,7 @@
 ** Null
 */
 # ifndef NULL
-#  define NULL	(void *)0
+#  define NULL			(void *)0
 # endif /* !NULL */
 
 /*
@@ -105,10 +110,6 @@ typedef enum
     ERR_MAX_CLIENT
   }	t_error;
 
-/*
-** Limits' values
-*/
-# define MAX_LISTEN	42
 
 /*
 ** Alias
@@ -375,6 +376,10 @@ t_info	*init_info();
 void	free_info(t_info *info);
 int	get_ressource_idx(char *data);
 int	get_see_len(t_client *client, t_info *info);
+int		send_ressources(t_info *info, t_client *client, char *buff,
+				int x_diff, int y_diff);
+int		send_len_ressources(t_info *info, t_client *client,
+				    int x_diff, int y_diff);
 
 /*
 ** Usefull functions
