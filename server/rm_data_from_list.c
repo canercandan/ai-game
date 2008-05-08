@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May  5 17:46:20 2008 caner candan
-** Last update Mon May  5 17:48:20 2008 caner candan
+** Last update Thu May  8 13:17:42 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -16,7 +16,6 @@ static void	*first_elm(t_list **t)
   t_list	*tmp;
   void		*data;
 
-  debug("first_elm()", -1);
   tmp = *t;
   data = (*t)->data;
   *t = (*t)->next;
@@ -29,7 +28,6 @@ static void	*loop_elm(t_list *elm, void *data)
   t_list	*next;
   void		*ret_data;
 
-  debug("loop_elm()", -1);
   while (elm->next)
     {
       if (elm->next->data != data)
@@ -48,7 +46,6 @@ static void	*loop_elm(t_list *elm, void *data)
 
 void		*rm_data_from_list(t_list **t, void *data)
 {
-  debug("rm_data_from_list()", -1);
   if (!(*t))
     return ((void *) -1);
   if ((*t)->data == data)

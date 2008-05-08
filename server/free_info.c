@@ -5,18 +5,40 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Fri May  2 15:02:46 2008 caner candan
-** Last update Thu May  8 12:47:39 2008 caner candan
+** Last update Thu May  8 13:37:27 2008 caner candan
 */
 
 #include "server.h"
 #include <stdlib.h>
 
+static void	free_list(t_list *list)
+{
+  void		*data;
+
+  while ((data = pop_list(&list)))
+    free(data);
+}
+
+static void	free_zones(t_info *info)
+{
+  int		x;
+  int		y;
+
+  for (x = 0; x < info->x; x++)
+    {
+      for (y = 0; y < info->y; y++)
+	while (pop_list(&(info->zone[x][y].ressources)));
+      free(info->zone[x]);
+    }
+  free(info->zone);
+}
+
 void	free_info(t_info *info)
 {
-  int	i;
-
-  for (i = 0; i < info->y; i++)
-    free(info->zone[i]);
-  free(info->zone);
+  free_zones(info);
+  free_list(info->team);
+  free_list(info->clients);
+  free_list(info->queue);
+  free_list(info->observator);
   free(info);
 }

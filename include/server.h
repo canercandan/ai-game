@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Thu May  8 13:03:37 2008 caner candan
+** Last update Thu May  8 13:41:04 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -62,6 +62,11 @@
 */
 # define ERR_SIZE_MAP	"create_world: your width and lenght must"	\
 			"be an integer\n"
+
+/*
+** Terminal's messages
+*/
+# define PWR_OFF_MESG	"\nPower off of ZaPPy server ...\n"
 
 /*
 ** Null
@@ -229,7 +234,7 @@ typedef struct	s_critere
   int		lvl;
   char		idx_ressource;
   int		qte;
-}			t_critere;
+}		t_critere;
 
 /*
 ** Level list's structure
@@ -327,29 +332,29 @@ int	square_root(int nb);
 /*
 ** Debug's functions
 */
-void		debug(char *s, int pos);
-void		dump_world(t_zone **zworld, int y, int x);
-void		dump_ressources(t_list *ressource);
-void		dump_clients(t_list *clients);
-void		dump_client_position(t_list *client);
+void	debug(char *s, int pos);
+void	dump_world(t_zone **zworld, int y, int x);
+void	dump_ressources(t_list *ressource);
+void	dump_clients(t_list *clients);
+void	dump_client_position(t_list *client);
 
 /*
 ** List chaine's functions
 */
-void		push_list(t_list **t, void *data);
-void		*pop_list(t_list **t);
-void		pop_all_list(t_list *t);
+void	push_list(t_list **t, void *data);
+void	*pop_list(t_list **t);
+void	pop_all_list(t_list *t);
 
 /*
 ** Clients list chaine's functions
 */
-void		*rm_data_from_list(t_list **t, void *data);
-void		rm_ressource_from_list(t_list **t, char *name);
-void		*get_client_from_list(t_list *t, int socket);
-void		show_clients_from_list(t_list *t);
-void		sort_queue_list(t_list **begin);
-int		count_list(t_list *t);
-int		exist_data_from_list(t_list *t, void *data);
+void	*rm_data_from_list(t_list **t, void *data);
+void	rm_ressource_from_list(t_list **t, char *name);
+void	*get_client_from_list(t_list *t, int socket);
+void	show_clients_from_list(t_list *t);
+void	sort_queue_list(t_list **begin);
+int	count_list(t_list *t);
+int	exist_data_from_list(t_list *t, void *data);
 
 /*
 ** Queue list functions
