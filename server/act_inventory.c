@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 15:03:10 2008 majdi toumi
+** Last update Thu May  8 23:32:22 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -15,7 +15,7 @@
 #include "common.h"
 #include "x.h"
 
-static void		get_inventory(t_client *client, char *buff)
+static void	get_inventory(t_client *client, char *buff)
 {
   int		i;
 
@@ -50,7 +50,7 @@ int			act_inventory(char *param, t_client *client, t_info *info)
     }
   bzero(client->buf_write, BUF_SIZE);
   strncpy(client->buf_write, buff + i, BUF_SIZE);
-  i  += strlen(client->buf_write);
+  i += strlen(client->buf_write);
   if (i <= strlen(buff) && strlen(buff + i) > 0)
     return (LOOP_FOR_SEND);
   i = 0;

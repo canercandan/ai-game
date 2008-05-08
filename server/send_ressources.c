@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 15:24:54 2008 majdi toumi
-** Last update Wed May  7 15:38:04 2008 majdi toumi
+** Last update Thu May  8 23:34:27 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@ static int	get_y(t_client *client, int x_diff, int y_diff)
     return (client->y + x_diff);
   if (client->direction == SOUTH)
     return (client->y + y_diff);
- if (client->direction == WEST)
+  if (client->direction == WEST)
     return (client->y - x_diff);
   return (client->y - y_diff);
 }
