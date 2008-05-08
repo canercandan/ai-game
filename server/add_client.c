@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Wed May  7 20:12:42 2008 caner candan
+** Last update Thu May  8 12:40:21 2008 caner candan
 */
 
 #include <string.h>
@@ -37,7 +37,6 @@ t_client	*add_client(t_info *info, int server)
   static int	last_direction = -1;
   t_client	*client;
 
-  debug("add_client()", 2);
   client = xmalloc(sizeof(*client));
   client->socket = xaccept(server, NULL, NULL);
   client->status = ST_NOT_LOGGED;

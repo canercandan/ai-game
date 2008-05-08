@@ -5,20 +5,19 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 15 15:30:45 2008 florent hochwelker
-** Last update Tue Apr 22 14:10:28 2008 florent hochwelker
+** Last update Wed May  7 23:27:02 2008 caner candan
 */
 
-#include "x.h"
+#include <stdlib.h>
 #include "client.h"
+#include "x.h"
 
-int	fork_in_the_word(char *team_name, char *hostname, int port)
+int	fork_in_the_word(t_info *info)
 {
-  int	socket;
-
-  if (xfork() == 0)
-    {
-      socket = new_connection(team_name, hostname, port);
-      enter_in_the_world(socket, team_name, hostname, port);
-    }
+  if (xfork())
+    return (-1);
+  if (new_connection(info))
+    exit(-1);
+  enter_in_the_world(info);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Fri May  2 19:00:21 2008 caner candan
+** Last update Thu May  8 12:40:56 2008 caner candan
 */
 
 #include <stdio.h>
@@ -20,7 +20,6 @@ static char	*default_name_team[] =
 
 static void	fill_default_info(t_info *info)
 {
-  debug("fill_default_info()", 2);
   info->port = DEFAULT_PORT;
   info->y = DEFAULT_LENGHT;
   info->x = DEFAULT_WIDTH;
@@ -36,7 +35,6 @@ t_info	*parse_args(int argc, char **argv, t_info *info)
   int	idx;
   int	i;
 
-  debug("parse_args()", 1);
   fill_default_info(info);
   i = 1;
   flag = 0;

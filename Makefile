@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Wed May  7 19:32:48 2008 caner candan
+## Last update Thu May  8 13:09:59 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -101,7 +101,8 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)square_root.c		\
 			$(PATH_SRV)get_see_len.c		\
 			$(PATH_SRV)move_up.c			\
-			$(PATH_SRV)putnbr.c
+			$(PATH_SRV)putnbr.c			\
+			$(PATH_SRV)init_signal.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c			\
 			$(PATH_CLI)enter_in_the_world.c		\
@@ -109,7 +110,10 @@ SRCS_CLI	=	$(PATH_CLI)main.c			\
 			$(PATH_CLI)print_usage.c		\
 			$(PATH_CLI)check_response.c		\
 			$(PATH_CLI)fork_in_the_word.c		\
-			$(PATH_CLI)get_rnd_action.c
+			$(PATH_CLI)get_rnd_action.c		\
+			$(PATH_CLI)init_info.c			\
+			$(PATH_CLI)free_info.c			\
+			$(PATH_CLI)parse_args.c
 
 SRCS_OBS	=	$(PATH_OBS)main.cpp			\
 			$(PATH_OBS)main_usage.cpp		\

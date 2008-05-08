@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Sat May  3 14:13:03 2008 caner candan
+** Last update Thu May  8 12:41:32 2008 caner candan
 */
 
 #include <stdio.h>
@@ -19,7 +19,6 @@ t_zone		**create_world(t_info *info)
   t_zone	**world;
   int		i;
 
-  debug("create_world()", 1);
   if (info->x < 0 || info->y < 0)
     {
       fprintf(stdin, ERR_SIZE_MAP);

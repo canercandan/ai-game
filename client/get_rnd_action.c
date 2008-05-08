@@ -5,39 +5,21 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 13:49:46 2008 florent hochwelker
-** Last update Tue Apr 22 14:11:20 2008 florent hochwelker
+** Last update Wed May  7 23:15:06 2008 caner candan
 */
 
 #include <stdlib.h>
+#include "client.h"
+
+static char	*actions[] =
+  {"avance\n", "droite\n", "gauche\n", "voir\n", "inventaire\n",
+   "prend objet\n", "pose objet\n", "expulse\n", "broadcast text\n",
+   "incantation\n"};
 
 char	*get_rnd_action()
 {
-  long	i;
+  long	action;
 
-  i = random() % 10;
-  switch (i)
-    {
-    case 0:
-      return ("avance\n");
-    case 1:
-      return ("droite\n");
-    case 2:
-      return ("gauche\n");
-    case 3:
-      return ("voir\n");
-    case 4:
-      return ("inventaire\n");
-    case 5:
-      return ("prend objet\n");
-    case 6:
-      return ("pose objet\n");
-    case 7:
-      return ("expulse\n");
-    case 8:
-      return ("broadcast text\n");
-    case 9:
-      return ("incantation\n");
-    default:
-      return ("wtf\n");
-    }
+  action = random() % NB_ACTIONS;
+  return (actions[action]);
 }

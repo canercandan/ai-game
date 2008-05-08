@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 12:06:08 2008 majdi toumi
-** Last update Fri May  2 18:53:59 2008 caner candan
+** Last update Thu May  8 12:41:23 2008 caner candan
 */
 
 #include <stdio.h>
@@ -26,7 +26,6 @@ void	usage_server()
 {
   int	i;
 
-  debug("usage_server()", 1);
   i = 0;
   fprintf(stdout, "\033[34musage: ./server\n");
   while (gl_opt_srv[i].opt != 0)

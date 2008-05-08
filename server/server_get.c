@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed May  7 10:45:46 2008 florent hochwelker
+** Last update Thu May  8 12:40:05 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -21,8 +21,6 @@ static void	get_set_fd(t_list *t, fd_set *fd_read,
 {
   t_client	*client;
 
-  (void)fd_write;
-  debug("get_set_fd()", 2);
   while (t)
     {
       client = t->data;
@@ -41,9 +39,7 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
   t_list	*t;
   t_client	*client;
 
-  debug("get_isset_fd()", 2);
   t = info->clients;
-  /*   show_clients_from_list(t); */
   while (t)
     {
       client = t->data;
@@ -89,7 +85,6 @@ void			server_get(t_info *info)
   int			fd_max;
   struct timeval	tp;
 
-  debug("server_get()", 1);
   while (42)
     {
       FD_ZERO(&fd_read);

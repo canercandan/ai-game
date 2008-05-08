@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed May  7 19:44:08 2008 caner candan
+** Last update Thu May  8 13:03:37 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -361,27 +361,32 @@ t_queue		*create_new_queue(char *str, int (*f)(),
 /*
 ** Client's functions
 */
-void		free_client(t_client *client);
+void	free_client(t_client *client);
 
 /*
 ** Info's functions
 */
-t_info		*init_info();
-void		free_info(t_info *info);
-int		get_ressource_idx(char *data);
-int		get_see_len(t_client *client, t_info *info);
+t_info	*init_info();
+void	free_info(t_info *info);
+int	get_ressource_idx(char *data);
+int	get_see_len(t_client *client, t_info *info);
 
 /*
 ** Usefull functions
 */
-char		*get_word_n(char *str, int n);
-char		*trim(char *str);
-void		putnbr(int nb, char *buff);
+char	*get_word_n(char *str, int n);
+char	*trim(char *str);
+void	putnbr(int nb, char *buff);
 
 /*
 ** Random's functions
 */
-void		init_random(void);
-int		get_random(int max, int diff);
+void	init_random(void);
+int	get_random(int max, int diff);
+
+/*
+** Signals' functions
+*/
+void	init_signal(t_info *info);
 
 #endif /* !__SERVER_H__ */

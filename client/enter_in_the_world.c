@@ -1,11 +1,11 @@
 /*
-** enter_in_the_world.c for Client Zappy 1 in /u/epitech_2010s/hochwe_f/cu/rendu/c/zappy/zappy/client
+** enter_in_the_world.c for zappy in /u/epitech_2010s/hochwe_f/cu/rendu/c/zappy/zappy/client
 ** 
 ** Made by florent hochwelker
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Sat May  3 00:30:34 2008 florent hochwelker
+** Last update Thu May  8 12:23:02 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -13,78 +13,66 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "x.h"
 #include "client.h"
+#include "x.h"
 
-static t_map	*get_x_y_map(char *buff)
+static void	get_x_y_map(t_info *info, char *buff)
 {
   char		*save;
-  t_map		*map;
 
   save = buff;
-  map = malloc(sizeof(*map));
   buff = strchr(buff, '\n');
-  map->x = atoi(buff);
-  map->y = atoi(strchr(buff, ' '));
+  info->x = atoi(buff);
+  info->y = atoi(strchr(buff, ' '));
   free(save);
-  return (map);
 }
 
-static t_map	*step_two(int socket, char *team_name, char *hostname, int port)
+static int	step_two(t_info *info)
 {
   char		*p;
 
-  if ((p = check_response(socket)))
-    {
-      if (isdigit(*p))
-	{
-	  if (atoi(p) > 1)
-	    fork_in_the_word(team_name, hostname, port);
-	  else
-	    return(get_x_y_map(p));
-	}
-    }
-  return ((t_map *)-1);
+  if (!(p = check_response(info)))
+    return (-1);
+  if (!isdigit(*p))
+    return (-1);
+  if (atoi(p) > 1)
+    fork_in_the_word(info);
+  else
+    get_x_y_map(info, p);
+  return (0);
 }
 
-static int	step_one(int socket, char *team_name)
+static int	step_one(t_info *info)
 {
   char		*p;
 
-  if ((p = check_response(socket)))
-    {
-      if (strncmp(p, MSG_WELCOME, strlen(MSG_WELCOME)) == 0)
-	{
-	  xsend(socket, team_name, strlen(team_name), 0);
-	  xsend(socket, "\n", 1, 0);
-	  free(p);
-	  return (0);
-	}
-    }
-  return (-1);
+  if (!(p = check_response(info)))
+    return (-1);
+  if (strncmp(p, MSG_WELCOME, strlen(MSG_WELCOME)))
+    return (-1);
+  xsend(info->socket, info->team_name, strlen(info->team_name), 0);
+  xsend(info->socket, "\n", 1, 0);
+  free(p);
+  return (0);
 }
 
-int	enter_in_the_world(int socket, char *team_name,
-			   char *hostname, int port)
+int	enter_in_the_world(t_info *info)
 {
-  t_map	*map;
   char	*p;
 
-  if (step_one(socket, team_name) != -1 &&
-      (map = step_two(socket, team_name, hostname, port)) != (t_map *)-1)
+  if (step_one(info) < 0 || step_two(info) < 0)
+    return (-1);
+  srandom(getpid());
+  printf("[%d] I enter in the world\n", info->socket);
+  printf("map X = %d, Y = %d\n", info->x, info->y);
+  xsend(info->socket, "voir\n", strlen("voir\n"), 0);
+  while ((p = check_response(info)))
     {
-      srandom(getpid());
-      printf("[%d] I enter in the world\n", socket);
-      printf("map X = %d, Y = %d\n", map->x, map->y);
-      xsend(socket, "voir\n", strlen("voir\n"), 0);
-      while ((p = check_response(socket)))
-	{
-	  printf("<-- [%s]", p);
-	  free(p);
-	  p = get_rnd_action();
-	  sleep(1);
-	  xsend(socket, p, strlen(p), 0);
-	}
+      printf("<-- [%s]", p);
+      free(p);
+      p = get_rnd_action();
+      sleep(1);
+      xsend(info->socket, p, strlen(p), 0);
     }
   return (0);
 }

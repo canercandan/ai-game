@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat May  3 17:06:56 2008 caner candan
-** Last update Wed May  7 19:01:15 2008 caner candan
+** Last update Thu May  8 12:26:38 2008 caner candan
 */
 
 #include <stdio.h>
@@ -19,8 +19,10 @@ void		dump_client_position(t_list *clients)
     {
       c = (t_client *) clients->data;
       if (c->status == ST_CLIENT)
-	printf("Client %d Coordonnes [%d][%d] Direction [%d] Level [%d]\n",
-	       c->socket, c->x, c->y, c->direction, c->level);
+	printf("Client %d Coordonnes [%d][%d] Direction [%d] \
+Level [%d] Team [%s]\n ",
+	       c->socket, c->x, c->y, c->direction, c->level,
+	       c->team->name);
       clients = clients->next;
     }
 }
