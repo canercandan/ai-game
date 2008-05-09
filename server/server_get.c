@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Thu May  8 23:30:11 2008 florent hochwelker
+** Last update Fri May  9 01:18:46 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -43,11 +43,11 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
   while (t)
     {
       client = t->data;
+      t = t->next;
       if (FD_ISSET(client->socket, fd_write))
 	client->fct_write(info, client);
       if (FD_ISSET(client->socket, fd_read))
 	client->fct_read(info, client);
-      t = t->next;
     }
 }
 
@@ -71,7 +71,7 @@ static void		check_death_clients(t_info *info, unsigned int timestamp)
 	{
 	  rm_client_from_queue(&info->queue,
 			       ((t_client *)clients->data)->socket, info);
-	  ((t_client *)clients->data)->status = ST_DEATH;
+	  ((t_client *)clients->data)->status = ST_DEAD;
 	  strcpy(((t_client *)clients->data)->buf_write, DEAD);
 	}
       clients = clients->next;

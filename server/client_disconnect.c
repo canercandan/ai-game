@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 15:10:27 2008 florent hochwelker
-** Last update Mon May  5 21:02:48 2008 florent hochwelker
+** Last update Fri May  9 01:58:38 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -19,7 +19,10 @@ void		client_disconnect(t_client *client, t_info *info, int dead)
   rm_data_from_list(&info->clients, client);
   rm_client_from_queue(&info->queue, client->socket, info);
   if (!dead && client->status == ST_CLIENT)
-    client->team->nb--;
+    {
+      client->team->nb--;
+      client->status = ST_DISCONNECT;
+    }
   else if (client->status == ST_OBS_CLIENT)
     rm_data_from_list(&info->observator, client);
   free_client(client);

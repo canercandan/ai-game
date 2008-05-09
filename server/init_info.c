@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Fri May  2 15:01:08 2008 caner candan
-** Last update Mon May  5 16:32:37 2008 florent hochwelker
+** Last update Fri May  9 02:04:22 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -18,11 +18,13 @@ t_info			*init_info()
   t_info		*info;
 
   info = xmalloc(sizeof(*info));
-  info->queue = 0;
   timeout = xmalloc(sizeof(*timeout));
   timeout->tv_sec = -1;
   timeout->tv_usec = -1;
   info->timeout = timeout;
   info->observator = NULL;
+  info->queue = NULL;
+  info->clients = NULL;
+  info->team = NULL;
   return (info);
 }

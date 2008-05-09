@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  8 12:42:35 2008 caner candan
-** Last update Thu May  8 13:16:42 2008 caner candan
+** Last update Thu May  8 23:40:20 2008 florent hochwelker
 */
 
 #include <signal.h>
@@ -18,7 +18,7 @@ static void	*signal_data = NULL;
 
 static void	power_off(int signal)
 {
-  (void) signal;
+  (void)signal;
   write(1, PWR_OFF_MESG, strlen(PWR_OFF_MESG));
   free_info(signal_data);
   exit(0);

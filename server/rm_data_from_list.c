@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May  5 17:46:20 2008 caner candan
-** Last update Thu May  8 13:17:42 2008 caner candan
+** Last update Fri May  9 01:55:07 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -47,7 +47,7 @@ static void	*loop_elm(t_list *elm, void *data)
 void		*rm_data_from_list(t_list **t, void *data)
 {
   if (!(*t))
-    return ((void *) -1);
+    return ((void *)-1);
   if ((*t)->data == data)
     return (first_elm(t));
   return (loop_elm(*t, data));

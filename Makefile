@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Thu May  8 13:44:32 2008 majdi toumi
+## Last update Fri May  9 02:42:48 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -103,6 +103,9 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)get_see_len.c		\
 			$(PATH_SRV)move_up.c			\
 			$(PATH_SRV)putnbr.c			\
+			$(PATH_SRV)get_inventory.c		\
+			$(PATH_SRV)obs_new_client.c		\
+			$(PATH_SRV)obs_add_client_in_char.c	\
 			$(PATH_SRV)init_signal.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c			\
@@ -172,11 +175,11 @@ all		:
 
 $(BIN_SRV)	:	$(OBJS_SRV)
 			@$(MKD) $(PATH_SRV)
-			@$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
+			$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
 
 $(BIN_CLI)	:	$(OBJS_CLI)
 			@$(MKD) $(PATH_CLI)
-			@$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
+			$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
 
 $(BIN_OBS)	:	$(OBJS_OBS)
 			@$(MKD) $(PATH_OBS)

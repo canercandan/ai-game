@@ -5,51 +5,53 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 20:27:39 2008 caner candan
+** Last update Fri May  9 00:11:35 2008 florent hochwelker
 */
 
 #include "server.h"
 #include "common.h"
 
-static t_level		level[] = {
-  {2, 1},
-  {3, 2},
-  {4, 2},
-  {5, 4},
-  {6, 4},
-  {7, 6},
-  {8, 6},
-  {0, 0}
-};
+static t_level		level[] =
+  {
+    {2, 1},
+    {3, 2},
+    {4, 2},
+    {5, 4},
+    {6, 4},
+    {7, 6},
+    {8, 6},
+    {0, 0}
+  };
 
-static t_critere	critere[] = {
-  {2, LINEMATE, 1},
-  {3, LINEMATE, 1},
-  {3, DERAUMERE, 1},
-  {3, SIBUR, 1},
-  {4, LINEMATE, 2},
-  {4, SIBUR, 1},
-  {4, PHIRAS, 2},
-  {5, LINEMATE, 1},
-  {5, DERAUMERE, 1},
-  {5, SIBUR, 2},
-  {5, PHIRAS, 1},
-  {6, LINEMATE, 1},
-  {6, DERAUMERE, 2},
-  {6, SIBUR, 1},
-  {6, MENDIANE, 3},
-  {7, LINEMATE, 1},
-  {7, DERAUMERE, 2},
-  {7, SIBUR, 3},
-  {7, PHIRAS, 1},
-  {8, LINEMATE, 2},
-  {8, DERAUMERE, 2},
-  {8, SIBUR, 2},
-  {8, MENDIANE, 2},
-  {8, PHIRAS, 2},
-  {8, THYSTAME, 1},
-  {0, 0, 0}
-};
+static t_critere	critere[] =
+  {
+    {2, LINEMATE, 1},
+    {3, LINEMATE, 1},
+    {3, DERAUMERE, 1},
+    {3, SIBUR, 1},
+    {4, LINEMATE, 2},
+    {4, SIBUR, 1},
+    {4, PHIRAS, 2},
+    {5, LINEMATE, 1},
+    {5, DERAUMERE, 1},
+    {5, SIBUR, 2},
+    {5, PHIRAS, 1},
+    {6, LINEMATE, 1},
+    {6, DERAUMERE, 2},
+    {6, SIBUR, 1},
+    {6, MENDIANE, 3},
+    {7, LINEMATE, 1},
+    {7, DERAUMERE, 2},
+    {7, SIBUR, 3},
+    {7, PHIRAS, 1},
+    {8, LINEMATE, 2},
+    {8, DERAUMERE, 2},
+    {8, SIBUR, 2},
+    {8, MENDIANE, 2},
+    {8, PHIRAS, 2},
+    {8, THYSTAME, 1},
+    {0, 0, 0}
+  };
 
 static int	has_players(t_info *info, t_client *client)
 {

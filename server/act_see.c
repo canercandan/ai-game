@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Thu May  8 23:33:07 2008 florent hochwelker
+** Last update Fri May  9 01:06:30 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -39,7 +39,7 @@ int			act_see(char *param, t_client *client, t_info *info)
   if (idx == 0)
     {
       len = get_see_len(client, info);
-      buff = xmalloc(sizeof(*buff) * len);
+      buff = xmalloc(sizeof(*buff) * (len + 1));
       bzero(buff, sizeof(buff));
       strcpy(buff, START_CMD);
       for (i = 0; i <= client->level; i++)

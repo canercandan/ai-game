@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Thu May  8 23:29:14 2008 florent hochwelker
+** Last update Fri May  9 02:40:02 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -86,7 +86,8 @@
 # define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
 # define ABS(x)			(((x) < 0) ? (x) * -1 : (x))
 # define PWR(x)			(1 << (x))
-# define IN_TIMEVAL(data)	((struct timeval *)(data))
+# define TIMEVAL(data)		((struct timeval *)(data))
+# define CLIENT(data)		((t_client *)(data))
 
 /*
 ** Status client
@@ -98,7 +99,8 @@ typedef	enum
     ST_SERVER,
     ST_CLIENT,
     ST_OBS_CLIENT,
-    ST_DEATH
+    ST_DEAD,
+    ST_DISCONNECT
   }	t_status;
 
 /*
@@ -283,13 +285,19 @@ void		server_write(t_info *info, t_client *client);
 int		execute_action(char *str, t_client *cli, t_info *info);
 int		scheduler_exec(t_info *info, void *tp);
 void		calculate_timeout(t_info *info, void *tp);
-void		send_info_to_obs(t_client *client, t_info *info);
 int		send_buf_to_client(t_client *client, char *buf);
+void		send_info_to_obs(t_client *client, t_info *info);
+
+/*
+** Observator's functions
+*/
+void		obs_add_client_in_char(char *buf, t_client *client);
+void		obs_new_client(t_list *obs, t_client *client);
 
 /*
 ** Options' functions
 */
-void		usage_server();
+  void		usage_server();
 int		is_options(char *args);
 t_info		*parse_args(int argc, char **argv, t_info *info);
 int		check_flag(int flag);
@@ -323,6 +331,7 @@ int	act_kick(char *param, t_client *client, t_info *info);
 int	act_broadcast(char *param, t_client *client, t_info *info);
 int	act_levelup(char *param, t_client *client, t_info *info);
 int	act_fork(char *param, t_client *client, t_info *info);
+void	get_inventory(t_client *client, char *buff);
 
 /*
 ** Mathematical's functions
@@ -376,10 +385,10 @@ t_info	*init_info();
 void	free_info(t_info *info);
 int	get_ressource_idx(char *data);
 int	get_see_len(t_client *client, t_info *info);
-int		send_ressources(t_info *info, t_client *client, char *buff,
-				int x_diff, int y_diff);
-int		send_len_ressources(t_info *info, t_client *client,
-				    int x_diff, int y_diff);
+int	send_ressources(t_info *info, t_client *client, char *buff,
+			int x_diff, int y_diff);
+int	send_len_ressources(t_info *info, t_client *client,
+			    int x_diff, int y_diff);
 
 /*
 ** Usefull functions
