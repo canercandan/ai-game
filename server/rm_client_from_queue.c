@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 17:35:17 2008 caner candan
-** Last update Thu May  8 13:17:53 2008 caner candan
+** Last update Fri May  9 18:48:23 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -36,10 +36,9 @@ static void	loop_elm(t_list *elm, int socket)
 	  continue;
 	}
       next = elm->next->next;
-      free(((t_queue *)elm->data)->param);
-      free(((t_queue *)elm->data)->time);
-      free(elm->data);
-      free(elm);
+      free(((t_queue *)elm->next->data)->param);
+      free(((t_queue *)elm->next->data)->time);
+      free(elm->next->data);
       free(elm->next);
       elm->next = next;
     }

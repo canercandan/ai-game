@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 11:54:09 2008 caner candan
+** Last update Fri May  9 18:33:14 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -86,7 +86,7 @@ int		act_broadcast(char *param, t_client *client,
   clients = info->clients;
   while (clients)
     {
-      c = (t_client *) clients->data;
+      c = (t_client *)clients->data;
       if (c != client)
 	{
 	  send_buf_to_client(c, MESSAGE);
