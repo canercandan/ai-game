@@ -11,6 +11,7 @@ int	main(int ac, char **av)
     main_usage();
   obs = init_obs(av[1], av[2]);
   draw_rock(obs, 0, 0, 2);
+  draw_player(obs, 1, 2, 0);
   while(DEVICE(obs->window->device)->run())
     {
       //msg_reception(obs);

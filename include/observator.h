@@ -5,12 +5,11 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Wed May  7 17:53:38 2008 caner candan
+** Last update Fri May  9 20:15:44 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_H__
 # define __OBSERVATOR_H__
-
 
 /* Define
 */
@@ -53,16 +52,11 @@
 #define ITEM_8                  "textures/rock_8.bmp"
 #define ITEM_9                  "textures/rock_9.bmp"
 
-/*
-** Mask structure
-*/
+#define	INVADER			"models/perso.md2"
+#define	SKIN_1			"models/alien.bmp"
 
 /*
-using namespace irr;
-using namespace video;
-using namespace scene;
-using namespace gui;
-using namespace core;
+** Mask structure
 */
 
 #define DEVICE(data)	((IrrlichtDevice *) (data))
@@ -72,6 +66,9 @@ using namespace core;
 #define CAMERA(data)	((ICameraSceneNode *) (data))
 #define TERRAIN(data)	((ITerrainSceneNode *) (data))
 #define TEXTURE(data)	((ITexture *) (data))
+
+#define X(data)		((data * 100) - ((obs->x + 1) * 50))
+#define Y(data)		((data * 100) - ((obs->y + 1) * 50))
 
 /* Structure
 */
@@ -101,10 +98,23 @@ typedef struct	s_item
   int		z;
 }		t_item;
 
+typedef struct	s_player
+{
+  char		*team;
+  int		id;
+  int		x;
+  int		y;
+  int		case_x;
+  int		case_y;
+  int		life;
+  int		inventory[NB_RESSOURCE];
+}		t_player;
+
 typedef struct	s_obs
 {
   t_window	*window;
   t_matrix	**matrix;
+  t_player	*player;
   t_item	item[NB_RESSOURCE];
   int		x;
   int		y;
@@ -130,6 +140,7 @@ void		msg_reception(t_obs *obs);
 
 void		draw_all(t_obs *obs);
 void		draw_rock(t_obs *obs, int x, int y, int type);
+void		draw_player(t_obs *obs, int x, int y, int z);
 
 void		free_obs(t_obs *obs);
 
