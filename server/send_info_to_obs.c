@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Fri May  9 02:47:02 2008 florent hochwelker
+** Last update Fri May  9 17:40:21 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -20,7 +20,8 @@ static void	send_list_players(t_client *obs, t_info *info)
   while (clients)
     {
       if (CLIENT(clients->data)->status == ST_CLIENT)
-	obs_add_client_in_char(obs->buf_write, clients->data);
+	obs_add_client_in_char(obs->buf_write, clients->data, info,
+			       CLIENT(clients->data)->socket);
       clients = clients->next;
     }
 }

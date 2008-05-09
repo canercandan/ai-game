@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  9 00:46:07 2008 florent hochwelker
+** Last update Fri May  9 13:44:22 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -25,7 +25,7 @@ int			act_inventory(char *param, t_client *client, t_info *info)
   if (i == 0)
     {
       bzero(buff, sizeof(buff));
-      get_inventory(client, buff);
+      get_inventory(client, buff, info);
     }
   bzero(client->buf_write, BUF_SIZE);
   strncpy(client->buf_write, buff + i, BUF_SIZE);

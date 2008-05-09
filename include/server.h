@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  9 02:40:02 2008 florent hochwelker
+** Last update Fri May  9 17:38:53 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -24,7 +24,7 @@
 /*
 ** Defines
 */
-# define START_UNIT_LIFE	10000000.0	/* en float */
+# define START_UNIT_LIFE	10.0	/* en float */
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
@@ -203,6 +203,7 @@ typedef struct	s_info
 typedef struct	s_queue
 {
   int		(*f)(char *cmd, t_client *cli, t_info *info);
+  char		idx_f;
   char		*param;
   void		*time;
   t_client	*client;
@@ -291,13 +292,15 @@ void		send_info_to_obs(t_client *client, t_info *info);
 /*
 ** Observator's functions
 */
-void		obs_add_client_in_char(char *buf, t_client *client);
-void		obs_new_client(t_list *obs, t_client *client);
+void		obs_add_client_in_char(char *buf, t_client *client, t_info *info, int socket);
+void		obs_new_client(t_list *obs, t_client *client, t_info *info);
+void		obs_send_action(int socket, t_info *info, char idx_f, char *param);
+
 
 /*
 ** Options' functions
 */
-  void		usage_server();
+void		usage_server();
 int		is_options(char *args);
 t_info		*parse_args(int argc, char **argv, t_info *info);
 int		check_flag(int flag);
@@ -331,7 +334,7 @@ int	act_kick(char *param, t_client *client, t_info *info);
 int	act_broadcast(char *param, t_client *client, t_info *info);
 int	act_levelup(char *param, t_client *client, t_info *info);
 int	act_fork(char *param, t_client *client, t_info *info);
-void	get_inventory(t_client *client, char *buff);
+void	get_inventory(t_client *client, char *buff, t_info *info);
 
 /*
 ** Mathematical's functions

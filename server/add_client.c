@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Fri May  9 02:32:24 2008 florent hochwelker
+** Last update Fri May  9 17:54:13 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -53,6 +53,5 @@ t_client	*add_client(t_info *info, int server)
   client->team = NULL;
   init_ressources(client);
   push_list(&info->clients, (void *)client);
-  obs_new_client(info->observator, client);
   return (client);
 }

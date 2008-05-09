@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  9 02:42:48 2008 florent hochwelker
+## Last update Fri May  9 16:02:12 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -103,6 +103,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)get_see_len.c		\
 			$(PATH_SRV)move_up.c			\
 			$(PATH_SRV)putnbr.c			\
+			$(PATH_SRV)obs_send_action.c		\
 			$(PATH_SRV)get_inventory.c		\
 			$(PATH_SRV)obs_new_client.c		\
 			$(PATH_SRV)obs_add_client_in_char.c	\

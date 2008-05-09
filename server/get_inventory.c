@@ -5,22 +5,25 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 00:43:10 2008 florent hochwelker
-** Last update Fri May  9 01:42:38 2008 florent hochwelker
+** Last update Fri May  9 13:49:21 2008 florent hochwelker
 */
 
 #include <string.h>
+#include <sys/time.h>
 #include "server.h"
 #include "common.h"
 
-void	get_inventory(t_client *client, char *buff)
+void			get_inventory(t_client *client, char *buff, t_info *info)
 {
-  int	i;
+  int			i;
+  struct timeval	tp;
 
   i = 0;
+  gettimeofday(&tp, NULL);
   strcpy(buff, START_CMD);
   strcat(buff, gl_ressource[NB_INVENTORY - 1].name);
   strcat(buff, SEPARATOR_ELM);
-  putnbr(42, buff);
+  putnbr((client->hp - tp.tv_sec - tp.tv_usec / 1e6) / (FOOD_HP * info->time), buff);
   while (i < NB_INVENTORY - 1)
     {
       if (i != (NB_INVENTORY - 1))

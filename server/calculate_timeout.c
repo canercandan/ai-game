@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Mon May  5 20:46:08 2008 florent hochwelker
-** Last update Tue May  6 21:18:07 2008 florent hochwelker
+** Last update Fri May  9 16:18:37 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -21,26 +21,31 @@ static void	check_timeout_death(struct timeval *timeout, /* a mettre a la norme 
   clients = info->clients;
   while (clients)
     {
-      if (((t_client *)clients->data)->status == ST_CLIENT &&
-	  (((unsigned int)((t_client *)clients->data)->hp) <
-	   (unsigned int)(timeout->tv_sec) + ((struct timeval *)tp)->tv_sec ||
-	   (((unsigned int)((t_client *)clients->data)->hp) ==
-	    (unsigned int)(timeout->tv_sec) + ((struct timeval *)tp)->tv_sec &&
-	    ((((t_client *)clients->data)->hp -
-	      (int)((t_client *)clients->data)->hp)) * 1e6 <
-	    (unsigned int)(timeout->tv_usec) + ((struct timeval *)tp)->tv_usec)))
+      if ((((t_client *)clients->data)->status == ST_CLIENT ||
+	   ((t_client *)clients->data)->status == ST_DISCONNECT) &&
+	  (((((unsigned int)((t_client *)clients->data)->hp) <
+	     (unsigned int)(timeout->tv_sec) + ((struct timeval *)tp)->tv_sec ||
+	     (((unsigned int)((t_client *)clients->data)->hp) ==
+	      (unsigned int)(timeout->tv_sec) + ((struct timeval *)tp)->tv_sec &&
+	      ((((t_client *)clients->data)->hp -
+		(int)((t_client *)clients->data)->hp)) * 1e6 <
+	      (unsigned int)(timeout->tv_usec) +
+	      ((struct timeval *)tp)->tv_usec))) ||
+	   (timeout->tv_sec == -1 && timeout->tv_usec == -1)))
 	{
 	  timeout->tv_sec = ((t_client *)clients->data)->hp -
 	    ((struct timeval *)tp)->tv_sec;
 	  timeout->tv_usec =
-	    (((t_client *)clients->data)->hp -
-	     (int)((t_client *)clients->data)->hp) * 1e6 -
+	    ((((t_client *)clients->data)->hp -
+	      (int)((t_client *)clients->data)->hp)) * 1e6  -
 	    ((struct timeval *)tp)->tv_usec;
 	  if (timeout->tv_usec < 0)
 	    {
 	      timeout->tv_usec += 1e6;
 	      timeout->tv_sec--;
 	    }
+	  if (timeout->tv_sec < 0)
+	    timeout->tv_sec = 0;
 	}
       clients = clients->next;
     }

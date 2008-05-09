@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Fri May  9 02:20:51 2008 florent hochwelker
+** Last update Fri May  9 17:54:51 2008 florent hochwelker
 */
 
 #include <server.h>
@@ -70,6 +70,7 @@ static int	check_team_and_connect(t_client *cli, t_info *info)
       cli->team = team;
       snprintf(cli->buf_write, BUF_SIZE, "%d\n%d %d\n",
 	       team->max - team->nb, info->x, info->y);
+      obs_new_client(info->observator, cli, info);
     }
   else if (team == (t_team*)1)	/* le client est un observateur */
     {

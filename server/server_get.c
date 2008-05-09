@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Fri May  9 01:18:46 2008 florent hochwelker
+** Last update Fri May  9 16:14:56 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -55,7 +55,13 @@ static void		*get_timeout(t_info *info)
 {
   if (((struct timeval *)info->timeout)->tv_sec == -1 &&
       ((struct timeval *)info->timeout)->tv_usec == -1)
-    return (NULL);
+    {
+      printf("timeout NULL\n");
+      return (NULL);
+    }
+  printf("timeout pas null\n");
+  printf("timeout->tv_sec = %ld, timeout->tv_usec = %ld\n",
+	 TIMEVAL(info->timeout)->tv_sec, TIMEVAL(info->timeout)->tv_usec);
   return (info->timeout);
 }
 
@@ -95,13 +101,13 @@ void			server_get(t_info *info)
 		 get_timeout(info)) < 0)
 	{
 	  printf("Error with select()\n");
+	  perror("select:");
 	  exit(-1);
 	}
       gettimeofday(&tp, NULL);
       check_death_clients(info, tp.tv_sec);
       get_isset_fd(info, &fd_read, &fd_write);
       scheduler_exec(info, &tp);
-      printf("tp.tv_sec = %ld, tp.tv_usec = %ld\n", tp.tv_sec, tp.tv_usec);
       printf("waiting...\n");
     }
 }

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Tue May  6 21:14:40 2008 florent hochwelker
+** Last update Fri May  9 15:56:37 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -90,6 +90,7 @@ int			execute_action(char *str, t_client *cli, t_info *info)
 		new_queue = create_new_queue(str, actions[i].f,
 					     set_timeout(actions[i].delay, info,
 							 &tp), cli);
+		new_queue->idx_f = i;
 		push_list(&info->queue, new_queue);
 		sort_queue_list(&info->queue);
 	      }
