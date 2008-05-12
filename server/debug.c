@@ -5,12 +5,12 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 14:44:07 2008 caner candan
-** Last update Mon May 12 13:12:17 2008 majdi toumi
+** Last update Mon May 12 13:50:01 2008 majdi toumi
 */
 
 #include <unistd.h>
 #include <string.h>
-#include "server.h"
+#include "common.h"
 
 void	debug(char *s, int pos)
 {
