@@ -5,10 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 16:24:11 2008 majdi toumi
+** Last update Mon May 12 17:46:59 2008 caner candan
 */
 
 #include <string.h>
+#include <stdlib.h>
 #include "server.h"
 #include "common.h"
 
@@ -146,5 +147,10 @@ int		act_levelup(char *param, t_client *client, t_info *info)
       return (-1);
     }
   levelup(client, info);
+  if (!is_levelmax(client, info))
+    {
+      free_info(info);
+      exit(0);
+    }
   return (0);
 }
