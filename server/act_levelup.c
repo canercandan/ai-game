@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 15:29:54 2008 florent hochwelker
+** Last update Mon May 12 15:44:00 2008 caner candan
 */
 
 #include <string.h>
@@ -60,6 +60,9 @@ static int	has_players(t_info *info, t_client *client)
   int		i;
 
   nb = count_list(info->zone[client->x][client->y].clients);
+  if (count_list_with_same_lvl(info->zone[client->x][client->y].clients,
+			       client->level) == nb)
+    return (-1);
   i = 0;
   while (level[i].lvl)
     {

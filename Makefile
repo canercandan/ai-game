@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 13:22:43 2008 caner candan
+## Last update Mon May 12 15:45:00 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -38,7 +38,9 @@ SRCS_X		=	$(PATH_X)xaccept.c			\
 			$(PATH_X)xfork.c
 
 SRCS_SRV	=	$(PATH_SRV)main.c			\
-			$(PATH_SRV)options.c			\
+			$(PATH_SRV)parse_args.c			\
+			$(PATH_SRV)is_options.c			\
+			$(PATH_SRV)usage_server.c		\
 			$(PATH_SRV)check_flag.c			\
 			$(PATH_SRV)opt_port.c			\
 			$(PATH_SRV)opt_width.c			\
@@ -85,6 +87,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)show_clients_from_list.c	\
 			$(PATH_SRV)sort_queue_list.c		\
 			$(PATH_SRV)count_list.c			\
+			$(PATH_SRV)count_list_with_same_lvl.c	\
 			$(PATH_SRV)init_info.c			\
 			$(PATH_SRV)create_new_queue.c		\
 			$(PATH_SRV)send_info_to_obs.c		\
@@ -134,7 +137,8 @@ SRCS_OBS	=	$(PATH_OBS)main.cpp			\
 			$(PATH_OBS)draw_player.cpp		\
 			$(PATH_OBS)extract_num.cpp		\
 			$(PATH_OBS)free_obs.cpp			\
-			$(PATH_OBS)msg_reception.cpp
+			$(PATH_OBS)msg_reception.cpp		\
+			$(PATH_OBS)parse_args.cpp
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
