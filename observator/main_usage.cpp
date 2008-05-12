@@ -5,15 +5,16 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:36:39 2008 majdi toumi
-// Last update Mon May 12 13:40:58 2008 majdi toumi
+// Last update Mon May 12 13:51:22 2008 majdi toumi
 //
 
 #include <unistd.h>
-#include <string.h>
+#include <stdlib.h>
 #include "observator.h"
+#include "common.h"
 
-void	main_usage()
+void	main_usage(void)
 {
   write(1, OBS_USAGE, strlen(OBS_USAGE));
-  exit (0);
+  exit(EXIT_SUCC);
 }
