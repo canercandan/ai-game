@@ -5,10 +5,10 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:23 2008 majdi toumi
-// Last update Mon May 12 13:48:24 2008 majdi toumi
+// Last update Mon May 12 19:21:20 2008 caner candan
 //
 
-#include "observator.h"
+#include "observator_3d.h"
 
 int	extract_num(char *buf, int num)
 {

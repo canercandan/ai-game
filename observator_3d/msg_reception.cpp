@@ -5,11 +5,11 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:49:03 2008 majdi toumi
-// Last update Mon May 12 13:49:04 2008 majdi toumi
+// Last update Mon May 12 19:22:30 2008 caner candan
 //
 
 #include <irrlicht.h>
-#include "observator.h"
+#include "observator_3d.h"
 
 void				msg_reception(t_obs *obs)
 {

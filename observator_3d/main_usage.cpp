@@ -5,13 +5,13 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:36:39 2008 majdi toumi
-// Last update Mon May 12 13:52:02 2008 majdi toumi
+// Last update Mon May 12 19:22:25 2008 caner candan
 //
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include "observator.h"
+#include "observator_3d.h"
 #include "common.h"
 
 void	main_usage(void)

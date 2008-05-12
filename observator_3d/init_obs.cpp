@@ -5,10 +5,10 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:41:45 2008 majdi toumi
-// Last update Mon May 12 14:51:24 2008 caner candan
+// Last update Mon May 12 19:22:05 2008 caner candan
 //
 
-#include "observator.h"
+#include "observator_3d.h"
 
 void	init_obs(t_obs *obs)
 {

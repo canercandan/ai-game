@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:43 2008 majdi toumi
-// Last update Mon May 12 13:48:44 2008 majdi toumi
+// Last update Mon May 12 19:21:55 2008 caner candan
 //
 
 #include <irrlicht.h>
@@ -13,7 +13,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "observator.h"
+#include "observator_3d.h"
 #include "common.h"
 
 void	init_map_size(t_obs *obs)

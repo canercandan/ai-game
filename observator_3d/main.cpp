@@ -5,11 +5,11 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:37:03 2008 majdi toumi
-// Last update Mon May 12 14:53:09 2008 caner candan
+// Last update Mon May 12 19:22:19 2008 caner candan
 //
 
 #include <irrlicht.h>
-#include "observator.h"
+#include "observator_3d.h"
 
 using namespace	irr;
 

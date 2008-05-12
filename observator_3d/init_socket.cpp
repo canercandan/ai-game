@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:46:19 2008 majdi toumi
-// Last update Mon May 12 15:03:46 2008 caner candan
+// Last update Mon May 12 19:22:10 2008 caner candan
 //
 
 #include <sys/socket.h>
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <netdb.h>
 #include <string.h>
-#include "observator.h"
+#include "observator_3d.h"
 
 static void	error(t_obs *obs)
 {

@@ -5,10 +5,10 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon May 12 14:27:30 2008 caner candan
-// Last update Mon May 12 15:04:10 2008 caner candan
+// Last update Mon May 12 19:22:36 2008 caner candan
 //
 
-#include "observator.h"
+#include "observator_3d.h"
 #include "common.h"
 
 int	parse_args(int ac, char **av, t_obs *obs)
