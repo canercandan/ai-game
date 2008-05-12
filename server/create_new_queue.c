@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:39:12 2008 florent hochwelker
-** Last update Tue May  6 16:56:13 2008 florent hochwelker
+** Last update Mon May 12 18:46:36 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -22,10 +22,10 @@ t_queue		*create_new_queue(char *str, int (*f)(),
   new_queue->f = f;
   new_queue->param = strdup(get_word_n(str, 2));
   new_queue->time = xmalloc(sizeof(struct timeval));
-  ((struct timeval *)(new_queue->time))->tv_sec =
-    ((struct timeval *)(new_time))->tv_sec;
-  ((struct timeval *)(new_queue->time))->tv_usec =
-    ((struct timeval *)new_time)->tv_usec;
+  TIMEVAL((new_queue->time))->tv_sec =
+    TIMEVAL((new_time))->tv_sec;
+  TIMEVAL((new_queue->time))->tv_usec =
+    TIMEVAL(new_time)->tv_usec;
   new_queue->client = cli;
   return (new_queue);
 }

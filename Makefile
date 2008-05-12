@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 19:34:55 2008 majdi toumi
+## Last update Mon May 12 20:08:04 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -68,6 +68,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)act_kick.c				\
 			$(PATH_SRV)act_broadcast.c			\
 			$(PATH_SRV)act_levelup.c			\
+			$(PATH_SRV)act_levelup_progress.c		\
 			$(PATH_SRV)act_fork.c				\
 			$(PATH_SRV)act_count.c				\
 			$(PATH_SRV)begin_session.c			\
@@ -184,14 +185,13 @@ LDFLAGS_OBS_3D	=	$(LIBRARY_OBS_3D)
 CC		=	gcc
 RM		=	rm -f
 FIND		=	find . -name
-FIND_ECHO	=	-exec echo {} removed \;
 FIND_RM		=	-exec rm {} \;
 MK		=	make
 MKD		=	mkdir -p
 
-RM_O		=	$(FIND) '*.o' $(FIND_ECHO) $(FIND_RM)
-RM_TILD		=	$(FIND) '*~' $(FIND_ECHO) $(FIND_RM)
-RM_CORE		=	$(FIND) '*.core' $(FIND_ECHO) $(FIND_RM)
+RM_O		=	$(FIND) '*.o' $(FIND_RM)
+RM_TILD		=	$(FIND) '*~' $(FIND_RM)
+RM_CORE		=	$(FIND) '*.core' $(FIND_RM)
 
 KEY_VALUE	=	42
 

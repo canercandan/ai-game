@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May 12 19:30:16 2008 majdi toumi
+** Last update Mon May 12 20:06:15 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -86,7 +86,7 @@
 # define CLIENT(data)		((t_client *)(data))
 
 /*
-** Macro what the fuck
+** Macro send
 */
 # define SEND(buff, txt)	(strncat(buff, txt, BUF_SIZE - strlen(buff)))
 
@@ -315,6 +315,7 @@ int	act_drop_obj(char *param, t_client *client, t_info *info);
 int	act_kick(char *param, t_client *client, t_info *info);
 int	act_broadcast(char *param, t_client *client, t_info *info);
 int	act_levelup(char *param, t_client *client, t_info *info);
+int	act_levelup_progress(char *param, t_client *client, t_info *info);
 int	is_levelmax(t_client *client, t_info *info);
 int	act_fork(char *param, t_client *client, t_info *info);
 void	get_inventory(t_client *client, char *buff, t_info *info);

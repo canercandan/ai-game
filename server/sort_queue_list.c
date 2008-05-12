@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Wed Apr 30 17:53:33 2008 florent hochwelker
-** Last update Mon May 12 13:10:53 2008 majdi toumi
+** Last update Mon May 12 19:17:19 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -20,12 +20,12 @@ void		sort_queue_list(t_list **begin)
   p = *begin;
   while ((*begin)->next)
     {
-      if (((struct timeval *)((t_queue*)(*begin)->data)->time)->tv_sec >
-	  ((struct timeval *)((t_queue*)(*begin)->next->data)->time)->tv_sec
-	  || (((struct timeval *)((t_queue*)(*begin)->data)->time)->tv_sec ==
-	      ((struct timeval *)((t_queue*)(*begin)->next->data)->time)->tv_sec
-	      && ((struct timeval *)((t_queue*)(*begin)->data)->time)->tv_usec >
-	      ((struct timeval *)((t_queue*)(*begin)->next->data)->time)->tv_usec))
+      if (TIMEVAL(((t_queue*)(*begin)->data)->time)->tv_sec >
+	  TIMEVAL(((t_queue*)(*begin)->next->data)->time)->tv_sec
+	  || (TIMEVAL(((t_queue*)(*begin)->data)->time)->tv_sec ==
+	      TIMEVAL(((t_queue*)(*begin)->next->data)->time)->tv_sec
+	      && TIMEVAL(((t_queue*)(*begin)->data)->time)->tv_usec >
+	      TIMEVAL(((t_queue*)(*begin)->next->data)->time)->tv_usec))
 	{
 	  printf("petit swap\n");
 	  swap = (*begin)->next->data;

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon May 12 16:15:13 2008 caner candan
+** Last update Mon May 12 18:28:46 2008 florent hochwelker
 */
 
 #ifndef __COMMON_H__
@@ -75,7 +75,7 @@ typedef enum
 */
 enum
   {
-    UP = 1,
+    UP,
     RIGHT,
     LEFT,
     SEE,
@@ -84,6 +84,7 @@ enum
     DROP_OBJ,
     KICK,
     BROADCAST,
+    LEVELUP_PROGRESS,
     LEVELUP,
     FORK,
     COUNT

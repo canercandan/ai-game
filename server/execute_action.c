@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Mon May 12 16:15:33 2008 caner candan
+** Last update Mon May 12 19:57:23 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -15,7 +15,7 @@
 #include "server.h"
 #include "common.h"
 
-static t_action	actions[] =
+static t_action		actions[] =
   {
     {UP, "avance", 7, act_up},
     {RIGHT, "droite", 7, act_right},
@@ -26,10 +26,11 @@ static t_action	actions[] =
     {DROP_OBJ, "pose", 7, act_drop_obj},
     {KICK, "expulse", 7, act_kick},
     {BROADCAST, "broadcast", 7, act_broadcast},
-    {LEVELUP, "incantation", 300, act_levelup},
+    {LEVELUP_PROGRESS, "incantation", 0, act_levelup_progress},
+    {LEVELUP, 0, 300, act_levelup},
     {FORK, "fork", 42, act_fork},
     {COUNT, "connect_nbr", 0, act_count},
-    {0, 0, 0, 0}
+    {0, 0, 0, 0},
   };
 
 static struct timeval	*set_timeout(float delay,
@@ -60,9 +61,9 @@ static int		get_last_action(struct timeval *empty,
       if (((t_queue*)queue->data)->client == client)
 	{
 	  empty->tv_sec =
-	    ((struct timeval *)((t_queue*)queue->data)->time)->tv_sec;
+	    TIMEVAL(((t_queue*)queue->data)->time)->tv_sec;
 	  empty->tv_usec =
-	    ((struct timeval *)((t_queue*)queue->data)->time)->tv_usec;
+	    TIMEVAL(((t_queue*)queue->data)->time)->tv_usec;
 	  i++;
 	}
       queue = queue->next;
@@ -74,11 +75,22 @@ static int		get_last_action(struct timeval *empty,
   return (1);
 }
 
-static void		set_and_check_idx_f(t_queue *queue, int i, t_client *cli)
+static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
+				  t_info *info)
 {
-  queue->idx_f = i;
-  if (i == LEVELUP)
-    strlcat(cli->buf_write, LVLUP_PROCESS, BUF_SIZE);
+  t_queue		*queue;
+
+  new_queue->idx_f = i;
+  push_list(&info->queue, new_queue);
+  if (i == LEVELUP_PROGRESS)
+    {
+      queue = create_new_queue("", actions[LEVELUP].f,
+			       set_timeout(actions[LEVELUP].delay, info,
+					   tp), new_queue->client);
+      queue->idx_f = LEVELUP;
+      push_list(&info->queue, queue);
+    }
+  sort_queue_list(&info->queue);
 }
 
 int			execute_action(char *str, t_client *cli, t_info *info)
@@ -89,23 +101,22 @@ int			execute_action(char *str, t_client *cli, t_info *info)
 
   i = 0;
   if (cli->status == ST_CLIENT)
-    while (actions[i].str)
+    while (actions[i].f != 0)
       {
-	if (strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
+	if (actions[i].str &&
+	    strncmp(actions[i].str, str, strlen(actions[i].str)) == 0)
 	  {
 	    if (get_last_action(&tp, info->queue, cli))
 	      {
 		new_queue = create_new_queue(str, actions[i].f,
 					     set_timeout(actions[i].delay, info,
 							 &tp), cli);
-		set_and_check_idx_f(new_queue, i, cli);
-		push_list(&info->queue, new_queue);
-		sort_queue_list(&info->queue);
+		set_idx_f(new_queue, i, &tp, info);
 	      }
 	    return (0);
 	  }
 	i++;
       }
-  strlcat(cli->buf_write, KO, BUF_SIZE);
+  SEND(cli->buf_write, KO);
   return (-1);
 }
