@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May 12 15:01:27 2008 florent hochwelker
+** Last update Mon May 12 15:43:00 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -24,7 +24,7 @@
 /*
 ** Defines
 */
-# define START_UNIT_LIFE	10.0	/* en float */
+# define START_UNIT_LIFE	100000.0	/* en float */
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
@@ -44,7 +44,6 @@
 /*
 ** Default's values
 */
-# define DEFAULT_PORT		12345
 # define DEFAULT_WIDTH		10
 # define DEFAULT_LENGHT		10
 # define DEFAULT_NB_PLAYER	6
@@ -70,7 +69,7 @@
 ** Null
 */
 # ifndef NULL
-#  define NULL			(void *)0
+#  define NULL	(void *)0
 # endif /* !NULL */
 
 /*
@@ -79,6 +78,10 @@
 # define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
 # define ABS(x)			(((x) < 0) ? (x) * -1 : (x))
 # define PWR(x)			(1 << (x))
+
+/*
+** Macro to cast
+*/
 # define TIMEVAL(data)		((struct timeval *)(data))
 # define CLIENT(data)		((t_client *)(data))
 
@@ -271,7 +274,6 @@ void		obs_add_client_in_char(char *buf, t_client *client, t_info *info, int sock
 void		obs_new_client(t_list *obs, t_client *client, t_info *info);
 void		obs_send_action(int socket, t_info *info, char idx_f, char *param);
 
-
 /*
 ** Options' functions
 */
@@ -331,7 +333,7 @@ void	dump_client_position(t_list *client);
 */
 void	push_list(t_list **t, void *data);
 void	*pop_list(t_list **t);
-void	pop_all_list(t_list *t);
+void	pop_all_list(t_list **t);
 
 /*
 ** Clients list chaine's functions
@@ -342,6 +344,7 @@ void	*get_client_from_list(t_list *t, int socket);
 void	show_clients_from_list(t_list *t);
 void	sort_queue_list(t_list **begin);
 int	count_list(t_list *t);
+int	count_list_with_same_lvl(t_list *t, int lvl);
 int	exist_data_from_list(t_list *t, void *data);
 
 /*
@@ -368,7 +371,7 @@ int	send_len_ressources(t_info *info, t_client *client,
 			    int x_diff, int y_diff);
 
 /*
-** Usefull functions
+** Useful functions
 */
 char	*get_word_n(char *str, int n);
 char	*trim(char *str);

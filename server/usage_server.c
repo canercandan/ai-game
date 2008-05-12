@@ -5,12 +5,13 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 12:06:08 2008 majdi toumi
-** Last update Thu May  8 12:41:23 2008 caner candan
+** Last update Mon May 12 15:09:32 2008 caner candan
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "server.h"
+#include "common.h"
 
 t_opt	gl_opt_srv[] = {
   {FLAG_P, "-p", "port's number", opt_port},

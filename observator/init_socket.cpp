@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:46:19 2008 majdi toumi
-// Last update Mon May 12 13:46:20 2008 majdi toumi
+// Last update Mon May 12 15:03:46 2008 caner candan
 //
 
 #include <sys/socket.h>
@@ -18,14 +18,14 @@
 #include <string.h>
 #include "observator.h"
 
-static void		error(t_obs *obs)
+static void	error(t_obs *obs)
 {
   write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
   free_obs(obs);
   exit(-1);
 }
 
-void			init_socket(t_obs *obs, char *host, char *port)
+void			init_socket(t_obs *obs)
 {
   struct sockaddr_in	sin;
   struct hostent	*h;
@@ -36,10 +36,10 @@ void			init_socket(t_obs *obs, char *host, char *port)
   if ((obs->sock = socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
     error(obs);
   sin.sin_family = AF_INET;
-  if (!(h = gethostbyname(host)))
+  if (!(h = gethostbyname(obs->host)))
     error(obs);
   bcopy(h->h_addr, &in, sizeof(in));
-  sin.sin_port = htons(extract_num(port, 1));
+  sin.sin_port = htons(obs->port);
   sin.sin_addr.s_addr = inet_addr(inet_ntoa(in));
   if (connect(obs->sock, (struct sockaddr*)&sin, sizeof(sin)) < 0)
     error(obs);

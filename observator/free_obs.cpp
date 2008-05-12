@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:33 2008 majdi toumi
-// Last update Mon May 12 13:48:33 2008 majdi toumi
+// Last update Mon May 12 14:53:17 2008 caner candan
 //
 
 #include <stdlib.h>
@@ -20,5 +20,4 @@ void	free_obs(t_obs *obs)
   free(obs->matrix);
   free(obs->window);
   free(obs->item);
-  free(obs);
 }

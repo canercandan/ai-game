@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:11:25 2008 florent hochwelker
-** Last update Wed May  7 23:26:26 2008 caner candan
+** Last update Mon May 12 14:43:46 2008 caner candan
 */
 
 #ifndef __CLIENT_H__
@@ -16,11 +16,6 @@
 # define READ_BUFF	1014
 # define MSG_WELCOME	"BIENVENUE\n"
 # define NB_ACTIONS	10
-
-/*
-** Defaults' values
-*/
-# define DEFAULT_HOST	"localhost"
 
 /*
 ** Null's define

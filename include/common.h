@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon May 12 15:27:27 2008 florent hochwelker
+** Last update Mon May 12 15:31:33 2008 caner candan
 */
 
 #ifndef __COMMON_H__
@@ -38,6 +38,12 @@
 # define MESSAGE	"message "
 # define KICKIT		"deplacement "
 # define LVLUP_OK	"niveau actuel : "
+
+/*
+** Default's values
+*/
+# define DEFAULT_HOST		"localhost"
+# define DEFAULT_PORT		12345
 
 /*
 ** Directions

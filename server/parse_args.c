@@ -5,12 +5,13 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu May  8 12:40:56 2008 caner candan
+** Last update Mon May 12 14:44:12 2008 caner candan
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "server.h"
+#include "common.h"
 #include "x.h"
 
 extern t_opt	gl_opt_srv[];

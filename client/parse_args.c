@@ -5,11 +5,12 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May  7 22:13:32 2008 caner candan
-** Last update Thu May  8 12:12:25 2008 caner candan
+** Last update Mon May 12 14:44:23 2008 caner candan
 */
 
 #include <stdlib.h>
 #include "client.h"
+#include "common.h"
 
 int	parse_args(int ac, char **av, t_info *info)
 {

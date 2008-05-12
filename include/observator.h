@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Mon May 12 13:35:13 2008 majdi toumi
+** Last update Mon May 12 14:54:05 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_H__
@@ -27,9 +27,9 @@
 
 #define SOCK_ERROR		"ERROR : Can't connect !\n"
 
-/* Files
+/*
+** Files
 */
-
 #define OBS_PK3			"bin/map.pk3"
 
 #define SKY_UP			"env/up.tga"
@@ -39,26 +39,28 @@
 #define SKY_FT			"env/ft.tga"
 #define SKY_BK			"env/bk.tga"
 
-#define MAP_CASE                "maps/case.bmp"
+#define MAP_CASE	"maps/case.bmp"
 
-#define	ITEM_0			"textures/rpck_0.bmp"
-#define ITEM_1                  "textures/water.bmp"
-#define ITEM_2                  "textures/gold.bmp"
-#define ITEM_3                  "textures/rock.bmp"
-#define ITEM_4                  "textures/purple.bmp"
-#define ITEM_5                  "textures/grass.bmp"
-#define ITEM_6                  "textures/lava.bmp"
-#define ITEM_7                  "textures/rock_7.bmp"
-#define ITEM_8                  "textures/rock_8.bmp"
-#define ITEM_9                  "textures/rock_9.bmp"
+/*
+** Item's defines
+*/
+#define	ITEM_0	"textures/rpck_0.bmp"
+#define ITEM_1	"textures/water.bmp"
+#define ITEM_2	"textures/gold.bmp"
+#define ITEM_3	"textures/rock.bmp"
+#define ITEM_4	"textures/purple.bmp"
+#define ITEM_5	"textures/grass.bmp"
+#define ITEM_6	"textures/lava.bmp"
+#define ITEM_7	"textures/rock_7.bmp"
+#define ITEM_8	"textures/rock_8.bmp"
+#define ITEM_9	"textures/rock_9.bmp"
 
 #define	INVADER			"models/perso.md2"
 #define	SKIN_1			"models/alien.bmp"
 
 /*
-** Mask structure
+** Casts macros
 */
-
 #define DEVICE(data)	((IrrlichtDevice *) (data))
 #define DRIVER(data)	((IVideoDriver *) (data))
 #define MANAGER(data)	((ISceneManager *) (data))
@@ -67,12 +69,15 @@
 #define TERRAIN(data)	((ITerrainSceneNode *) (data))
 #define TEXTURE(data)	((ITexture *) (data))
 
+/*
+** Get x/y
+*/
 #define X(data)		((data * 100) - ((obs->x + 1) * 50))
 #define Y(data)		((data * 100) - ((obs->y + 1) * 50))
 
-/* Structure
+/*
+** Structures
 */
-
 typedef struct	s_matrix
 {
   int		move;
@@ -119,20 +124,26 @@ typedef struct	s_obs
   int		x;
   int		y;
   int		sock;
+  char		*host;
+  int		port;
 }		t_obs;
 
-/* Function
+/*
+** Functions
 */
+void		main_usage(void);
+int		parse_args(int ac, char **av, t_obs *obs);
 
-void		main_usage();
-
-t_obs		*init_obs(char *host, char *port);
-t_window	*init_window();
+/*
+** Init's functions
+*/
+void		init_obs(t_obs *obs);
+t_window	*init_window(void);
 t_matrix	**init_matrix(t_obs *obs);
 void		init_item(t_obs *obs);
 void		init_map_size(t_obs *obs);
 void		init_case(t_obs *obs);
-void		init_socket(t_obs *obs, char *host, char *port);
+void		init_socket(t_obs *obs);
 
 int		extract_num(char *buf, int num);
 

@@ -5,22 +5,17 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:41:45 2008 majdi toumi
-// Last update Mon May 12 13:47:50 2008 majdi toumi
+// Last update Mon May 12 14:51:24 2008 caner candan
 //
 
-#include <stdlib.h>
 #include "observator.h"
 
-t_obs		*init_obs(char *host, char *port)
+void	init_obs(t_obs *obs)
 {
-  t_obs		*obs;
-
-  obs = (t_obs *) malloc(sizeof(*obs));
-  init_socket(obs, host, port);
+  init_socket(obs);
   obs->window = init_window();
   init_map_size(obs);
   obs->matrix = init_matrix(obs);
   init_item(obs);
   init_case(obs);
-  return (obs);
 }
