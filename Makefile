@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 20:08:04 2008 florent hochwelker
+## Last update Mon May 12 22:02:45 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -133,7 +133,26 @@ SRCS_CLI	=	$(PATH_CLI)main.c				\
 			$(PATH_CLI)free_info.c				\
 			$(PATH_CLI)parse_args.c
 
-SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c
+SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c			\
+			$(PATH_OBS_2D)init_signal.c		\
+			$(PATH_OBS_2D)init_screen.c		\
+			$(PATH_OBS_2D)load_image.c		\
+			$(PATH_OBS_2D)create_video.c		\
+			$(PATH_OBS_2D)loop_env.c		\
+			$(PATH_OBS_2D)destroy_surface.c		\
+			$(PATH_OBS_2D)destroy_screen.c		\
+			$(PATH_OBS_2D)catch_keys.c		\
+			$(PATH_OBS_2D)set_backdrop.c		\
+			$(PATH_OBS_2D)set_character.c		\
+			$(PATH_OBS_2D)set_status.c		\
+			$(PATH_OBS_2D)set_floor.c		\
+			$(PATH_OBS_2D)push_list.c		\
+			$(PATH_OBS_2D)pop_list.c		\
+			$(PATH_OBS_2D)create_socket.c		\
+			$(PATH_OBS_2D)parse_args.c		\
+			$(PATH_OBS_2D)init_gfx.c		\
+			$(PATH_OBS_2D)destroy_gfx.c		\
+			$(PATH_OBS_2D)get_header.c
 
 SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\
 			$(PATH_OBS_3D)main_usage.cpp			\
@@ -155,7 +174,7 @@ SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
 OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
-OBJS_OBS_2D	=	$(SRCS_OBS_2D:.c=.o)
+OBJS_OBS_2D	=	$(SRCS_OBS_2D:.c=.o) $(OBJS_X)
 OBJS_OBS_3D	=	$(SRCS_OBS_3D:.cpp=.o)
 
 INCLUDES	=	-I./include
