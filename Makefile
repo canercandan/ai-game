@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 19:11:22 2008 caner candan
+## Last update Mon May 12 19:15:15 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -130,22 +130,22 @@ SRCS_CLI	=	$(PATH_CLI)main.c			\
 
 SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c
 
-SRCS_OBS_3D	=	$(PATH_OBS)main.cpp			\
-			$(PATH_OBS)main_usage.cpp		\
-			$(PATH_OBS)init_obs.cpp			\
-			$(PATH_OBS)init_window.cpp		\
-			$(PATH_OBS)init_socket.cpp		\
-			$(PATH_OBS)init_matrix.cpp		\
-			$(PATH_OBS)init_map_size.cpp		\
-			$(PATH_OBS)init_case.cpp		\
-			$(PATH_OBS)init_item.cpp		\
-			$(PATH_OBS)draw_all.cpp			\
-			$(PATH_OBS)draw_rock.cpp		\
-			$(PATH_OBS)draw_player.cpp		\
-			$(PATH_OBS)extract_num.cpp		\
-			$(PATH_OBS)free_obs.cpp			\
-			$(PATH_OBS)msg_reception.cpp		\
-			$(PATH_OBS)parse_args.cpp
+SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp			\
+			$(PATH_OBS_3D)main_usage.cpp		\
+			$(PATH_OBS_3D)init_obs.cpp		\
+			$(PATH_OBS_3D)init_window.cpp		\
+			$(PATH_OBS_3D)init_socket.cpp		\
+			$(PATH_OBS_3D)init_matrix.cpp		\
+			$(PATH_OBS_3D)init_map_size.cpp		\
+			$(PATH_OBS_3D)init_case.cpp		\
+			$(PATH_OBS_3D)init_item.cpp		\
+			$(PATH_OBS_3D)draw_all.cpp		\
+			$(PATH_OBS_3D)draw_rock.cpp		\
+			$(PATH_OBS_3D)draw_player.cpp		\
+			$(PATH_OBS_3D)extract_num.cpp		\
+			$(PATH_OBS_3D)free_obs.cpp		\
+			$(PATH_OBS_3D)msg_reception.cpp		\
+			$(PATH_OBS_3D)parse_args.cpp
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
@@ -246,4 +246,4 @@ re		:	fclean all
 			fi
 
 .cpp.o		:
-			$(CC) $(CFLAGS_OBS) -c $< -o $@
+			$(CC) $(CFLAGS_OBS_3D) -c $< -o $@
