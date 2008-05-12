@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Fri May  9 16:14:56 2008 florent hochwelker
+** Last update Mon May 12 14:05:28 2008 majdi
 */
 
 #include <sys/select.h>
@@ -61,7 +61,7 @@ static void		*get_timeout(t_info *info)
     }
   printf("timeout pas null\n");
   printf("timeout->tv_sec = %ld, timeout->tv_usec = %ld\n",
-	 TIMEVAL(info->timeout)->tv_sec, TIMEVAL(info->timeout)->tv_usec);
+	 (long)TIMEVAL(info->timeout)->tv_sec, (long)TIMEVAL(info->timeout)->tv_usec);
   return (info->timeout);
 }
 
