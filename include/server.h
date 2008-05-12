@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May 12 15:43:00 2008 caner candan
+** Last update Mon May 12 16:12:36 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -312,6 +312,7 @@ int	act_broadcast(char *param, t_client *client, t_info *info);
 int	act_levelup(char *param, t_client *client, t_info *info);
 int	act_fork(char *param, t_client *client, t_info *info);
 void	get_inventory(t_client *client, char *buff, t_info *info);
+int	act_count(char *param, t_client *client, t_info *info);
 
 /*
 ** Mathematical's functions
@@ -345,6 +346,7 @@ void	show_clients_from_list(t_list *t);
 void	sort_queue_list(t_list **begin);
 int	count_list(t_list *t);
 int	count_list_with_same_lvl(t_list *t, int lvl);
+int	count_list_with_same_team(t_list *t, t_team *team);
 int	exist_data_from_list(t_list *t, void *data);
 
 /*

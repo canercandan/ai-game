@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon May 12 15:31:33 2008 caner candan
+** Last update Mon May 12 16:15:13 2008 caner candan
 */
 
 #ifndef __COMMON_H__
@@ -85,7 +85,8 @@ enum
     KICK,
     BROADCAST,
     LEVELUP,
-    FORK
+    FORK,
+    COUNT
   };
 
 #endif /* !__COMMON_H__ */

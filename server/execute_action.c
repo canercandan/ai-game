@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Mon May 12 15:09:59 2008 florent hochwelker
+** Last update Mon May 12 16:15:33 2008 caner candan
 */
 
 #include <sys/time.h>
@@ -28,6 +28,7 @@ static t_action	actions[] =
     {BROADCAST, "broadcast", 7, act_broadcast},
     {LEVELUP, "incantation", 300, act_levelup},
     {FORK, "fork", 42, act_fork},
+    {COUNT, "connect_nbr", 0, act_count},
     {0, 0, 0, 0}
   };
 

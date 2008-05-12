@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 15:49:34 2008 caner candan
+## Last update Mon May 12 16:12:51 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -66,6 +66,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)act_broadcast.c		\
 			$(PATH_SRV)act_levelup.c		\
 			$(PATH_SRV)act_fork.c			\
+			$(PATH_SRV)act_count.c			\
 			$(PATH_SRV)begin_session.c		\
 			$(PATH_SRV)server_get.c			\
 			$(PATH_SRV)server_read.c		\
@@ -88,6 +89,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c			\
 			$(PATH_SRV)sort_queue_list.c		\
 			$(PATH_SRV)count_list.c			\
 			$(PATH_SRV)count_list_with_same_lvl.c	\
+			$(PATH_SRV)count_list_with_same_team.c	\
 			$(PATH_SRV)init_info.c			\
 			$(PATH_SRV)create_new_queue.c		\
 			$(PATH_SRV)send_info_to_obs.c		\
