@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 15:45:00 2008 caner candan
+## Last update Mon May 12 15:48:13 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -153,16 +153,14 @@ LIBRARY_OBS	=	-L/usr/X11R6/lib -L/usr/local/lib 		\
 			-lGL -lGLU -lXxf86vm -lXext -lX11 -lpng -ljpeg	\
 			-lIrrlicht
 
-VALUE_ENV	=	42
-
-DEBUG_OPT	=	`if [ "$(DEBUG)" = "$(VALUE_ENV)" ]; then echo "-g"; fi`
+DEBUG_42	=	-g
 PANIC		=	-Wall -W -Werror -pedantic -ansi
 MINOR		=	-Wall -Werror -pedantic -ansi
 
 CFLAGS		=	$(INCLUDES) $(PANIC) $(DEBUG_OPT)
 LDFLAGS		=	$(LIBRARY)
 
-CFLAGS_OBS	=	$(INCLUDES) $(INCLUDES_OBS) $(MINOR) $(DEBUG_OPT)
+CFLAGS_OBS	=	$(INCLUDES) $(INCLUDES_OBS) $(MINOR) $(DEBUG_$(DEBUG))
 LDFLAGS_OBS	=	$(LIBRARY) $(LIBRARY_OBS)
 
 CC		=	gcc
@@ -180,8 +178,8 @@ all		:
 			@$(MKD) $(PATH_BIN)
 			@$(MK) $(BIN_SRV)
 			@$(MK) $(BIN_CLI)
-			@if [ "$(OBS)" = "$(VALUE_ENV)" ]; then	\
-				$(MK) $(BIN_OBS);		\
+			@if [ "$(OBS)" = "42" ]; then	\
+				$(MK) $(BIN_OBS);	\
 			fi
 
 $(BIN_SRV)	:	$(OBJS_SRV)
