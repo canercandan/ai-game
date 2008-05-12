@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Fri May  9 19:59:22 2008 jordan aubry
+## Last update Mon May 12 13:22:43 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -149,14 +149,16 @@ LIBRARY_OBS	=	-L/usr/X11R6/lib -L/usr/local/lib 		\
 			-lGL -lGLU -lXxf86vm -lXext -lX11 -lpng -ljpeg	\
 			-lIrrlicht
 
-DEBUG		=	-g
+VALUE_ENV	=	42
+
+DEBUG_OPT	=	`if [ "$(DEBUG)" = "$(VALUE_ENV)" ]; then echo "-g"; fi`
 PANIC		=	-Wall -W -Werror -pedantic -ansi
 MINOR		=	-Wall -Werror -pedantic -ansi
 
-CFLAGS		=	$(INCLUDES) $(PANIC) $(DEBUG)
+CFLAGS		=	$(INCLUDES) $(PANIC) $(DEBUG_OPT)
 LDFLAGS		=	$(LIBRARY)
 
-CFLAGS_OBS	=	$(INCLUDES) $(INCLUDES_OBS) $(MINOR)
+CFLAGS_OBS	=	$(INCLUDES) $(INCLUDES_OBS) $(MINOR) $(DEBUG_OPT)
 LDFLAGS_OBS	=	$(LIBRARY) $(LIBRARY_OBS)
 
 CC		=	gcc
@@ -174,6 +176,9 @@ all		:
 			@$(MKD) $(PATH_BIN)
 			@$(MK) $(BIN_SRV)
 			@$(MK) $(BIN_CLI)
+			@if [ "$(OBS)" = "$(VALUE_ENV)" ]; then	\
+				$(MK) $(BIN_OBS);		\
+			fi
 
 $(BIN_SRV)	:	$(OBJS_SRV)
 			@$(MKD) $(PATH_SRV)
@@ -186,8 +191,6 @@ $(BIN_CLI)	:	$(OBJS_CLI)
 $(BIN_OBS)	:	$(OBJS_OBS)
 			@$(MKD) $(PATH_OBS)
 			@$(CC) $(CFLAGS_OBS) -o $@ $(OBJS_OBS) $(LDFLAGS_OBS)
-
-obs		:	$(BIN_OBS)
 
 clean		:
 			@$(RM_O)
