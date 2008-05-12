@@ -5,9 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 11:08:52 2008 caner candan
+** Last update Mon May 12 16:28:50 2008 majdi toumi
 */
 
+#include <string.h>
 #include "server.h"
 #include "common.h"
 
@@ -23,6 +24,6 @@ int	act_right(char *param, t_client *client, t_info *info)
     client->direction = WEST;
   else if (client->direction == WEST)
     client->direction = NORTH;
-  send_buf_to_client(client, OK);
+  SEND(client->buf_write, OK);
   return (0);
 }

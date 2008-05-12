@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 14:50:10 2008 majdi
+** Last update Mon May 12 16:17:14 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -55,7 +55,7 @@ int			act_see(char *param, t_client *client, t_info *info)
       get_ressources(client, info, buff);
     }
   bzero(client->buf_write, BUF_SIZE);
-  strncpy(client->buf_write, buff + i, BUF_SIZE);
+  SEND(client->buf_write, buff + i);
   i += strlen(client->buf_write);
   if (i <= strlen(buff) && strlen(buff + i) > 0)
     return (LOOP_FOR_SEND);

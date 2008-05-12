@@ -5,9 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  9 18:33:14 2008 florent hochwelker
+** Last update Mon May 12 16:30:51 2008 majdi toumi
 */
 
+#include <string.h>
 #include <stdio.h>
 #include "server.h"
 #include "common.h"
@@ -89,15 +90,15 @@ int		act_broadcast(char *param, t_client *client,
       c = (t_client *)clients->data;
       if (c != client)
 	{
-	  send_buf_to_client(c, MESSAGE);
+	  SEND(c->buf_write, MESSAGE);
 	  snprintf(buf, sizeof(buf), "%d ",
 		   give_me_the_k(c, client, info));
-	  send_buf_to_client(c, buf);
-	  send_buf_to_client(c, param);
-	  send_buf_to_client(c, "\n");
+	  SEND(c->buf_write, buf);
+	  SEND(c->buf_write, param);
+	  SEND(c->buf_write, "\n");
 	}
       clients = clients->next;
     }
-  send_buf_to_client(client, OK);
+  SEND(client->buf_write, OK);
   return (0);
 }

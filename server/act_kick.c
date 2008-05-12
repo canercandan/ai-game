@@ -5,9 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May  7 13:59:50 2008 caner candan
+** Last update Mon May 12 16:28:16 2008 majdi toumi
 */
 
+#include <string.h>
 #include "server.h"
 #include "common.h"
 
@@ -31,9 +32,9 @@ static int	give_me_the_k(t_client *dst, t_client *src)
 static int	kick_it(t_client *dst, t_client *src, t_info *info)
 {
   move_up(dst, src->direction, info);
-  send_buf_to_client(dst, KICKIT);
+  SEND(dst->buf_write, KICKIT);
   putnbr(give_me_the_k(dst, src), dst->buf_write);
-  send_buf_to_client(dst, "\n");
+  SEND(dst->buf_write, "\n");
   return (0);
 }
 
@@ -56,9 +57,9 @@ int		act_kick(char *param, t_client *client, t_info *info)
     }
   if (nb_kick <= 0)
     {
-      send_buf_to_client(client, KO);
+      SEND(client->buf_write, KO);
       return (-1);
     }
-  send_buf_to_client(client, OK);
+  SEND(client->buf_write, OK);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 15:44:00 2008 caner candan
+** Last update Mon May 12 16:24:11 2008 majdi toumi
 */
 
 #include <string.h>
@@ -123,9 +123,9 @@ static void	levelup(t_client *client, t_info *info)
     {
       c = t->data;
       c->level++;
-      strlcat(client->buf_write, LVLUP_OK, BUF_SIZE);
+      SEND(client->buf_write, LVLUP_OK);
       putnbr(c->level, client->buf_write);
-      strlcat(client->buf_write, "\n", BUF_SIZE);
+      SEND(client->buf_write, "\n");
       t = t->next;
     }
   while ((data = pop_list(&(info->zone[client->x][client->y].ressources))))
@@ -142,7 +142,7 @@ int		act_levelup(char *param, t_client *client, t_info *info)
   if (has_players(info, client) < 0 ||
       has_ressources(info, client) < 0)
     {
-      strlcat(client->buf_write, KO, BUF_SIZE);
+      SEND(client->buf_write, KO);
       return (-1);
     }
   levelup(client, info);

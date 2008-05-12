@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  9 14:18:33 2008 florent hochwelker
+** Last update Mon May 12 16:31:52 2008 majdi toumi
 */
 
 #include <string.h>
@@ -24,10 +24,10 @@ static int		check_if_enough_hp(t_info *info, t_client *client)
       (FOOD_HP * info->time) > 0)
     {
       client->hp -= FOOD_HP * info->time;
-      send_buf_to_client(client, OK);
+      SEND(client->buf_write, OK);
       return (1);
     }
-  send_buf_to_client(client, KO);
+  SEND(client->buf_write, KO);
   return (0);
 }
 
@@ -39,7 +39,7 @@ int		act_drop_obj(char *param, t_client *client,
 
   idx = get_ressource_idx(param);
   if (idx == -1)
-    send_buf_to_client(client, KO);
+    SEND(client->buf_write, KO);
   else if (!strcmp(param, gl_ressource[NOURRITURE].name))
     check_if_enough_hp(info, client);
   else if (client->qte_ressource[idx] > 0)
@@ -48,9 +48,9 @@ int		act_drop_obj(char *param, t_client *client,
       ressource = &gl_ressource[idx];
       push_list(&(info->zone[client->x][client->y].ressources),
 		ressource);
-      send_buf_to_client(client, OK);
+      SEND(client->buf_write, OK);
     }
   else
-    send_buf_to_client(client, KO);
+    SEND(client->buf_write, KO);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  9 13:44:22 2008 florent hochwelker
+** Last update Mon May 12 16:28:09 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -28,7 +28,7 @@ int			act_inventory(char *param, t_client *client, t_info *info)
       get_inventory(client, buff, info);
     }
   bzero(client->buf_write, BUF_SIZE);
-  strncpy(client->buf_write, buff + i, BUF_SIZE);
+  SEND(client->buf_write, buff + i);
   i += strlen(client->buf_write);
   if (i <= strlen(buff) && strlen(buff + i) > 0)
     return (LOOP_FOR_SEND);

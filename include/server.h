@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May 12 16:12:36 2008 caner candan
+** Last update Mon May 12 16:33:43 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -84,6 +84,11 @@
 */
 # define TIMEVAL(data)		((struct timeval *)(data))
 # define CLIENT(data)		((t_client *)(data))
+
+/*
+** Macro what the fuck
+*/
+# define SEND(buff, txt)	(strncat(buff, txt, BUF_SIZE - strlen(buff)))
 
 /*
 ** Status client
