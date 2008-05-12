@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon May 12 13:38:24 2008 majdi toumi
+** Last update Mon May 12 15:27:27 2008 florent hochwelker
 */
 
 #ifndef __COMMON_H__
@@ -37,6 +37,7 @@
 # define LVLUP_PROCESS	"elevation en cours\n"
 # define MESSAGE	"message "
 # define KICKIT		"deplacement "
+# define LVLUP_OK	"niveau actuel : "
 
 /*
 ** Directions
@@ -62,5 +63,23 @@ typedef enum
     THYSTAME,
     NOURRITURE
   }	t_idx_ressource;
+
+/*
+** Enum action
+*/
+enum
+  {
+    UP = 1,
+    RIGHT,
+    LEFT,
+    SEE,
+    INVENTORY,
+    TAKE_OBJ,
+    DROP_OBJ,
+    KICK,
+    BROADCAST,
+    LEVELUP,
+    FORK
+  };
 
 #endif /* !__COMMON_H__ */

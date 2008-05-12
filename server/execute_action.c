@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Mon May 12 12:58:25 2008 majdi toumi
+** Last update Mon May 12 15:09:59 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -35,7 +35,7 @@ static struct timeval	*set_timeout(float delay,
 				     t_info *info,
 				     struct timeval *cur)
 {
-  float		tmp;
+  float			tmp;
 
   cur->tv_sec += info->time * delay;
   tmp = info->time * delay - (int)(info->time * delay);
@@ -73,6 +73,13 @@ static int		get_last_action(struct timeval *empty,
   return (1);
 }
 
+static void		set_and_check_idx_f(t_queue *queue, int i, t_client *cli)
+{
+  queue->idx_f = i;
+  if (i == LEVELUP)
+    strlcat(cli->buf_write, LVLUP_PROCESS, BUF_SIZE);
+}
+
 int			execute_action(char *str, t_client *cli, t_info *info)
 {
   int			i;
@@ -90,7 +97,7 @@ int			execute_action(char *str, t_client *cli, t_info *info)
 		new_queue = create_new_queue(str, actions[i].f,
 					     set_timeout(actions[i].delay, info,
 							 &tp), cli);
-		new_queue->idx_f = i;
+		set_and_check_idx_f(new_queue, i, cli);
 		push_list(&info->queue, new_queue);
 		sort_queue_list(&info->queue);
 	      }
@@ -98,6 +105,6 @@ int			execute_action(char *str, t_client *cli, t_info *info)
 	  }
 	i++;
       }
-  strcat(cli->buf_write, KO);
+  strlcat(cli->buf_write, KO, BUF_SIZE);
   return (-1);
 }

@@ -5,9 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 13:14:06 2008 majdi toumi
+** Last update Mon May 12 15:29:54 2008 florent hochwelker
 */
 
+#include <string.h>
 #include "server.h"
 #include "common.h"
 
@@ -118,13 +119,10 @@ static void	levelup(t_client *client, t_info *info)
   while (t)
     {
       c = t->data;
-      if (c->level <= MAX_LEVEL)
-	{
-	  c->level++;
-	  send_buf_to_client(c, OK);
-	}
-      else
-	send_buf_to_client(c, KO);
+      c->level++;
+      strlcat(client->buf_write, LVLUP_OK, BUF_SIZE);
+      putnbr(c->level, client->buf_write);
+      strlcat(client->buf_write, "\n", BUF_SIZE);
       t = t->next;
     }
   while ((data = pop_list(&(info->zone[client->x][client->y].ressources))))
@@ -138,11 +136,10 @@ static void	levelup(t_client *client, t_info *info)
 int		act_levelup(char *param, t_client *client, t_info *info)
 {
   (void)param;
-  send_buf_to_client(client, LVLUP_PROCESS);
   if (has_players(info, client) < 0 ||
       has_ressources(info, client) < 0)
     {
-      send_buf_to_client(client, KO);
+      strlcat(client->buf_write, KO, BUF_SIZE);
       return (-1);
     }
   levelup(client, info);

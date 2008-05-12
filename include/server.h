@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May 12 14:39:16 2008 majdi
+** Last update Mon May 12 15:01:27 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -28,7 +28,7 @@
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
-# define FOOD_HP		126.0		/* en float */
+# define FOOD_HP		126.0	/* en float */
 # define COEFFICIENT		0.05
 # define BUF_SIZE		1024
 # define NB_INVENTORY		7
@@ -241,24 +241,6 @@ typedef struct	s_level
   int		lvl;
   int		nb_client;
 }		t_level;
-
-/*
-** Enum action
-*/
-enum
-  {
-    UP = 1,
-    RIGHT,
-    LEFT,
-    SEE,
-    INVENTORY,
-    TAKE_OBJ,
-    DROP_OBJ,
-    KICK,
-    BROADCAST,
-    LEVELUP,
-    FORK
-  };
 
 /*
 ** Global:
