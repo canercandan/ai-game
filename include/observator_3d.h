@@ -5,11 +5,11 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Mon May 12 14:54:05 2008 caner candan
+** Last update Mon May 12 19:27:21 2008 caner candan
 */
 
-#ifndef __OBSERVATOR_H__
-# define __OBSERVATOR_H__
+#ifndef __OBSERVATOR_3D_H__
+# define __OBSERVATOR_3D_H__
 
 /* Define
 */
@@ -30,14 +30,14 @@
 /*
 ** Files
 */
-#define OBS_PK3			"bin/map.pk3"
+#define OBS_PK3		"bin/map.pk3"
 
-#define SKY_UP			"env/up.tga"
-#define SKY_DN			"env/dn.tga"
-#define SKY_RT			"env/rt.tga"
-#define SKY_LF			"env/lf.tga"
-#define SKY_FT			"env/ft.tga"
-#define SKY_BK			"env/bk.tga"
+#define SKY_UP		"env/up.tga"
+#define SKY_DN		"env/dn.tga"
+#define SKY_RT		"env/rt.tga"
+#define SKY_LF		"env/lf.tga"
+#define SKY_FT		"env/ft.tga"
+#define SKY_BK		"env/bk.tga"
 
 #define MAP_CASE	"maps/case.bmp"
 
@@ -155,4 +155,4 @@ void		draw_player(t_obs *obs, int x, int y, int z);
 
 void		free_obs(t_obs *obs);
 
-#endif
+#endif /* !__OBSERVATOR_3D_H__ */
