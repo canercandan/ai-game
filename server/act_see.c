@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 16:17:14 2008 majdi toumi
+** Last update Mon May 12 19:06:29 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -27,8 +27,8 @@ static void		get_ressources(t_client *client, t_info *info,
       j = 0 - i;
       while (j <= i)
 	{
-	  diff[0] = i;
-	  diff[1] = j;
+	  diff[0] = j;
+	  diff[1] = i;
 	  send_ressources(info, client, buff, diff);
 	  if (i != client->level || j != i)
 	    strcat(buff, SEPARATOR_CMD);
