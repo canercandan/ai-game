@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:36 2008 majdi toumi
-** Last update Mon May 12 15:33:35 2008 caner candan
+** Last update Mon May 12 15:52:25 2008 caner candan
 */
 
 #include <stdio.h>
@@ -15,14 +15,11 @@
 int		opt_name_team(t_info *info, char **argv, int i)
 {
   t_team	*team;
-  t_list	*t;
   void		*data;
 
   debug("opt_name_team()", -1);
-  t = info->team;
-  (void) data;
-/*   while ((data = pop_list(&t))) */
-/*     printf("Name Team: [%s]\n", ((t_team *) (data))->name); */
+  while ((data = pop_list(&info->team)))
+    printf("Team removed: [%s]\n", ((t_team *) (data))->name);
   while (argv[i] && (is_options(argv[i]) == -1))
     {
       printf("Name %s is added\n", argv[i]);
