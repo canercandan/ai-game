@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  9 00:11:35 2008 florent hochwelker
+** Last update Mon May 12 13:14:06 2008 majdi toumi
 */
 
 #include "server.h"
@@ -59,13 +59,17 @@ static int	has_players(t_info *info, t_client *client)
   int		i;
 
   nb = count_list(info->zone[client->x][client->y].clients);
-  for (i = 0; level[i].lvl; i++)
-    if (level[i].lvl == client->level + 1)
-      {
-	if (level[i].nb_client == nb)
-	  return (0);
-	return (-1);
-      }
+  i = 0;
+  while (level[i].lvl)
+    {
+      if (level[i].lvl == client->level + 1)
+	{
+	  if (level[i].nb_client == nb)
+	    return (0);
+	  return (-1);
+	}
+      i++;
+    }
   return (-1);
 }
 
@@ -75,9 +79,13 @@ static int	mask_ressources(t_client *client)
   int		i;
 
   res = 0;
-  for (i = 0; critere[i].lvl; i++)
-    if (critere[i].lvl == client->level + 1)
-      res += PWR(critere[i].idx_ressource) * critere[i].qte;
+  i = 0;
+  while (critere[i].lvl)
+    {
+      if (critere[i].lvl == client->level + 1)
+	res += PWR(critere[i].idx_ressource) * critere[i].qte;
+      i++;
+    }
   return (res);
 }
 

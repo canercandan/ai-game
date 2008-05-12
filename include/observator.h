@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Fri May  9 20:15:44 2008 jordan aubry
+** Last update Mon May 12 13:35:13 2008 majdi toumi
 */
 
 #ifndef __OBSERVATOR_H__
@@ -14,7 +14,7 @@
 /* Define
 */
 
-#define OBS_USAGE		"Usage :\n./observator (host) (port)\n"
+#define OBS_USAGE		"Usage : ./observator (host) (port)\n"
 #define OBS_CASE		192
 
 #define MODE_GRAPH		EDT_BURNINGSVIDEO

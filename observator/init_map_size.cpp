@@ -1,3 +1,13 @@
+//
+// init_map_size.cpp for **zappy** in /u/epitech_2010s/toumi_m/cu/rendu/c/zappy/zappy/observator
+// 
+// Made by majdi toumi
+// Login   <toumi_m@epitech.net>
+// 
+// Started on  Mon May 12 13:48:43 2008 majdi toumi
+// Last update Mon May 12 13:48:44 2008 majdi toumi
+//
+
 #include <irrlicht.h>
 #include <sys/types.h>
 #include <sys/socket.h>

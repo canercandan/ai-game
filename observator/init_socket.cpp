@@ -1,3 +1,13 @@
+//
+// init_socket.cpp for **zappy** in /u/epitech_2010s/toumi_m/cu/rendu/c/zappy/zappy/observator
+// 
+// Made by majdi toumi
+// Login   <toumi_m@epitech.net>
+// 
+// Started on  Mon May 12 13:46:19 2008 majdi toumi
+// Last update Mon May 12 13:46:20 2008 majdi toumi
+//
+
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>

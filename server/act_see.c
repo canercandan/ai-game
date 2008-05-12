@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri May  9 01:06:30 2008 florent hochwelker
+** Last update Mon May 12 13:29:23 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -14,43 +14,46 @@
 #include "common.h"
 #include "x.h"
 
-static int		send_to_client(t_client *client, char *buff,
-				       unsigned int *idx)
+static void		get_ressources(t_client *client, t_info *info,
+				       char *buff)
 {
-  bzero(client->buf_write, BUF_SIZE);
-  strncpy(client->buf_write, buff + *idx, BUF_SIZE);
-  *idx += strlen(client->buf_write);
-  if (*idx <= strlen(buff) && strlen(buff + *idx) > 0)
-    return (LOOP_FOR_SEND);
-  *idx = 0;
-  return (0);
-}
-
-int			act_see(char *param, t_client *client, t_info *info)
-{
-  static unsigned int	idx = 0;
-  static char		*buff;
-  int			res;
   int			len;
   int			i;
   int			j;
 
-  (void) param;
-  if (idx == 0)
+  len = get_see_len(client, info);
+  buff = xmalloc(sizeof(*buff) * (len + 1));
+  bzero(buff, sizeof(buff));
+  strcpy(buff, START_CMD);
+  i = 0;
+  while (i <= client->level)
     {
-      len = get_see_len(client, info);
-      buff = xmalloc(sizeof(*buff) * (len + 1));
-      bzero(buff, sizeof(buff));
-      strcpy(buff, START_CMD);
-      for (i = 0; i <= client->level; i++)
-	for (j = 0 - i; j <= i; j++)
-	  {
-	    send_ressources(info, client, buff, j, i);
-	    if (i != client->level || j != i)
-	      strcat(buff, SEPARATOR_CMD);
-	  }
-      strcat(buff, END_CMD);
+      j = 0 - i;
+      while (j <= i)
+	{
+	  send_ressources(info, client, buff, j, i);
+	  if (i != client->level || j != i)
+	    strcat(buff, SEPARATOR_CMD);
+	  j++;
+	}
+      i++;
     }
-  res = send_to_client(client, buff, &idx);
-  return (res);
+  strcat(buff, END_CMD);
+}
+
+int			act_see(char *param, t_client *client, t_info *info)
+{
+  static unsigned int	i = 0;
+  static char		*buff;
+
+  (void)param;
+  if (i == 0)
+    get_ressources(client, info, buff);
+  bzero(client->buf_write, BUF_SIZE);
+  strncpy(client->buf_write, buff + i, BUF_SIZE);
+  i += strlen(client->buf_write);
+  if (i <= strlen(buff) && strlen(buff + i) > 0)
+    return (LOOP_FOR_SEND);
+  i = 0;
+  return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Fri May  9 19:05:47 2008 florent hochwelker
+** Last update Mon May 12 13:47:54 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -40,13 +40,6 @@
 ** Zappy's index names
 */
 # define NAME_WORLD	"Trantor"
-
-/*
-** Exits, debug and errors
-*/
-# define DEBUG			0
-# define EXIT_SUCC		0
-# define EXIT_FAIL		42
 
 /*
 ** Default's values

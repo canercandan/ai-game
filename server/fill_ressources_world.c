@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Thu May  8 12:41:43 2008 caner candan
+** Last update Mon May 12 12:59:06 2008 majdi toumi
 */
 
 #include <stdlib.h>
@@ -36,7 +36,8 @@ void		fill_ressources_world(t_zone **world, t_info *info)
   int		y;
 
   max = info->x * info->y * info->nb_player * COEFFICIENT;
-  for (i = 0; i < max; i++)
+  i = 0;
+  while (i < max)
     {
       x = get_random(info->x, last_x);
       y = get_random(info->y, last_y);
@@ -45,5 +46,6 @@ void		fill_ressources_world(t_zone **world, t_info *info)
       ressource = &gl_ressource[i % NB_INVENTORY];
       push_list(&(world[x][y].ressources), ressource);
       printf("#DUMP WORLD#\t[%d][%d] -> [%s]\n", x, y, ressource->name);
+      i++;
     }
 }

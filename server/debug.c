@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 14:44:07 2008 caner candan
-** Last update Fri May  2 21:35:00 2008 caner candan
+** Last update Mon May 12 13:12:17 2008 majdi toumi
 */
 
 #include <unistd.h>
@@ -22,12 +22,16 @@ void	debug(char *s, int pos)
       if (pos < 0)
 	write(1, "## NOT POS ## ", 14);
       else
-	for (i = 0; i < pos; i++)
-	  {
-	    if (i == pos - 1)
-	      write(1, "+", 1);
-	    write(1, "\t", 2);
-	  }
+	{
+	  i = 0;
+	  while (i < pos)
+	    {
+	      if (i == pos - 1)
+		write(1, "+", 1);
+	      write(1, "\t", 2);
+	      i++;
+	    }
+	}
       write(1, "-> ", 3);
       write(1, s, strlen(s));
       write(1, "\n", 2);

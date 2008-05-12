@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 17:26:46 2008 majdi toumi
-** Last update Thu May  8 12:41:32 2008 caner candan
+** Last update Mon May 12 12:57:42 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -25,10 +25,12 @@ t_zone		**create_world(t_info *info)
       exit(EXIT_FAIL);
     }
   world = xmalloc(sizeof(*world) * info->x);
-  for (i = 0; i < info->x; i++)
+  i = 0;
+  while (i < info->x)
     {
       world[i] = xmalloc(sizeof(**world) * info->y);
       memset(world[i], 0, sizeof(**world) * info->y);
+      i++;
     }
   /* FIXME -> function: initialiser map objet, ... */
   fill_ressources_world(world, info);

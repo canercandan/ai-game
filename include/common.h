@@ -5,13 +5,20 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Wed May  7 10:46:19 2008 caner candan
+** Last update Mon May 12 13:38:24 2008 majdi toumi
 */
 
 #ifndef __COMMON_H__
 # define __COMMON_H__
 
 # define MAGIC_OBS	"OBS_CLIENT"
+
+/*
+** Exits, debug and errors
+*/
+# define DEBUG			0
+# define EXIT_SUCC		0
+# define EXIT_FAIL		42
 
 /*
 ** Command's defines

@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 15:24:54 2008 majdi toumi
-** Last update Thu May  8 23:34:27 2008 florent hochwelker
+** Last update Mon May 12 13:07:57 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -58,12 +58,14 @@ int		send_ressources(t_info *info, t_client *client, char *buff,
   is_in_map(info, &x, &y);
   printf("x: [%d], y: [%d]\n", x, y);
   ressources = info->zone[x][y].ressources;
-  for (i = 0; ressources; i++)
+  i = 0;
+  while (ressources)
     {
       if (x_diff != 0 || y_diff != 0 || i != 0)
 	strcat(buff, SEPARATOR_ELM);
       strcat(buff, ((t_ressource *) ressources->data)->name);
       ressources = ressources->next;
+      i++;
     }
   return (0);
 }
@@ -82,12 +84,14 @@ int		send_len_ressources(t_info *info, t_client *client,
   y = get_y(client, x_diff, y_diff);
   is_in_map(info, &x, &y);
   ressources = info->zone[x][y].ressources;
-  for (i = 0; ressources; i++)
+  i = 0;
+  while (ressources)
     {
       if (x_diff != 0 || y_diff != 0 || i != 0)
 	len += strlen(SEPARATOR_ELM);
       len += strlen(((t_ressource *) ressources->data)->name);
       ressources = ressources->next;
+      i++;
     }
   return (len);
 }
