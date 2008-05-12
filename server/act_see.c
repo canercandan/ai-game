@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 13:29:23 2008 majdi toumi
+** Last update Mon May 12 14:37:53 2008 majdi
 */
 
 #include <stdio.h>
@@ -20,6 +20,7 @@ static void		get_ressources(t_client *client, t_info *info,
   int			len;
   int			i;
   int			j;
+  int			diff[2];
 
   len = get_see_len(client, info);
   buff = xmalloc(sizeof(*buff) * (len + 1));
@@ -31,7 +32,9 @@ static void		get_ressources(t_client *client, t_info *info,
       j = 0 - i;
       while (j <= i)
 	{
-	  send_ressources(info, client, buff, j, i);
+	  diff[0] = i;
+	  diff[1] = j;
+	  send_ressources(info, client, buff, diff);
 	  if (i != client->level || j != i)
 	    strcat(buff, SEPARATOR_CMD);
 	  j++;

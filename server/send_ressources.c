@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 15:24:54 2008 majdi toumi
-** Last update Mon May 12 13:07:57 2008 majdi toumi
+** Last update Mon May 12 14:38:38 2008 majdi
 */
 
 #include <stdio.h>
@@ -46,22 +46,22 @@ static int	get_y(t_client *client, int x_diff, int y_diff)
 }
 
 int		send_ressources(t_info *info, t_client *client, char *buff,
-				int x_diff, int y_diff)
+				int *diff)
 {
   t_list	*ressources;
   int		x;
   int		y;
   int		i;
 
-  x = get_x(client, x_diff, y_diff);
-  y = get_y(client, x_diff, y_diff);
+  x = get_x(client, diff[0], diff[1]);
+  y = get_y(client, diff[0], diff[1]);
   is_in_map(info, &x, &y);
   printf("x: [%d], y: [%d]\n", x, y);
   ressources = info->zone[x][y].ressources;
   i = 0;
   while (ressources)
     {
-      if (x_diff != 0 || y_diff != 0 || i != 0)
+      if (diff[0] != 0 || diff[1] != 0 || i != 0)
 	strcat(buff, SEPARATOR_ELM);
       strcat(buff, ((t_ressource *) ressources->data)->name);
       ressources = ressources->next;

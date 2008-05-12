@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May 12 13:47:54 2008 majdi toumi
+** Last update Mon May 12 14:39:16 2008 majdi
 */
 
 #ifndef __SERVER_H__
@@ -381,8 +381,7 @@ t_info	*init_info();
 void	free_info(t_info *info);
 int	get_ressource_idx(char *data);
 int	get_see_len(t_client *client, t_info *info);
-int	send_ressources(t_info *info, t_client *client, char *buff,
-			int x_diff, int y_diff);
+int	send_ressources(t_info *info, t_client *client, char *buff, int *diff);
 int	send_len_ressources(t_info *info, t_client *client,
 			    int x_diff, int y_diff);
 
