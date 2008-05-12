@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 19:20:58 2008 caner candan
+## Last update Mon May 12 19:34:55 2008 majdi toumi
 ##
 
 NAME_SRV	=	server
@@ -27,17 +27,17 @@ BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
 BIN_OBS_2D	=	$(PATH_BIN)$(NAME_OBS_2D)
 BIN_OBS_3D	=	$(PATH_BIN)$(NAME_OBS_3D)
 
-SRCS_X		=	$(PATH_X)xaccept.c			\
-			$(PATH_X)xbind.c			\
-			$(PATH_X)xconnect.c			\
-			$(PATH_X)xgethostbyname.c		\
-			$(PATH_X)xlisten.c			\
-			$(PATH_X)xmalloc.c			\
-			$(PATH_X)xopen.c			\
-			$(PATH_X)xclose.c			\
-			$(PATH_X)xrecv.c			\
-			$(PATH_X)xsend.c			\
-			$(PATH_X)xsocket.c			\
+SRCS_X		=	$(PATH_X)xaccept.c				\
+			$(PATH_X)xbind.c				\
+			$(PATH_X)xconnect.c				\
+			$(PATH_X)xgethostbyname.c			\
+			$(PATH_X)xlisten.c				\
+			$(PATH_X)xmalloc.c				\
+			$(PATH_X)xopen.c				\
+			$(PATH_X)xclose.c				\
+			$(PATH_X)xrecv.c				\
+			$(PATH_X)xsend.c				\
+			$(PATH_X)xsocket.c				\
 			$(PATH_X)xfork.c
 
 SRCS_SRV	=	$(PATH_SRV)main.c				\
@@ -100,6 +100,10 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)trim.c				\
 			$(PATH_SRV)dump_client_position.c		\
 			$(PATH_SRV)send_ressources.c			\
+			$(PATH_SRV)send_len_ressources.c		\
+			$(PATH_SRV)is_in_map.c				\
+			$(PATH_SRV)get_x.c				\
+			$(PATH_SRV)get_y.c				\
 			$(PATH_SRV)init_random.c			\
 			$(PATH_SRV)get_random.c				\
 			$(PATH_SRV)exist_data_from_list.c		\
@@ -117,34 +121,34 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)init_signal.c			\
 			$(PATH_SRV)is_levelmax.c
 
-SRCS_CLI	=	$(PATH_CLI)main.c			\
-			$(PATH_CLI)enter_in_the_world.c		\
-			$(PATH_CLI)new_connection.c		\
-			$(PATH_CLI)print_usage.c		\
-			$(PATH_CLI)check_response.c		\
-			$(PATH_CLI)fork_in_the_word.c		\
-			$(PATH_CLI)get_rnd_action.c		\
-			$(PATH_CLI)init_info.c			\
-			$(PATH_CLI)free_info.c			\
+SRCS_CLI	=	$(PATH_CLI)main.c				\
+			$(PATH_CLI)enter_in_the_world.c			\
+			$(PATH_CLI)new_connection.c			\
+			$(PATH_CLI)print_usage.c			\
+			$(PATH_CLI)check_response.c			\
+			$(PATH_CLI)fork_in_the_word.c			\
+			$(PATH_CLI)get_rnd_action.c			\
+			$(PATH_CLI)init_info.c				\
+			$(PATH_CLI)free_info.c				\
 			$(PATH_CLI)parse_args.c
 
 SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c
 
-SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp			\
-			$(PATH_OBS_3D)main_usage.cpp		\
-			$(PATH_OBS_3D)init_obs.cpp		\
-			$(PATH_OBS_3D)init_window.cpp		\
-			$(PATH_OBS_3D)init_socket.cpp		\
-			$(PATH_OBS_3D)init_matrix.cpp		\
-			$(PATH_OBS_3D)init_map_size.cpp		\
-			$(PATH_OBS_3D)init_case.cpp		\
-			$(PATH_OBS_3D)init_item.cpp		\
-			$(PATH_OBS_3D)draw_all.cpp		\
-			$(PATH_OBS_3D)draw_rock.cpp		\
-			$(PATH_OBS_3D)draw_player.cpp		\
-			$(PATH_OBS_3D)extract_num.cpp		\
-			$(PATH_OBS_3D)free_obs.cpp		\
-			$(PATH_OBS_3D)msg_reception.cpp		\
+SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\
+			$(PATH_OBS_3D)main_usage.cpp			\
+			$(PATH_OBS_3D)init_obs.cpp			\
+			$(PATH_OBS_3D)init_window.cpp			\
+			$(PATH_OBS_3D)init_socket.cpp			\
+			$(PATH_OBS_3D)init_matrix.cpp			\
+			$(PATH_OBS_3D)init_map_size.cpp			\
+			$(PATH_OBS_3D)init_case.cpp			\
+			$(PATH_OBS_3D)init_item.cpp			\
+			$(PATH_OBS_3D)draw_all.cpp			\
+			$(PATH_OBS_3D)draw_rock.cpp			\
+			$(PATH_OBS_3D)draw_player.cpp			\
+			$(PATH_OBS_3D)extract_num.cpp			\
+			$(PATH_OBS_3D)free_obs.cpp			\
+			$(PATH_OBS_3D)msg_reception.cpp			\
 			$(PATH_OBS_3D)parse_args.cpp
 
 OBJS_X		=	$(SRCS_X:.c=.o)
