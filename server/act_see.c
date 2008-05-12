@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 14:37:53 2008 majdi
+** Last update Mon May 12 14:50:10 2008 majdi
 */
 
 #include <stdio.h>
@@ -17,15 +17,10 @@
 static void		get_ressources(t_client *client, t_info *info,
 				       char *buff)
 {
-  int			len;
   int			i;
   int			j;
   int			diff[2];
 
-  len = get_see_len(client, info);
-  buff = xmalloc(sizeof(*buff) * (len + 1));
-  bzero(buff, sizeof(buff));
-  strcpy(buff, START_CMD);
   i = 0;
   while (i <= client->level)
     {
@@ -48,10 +43,17 @@ int			act_see(char *param, t_client *client, t_info *info)
 {
   static unsigned int	i = 0;
   static char		*buff;
+  int			len;
 
   (void)param;
   if (i == 0)
-    get_ressources(client, info, buff);
+    {
+      len = get_see_len(client, info);
+      buff = xmalloc(sizeof(*buff) * (len + 1));
+      bzero(buff, sizeof(buff));
+      strcpy(buff, START_CMD);
+      get_ressources(client, info, buff);
+    }
   bzero(client->buf_write, BUF_SIZE);
   strncpy(client->buf_write, buff + i, BUF_SIZE);
   i += strlen(client->buf_write);
