@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 15:48:13 2008 caner candan
+## Last update Mon May 12 15:49:34 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -157,7 +157,7 @@ DEBUG_42	=	-g
 PANIC		=	-Wall -W -Werror -pedantic -ansi
 MINOR		=	-Wall -Werror -pedantic -ansi
 
-CFLAGS		=	$(INCLUDES) $(PANIC) $(DEBUG_OPT)
+CFLAGS		=	$(INCLUDES) $(PANIC) $(DEBUG_$(DEBUG))
 LDFLAGS		=	$(LIBRARY)
 
 CFLAGS_OBS	=	$(INCLUDES) $(INCLUDES_OBS) $(MINOR) $(DEBUG_$(DEBUG))
