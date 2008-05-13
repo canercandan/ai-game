@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May 13 21:55:40 2008 florent hochwelker
+** Last update Tue May 13 22:08:41 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -350,6 +350,7 @@ void	*get_client_from_list(t_list *t, int socket);
 void	show_clients_from_list(t_list *t);
 void	sort_queue_list(t_list **begin);
 int	count_list(t_list *t);
+int	count_list_from_clients(t_list *t);
 int	count_list_with_same_lvl(t_list *t, int lvl);
 int	count_list_with_same_team_n_lvl(t_list *t, t_team *team, int lvl);
 int	exist_data_from_list(t_list *t, void *data);

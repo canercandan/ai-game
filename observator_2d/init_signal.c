@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 21:09:54 2008 caner candan
-** Last update Mon May 12 21:46:38 2008 caner candan
+** Last update Tue May 13 20:28:13 2008 caner candan
 */
 
 #include <signal.h>
@@ -19,8 +19,8 @@ static t_gfx	*sig_gfx;
 static void	power_off(int signal)
 {
   (void) signal;
-  close(sig_info->socket);
   destroy_gfx(sig_gfx);
+  destroy_info(sig_info);
   exit(0);
 }
 

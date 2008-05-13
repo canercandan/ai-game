@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue May 13 21:55:59 2008 florent hochwelker
+## Last update Tue May 13 22:08:09 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -93,6 +93,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)show_clients_from_list.c		\
 			$(PATH_SRV)sort_queue_list.c			\
 			$(PATH_SRV)count_list.c				\
+			$(PATH_SRV)count_list_from_clients.c		\
 			$(PATH_SRV)count_list_with_same_lvl.c		\
 			$(PATH_SRV)count_list_with_same_team_n_lvl.c	\
 			$(PATH_SRV)init_info.c				\
@@ -175,7 +176,9 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)act_levelup.c			\
 			$(PATH_OBS_2D)act_fork.c			\
 			$(PATH_OBS_2D)act_count.c			\
-			$(PATH_OBS_2D)act_bird.c
+			$(PATH_OBS_2D)act_bird.c			\
+			$(PATH_OBS_2D)act_death.c			\
+			$(PATH_OBS_2D)rm_data_from_list.c
 
 SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\
 			$(PATH_OBS_3D)main_usage.cpp			\

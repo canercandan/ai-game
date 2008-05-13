@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-** Last update Tue May 13 19:46:55 2008 caner candan
+** Last update Tue May 13 21:48:34 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -91,10 +91,11 @@
 /*
 ** Macros of cast
 */
-# define INFO(data)	((t_info *) (data))
-# define GFX(data)	((t_gfx *) (data))
-# define CLIENT(data)	((t_client *) (data))
-# define TIMEVAL(data)	((struct timeval *) (data))
+# define INFO(data)		((t_info *) (data))
+# define GFX(data)		((t_gfx *) (data))
+# define CLIENT(data)		((t_client *) (data))
+# define INVENTORY(data)	((t_inventory *) (data))
+# define TIMEVAL(data)		((struct timeval *) (data))
 
 /*
 ** Gerneric list of list chaine
@@ -168,6 +169,7 @@ typedef struct	s_gfx
 ** Useful's functions
 */
 int	init_info(t_info *info);
+void	destroy_info(t_info *info);
 void	init_signal(t_info *info, t_gfx *gfx);
 int	parse_args(int ac, char **av, t_info *info);
 int	create_socket(t_info *info);
@@ -197,6 +199,7 @@ int	act_levelup(t_info *info, t_client *client, char *param);
 int	act_fork(t_info *info, t_client *client, char *param);
 int	act_count(t_info *info, t_client *client, char *param);
 int	act_bird(t_info *info, t_client *client, char *param);
+int	act_death(t_info *info, t_client *client, char *param);
 
 /*
 ** GFX's functions
@@ -220,6 +223,7 @@ void	set_floor(t_gfx *gfx, int nbr, int x, int y);
 */
 void	push_list(t_list **t, void *data);
 void	*pop_list(t_list **t);
+void	*rm_data_from_list(t_list **t, void *data);
 
 /*
 ** Buffer's functions

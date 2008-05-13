@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:40:02 2008 caner candan
-** Last update Tue May 13 19:47:07 2008 caner candan
+** Last update Tue May 13 20:45:48 2008 caner candan
 */
 
 #include <SDL.h>
@@ -71,7 +71,8 @@ int			loop_env(t_info *info, t_gfx *gfx)
       exit(-1);
     }
   if (FD_ISSET(info->socket, &fd_read))
-    get_trame(info, gfx);
+    if (get_trame(info, gfx))
+      return (-1);
   put_gfx(info, gfx);
   return (0);
 }

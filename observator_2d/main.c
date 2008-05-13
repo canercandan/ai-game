@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:17:53 2008 caner candan
-** Last update Tue May 13 16:47:59 2008 caner candan
+** Last update Tue May 13 20:16:44 2008 caner candan
 */
 
 #include "observator_2d.h"
@@ -28,5 +28,6 @@ int		main(int ac, char **av)
     if (loop_env(&info, &gfx) < 0)
       break;
   destroy_gfx(&gfx);
+  destroy_info(&info);
   return (0);
 }

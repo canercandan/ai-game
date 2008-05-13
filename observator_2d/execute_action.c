@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 16:43:47 2008 caner candan
-** Last update Tue May 13 19:16:26 2008 caner candan
+** Last update Tue May 13 21:48:09 2008 caner candan
 */
 
 #include "observator_2d.h"
@@ -23,6 +23,7 @@ static t_actions	actions[] = {
   {FORK, act_fork},
   {COUNT, act_count},
   {BIRD, act_bird},
+  {DEATH, act_death},
   {-1, NULL}
 };
 

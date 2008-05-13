@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 15:35:03 2008 caner candan
-** Last update Mon May 12 15:40:42 2008 caner candan
+** Last update Tue May 13 22:00:38 2008 caner candan
 */
 
 #include "server.h"
@@ -17,7 +17,9 @@ int	count_list_with_same_lvl(t_list *t, int lvl)
   i = 0;
   while (t)
     {
-      if (CLIENT(t->data)->level == lvl)
+      if (CLIENT(t->data)->level == lvl &&
+	  (CLIENT(t->data)->status == ST_CLIENT ||
+	   CLIENT(t->data)->status == ST_DISCONNECT))
 	i++;
       t = t->next;
     }
