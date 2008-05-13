@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May 13 10:48:16 2008 florent hochwelker
+** Last update Tue May 13 19:33:18 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -34,7 +34,12 @@
 # define NB_INVENTORY		7
 # define LEN_INVENTORY		512
 # define MAX_QUEUE		10
+
+/*
+** Functions' return
+*/
 # define LOOP_FOR_SEND		1337
+# define RESPAWN		4242
 
 /*
 ** Zappy's index names
@@ -261,11 +266,11 @@ extern t_ressource	gl_ressource[];
 */
 t_client	*add_client(t_info *info, int server);
 void		add_server(t_info *info);
-void		client_read(t_info *info, t_client *client);
+void		client_read(t_info *info, t_client **client);
 void		client_write(t_info *info, t_client *client);
 void		client_disconnect(t_client *client, t_info *info);
 void		server_get(t_info *info);
-void		server_read(t_info *info, t_client *client);
+void		server_read(t_info *info, t_client **client);
 void		server_write(t_info *info, t_client *client);
 int		execute_action(char *str, t_client *cli, t_info *info);
 int		scheduler_exec(t_info *info, void *tp);
@@ -300,7 +305,7 @@ int		opt_delay(t_info *info, char **argv, int i);
 t_zone		**create_world(t_info *info);
 void		fill_ressources_world(t_zone **world, t_info *info);
 t_ressource	*generate_ressources(int i);
-int		begin_session(t_info *i, t_client *cli);
+int		begin_session(t_info *i, t_client **cli);
 
 /*
 ** Actions' functions
@@ -364,11 +369,14 @@ int	exist_data_from_list(t_list *t, void *data);
 void		rm_client_from_queue(t_list **t, int socket, t_info *info);
 t_queue		*create_new_queue(char *str, int (*f)(),
 			  void *new_time, t_client *cli);
+t_client	*get_disconnect_client_from_team(t_info *info, char *team);
+
 
 /*
 ** Client's functions
 */
 void	free_client(t_client *client);
+void	swap_ptr_client(t_info *info, t_client *old, t_client *new);
 
 /*
 ** Info's functions
