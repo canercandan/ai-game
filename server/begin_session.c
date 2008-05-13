@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Tue May 13 20:15:06 2008 florent hochwelker
+** Last update Tue May 13 21:54:22 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -30,15 +30,6 @@ static t_team	*get_team(char *name, t_info *info)
   return (0);
 }
 
-static void		bye(t_error err, t_client *cli)
-{
-  if (err == ERR_WRONG_TEAM_NAME)
-    printf("%d: Wrong team name  ...\n", cli->socket);
-  else if (err == ERR_MAX_CLIENT)
-    printf("%d: Max client ... try to fork :)\n", cli->socket);
-  strcat(cli->buf_write, KO);
-}
-
 static int		inc_and_check_max_user(t_team *team, t_client **client,
 					       t_info *info)
 {
@@ -47,18 +38,13 @@ static int		inc_and_check_max_user(t_team *team, t_client **client,
 
   gettimeofday(&tp, NULL);
   if (team->nb == team->max)
-    {
-      bye(ERR_MAX_CLIENT, *client);
-      return (0);
-    }
-  if ((cli = get_disconnect_client_from_team(info, team->name)))
+    strcat((*client)->buf_write, KO);
+  else if ((cli = get_disconnect_client_from_team(info, team->name)))
     {
       cli->socket = (*client)->socket;
       rm_data_from_list(&info->clients, *client);
-      /*       swap_ptr_client(info, *client, cli); */
       free_client(*client);
       *client = cli;
-      /* push_list(&info->clients, cli);  */
       team->nb++;
       printf("RESPAWN BABY !!\n");
       return (RESPAWN);
@@ -94,7 +80,7 @@ static int	check_team_and_connect(t_client **cli, t_info *info)
       send_info_to_obs(*cli, info);
     }
   else if (team == 0)
-    bye(ERR_WRONG_TEAM_NAME, *cli);
+    strcat((*cli)->buf_write, KO);
   return (1);
 }
 

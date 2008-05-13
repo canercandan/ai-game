@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 15:10:27 2008 florent hochwelker
-** Last update Tue May 13 21:04:28 2008 majdi
+** Last update Tue May 13 21:56:20 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -26,6 +26,7 @@ void		client_disconnect(t_client *client, t_info *info)
     }
   else if (client->status == ST_OBS_CLIENT)
     {
+      rm_data_from_list(&info->zone[client->x][client->y].clients, client);
       rm_data_from_list(&info->observator, client);
       rm_data_from_list(&info->clients, client);
       free_client(client);

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May 13 21:12:54 2008 majdi
+** Last update Tue May 13 21:55:40 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -109,16 +109,6 @@ typedef	enum
     ST_DISCONNECT,
     ST_BIRD
   }	t_status;
-
-/*
-** Errors' enum
-*/
-typedef enum
-  {
-    ERR_WRONG_TEAM_NAME,
-    ERR_MAX_CLIENT
-  }	t_error;
-
 
 /*
 ** Alias
@@ -377,7 +367,6 @@ t_client	*get_disconnect_client_from_team(t_info *info, char *team);
 ** Client's functions
 */
 void	free_client(t_client *client);
-void	swap_ptr_client(t_info *info, t_client *old, t_client *new);
 
 /*
 ** Info's functions

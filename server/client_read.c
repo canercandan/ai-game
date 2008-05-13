@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Tue May 13 19:29:32 2008 florent hochwelker
+** Last update Tue May 13 21:53:02 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -19,6 +19,7 @@ void		client_read(t_info *info, t_client **client)
   char		buf[BUF_SIZE + 1];
   char		buff_perso[BUF_SIZE + 1];
   char		*p;
+  t_client	*check_respaw;
 
   if ((r = (int)xrecv((*client)->socket, buf, BUF_SIZE, 0)) > 0)
     {
@@ -28,12 +29,13 @@ void		client_read(t_info *info, t_client **client)
 	{
 	  *p = 0;
 	  strncpy(buff_perso, (*client)->buf_read, BUF_SIZE - 1);
+	  check_respaw = *client;
 	  if ((*client)->status < ST_CLIENT)
 	    begin_session(info, client);
 	  else
 	    execute_action(buff_perso, *client, info);
-	  printf("%d: [%s]\n", (*client)->socket, buff_perso);
-	  memmove((*client)->buf_read, p + 1, BUF_SIZE);
+	  if (check_respaw == *client)
+	    memmove((*client)->buf_read, p + 1, BUF_SIZE);
 	}
     }
   else

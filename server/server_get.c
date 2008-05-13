@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Tue May 13 20:46:03 2008 florent hochwelker
+** Last update Tue May 13 21:27:51 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -41,11 +41,13 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
 {
   t_list	*t;
   t_client	*client;
+  t_client	*save;
 
   t = info->clients;
   while (t)
     {
       client = t->data;
+      save = client;
       t = t->next;
       if (FD_ISSET(client->socket, fd_write) && client->status != ST_DISCONNECT)
 	client->fct_write(info, client);
