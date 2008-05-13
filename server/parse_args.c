@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Mon May 12 14:44:12 2008 caner candan
+** Last update Tue May 13 21:10:29 2008 majdi
 */
 
 #include <stdio.h>
@@ -49,7 +49,5 @@ t_info	*parse_args(int argc, char **argv, t_info *info)
       else
 	return (0);
     }
-/*   if (!check_flag(flag)) */
-/*     exit(-1); */
   return (info);
 }

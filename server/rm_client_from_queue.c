@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 17:35:17 2008 caner candan
-** Last update Tue May 13 12:13:55 2008 majdi toumi
+** Last update Tue May 13 21:11:00 2008 majdi
 */
 
 #include <stdlib.h>
@@ -17,8 +17,8 @@ static void	first_elm(t_list **t)
   t_list	*tmp;
 
   tmp = *t;
-/*   if ((*t)->next) */
-  *t = (*t)->next;
+  if ((*t)->next)
+    *t = (*t)->next;
   free(((t_queue *)tmp->data)->param);
   free(((t_queue *)tmp->data)->time);
   free(tmp->data);

@@ -5,12 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 16:31:52 2008 majdi toumi
+** Last update Tue May 13 21:01:04 2008 majdi
 */
 
 #include <string.h>
 #include <sys/time.h>
-#include <stdio.h>		/* a vire printf */
 #include "server.h"
 #include "common.h"
 
@@ -19,7 +18,6 @@ static int		check_if_enough_hp(t_info *info, t_client *client)
   struct timeval	tp;
 
   gettimeofday(&tp, NULL);
-  printf("===== check hp =====\n");
   if ((unsigned int)(client->hp - tp.tv_sec - tp.tv_usec / 1e6) /
       (FOOD_HP * info->time) > 0)
     {

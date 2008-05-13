@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May  7 11:07:13 2008 caner candan
-** Last update Wed May  7 15:15:17 2008 caner candan
+** Last update Tue May 13 21:07:28 2008 majdi
 */
 
 #include "server.h"
@@ -13,8 +13,7 @@
 
 int	move_up(t_client *client, char direction, t_info *info)
 {
-  rm_data_from_list(&(info->zone[client->x][client->y].clients),
-		    client);
+  rm_data_from_list(&(info->zone[client->x][client->y].clients), client);
   if (direction == NORTH)
     client->y = (client->y == 0 ? info->y - 1 : client->y - 1);
   else if (direction == EAST)

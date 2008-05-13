@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue May 13 19:56:31 2008 caner candan
+## Last update Tue May 13 20:49:30 2008 majdi
 ##
 
 NAME_SRV	=	server
@@ -137,45 +137,45 @@ SRCS_CLI	=	$(PATH_CLI)main.c				\
 			$(PATH_CLI)free_info.c				\
 			$(PATH_CLI)parse_args.c
 
-SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c			\
-			$(PATH_OBS_2D)init_info.c		\
-			$(PATH_OBS_2D)init_signal.c		\
-			$(PATH_OBS_2D)init_screen.c		\
-			$(PATH_OBS_2D)load_image.c		\
-			$(PATH_OBS_2D)create_video.c		\
-			$(PATH_OBS_2D)loop_env.c		\
-			$(PATH_OBS_2D)destroy_surface.c		\
-			$(PATH_OBS_2D)destroy_screen.c		\
-			$(PATH_OBS_2D)catch_keys.c		\
-			$(PATH_OBS_2D)set_backdrop.c		\
-			$(PATH_OBS_2D)set_character.c		\
-			$(PATH_OBS_2D)set_status.c		\
-			$(PATH_OBS_2D)set_floor.c		\
-			$(PATH_OBS_2D)push_list.c		\
-			$(PATH_OBS_2D)pop_list.c		\
-			$(PATH_OBS_2D)create_socket.c		\
-			$(PATH_OBS_2D)parse_args.c		\
-			$(PATH_OBS_2D)init_gfx.c		\
-			$(PATH_OBS_2D)destroy_gfx.c		\
-			$(PATH_OBS_2D)get_header.c		\
-			$(PATH_OBS_2D)create_client.c		\
-			$(PATH_OBS_2D)get_trame.c		\
-			$(PATH_OBS_2D)put_char_from_buf.c	\
-			$(PATH_OBS_2D)put_int_from_buf.c	\
-			$(PATH_OBS_2D)execute_action.c		\
-			$(PATH_OBS_2D)get_map_size.c		\
-			$(PATH_OBS_2D)dump_clients.c		\
-			$(PATH_OBS_2D)get_client_from_list.c	\
-			$(PATH_OBS_2D)act_up.c			\
-			$(PATH_OBS_2D)act_right.c		\
-			$(PATH_OBS_2D)act_left.c		\
-			$(PATH_OBS_2D)act_take_obj.c		\
-			$(PATH_OBS_2D)act_drop_obj.c		\
-			$(PATH_OBS_2D)act_kick.c		\
-			$(PATH_OBS_2D)act_broadcast.c		\
-			$(PATH_OBS_2D)act_levelup.c		\
-			$(PATH_OBS_2D)act_fork.c		\
-			$(PATH_OBS_2D)act_count.c		\
+SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
+			$(PATH_OBS_2D)init_info.c			\
+			$(PATH_OBS_2D)init_signal.c			\
+			$(PATH_OBS_2D)init_screen.c			\
+			$(PATH_OBS_2D)load_image.c			\
+			$(PATH_OBS_2D)create_video.c			\
+			$(PATH_OBS_2D)loop_env.c			\
+			$(PATH_OBS_2D)destroy_surface.c			\
+			$(PATH_OBS_2D)destroy_screen.c			\
+			$(PATH_OBS_2D)catch_keys.c			\
+			$(PATH_OBS_2D)set_backdrop.c			\
+			$(PATH_OBS_2D)set_character.c			\
+			$(PATH_OBS_2D)set_status.c			\
+			$(PATH_OBS_2D)set_floor.c			\
+			$(PATH_OBS_2D)push_list.c			\
+			$(PATH_OBS_2D)pop_list.c			\
+			$(PATH_OBS_2D)create_socket.c			\
+			$(PATH_OBS_2D)parse_args.c			\
+			$(PATH_OBS_2D)init_gfx.c			\
+			$(PATH_OBS_2D)destroy_gfx.c			\
+			$(PATH_OBS_2D)get_header.c			\
+			$(PATH_OBS_2D)create_client.c			\
+			$(PATH_OBS_2D)get_trame.c			\
+			$(PATH_OBS_2D)put_char_from_buf.c		\
+			$(PATH_OBS_2D)put_int_from_buf.c		\
+			$(PATH_OBS_2D)execute_action.c			\
+			$(PATH_OBS_2D)get_map_size.c			\
+			$(PATH_OBS_2D)dump_clients.c			\
+			$(PATH_OBS_2D)get_client_from_list.c		\
+			$(PATH_OBS_2D)act_up.c				\
+			$(PATH_OBS_2D)act_right.c			\
+			$(PATH_OBS_2D)act_left.c			\
+			$(PATH_OBS_2D)act_take_obj.c			\
+			$(PATH_OBS_2D)act_drop_obj.c			\
+			$(PATH_OBS_2D)act_kick.c			\
+			$(PATH_OBS_2D)act_broadcast.c			\
+			$(PATH_OBS_2D)act_levelup.c			\
+			$(PATH_OBS_2D)act_fork.c			\
+			$(PATH_OBS_2D)act_count.c			\
 			$(PATH_OBS_2D)act_bird.c
 
 SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\

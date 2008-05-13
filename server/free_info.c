@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Fri May  2 15:02:46 2008 caner candan
-** Last update Tue May 13 12:13:44 2008 majdi toumi
+** Last update Tue May 13 20:15:15 2008 majdi
 */
 
 #include <stdlib.h>
@@ -55,6 +55,7 @@ static void	free_zones(t_info *info)
       while (y < info->y)
 	{
 	  while (pop_list(&(info->zone[x][y].ressources)));
+	  while (pop_list(&(info->zone[x][y].clients)));
 	  y++;
 	}
       free(info->zone[x]);

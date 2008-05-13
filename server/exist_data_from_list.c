@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Mon May  5 17:53:30 2008 majdi toumi
-** Last update Mon May  5 18:47:14 2008 majdi toumi
+** Last update Tue May 13 20:05:13 2008 majdi
 */
 
 #include <string.h>
@@ -16,12 +16,15 @@ int		exist_data_from_list(t_list *t, void *data)
 {
   t_ressource	*res;
 
-  while (t)
+  if ((char *)data)
     {
-      res = (t_ressource *)t->data;
-      if (!strcmp(res->name, (char *)data))
-	return (1);
-      t = t->next;
+      while (t)
+	{
+	  res = (t_ressource *)t->data;
+	  if (!strcmp(res->name, (char *)data))
+	    return (1);
+	  t = t->next;
+	}
     }
   return (0);
 }
