@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:17 2008 majdi toumi
-// Last update Mon May 12 19:21:16 2008 caner candan
+// Last update Tue May 13 14:17:10 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -24,7 +24,7 @@ void		draw_rock(t_obs *obs, int x, int y, int type)
   if (rock)
     {
       rock->setScale(vector3df(1, 1, 1));
-      rock->setPosition(vector3df(x, obs->item[type].z, y));
+      rock->setPosition(vector3df(X(x), obs->item[type].z, Y(y)));
       rock->setMaterialFlag(EMF_LIGHTING, false);
       rock->setMaterialTexture(0, TEXTURE(obs->item[type].img));
     }

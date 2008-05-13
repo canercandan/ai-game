@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:37:03 2008 majdi toumi
-// Last update Mon May 12 19:22:19 2008 caner candan
+// Last update Tue May 13 14:14:02 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -17,16 +17,16 @@ int	main(int ac, char **av)
 {
   t_obs	obs;
 
+  parse_args(ac, av, &obs);
   init_obs(&obs);
-  if (parse_args(ac, av, &obs) < 0)
-    main_usage();
-  draw_rock(&obs, 0, 0, 2);
-  draw_rock(&obs, 10, 0, 1);
+  draw_rock(&obs, 1, 1, 5);
+  draw_rock(&obs, 2, 2, 4);
   draw_player(&obs, 1, 2, 0);
   while (DEVICE(obs.window->device)->run())
     {
       //msg_reception(obs);
       draw_all(&obs);
     }
+  free_obs(&obs);
   return (0);
 }

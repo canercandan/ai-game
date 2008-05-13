@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:46:19 2008 majdi toumi
-// Last update Mon May 12 19:22:10 2008 caner candan
+// Last update Tue May 13 13:51:16 2008 jordan aubry
 //
 
 #include <sys/socket.h>
@@ -21,7 +21,6 @@
 static void	error(t_obs *obs)
 {
   write(1, SOCK_ERROR, sizeof(SOCK_ERROR));
-  free_obs(obs);
   exit(-1);
 }
 

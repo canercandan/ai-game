@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:11 2008 majdi toumi
-// Last update Mon May 12 19:21:10 2008 caner candan
+// Last update Tue May 13 10:55:31 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -33,13 +33,13 @@ void				draw_player(t_obs *obs, int x, int y, int z)
       p = obs->window->driver;
       node->setMaterialTexture(0, DRIVER(p)->getTexture(SKIN_1));
       if (z == NORTH)
-	z = 180;
+	z = OBS_NORTH;
       else if (z == EAST)
-	z = 270;
+	z = OBS_EAST;
       else if (z == WEST)
-	z = 90;
+	z = OBS_WEST;
       else
-	z = 0;
+	z = OBS_SOUTH;
       node->setRotation(vector3df(0, z, 0));
     }
 }

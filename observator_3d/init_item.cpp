@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:39 2008 majdi toumi
-// Last update Mon May 12 19:21:46 2008 caner candan
+// Last update Tue May 13 13:54:57 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -21,17 +21,13 @@ void		init_item(t_obs *obs)
 {
   int		i;
 
-  obs->item[0].img = DRIVER(obs->window->driver)->getTexture(ITEM_0);
   obs->item[1].img = DRIVER(obs->window->driver)->getTexture(ITEM_1);
   obs->item[2].img = DRIVER(obs->window->driver)->getTexture(ITEM_2);
   obs->item[3].img = DRIVER(obs->window->driver)->getTexture(ITEM_3);
   obs->item[4].img = DRIVER(obs->window->driver)->getTexture(ITEM_4);
   obs->item[5].img = DRIVER(obs->window->driver)->getTexture(ITEM_5);
   obs->item[6].img = DRIVER(obs->window->driver)->getTexture(ITEM_6);
-  obs->item[7].img = DRIVER(obs->window->driver)->getTexture(ITEM_7);
-  obs->item[8].img = DRIVER(obs->window->driver)->getTexture(ITEM_8);
-  obs->item[9].img = DRIVER(obs->window->driver)->getTexture(ITEM_9);
-  for (i = 0; i < NB_RESSOURCE; i++)
+  for (i = 1; i < NB_RESSOURCE; i++)
     {
       obs->item[i].x = i * 10;
       obs->item[i].y = 0;

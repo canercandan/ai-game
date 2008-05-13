@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon May 12 14:27:30 2008 caner candan
-// Last update Mon May 12 19:22:36 2008 caner candan
+// Last update Tue May 13 13:40:53 2008 jordan aubry
 //
 
 #include "observator_3d.h"
@@ -13,7 +13,7 @@
 
 int	parse_args(int ac, char **av, t_obs *obs)
 {
-  if (ac == 3)
+  if (ac > 2)
     {
       obs->host = av[1];
       obs->port = extract_num(av[2], 1);

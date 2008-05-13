@@ -5,13 +5,13 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Mon May 12 19:27:21 2008 caner candan
+** Last update Tue May 13 14:36:43 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_3D_H__
 # define __OBSERVATOR_3D_H__
 
-/* Define
+/* Define general
 */
 
 #define OBS_USAGE		"Usage : ./observator (host) (port)\n"
@@ -23,9 +23,16 @@
 #define WIN_HEIGHT		480
 #define	CAMERA_SPEED		100
 
-#define NB_RESSOURCE		10
+#define NB_RESSOURCE		7
 
 #define SOCK_ERROR		"ERROR : Can't connect !\n"
+
+/* Define 3d
+*/
+#define OBS_NORTH		180
+#define OBS_SOUTH		0
+#define OBS_EAST		270
+#define OBS_WEST		90
 
 /*
 ** Files
@@ -44,16 +51,12 @@
 /*
 ** Item's defines
 */
-#define	ITEM_0	"textures/rpck_0.bmp"
 #define ITEM_1	"textures/water.bmp"
 #define ITEM_2	"textures/gold.bmp"
-#define ITEM_3	"textures/rock.bmp"
+#define ITEM_3	"textures/brown.bmp"
 #define ITEM_4	"textures/purple.bmp"
 #define ITEM_5	"textures/grass.bmp"
 #define ITEM_6	"textures/lava.bmp"
-#define ITEM_7	"textures/rock_7.bmp"
-#define ITEM_8	"textures/rock_8.bmp"
-#define ITEM_9	"textures/rock_9.bmp"
 
 #define	INVADER			"models/perso.md2"
 #define	SKIN_1			"models/alien.bmp"
@@ -74,6 +77,9 @@
 */
 #define X(data)		((data * 100) - ((obs->x + 1) * 50))
 #define Y(data)		((data * 100) - ((obs->y + 1) * 50))
+
+#define CASEX(data)	(((data + 1) * 100) - ((obs->x + 1) * 50))
+#define CASEY(data)	(((data + 1) * 100) - ((obs->y + 1) * 50))
 
 /*
 ** Structures
@@ -117,15 +123,15 @@ typedef struct	s_player
 
 typedef struct	s_obs
 {
+  char		*host;
+  int		port;
+  int		sock;
   t_window	*window;
   t_matrix	**matrix;
   t_player	*player;
   t_item	item[NB_RESSOURCE];
   int		x;
   int		y;
-  int		sock;
-  char		*host;
-  int		port;
 }		t_obs;
 
 /*
