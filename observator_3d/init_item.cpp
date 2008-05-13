@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:39 2008 majdi toumi
-// Last update Tue May 13 13:54:57 2008 jordan aubry
+// Last update Tue May 13 22:25:56 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -29,7 +29,7 @@ void		init_item(t_obs *obs)
   obs->item[6].img = DRIVER(obs->window->driver)->getTexture(ITEM_6);
   for (i = 1; i < NB_RESSOURCE; i++)
     {
-      obs->item[i].x = i * 10;
+      obs->item[i].x = i * 15;
       obs->item[i].y = 0;
       obs->item[i].z = -18;
     }

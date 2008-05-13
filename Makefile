@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue May 13 23:10:20 2008 caner candan
+## Last update Wed May 14 01:03:51 2008 jordan aubry
 ##
 
 NAME_SRV	=	server
@@ -194,6 +194,7 @@ SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\
 			$(PATH_OBS_3D)draw_all.cpp			\
 			$(PATH_OBS_3D)draw_rock.cpp			\
 			$(PATH_OBS_3D)draw_player.cpp			\
+			$(PATH_OBS_3D)rm_rock.cpp			\
 			$(PATH_OBS_3D)extract_num.cpp			\
 			$(PATH_OBS_3D)free_obs.cpp			\
 			$(PATH_OBS_3D)msg_reception.cpp			\

@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Tue May 13 14:36:43 2008 jordan aubry
+** Last update Tue May 13 23:20:00 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -72,6 +72,8 @@
 #define TERRAIN(data)	((ITerrainSceneNode *) (data))
 #define TEXTURE(data)	((ITexture *) (data))
 
+#define	ISN(data)	((ISceneNode *) (data))
+
 /*
 ** Get x/y
 */
@@ -89,6 +91,7 @@ typedef struct	s_matrix
   int		move;
   int		level;
   int		item[NB_RESSOURCE];
+  void		*rock[NB_RESSOURCE];
 }		t_matrix;
 
 typedef struct	s_window
@@ -158,6 +161,8 @@ void		msg_reception(t_obs *obs);
 void		draw_all(t_obs *obs);
 void		draw_rock(t_obs *obs, int x, int y, int type);
 void		draw_player(t_obs *obs, int x, int y, int z);
+
+void		rm_rock(t_obs *obs, int x, int y, int type);
 
 void		free_obs(t_obs *obs);
 

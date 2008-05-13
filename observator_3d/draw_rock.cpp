@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:17 2008 majdi toumi
-// Last update Tue May 13 14:17:10 2008 jordan aubry
+// Last update Wed May 14 01:00:41 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -18,14 +18,20 @@ using namespace core;
 
 void		draw_rock(t_obs *obs, int x, int y, int type)
 {
-  ISceneNode	*rock;
-
-  rock = MANAGER(obs->window->smgr)->addSphereSceneNode();
-  if (rock)
+  obs->matrix[x][y].rock[type] =
+    MANAGER(obs->window->smgr)->addSphereSceneNode();
+  ISN(obs->matrix[x][y].rock[type])->
+    setScale(vector3df(1, 1, 1));
+  ISN(obs->matrix[x][y].rock[type])->
+    setPosition(vector3df(X(x), obs->item[type].z, Y(y)));
+  ISN(obs->matrix[x][y].rock[type])->
+    setMaterialFlag(EMF_LIGHTING, false);
+  ISN(obs->matrix[x][y].rock[type])->
+    setMaterialTexture(0, TEXTURE(obs->item[type].img));
+  if (obs->matrix[x][y].move == 1)
     {
-      rock->setScale(vector3df(1, 1, 1));
-      rock->setPosition(vector3df(X(x), obs->item[type].z, Y(y)));
-      rock->setMaterialFlag(EMF_LIGHTING, false);
-      rock->setMaterialTexture(0, TEXTURE(obs->item[type].img));
+      if (obs->matrix[x][y].item[type] > 0)
+	ISN(obs->matrix[x][y].rock[type])->~ISceneNode();
+      obs->matrix[x][y].item[type] += 1;
     }
 }
