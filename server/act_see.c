@@ -5,10 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 20:00:58 2008 majdi toumi
+** Last update Mon May 12 20:42:17 2008 majdi toumi
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "server.h"
 #include "common.h"
@@ -59,5 +60,6 @@ int			act_see(char *param, t_client *client, t_info *info)
   if (i <= strlen(buff) && strlen(buff + i) > 0)
     return (LOOP_FOR_SEND);
   i = 0;
+  free(buff);
   return (0);
 }

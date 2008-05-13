@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Fri May  2 15:02:46 2008 caner candan
-** Last update Mon May 12 13:00:12 2008 majdi toumi
+** Last update Tue May 13 12:13:44 2008 majdi toumi
 */
 
 #include <stdlib.h>
@@ -28,6 +28,18 @@ static void	free_clients(t_list *list)
     {
       close(client->socket);
       free(client);
+    }
+}
+
+static void	free_queues(t_list *list)
+{
+  void		*data;
+
+  while ((data = pop_list(&list)))
+    {
+      free(((t_queue *)data)->param);
+      free(((t_queue *)data)->time);
+      free(data);
     }
 }
 
@@ -56,7 +68,7 @@ void	free_info(t_info *info)
   free_zones(info);
   free_list(info->team);
   free_clients(info->clients);
-  free_list(info->queue);
+  free_queues(info->queue);
   free_list(info->observator);
   free(info->timeout);
   free(info);
