@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May 13 19:33:18 2008 florent hochwelker
+** Last update Tue May 13 19:55:30 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -326,6 +326,7 @@ int	act_levelup_progress(char *param, t_client *client, t_info *info);
 int	is_levelmax(t_client *client, t_info *info);
 int	act_fork(char *param, t_client *client, t_info *info);
 void	get_inventory(t_client *client, char *buff, t_info *info);
+void	get_inventory_id(t_client *client, char *buff, t_info *info);
 int	act_count(char *param, t_client *client, t_info *info);
 
 /*

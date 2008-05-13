@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon May 12 21:19:01 2008 florent hochwelker
+** Last update Tue May 13 16:06:43 2008 caner candan
 */
 
 #ifndef __COMMON_H__

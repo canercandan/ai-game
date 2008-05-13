@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue May 13 18:36:08 2008 florent hochwelker
+## Last update Tue May 13 19:56:31 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -120,6 +120,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)putnbr.c				\
 			$(PATH_SRV)obs_send_action.c			\
 			$(PATH_SRV)get_inventory.c			\
+			$(PATH_SRV)get_inventory_id.c			\
 			$(PATH_SRV)obs_new_client.c			\
 			$(PATH_SRV)obs_add_client_in_char.c		\
 			$(PATH_SRV)init_signal.c			\
@@ -137,6 +138,7 @@ SRCS_CLI	=	$(PATH_CLI)main.c				\
 			$(PATH_CLI)parse_args.c
 
 SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c			\
+			$(PATH_OBS_2D)init_info.c		\
 			$(PATH_OBS_2D)init_signal.c		\
 			$(PATH_OBS_2D)init_screen.c		\
 			$(PATH_OBS_2D)load_image.c		\
@@ -155,7 +157,26 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c			\
 			$(PATH_OBS_2D)parse_args.c		\
 			$(PATH_OBS_2D)init_gfx.c		\
 			$(PATH_OBS_2D)destroy_gfx.c		\
-			$(PATH_OBS_2D)get_header.c
+			$(PATH_OBS_2D)get_header.c		\
+			$(PATH_OBS_2D)create_client.c		\
+			$(PATH_OBS_2D)get_trame.c		\
+			$(PATH_OBS_2D)put_char_from_buf.c	\
+			$(PATH_OBS_2D)put_int_from_buf.c	\
+			$(PATH_OBS_2D)execute_action.c		\
+			$(PATH_OBS_2D)get_map_size.c		\
+			$(PATH_OBS_2D)dump_clients.c		\
+			$(PATH_OBS_2D)get_client_from_list.c	\
+			$(PATH_OBS_2D)act_up.c			\
+			$(PATH_OBS_2D)act_right.c		\
+			$(PATH_OBS_2D)act_left.c		\
+			$(PATH_OBS_2D)act_take_obj.c		\
+			$(PATH_OBS_2D)act_drop_obj.c		\
+			$(PATH_OBS_2D)act_kick.c		\
+			$(PATH_OBS_2D)act_broadcast.c		\
+			$(PATH_OBS_2D)act_levelup.c		\
+			$(PATH_OBS_2D)act_fork.c		\
+			$(PATH_OBS_2D)act_count.c		\
+			$(PATH_OBS_2D)act_bird.c
 
 SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\
 			$(PATH_OBS_3D)main_usage.cpp			\

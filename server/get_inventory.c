@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 00:43:10 2008 florent hochwelker
-** Last update Fri May  9 13:49:21 2008 florent hochwelker
+** Last update Tue May 13 11:15:11 2008 caner candan
 */
 
 #include <string.h>
@@ -13,7 +13,8 @@
 #include "server.h"
 #include "common.h"
 
-void			get_inventory(t_client *client, char *buff, t_info *info)
+void			get_inventory(t_client *client, char *buff,
+				      t_info *info)
 {
   int			i;
   struct timeval	tp;
@@ -23,7 +24,8 @@ void			get_inventory(t_client *client, char *buff, t_info *info)
   strcpy(buff, START_CMD);
   strcat(buff, gl_ressource[NB_INVENTORY - 1].name);
   strcat(buff, SEPARATOR_ELM);
-  putnbr((client->hp - tp.tv_sec - tp.tv_usec / 1e6) / (FOOD_HP * info->time), buff);
+  putnbr((client->hp - tp.tv_sec - tp.tv_usec / 1e6) / (FOOD_HP * info->time),
+	 buff);
   while (i < NB_INVENTORY - 1)
     {
       if (i != (NB_INVENTORY - 1))

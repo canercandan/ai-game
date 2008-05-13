@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 20:02:39 2008 caner candan
-** Last update Mon May 12 21:17:19 2008 caner candan
+** Last update Tue May 13 14:59:22 2008 caner candan
 */
 
 #include <SDL.h>
@@ -20,7 +20,7 @@ void		set_character(t_gfx *gfx, int nbr, int x, int y)
   src.y = CHARACTER_Y * GET_POSITION_Y(nbr, CHARACTER_MAX_PER_LINE);
   src.w = CHARACTER_X;
   src.h = CHARACTER_Y;
-  dst.x = x * FLOOR_X;
+  dst.x = (x + 1) * FLOOR_X;
   dst.y = y * FLOOR_Y;
   dst.w = CHARACTER_X;
   dst.h = CHARACTER_Y;

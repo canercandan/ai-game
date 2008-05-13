@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:17:53 2008 caner candan
-** Last update Mon May 12 21:46:23 2008 caner candan
+** Last update Tue May 13 16:47:59 2008 caner candan
 */
 
 #include "observator_2d.h"
@@ -15,18 +15,17 @@ int		main(int ac, char **av)
   t_info	info;
   t_gfx		gfx;
 
-  gfx.x = 10;
-  gfx.y = 10;
+  init_info(&info);
   init_signal(&info, &gfx);
   parse_args(ac, av, &info);
   if (create_socket(&info) < 0)
     return (-1);
-  if (get_header(&info, &gfx) < 0)
+  if (get_header(&info) < 0)
     return (-1);
   if (init_gfx(&gfx) < 0)
     return (-1);
   while (42)
-    if (loop_env(&gfx) < 0)
+    if (loop_env(&info, &gfx) < 0)
       break;
   destroy_gfx(&gfx);
   return (0);

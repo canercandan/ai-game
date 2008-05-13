@@ -5,17 +5,17 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:36:42 2008 caner candan
-** Last update Mon May 12 21:06:31 2008 caner candan
+** Last update Tue May 13 19:43:48 2008 caner candan
 */
 
 #include <SDL.h>
 #include <stdio.h>
 #include "observator_2d.h"
 
-int	create_video(t_gfx *gfx)
+int	create_video(t_info *info, t_gfx *gfx)
 {
   gfx->infos = (void *) SDL_GetVideoInfo();
-  if (!(gfx->video = SDL_SetVideoMode(gfx->x * FLOOR_X, gfx->y * FLOOR_Y,
+  if (!(gfx->video = SDL_SetVideoMode(info->x * FLOOR_X, info->y * FLOOR_Y,
 				      SDL_VI(gfx->infos)->vfmt->BitsPerPixel,
 				      SDL_VI(gfx->infos)->video_mem)))
     {
