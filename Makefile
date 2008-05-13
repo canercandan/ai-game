@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon May 12 22:02:45 2008 caner candan
+## Last update Mon May 12 22:12:20 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
@@ -64,6 +64,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)act_see.c				\
 			$(PATH_SRV)act_inventory.c			\
 			$(PATH_SRV)act_take_obj.c			\
+			$(PATH_SRV)act_bird.c				\
 			$(PATH_SRV)act_drop_obj.c			\
 			$(PATH_SRV)act_kick.c				\
 			$(PATH_SRV)act_broadcast.c			\

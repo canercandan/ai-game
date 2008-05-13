@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Mon May 12 19:47:26 2008 florent hochwelker
+** Last update Mon May 12 22:09:53 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -20,18 +20,21 @@ int			scheduler_exec(t_info *info, void *tp)
   t_queue		*elem;
 
   while (info->queue && (elem = info->queue->data) &&
-	 ((((struct timeval *)elem->time)->tv_sec <
-	   ((struct timeval *)tp)->tv_sec) ||
-	  ((((struct timeval *)elem->time)->tv_sec ==
-	    ((struct timeval *)tp)->tv_sec) &&
-	   ((struct timeval *)elem->time)->tv_usec <=
-	   ((struct timeval *)tp)->tv_usec)))
+	 ((TIMEVAL(elem->time)->tv_sec <
+	   TIMEVAL(tp)->tv_sec) ||
+	  ((TIMEVAL(elem->time)->tv_sec ==
+	    TIMEVAL(tp)->tv_sec) &&
+	   TIMEVAL(elem->time)->tv_usec <=
+	   TIMEVAL(tp)->tv_usec)))
     {
       if (elem->f(elem->param, elem->client, info) == LOOP_FOR_SEND)
 	break;
-      obs_send_action(elem->client->socket, info, elem->idx_f,
-		      elem->param);
-      dump_client_position(info->clients); /* debug pour see */
+      if (elem->idx_f == BIRD)
+	obs_send_action(0, info, elem->idx_f,
+			elem->param);
+      else
+	obs_send_action(elem->client->socket, info, elem->idx_f,
+			elem->param);
       info->queue = info->queue->next;
       free(elem->param);
       free(elem->time);

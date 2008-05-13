@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Mon May 12 16:16:51 2008 florent hochwelker
+** Last update Tue May 13 10:47:52 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -23,7 +23,7 @@ void		client_read(t_info *info, t_client *client)
   if ((r = (int)xrecv(client->socket, buf, BUF_SIZE, 0)) > 0)
     {
       buf[r] = '\0';
-      strlcat(client->buf_read, buf, BUF_SIZE);
+      strncat(client->buf_read, buf, BUF_SIZE - strlen(buf));
       while ((p = strstr(client->buf_read, "\n")))
 	{
 	  *p = 0;
@@ -37,5 +37,5 @@ void		client_read(t_info *info, t_client *client)
 	}
     }
   else
-    client_disconnect(client, info, 0);
+    client_disconnect(client, info);
 }

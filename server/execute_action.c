@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Mon May 12 19:57:23 2008 florent hochwelker
+** Last update Mon May 12 21:53:34 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -30,6 +30,7 @@ static t_action		actions[] =
     {LEVELUP, 0, 300, act_levelup},
     {FORK, "fork", 42, act_fork},
     {COUNT, "connect_nbr", 0, act_count},
+    {BIRD, 0, 600, act_bird},
     {0, 0, 0, 0},
   };
 
@@ -88,6 +89,16 @@ static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
 			       set_timeout(actions[LEVELUP].delay, info,
 					   tp), new_queue->client);
       queue->idx_f = LEVELUP;
+      push_list(&info->queue, queue);
+    }
+  if (i == FORK)
+    {
+      queue = create_new_queue("", actions[BIRD].f,
+			       set_timeout(actions[BIRD].delay +
+					   actions[FORK].delay, info,
+					   tp),
+			       (t_client *)new_queue->client->team);
+      queue->idx_f = BIRD;
       push_list(&info->queue, queue);
     }
   sort_queue_list(&info->queue);

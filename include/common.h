@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon May 12 18:28:46 2008 florent hochwelker
+** Last update Mon May 12 21:19:01 2008 florent hochwelker
 */
 
 #ifndef __COMMON_H__
@@ -87,7 +87,8 @@ enum
     LEVELUP_PROGRESS,
     LEVELUP,
     FORK,
-    COUNT
+    COUNT,
+    BIRD
   };
 
 #endif /* !__COMMON_H__ */

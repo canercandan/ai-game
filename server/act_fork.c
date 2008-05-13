@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 16:27:58 2008 majdi toumi
+** Last update Mon May 12 21:30:14 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -16,7 +16,6 @@ int	act_fork(char *param, t_client *client, t_info *info)
 {
   (void)param;
   (void)info;
-  client->team->max++;
   SEND(client->buf_write, OK);
   return (0);
 }

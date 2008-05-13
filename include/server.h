@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon May 12 20:06:15 2008 florent hochwelker
+** Last update Tue May 13 10:48:16 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -24,7 +24,7 @@
 /*
 ** Defines
 */
-# define START_UNIT_LIFE	100000.0	/* en float */
+# define START_UNIT_LIFE	10.0	/* en float */
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
@@ -101,7 +101,8 @@ typedef	enum
     ST_CLIENT,
     ST_OBS_CLIENT,
     ST_DEAD,
-    ST_DISCONNECT
+    ST_DISCONNECT,
+    ST_BIRD
   }	t_status;
 
 /*
@@ -262,7 +263,7 @@ t_client	*add_client(t_info *info, int server);
 void		add_server(t_info *info);
 void		client_read(t_info *info, t_client *client);
 void		client_write(t_info *info, t_client *client);
-void		client_disconnect(t_client *client, t_info *info, int dead);
+void		client_disconnect(t_client *client, t_info *info);
 void		server_get(t_info *info);
 void		server_read(t_info *info, t_client *client);
 void		server_write(t_info *info, t_client *client);
@@ -313,6 +314,7 @@ int	act_inventory(char *param, t_client *client, t_info *info);
 int	act_take_obj(char *param, t_client *client, t_info *info);
 int	act_drop_obj(char *param, t_client *client, t_info *info);
 int	act_kick(char *param, t_client *client, t_info *info);
+int	act_bird(char *param, t_client *client, t_info *info);
 int	act_broadcast(char *param, t_client *client, t_info *info);
 int	act_levelup(char *param, t_client *client, t_info *info);
 int	act_levelup_progress(char *param, t_client *client, t_info *info);
