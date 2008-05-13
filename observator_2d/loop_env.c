@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:40:02 2008 caner candan
-** Last update Tue May 13 20:45:48 2008 caner candan
+** Last update Tue May 13 23:27:53 2008 caner candan
 */
 
 #include <SDL.h>
@@ -35,8 +35,12 @@ static void	put_clients(t_info *info, t_gfx *gfx)
   t = info->clients;
   while (t)
     {
-      set_character(gfx, get_direction(t->data),
-		    CLIENT(t->data)->x, CLIENT(t->data)->y);
+      if (CLIENT(t->data)->id % 2)
+	set_character(gfx, get_direction(t->data),
+		      CLIENT(t->data)->x, CLIENT(t->data)->y);
+      else
+	set_pirate(gfx, get_direction(t->data),
+		   CLIENT(t->data)->x, CLIENT(t->data)->y);
       t = t->next;
     }
 }

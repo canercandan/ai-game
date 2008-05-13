@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue May 13 22:08:09 2008 caner candan
+## Last update Tue May 13 23:10:20 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -139,6 +139,7 @@ SRCS_CLI	=	$(PATH_CLI)main.c				\
 
 SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)init_info.c			\
+			$(PATH_OBS_2D)destroy_info.c			\
 			$(PATH_OBS_2D)init_signal.c			\
 			$(PATH_OBS_2D)init_screen.c			\
 			$(PATH_OBS_2D)load_image.c			\
@@ -151,6 +152,7 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)set_character.c			\
 			$(PATH_OBS_2D)set_status.c			\
 			$(PATH_OBS_2D)set_floor.c			\
+			$(PATH_OBS_2D)set_pirate.c			\
 			$(PATH_OBS_2D)push_list.c			\
 			$(PATH_OBS_2D)pop_list.c			\
 			$(PATH_OBS_2D)create_socket.c			\

@@ -5,14 +5,14 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 02:11:04 2008 florent hochwelker
-** Last update Tue May 13 22:59:11 2008 majdi
+** Last update Wed May 14 00:07:15 2008 caner candan
 */
 
 #include <string.h>
 #include "server.h"
 #include "common.h"
 
-void	obs_add_client_in_char(char *buf, t_client *client, 
+void	obs_add_client_in_char(char *buf, t_client *client,
 			       t_info *info, int id)
 {
   char	buff[LEN_INVENTORY];

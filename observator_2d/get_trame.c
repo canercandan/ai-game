@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 12:10:55 2008 caner candan
-** Last update Tue May 13 20:12:48 2008 caner candan
+** Last update Wed May 14 00:02:39 2008 caner candan
 */
 
 #include <string.h>
@@ -29,6 +29,8 @@ int	get_trame(t_info *info, t_gfx *gfx)
       printf("first: [%s]\n", first);
       if (!strncmp(ADD_CLIENT, first, strlen(ADD_CLIENT)))
 	create_client(info, &tmp);
+      else if (!strncmp(BROADCAST_MESG, first, strlen(BROADCAST_MESG)))
+	return (0);
       else
 	if (!info->x || !info->y)
 	  get_map_size(info, gfx, &tmp, first);

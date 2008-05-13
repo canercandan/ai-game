@@ -5,9 +5,10 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 16:43:47 2008 caner candan
-** Last update Tue May 13 21:48:09 2008 caner candan
+** Last update Tue May 13 22:33:57 2008 caner candan
 */
 
+#include <stdio.h>
 #include "observator_2d.h"
 #include "common.h"
 
@@ -35,12 +36,13 @@ void		execute_action(t_info *info, char **buf, char *first)
   char		*param;
   int		i;
 
+  printf("id[%s] buf[%s]\n", first, *buf);
   put_int_from_buf(&id, &first);
   put_int_from_buf(&action, buf);
   put_char_from_buf(&param, buf);
   client = get_client_from_list(info->clients, id);
+  dump_clients(info);
   for (i = 0; actions[i].idx >= 0; i++)
     if (actions[i].idx == action)
       actions[i].f(info, client, param);
-  dump_clients(info);
 }

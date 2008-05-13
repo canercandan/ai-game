@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-** Last update Tue May 13 21:48:34 2008 caner candan
+** Last update Wed May 14 00:02:24 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -32,6 +32,7 @@
 */
 # define MSG_WELCOME	"BIENVENUE\n"
 # define ADD_CLIENT	"ADD_CLIENT"
+# define BROADCAST_MESG	"message"
 # define NB_INVENTORY		7
 
 /*
@@ -62,6 +63,14 @@
 # define FLOOR_MAX_PER_LINE	4
 # define FLOOR_X		32
 # define FLOOR_Y		32
+
+/*
+** Pirate's infos
+*/
+# define PIRATE_FILE		"images/pirate.bmp"
+# define PIRATE_MAX_PER_LINE	4
+# define PIRATE_X		40
+# define PIRATE_Y		56
 
 /*
 ** Null's define
@@ -111,7 +120,7 @@ typedef struct	s_list
 */
 typedef struct	s_client
 {
-  int		socket;
+  int		id;
   char		*team_name;
   int		level;
   int		x;
@@ -163,6 +172,7 @@ typedef struct	s_gfx
   void		*character;
   void		*status;
   void		*floor;
+  void		*pirate;
 }		t_gfx;
 
 /*
@@ -217,6 +227,7 @@ void	set_backdrop(t_info *info, t_gfx *gfx);
 void	set_character(t_gfx *gfx, int nbr, int x, int y);
 void	set_status(t_gfx *gfx, int nbr, int x, int y);
 void	set_floor(t_gfx *gfx, int nbr, int x, int y);
+void	set_pirate(t_gfx *gfx, int nbr, int x, int y);
 
 /*
 ** List chaine's functions

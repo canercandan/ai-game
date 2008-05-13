@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 11:02:18 2008 caner candan
-** Last update Tue May 13 18:40:36 2008 caner candan
+** Last update Tue May 13 23:36:14 2008 caner candan
 */
 
 #include <string.h>
@@ -21,7 +21,7 @@ void		create_client(t_info *info, char **buf)
   int		i;
 
   client = xmalloc(sizeof(*client));
-  put_int_from_buf(&(client->socket), buf);
+  put_int_from_buf(&(client->id), buf);
   put_char_from_buf(&(client->team_name), buf);
   put_int_from_buf(&(client->level), buf);
   put_int_from_buf(&(client->x), buf);
