@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Mon May 12 12:54:23 2008 majdi toumi
+** Last update Tue May 13 13:48:50 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -38,7 +38,6 @@ t_client	*add_client(t_info *info, int server)
   t_client	*client;
 
   client = xmalloc(sizeof(*client));
-  client->socket = xaccept(server, NULL, NULL);
   client->status = ST_NOT_LOGGED;
   client->fct_read = client_read;
   client->fct_write = client_write;
@@ -53,5 +52,6 @@ t_client	*add_client(t_info *info, int server)
   client->team = NULL;
   init_ressources(client);
   push_list(&info->clients, (void *)client);
+  client->socket = xaccept(server, NULL, NULL);
   return (client);
 }
