@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 17:07:30 2008 caner candan
-** Last update Wed Apr 30 18:55:16 2008 caner candan
+** Last update Tue May 13 23:02:03 2008 majdi
 */
 
 #include <stdio.h>
@@ -20,7 +20,7 @@ void		show_clients_from_list(t_list *t)
   while (t)
     {
       client = t->data;
-      printf("-- fd: %02d --\n", client->socket);
+      printf("-- fd: %02d --\n", client->id);
       t = t->next;
     }
   printf("-- END -- Clients list --\n\n");

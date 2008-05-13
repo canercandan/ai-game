@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Mon May 12 22:09:53 2008 florent hochwelker
+** Last update Tue May 13 23:01:19 2008 majdi
 */
 
 #include <sys/time.h>
@@ -33,7 +33,7 @@ int			scheduler_exec(t_info *info, void *tp)
 	obs_send_action(0, info, elem->idx_f,
 			elem->param);
       else
-	obs_send_action(elem->client->socket, info, elem->idx_f,
+	obs_send_action(elem->client->id, info, elem->idx_f,
 			elem->param);
       info->queue = info->queue->next;
       free(elem->param);

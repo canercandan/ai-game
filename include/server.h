@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May 13 22:08:41 2008 caner candan
+** Last update Tue May 13 23:04:14 2008 majdi
 */
 
 #ifndef __SERVER_H__
@@ -150,6 +150,7 @@ typedef struct	s_team
 */
 typedef struct	s_client
 {
+  int		id;
   int		socket;
   t_status	status;
   fct		fct_read;
@@ -271,9 +272,9 @@ void		send_info_to_obs(t_client *client, t_info *info);
 /*
 ** Observator's functions
 */
-void		obs_add_client_in_char(char *buf, t_client *client, t_info *info, int socket);
+void		obs_add_client_in_char(char *buf, t_client *client, t_info *info, int id);
 void		obs_new_client(t_list *obs, t_client *client, t_info *info);
-void		obs_send_action(int socket, t_info *info, char idx_f, char *param);
+void		obs_send_action(int id, t_info *info, char idx_f, char *param);
 
 /*
 ** Options' functions
@@ -358,7 +359,7 @@ int	exist_data_from_list(t_list *t, void *data);
 /*
 ** Queue list functions
 */
-void		rm_client_from_queue(t_list **t, int socket, t_info *info);
+void		rm_client_from_queue(t_list **t, int id, t_info *info);
 t_queue		*create_new_queue(char *str, int (*f)(),
 			  void *new_time, t_client *cli);
 t_client	*get_disconnect_client_from_team(t_info *info, char *team);

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:25:30 2008 caner candan
-** Last update Tue May 13 21:53:02 2008 florent hochwelker
+** Last update Tue May 13 23:06:17 2008 majdi
 */
 
 #include <stdio.h>
@@ -34,6 +34,7 @@ void		client_read(t_info *info, t_client **client)
 	    begin_session(info, client);
 	  else
 	    execute_action(buff_perso, *client, info);
+	  printf("%d: [%s]\n", (*client)->id, buff_perso);
 	  if (check_respaw == *client)
 	    memmove((*client)->buf_read, p + 1, BUF_SIZE);
 	}

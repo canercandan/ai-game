@@ -5,20 +5,20 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 15:49:07 2008 florent hochwelker
-** Last update Fri May  9 17:45:17 2008 florent hochwelker
+** Last update Tue May 13 23:00:17 2008 majdi
 */
 
 #include <string.h>
 #include "server.h"
 
-void		obs_send_action(int socket, t_info *info, char idx_f, char *param)
+void		obs_send_action(int id, t_info *info, char idx_f, char *param)
 {
   t_list	*obs;
 
   obs = info->observator;
   while (obs)
     {
-      putnbr(socket, CLIENT(obs->data)->buf_write);
+      putnbr(id, CLIENT(obs->data)->buf_write);
       strcat(CLIENT(obs->data)->buf_write, " ");
       putnbr(idx_f, CLIENT(obs->data)->buf_write);
       strcat(CLIENT(obs->data)->buf_write, " ");

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Tue May 13 17:12:51 2008 florent hochwelker
+** Last update Tue May 13 22:47:02 2008 majdi
 */
 
 #include <string.h>
@@ -35,6 +35,7 @@ t_client	*add_client(t_info *info, int server)
   static int	last_x = -1;
   static int	last_y = -1;
   static int	last_direction = -1;
+  static int	id = 0;
   t_client	*client;
 
   client = xmalloc(sizeof(*client));
@@ -53,5 +54,6 @@ t_client	*add_client(t_info *info, int server)
   init_ressources(client);
   push_list(&info->clients, (void *)client);
   client->socket = xaccept(server, NULL, NULL);
+  client->id = id++;
   return (client);
 }

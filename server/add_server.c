@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Thu May  8 12:41:52 2008 caner candan
+** Last update Tue May 13 22:47:33 2008 majdi
 */
 
 #include <sys/types.h>
@@ -24,6 +24,7 @@ void			add_server(t_info *info)
   pe = getprotobyname("tcp");
   client = xmalloc(sizeof(*client));
   client->socket = xsocket(PF_INET, SOCK_STREAM, pe->p_proto);
+  client->id = -1;
   addr.sin_family = AF_INET;
   addr.sin_port = htons(info->port);
   addr.sin_addr.s_addr = INADDR_ANY;

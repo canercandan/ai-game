@@ -5,19 +5,20 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 02:11:04 2008 florent hochwelker
-** Last update Tue May 13 11:18:54 2008 caner candan
+** Last update Tue May 13 22:59:11 2008 majdi
 */
 
 #include <string.h>
 #include "server.h"
 #include "common.h"
 
-void	obs_add_client_in_char(char *buf, t_client *client, t_info *info, int socket)
+void	obs_add_client_in_char(char *buf, t_client *client, 
+			       t_info *info, int id)
 {
   char	buff[LEN_INVENTORY];
 
   strcat(buf, "ADD_CLIENT ");
-  putnbr(socket, buf);
+  putnbr(id, buf);
   strcat(buf, " ");
   strcat(buf, client->team->name);
   strcat(buf, " ");
