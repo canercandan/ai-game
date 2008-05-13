@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Tue May 13 16:06:43 2008 caner candan
+** Last update Tue May 13 20:46:52 2008 florent hochwelker
 */
 
 #ifndef __COMMON_H__
@@ -88,7 +88,8 @@ enum
     LEVELUP,
     FORK,
     COUNT,
-    BIRD
+    BIRD,
+    DEATH
   };
 
 #endif /* !__COMMON_H__ */

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Tue May 13 19:55:59 2008 caner candan
+** Last update Tue May 13 20:46:03 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -68,7 +68,7 @@ static void		*get_timeout(t_info *info)
 }
 
 static void		check_death_clients(t_info *info, struct timeval *tp)
-{
+{				/* A METTRE A LA NORME */
   t_list		*clients;
   t_client		*cli;
 
@@ -91,6 +91,7 @@ static void		check_death_clients(t_info *info, struct timeval *tp)
 	    {
 	      cli->status = ST_DEAD;
 	      strcpy(cli->buf_write, DEAD);
+	      obs_send_action(cli->socket, info, DEATH, "");
 	    }
 	}
       clients = clients->next;
