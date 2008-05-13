@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Tue May 13 22:47:02 2008 majdi
+** Last update Tue May 13 23:58:03 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -30,7 +30,7 @@ static void	init_buffer(t_client *client)
   client->buf_write[BUF_SIZE] = 0;
 }
 
-t_client	*add_client(t_info *info, int server)
+t_client	*add_client(t_info *info, int server, int x, int y)
 {
   static int	last_x = -1;
   static int	last_y = -1;
@@ -44,8 +44,8 @@ t_client	*add_client(t_info *info, int server)
   client->fct_write = client_write;
   init_buffer(client);
   client->level = START_LEVEL;
-  client->x = get_random(info->x, last_x);
-  client->y = get_random(info->y, last_y);
+  client->x = (x ? x : get_random(info->x, last_x));
+  client->y = (y ? y : get_random(info->y, last_y));
   last_x = client->x;
   last_y = client->y;
   push_list(&(info->zone[client->x][client->y].clients), client);
@@ -53,7 +53,8 @@ t_client	*add_client(t_info *info, int server)
   client->team = NULL;
   init_ressources(client);
   push_list(&info->clients, (void *)client);
-  client->socket = xaccept(server, NULL, NULL);
+  if (server)
+    client->socket = xaccept(server, NULL, NULL);
   client->id = id++;
   return (client);
 }

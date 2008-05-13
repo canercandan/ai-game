@@ -5,10 +5,9 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:39:49 2008 caner candan
-** Last update Tue May 13 21:32:47 2008 florent hochwelker
+** Last update Wed May 14 00:07:23 2008 florent hochwelker
 */
 
-#include <stdio.h>
 #include "server.h"
 
 void		server_read(t_info *info, t_client **client)
@@ -16,7 +15,6 @@ void		server_read(t_info *info, t_client **client)
   t_client	*c;
 
   debug("server_read()", 3);
-  printf("New client\n");
-  c = add_client(info, (*client)->socket);
+  c = add_client(info, (*client)->socket, 0, 0);
   begin_session(info, &c);
 }

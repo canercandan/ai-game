@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May 13 23:27:20 2008 florent hochwelker
+** Last update Wed May 14 00:15:27 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -24,7 +24,7 @@
 /*
 ** Defines
 */
-# define START_UNIT_LIFE	10.0	/* en float */
+# define START_UNIT_LIFE	100000.0	/* en float */
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
@@ -83,6 +83,9 @@
 # define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
 # define ABS(x)			(((x) < 0) ? (x) * -1 : (x))
 # define PWR(x)			(1 << (x))
+# define CONCATXY(x, y)		((x) << 16 | (y))
+# define EXPLODEX(ptr)		((ptr) & 0xFFFF)
+# define EXPLODEY(ptr)		((ptr) >> 16)
 
 /*
 ** Macro to cast
@@ -256,7 +259,7 @@ extern t_ressource	gl_ressource[];
 /*
 ** Socket's functions
 */
-t_client	*add_client(t_info *info, int server);
+t_client	*add_client(t_info *info, int server, int x, int y);
 void		add_server(t_info *info);
 void		client_read(t_info *info, t_client **client);
 void		client_write(t_info *info, t_client *client);

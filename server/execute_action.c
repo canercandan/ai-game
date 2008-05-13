@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Mon May 12 21:53:34 2008 florent hochwelker
+** Last update Wed May 14 00:13:09 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -93,11 +93,13 @@ static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
     }
   if (i == FORK)
     {
-      queue = create_new_queue("", actions[BIRD].f,
+      queue = create_new_queue((char *)
+			       CONCATXY(new_queue->client->x,
+					new_queue->client->y), actions[BIRD].f,
 			       set_timeout(actions[BIRD].delay +
 					   actions[FORK].delay, info,
 					   tp),
-			       (t_client *)new_queue->client->team);
+			       new_queue->client);
       queue->idx_f = BIRD;
       push_list(&info->queue, queue);
     }
@@ -119,7 +121,8 @@ int			execute_action(char *str, t_client *cli, t_info *info)
 	  {
 	    if (get_last_action(&tp, info->queue, cli))
 	      {
-		new_queue = create_new_queue(str, actions[i].f,
+		new_queue = create_new_queue(strdup(get_word_n(str, 2)),
+					     actions[i].f,
 					     set_timeout(actions[i].delay, info,
 							 &tp), cli);
 		set_idx_f(new_queue, i, &tp, info);

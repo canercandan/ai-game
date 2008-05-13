@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Tue May 13 23:01:19 2008 majdi
+** Last update Wed May 14 00:48:10 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -31,12 +31,14 @@ int			scheduler_exec(t_info *info, void *tp)
 	break;
       if (elem->idx_f == BIRD)
 	obs_send_action(0, info, elem->idx_f,
-			elem->param);
+			"");
       else
 	obs_send_action(elem->client->id, info, elem->idx_f,
 			elem->param);
+      dump_client_position(info->clients);
       info->queue = info->queue->next;
-      free(elem->param);
+      if (elem->idx_f != BIRD)
+	free(elem->param);
       free(elem->time);
       free(elem);
     }
