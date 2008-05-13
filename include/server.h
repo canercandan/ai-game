@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue May 13 23:04:14 2008 majdi
+** Last update Tue May 13 23:27:20 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -24,7 +24,7 @@
 /*
 ** Defines
 */
-# define START_UNIT_LIFE	1000000.0	/* en float */
+# define START_UNIT_LIFE	10.0	/* en float */
 # define START_LEVEL		1
 # define MAX_LEVEL		8
 
@@ -107,6 +107,7 @@ typedef	enum
     ST_OBS_CLIENT,
     ST_DEAD,
     ST_DISCONNECT,
+    ST_RESPAWN,
     ST_BIRD
   }	t_status;
 

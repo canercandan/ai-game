@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Tue May 13 21:27:51 2008 florent hochwelker
+** Last update Tue May 13 23:06:56 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -24,6 +24,8 @@ static void	get_set_fd(t_list *t, fd_set *fd_read,
   while (t)
     {
       client = t->data;
+      if (client->status == ST_RESPAWN)
+	client->status = ST_CLIENT;
       if (client->status != ST_DISCONNECT)
 	FD_SET(client->socket, fd_read);
       if (client->buf_write[0] != 0
@@ -49,9 +51,11 @@ static void	get_isset_fd(t_info *info, fd_set *fd_read,
       client = t->data;
       save = client;
       t = t->next;
-      if (FD_ISSET(client->socket, fd_write) && client->status != ST_DISCONNECT)
+      if (FD_ISSET(client->socket, fd_write) &&
+	  client->status != ST_DISCONNECT && client->status != ST_RESPAWN)
 	client->fct_write(info, client);
-      if (FD_ISSET(client->socket, fd_read) && client->status != ST_DISCONNECT)
+      if (FD_ISSET(client->socket, fd_read) &&
+	  client->status != ST_DISCONNECT && client->status != ST_RESPAWN)
 	client->fct_read(info, &client);
     }
 }

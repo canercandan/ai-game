@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Tue May 13 23:07:39 2008 majdi
+** Last update Tue May 13 23:28:37 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -42,6 +42,7 @@ static int		inc_and_check_max_user(t_team *team, t_client **client,
   else if ((cli = get_disconnect_client_from_team(info, team->name)))
     {
       cli->socket = (*client)->socket;
+      cli->status = ST_RESPAWN;
       rm_data_from_list(&info->clients, *client);
       free_client(*client);
       *client = cli;
@@ -50,9 +51,22 @@ static int		inc_and_check_max_user(t_team *team, t_client **client,
       return (RESPAWN);
     }
   else
-    (*client)->hp = tp.tv_sec + START_UNIT_LIFE * FOOD_HP * info->time;
+    {
+      (*client)->hp = tp.tv_sec + START_UNIT_LIFE * FOOD_HP * info->time;
+      (*client)->status = ST_CLIENT;
+    }
   team->nb++;
   return (1);
+}
+
+static void	send_map_and_nb_connect(t_client *cli, t_team *team, t_info *info)
+{
+  putnbr(team->max - team->nb, cli->buf_write);
+  SEND(cli->buf_write, "\n");
+  putnbr(info->x, cli->buf_write);
+  SEND(cli->buf_write, " ");
+  putnbr(info->y, cli->buf_write);
+  SEND(cli->buf_write, "\n");
 }
 
 static int	check_team_and_connect(t_client **cli, t_info *info)
@@ -66,12 +80,10 @@ static int	check_team_and_connect(t_client **cli, t_info *info)
     {
       if ((res = inc_and_check_max_user(team, cli, info)) == 0)
 	return (0);
-      (*cli)->status = ST_CLIENT;
       (*cli)->team = team;
       if (res != RESPAWN)
 	obs_new_client(info->observator, *cli, info);
-      snprintf((*cli)->buf_write, BUF_SIZE, "%d\n%d %d\n",
-	       team->max - team->nb, info->x, info->y);
+      send_map_and_nb_connect(*cli, team, info);
     }
   else if (team == (t_team*)1)	/* le client est un observateur */
     {
