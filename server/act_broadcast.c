@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May 14 11:57:19 2008 caner candan
+** Last update Wed May 14 12:04:36 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -96,6 +96,7 @@ int		act_broadcast(char *param, t_client *client,
 	{
 	  SEND(c->buf_write, MESSAGE);
 	  putnbr(give_me_the_k(c, client, info), c->buf_write);
+	  SEND(c->buf_write, " ");
 	  SEND(c->buf_write, param);
 	  SEND(c->buf_write, "\n");
 	}
