@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 12:10:55 2008 caner candan
-** Last update Wed May 14 00:02:39 2008 caner candan
+** Last update Wed May 14 00:36:45 2008 caner candan
 */
 
 #include <string.h>
@@ -13,7 +13,7 @@
 #include "observator_2d.h"
 #include "x.h"
 
-int	get_trame(t_info *info, t_gfx *gfx)
+int	get_trame(t_info *info)
 {
   int	nbr;
   char	*first;
@@ -33,7 +33,7 @@ int	get_trame(t_info *info, t_gfx *gfx)
 	return (0);
       else
 	if (!info->x || !info->y)
-	  get_map_size(info, gfx, &tmp, first);
+	  get_map_size(info, &tmp, first);
 	else
 	  execute_action(info, &tmp, first);
     }

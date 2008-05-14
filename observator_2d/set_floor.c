@@ -5,13 +5,13 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 20:28:16 2008 caner candan
-** Last update Mon May 12 20:36:30 2008 caner candan
+** Last update Wed May 14 10:19:04 2008 caner candan
 */
 
 #include <SDL.h>
 #include "observator_2d.h"
 
-void		set_floor(t_gfx *gfx, int nbr, int x, int y)
+void		set_floor(t_gfx *gfx, int nbr, float x, float y)
 {
   SDL_Rect	src;
   SDL_Rect	dst;

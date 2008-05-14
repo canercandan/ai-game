@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Wed May 14 01:03:51 2008 jordan aubry
+## Last update Wed May 14 11:11:25 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -164,6 +164,7 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)get_trame.c			\
 			$(PATH_OBS_2D)put_char_from_buf.c		\
 			$(PATH_OBS_2D)put_int_from_buf.c		\
+			$(PATH_OBS_2D)put_float_from_buf.c		\
 			$(PATH_OBS_2D)execute_action.c			\
 			$(PATH_OBS_2D)get_map_size.c			\
 			$(PATH_OBS_2D)dump_clients.c			\
@@ -180,7 +181,9 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)act_count.c			\
 			$(PATH_OBS_2D)act_bird.c			\
 			$(PATH_OBS_2D)act_death.c			\
-			$(PATH_OBS_2D)rm_data_from_list.c
+			$(PATH_OBS_2D)rm_data_from_list.c		\
+			$(PATH_OBS_2D)draw_gfx.c			\
+			$(PATH_OBS_2D)round_nbr.c
 
 SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\
 			$(PATH_OBS_3D)main_usage.cpp			\

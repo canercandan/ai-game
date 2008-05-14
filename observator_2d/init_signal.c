@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 21:09:54 2008 caner candan
-** Last update Tue May 13 20:28:13 2008 caner candan
+** Last update Wed May 14 11:19:06 2008 caner candan
 */
 
 #include <signal.h>
@@ -14,19 +14,17 @@
 #include "observator_2d.h"
 
 static t_info	*sig_info;
-static t_gfx	*sig_gfx;
 
 static void	power_off(int signal)
 {
   (void) signal;
-  destroy_gfx(sig_gfx);
+  destroy_gfx(sig_info->gfx);
   destroy_info(sig_info);
   exit(0);
 }
 
-void	init_signal(t_info *info, t_gfx *gfx)
+void	init_signal(t_info *info)
 {
   sig_info = info;
-  sig_gfx = gfx;
   signal(SIGINT, power_off);
 }

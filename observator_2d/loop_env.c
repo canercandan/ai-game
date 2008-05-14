@@ -5,58 +5,16 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:40:02 2008 caner candan
-** Last update Tue May 13 23:27:53 2008 caner candan
+** Last update Wed May 14 10:41:40 2008 caner candan
 */
 
-#include <SDL.h>
 #include <sys/select.h>
 #include <sys/time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "observator_2d.h"
-#include "common.h"
-#include "x.h"
 
-static int	get_direction(t_client *client)
-{
-  if (client->direction == NORTH)
-    return (12);
-  if (client->direction == EAST)
-    return (8);
-  if (client->direction == SOUTH)
-    return (0);
-  return (4);
-}
-
-static void	put_clients(t_info *info, t_gfx *gfx)
-{
-  t_list	*t;
-
-  t = info->clients;
-  while (t)
-    {
-      if (CLIENT(t->data)->id % 2)
-	set_character(gfx, get_direction(t->data),
-		      CLIENT(t->data)->x, CLIENT(t->data)->y);
-      else
-	set_pirate(gfx, get_direction(t->data),
-		   CLIENT(t->data)->x, CLIENT(t->data)->y);
-      t = t->next;
-    }
-}
-
-static int	put_gfx(t_info *info, t_gfx *gfx)
-{
-  if (!info->x || !info->y)
-    return (-1);
-  set_backdrop(info, gfx);
-  put_clients(info, gfx);
-  SDL_Flip(gfx->video);
-  SDL_Delay(DELAY);
-  return (0);
-}
-
-int			loop_env(t_info *info, t_gfx *gfx)
+int			loop_env(t_info *info)
 {
   fd_set		fd_read;
   int			fd_max;
@@ -75,8 +33,8 @@ int			loop_env(t_info *info, t_gfx *gfx)
       exit(-1);
     }
   if (FD_ISSET(info->socket, &fd_read))
-    if (get_trame(info, gfx))
+    if (get_trame(info))
       return (-1);
-  put_gfx(info, gfx);
+  draw_gfx(info, 0);
   return (0);
 }

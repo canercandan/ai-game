@@ -5,13 +5,13 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 20:03:20 2008 caner candan
-** Last update Mon May 12 21:18:56 2008 caner candan
+** Last update Wed May 14 10:17:25 2008 caner candan
 */
 
 #include <SDL.h>
 #include "observator_2d.h"
 
-void		set_status(t_gfx *gfx, int nbr, int x, int y)
+void		set_status(t_gfx *gfx, int nbr, float x, float y)
 {
   SDL_Rect	src;
   SDL_Rect	dst;
@@ -25,6 +25,7 @@ void		set_status(t_gfx *gfx, int nbr, int x, int y)
   dst.w = STATUS_X;
   dst.h = STATUS_Y;
   SDL_SetColorKey(gfx->status, SDL_SRCCOLORKEY,
-		  SDL_MapRGB(SDL_SF(gfx->status)->format, 192, 192, 192));
+		  SDL_MapRGB(SDL_SF(gfx->status)->format,
+			     STATUS_R, STATUS_G, STATUS_B));
   SDL_BlitSurface(gfx->status, &src, gfx->video, &dst);
 }

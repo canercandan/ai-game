@@ -5,13 +5,13 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 23:05:23 2008 caner candan
-** Last update Tue May 13 23:11:51 2008 caner candan
+** Last update Wed May 14 10:17:12 2008 caner candan
 */
 
 #include <SDL.h>
 #include "observator_2d.h"
 
-void		set_pirate(t_gfx *gfx, int nbr, int x, int y)
+void		set_pirate(t_gfx *gfx, int nbr, float x, float y)
 {
   SDL_Rect	src;
   SDL_Rect	dst;
@@ -25,6 +25,7 @@ void		set_pirate(t_gfx *gfx, int nbr, int x, int y)
   dst.w = PIRATE_X;
   dst.h = PIRATE_Y;
   SDL_SetColorKey(gfx->pirate, SDL_SRCCOLORKEY,
-		  SDL_MapRGB(SDL_SF(gfx->pirate)->format, 102, 78, 79));
+		  SDL_MapRGB(SDL_SF(gfx->pirate)->format,
+			     PIRATE_R, PIRATE_G, PIRATE_B));
   SDL_BlitSurface(gfx->pirate, &src, gfx->video, &dst);
 }

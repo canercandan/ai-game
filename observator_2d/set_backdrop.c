@@ -5,12 +5,12 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 20:00:33 2008 caner candan
-** Last update Tue May 13 19:46:20 2008 caner candan
+** Last update Wed May 14 11:39:22 2008 caner candan
 */
 
 #include "observator_2d.h"
 
-void	set_backdrop(t_info *info, t_gfx *gfx)
+void	set_backdrop(t_info *info)
 {
   int	x;
   int	y;
@@ -22,8 +22,8 @@ void	set_backdrop(t_info *info, t_gfx *gfx)
 	    y < FLOOR_Y ||
 	    x > (info->x * FLOOR_X) - (FLOOR_X * 2) ||
 	    y > (info->y * FLOOR_Y) - (FLOOR_Y * 2))
-	  set_floor(gfx, 0, x, y);
+	  set_floor(info->gfx, 0, (float) x, (float) y);
 	else
-	  set_floor(gfx, 6, x, y);
+	  set_floor(info->gfx, 6, x, y);
       }
 }

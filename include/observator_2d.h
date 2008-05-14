@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-** Last update Wed May 14 00:02:24 2008 caner candan
+** Last update Wed May 14 11:37:04 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -24,8 +24,9 @@
 # define SCREEN_Y	480
 # define DELAY		50
 # define DELAY_ANIM	20
-# define UNIT_X		5
-# define UNIT_Y		5
+# define UNIT_X		5.0
+# define UNIT_Y		5.0
+# define TITLE		"OBS 2D !!!"
 
 /*
 ** Server's infos
@@ -36,17 +37,15 @@
 # define NB_INVENTORY		7
 
 /*
-** Backdrop's infos
-*/
-# define BACKDROP_FILE	"images/arena.bmp"
-
-/*
 ** Character's infos
 */
 # define CHARACTER_FILE		"images/bibi.bmp"
 # define CHARACTER_MAX_PER_LINE	4
 # define CHARACTER_X		32
 # define CHARACTER_Y		48
+# define CHARACTER_R		255
+# define CHARACTER_G		255
+# define CHARACTER_B		255
 
 /*
 ** Status' infos
@@ -55,6 +54,9 @@
 # define STATUS_MAX_PER_LINE	5
 # define STATUS_X		17
 # define STATUS_Y		17
+# define STATUS_R		192
+# define STATUS_G		192
+# define STATUS_B		192
 
 /*
 ** Floor's infos
@@ -71,6 +73,9 @@
 # define PIRATE_MAX_PER_LINE	4
 # define PIRATE_X		40
 # define PIRATE_Y		56
+# define PIRATE_R		102
+# define PIRATE_G		78
+# define PIRATE_B		79
 
 /*
 ** Null's define
@@ -123,11 +128,25 @@ typedef struct	s_client
   int		id;
   char		*team_name;
   int		level;
-  int		x;
-  int		y;
+  float		x;
+  float		y;
   int		direction;
+  int		anim;
   t_list	*inventory;
 }		t_client;
+
+/*
+** GFX's structure
+*/
+typedef struct	s_gfx
+{
+  void		*video;
+  void		*infos;
+  void		*character;
+  void		*status;
+  void		*floor;
+  void		*pirate;
+}		t_gfx;
 
 /*
 ** Infos' structure
@@ -142,6 +161,7 @@ typedef struct	s_info
   char		*host;
   int		port;
   t_list	*clients;
+  t_gfx		*gfx;
 }		t_info;
 
 /*
@@ -163,29 +183,16 @@ typedef struct	s_actions
 }		t_actions;
 
 /*
-** GFX's structure
-*/
-typedef struct	s_gfx
-{
-  void		*video;
-  void		*infos;
-  void		*character;
-  void		*status;
-  void		*floor;
-  void		*pirate;
-}		t_gfx;
-
-/*
 ** Useful's functions
 */
-int	init_info(t_info *info);
+int	init_info(t_info *info, t_gfx *gfx);
 void	destroy_info(t_info *info);
-void	init_signal(t_info *info, t_gfx *gfx);
+void	init_signal(t_info *info);
 int	parse_args(int ac, char **av, t_info *info);
 int	create_socket(t_info *info);
 int	get_header(t_info *info);
-int	get_trame(t_info *info, t_gfx *gfx);
-void	get_map_size(t_info *info, t_gfx *gfx, char **buf, char *first);
+int	get_trame(t_info *info);
+void	get_map_size(t_info *info, char **buf, char *first);
 
 /*
 ** Client's functions
@@ -217,17 +224,18 @@ int	act_death(t_info *info, t_client *client, char *param);
 int	init_gfx(t_gfx *gfx);
 void	destroy_gfx(t_gfx *gfx);
 int	init_screen(void);
-int	create_video(t_info *info, t_gfx *gfx);
+int	create_video(t_info *info);
 void	*load_image(char *path);
-int	loop_env(t_info *info, t_gfx *gfx);
+int	loop_env(t_info *info);
 void	destroy_surface(void *surface);
 void	destroy_screen(void);
 int	catch_keys(void);
-void	set_backdrop(t_info *info, t_gfx *gfx);
-void	set_character(t_gfx *gfx, int nbr, int x, int y);
-void	set_status(t_gfx *gfx, int nbr, int x, int y);
-void	set_floor(t_gfx *gfx, int nbr, int x, int y);
-void	set_pirate(t_gfx *gfx, int nbr, int x, int y);
+void	set_backdrop(t_info *info);
+void	set_character(t_gfx *gfx, int nbr, float x, float y);
+void	set_status(t_gfx *gfx, int nbr, float x, float y);
+void	set_floor(t_gfx *gfx, int nbr, float x, float y);
+void	set_pirate(t_gfx *gfx, int nbr, float x, float y);
+int	draw_gfx(t_info *info, char anim);
 
 /*
 ** List chaine's functions
@@ -241,5 +249,11 @@ void	*rm_data_from_list(t_list **t, void *data);
 */
 void	put_char_from_buf(char **elm, char **buf);
 void	put_int_from_buf(int *elm, char **buf);
+void	put_float_from_buf(float *elm, char **buf);
+
+/*
+** Matimatical's functions
+*/
+float	round_nbr(float nbr);
 
 #endif /* !__OBSERVATOR_2D_H__ */
