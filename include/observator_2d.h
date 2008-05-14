@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-** Last update Wed May 14 11:37:04 2008 caner candan
+** Last update Wed May 14 11:49:10 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -121,6 +121,15 @@ typedef struct	s_list
 }		t_list;
 
 /*
+** Inventory's structure
+*/
+typedef struct	s_inventory
+{
+  int		idx;
+  int		qte;
+}		t_inventory;
+
+/*
 ** Clients' structure
 */
 typedef struct	s_client
@@ -132,7 +141,7 @@ typedef struct	s_client
   float		y;
   int		direction;
   int		anim;
-  t_list	*inventory;
+  int		inventory[NB_INVENTORY];
 }		t_client;
 
 /*
@@ -163,15 +172,6 @@ typedef struct	s_info
   t_list	*clients;
   t_gfx		*gfx;
 }		t_info;
-
-/*
-** Inventory's structure
-*/
-typedef struct	s_inventory
-{
-  int		idx;
-  int		qte;
-}		t_inventory;
 
 /*
 ** Actions table's structure

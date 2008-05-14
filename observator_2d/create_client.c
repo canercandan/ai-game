@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 11:02:18 2008 caner candan
-** Last update Wed May 14 10:28:53 2008 caner candan
+** Last update Wed May 14 11:50:23 2008 caner candan
 */
 
 #include <string.h>
@@ -17,7 +17,7 @@
 void		create_client(t_info *info, char **buf)
 {
   t_client	*client;
-  t_inventory	*inventory;
+  int		inventory_idx;
   int		i;
 
   client = xmalloc(sizeof(*client));
@@ -31,10 +31,8 @@ void		create_client(t_info *info, char **buf)
   strsep(buf, START_CMD);
   for (i = 0; i < NB_INVENTORY; i++)
     {
-      inventory = xmalloc(sizeof(*inventory));
-      put_int_from_buf(&(inventory->idx), buf);
-      put_int_from_buf(&(inventory->qte), buf);
-      push_list(&(client->inventory), inventory);
+      put_int_from_buf(&inventory_idx, buf);
+      put_int_from_buf(&(client->inventory[inventory_idx]), buf);
     }
   push_list(&(info->clients), client);
   dump_clients(info);

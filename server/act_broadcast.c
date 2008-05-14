@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed May 14 01:18:45 2008 florent hochwelker
+** Last update Wed May 14 11:57:19 2008 caner candan
 */
 
 #include <string.h>
@@ -82,18 +82,20 @@ int		act_broadcast(char *param, t_client *client,
 {
   t_list	*clients;
   t_client	*c;
-  char		buf[5];
 
   clients = info->clients;
   while (clients)
     {
       c = (t_client *)clients->data;
+      if (c->status != ST_CLIENT)
+	{
+	  clients = clients->next;
+	  continue;
+	}
       if (c != client && client->status == ST_CLIENT)
 	{
 	  SEND(c->buf_write, MESSAGE);
-	  snprintf(buf, sizeof(buf), "%d ",
-		   give_me_the_k(c, client, info));
-	  SEND(c->buf_write, buf);
+	  putnbr(give_me_the_k(c, client, info), c->buf_write);
 	  SEND(c->buf_write, param);
 	  SEND(c->buf_write, "\n");
 	}
