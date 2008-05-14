@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Wed May 14 10:16:42 2008 majdi
+** Last update Wed May 14 11:18:39 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -80,12 +80,13 @@ static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
 				  t_info *info)
 {
   t_queue		*queue;
+  int			*p;
 
   new_queue->idx_f = i;
   push_list(&info->queue, new_queue);
   if (i == LEVELUP_PROGRESS)
     {
-      queue = create_new_queue(NULL, actions[LEVELUP].f,
+      queue = create_new_queue(strdup(""), actions[LEVELUP].f,
 			       set_timeout(actions[LEVELUP].delay, info,
 					   tp), new_queue->client);
       queue->idx_f = LEVELUP;
@@ -93,9 +94,10 @@ static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
     }
   if (i == FORK)
     {
-      queue = create_new_queue((char *)
-			       CONCATXY(new_queue->client->x,
-					new_queue->client->y), actions[BIRD].f,
+      p = xmalloc(sizeof(int));
+      *p = CONCATXY(new_queue->client->x,
+		    new_queue->client->y);
+      queue = create_new_queue((char *)p, actions[BIRD].f,
 			       set_timeout(actions[BIRD].delay +
 					   actions[FORK].delay, info,
 					   tp),
