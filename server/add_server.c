@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Tue May 13 22:47:33 2008 majdi
+** Last update Wed May 14 11:48:23 2008 majdi
 */
 
 #include <sys/types.h>
@@ -13,6 +13,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include "server.h"
+#include "common.h"
 #include "x.h"
 
 void			add_server(t_info *info)
@@ -21,7 +22,7 @@ void			add_server(t_info *info)
   struct protoent	*pe;
   t_client		*client;
 
-  pe = getprotobyname("tcp");
+  pe = getprotobyname(TCP);
   client = xmalloc(sizeof(*client));
   client->socket = xsocket(PF_INET, SOCK_STREAM, pe->p_proto);
   client->id = -1;
