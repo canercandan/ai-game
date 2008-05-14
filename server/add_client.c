@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:37:41 2008 caner candan
-** Last update Tue May 13 23:58:03 2008 florent hochwelker
+** Last update Wed May 14 09:23:01 2008 majdi
 */
 
 #include <string.h>

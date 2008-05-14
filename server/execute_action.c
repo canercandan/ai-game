@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Wed May 14 00:13:09 2008 florent hochwelker
+** Last update Wed May 14 10:16:42 2008 majdi
 */
 
 #include <sys/time.h>
@@ -85,7 +85,7 @@ static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
   push_list(&info->queue, new_queue);
   if (i == LEVELUP_PROGRESS)
     {
-      queue = create_new_queue("", actions[LEVELUP].f,
+      queue = create_new_queue(NULL, actions[LEVELUP].f,
 			       set_timeout(actions[LEVELUP].delay, info,
 					   tp), new_queue->client);
       queue->idx_f = LEVELUP;

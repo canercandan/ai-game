@@ -5,23 +5,27 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 17:35:17 2008 caner candan
-** Last update Tue May 13 23:01:00 2008 majdi
+** Last update Wed May 14 10:31:36 2008 majdi
 */
 
 #include <stdlib.h>
 #include <sys/time.h>
 #include "server.h"
+#include <stdio.h>
 
 static void	first_elm(t_list **t)
 {
   t_list	*tmp;
+  t_queue	*queue;
 
   tmp = *t;
-  if ((*t)->next)
-    *t = (*t)->next;
-  free(((t_queue *)tmp->data)->param);
-  free(((t_queue *)tmp->data)->time);
-  free(tmp->data);
+  *t = (*t)->next;
+  queue = (t_queue *)tmp->data;
+  if (queue->param)
+    free(queue->param);
+  if (queue->time)
+    free(queue->time);
+  free(queue);
   free(tmp);
 }
 

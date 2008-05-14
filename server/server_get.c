@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Tue May 13 23:06:56 2008 florent hochwelker
+** Last update Wed May 14 09:17:58 2008 majdi
 */
 
 #include <sys/select.h>
@@ -97,7 +97,7 @@ static void		check_death_clients(t_info *info, struct timeval *tp)
 	    {
 	      cli->status = ST_DEAD;
 	      strcpy(cli->buf_write, DEAD);
-	      obs_send_action(cli->socket, info, DEATH, "");
+	      obs_send_action(cli->id, info, DEATH, "");
 	    }
 	}
       clients = clients->next;
