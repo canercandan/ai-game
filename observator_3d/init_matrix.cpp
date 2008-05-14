@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:47 2008 majdi toumi
-// Last update Tue May 13 22:43:30 2008 jordan aubry
+// Last update Wed May 14 12:00:10 2008 jordan aubry
 //
 
 #include <stdlib.h>
@@ -28,10 +28,7 @@ t_matrix	**init_matrix(t_obs *obs)
 	  m[i][j].move = 1;
 	  m[i][j].level = 1;
 	  for (k = 0; k < NB_RESSOURCE; k++)
-	    {
-	      m[i][j].item[k] = 0;
-	      m[i][j].rock[k] = NULL;
-	    }
+	    m[i][j].item[k] = 0;
 	}
     }
   return (m);
