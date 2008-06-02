@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Mon Jun  2 12:56:55 2008 caner candan
+// Last update Tue Jun  3 00:19:02 2008 caner candan
 //
 
 #include <sys/types.h>
@@ -18,6 +18,10 @@
 #include <string>
 #include <iostream>
 #include "Socket.h"
+
+Socket::Socket()
+  : _socket(-1)
+{}
 
 Socket::Socket(const std::string& host, int port)
   : _socket(-1)

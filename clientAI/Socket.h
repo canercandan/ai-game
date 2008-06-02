@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:26:34 2008 caner candan
-// Last update Mon Jun  2 12:50:04 2008 caner candan
+// Last update Tue Jun  3 00:08:40 2008 caner candan
 //
 
 #ifndef __SOCKET_H__
@@ -16,6 +16,7 @@
 class	Socket
 {
 public:
+  Socket();
   Socket(const std::string& host, int port);
   Socket(const Socket& s);
   ~Socket();
