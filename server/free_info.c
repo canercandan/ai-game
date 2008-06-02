@@ -5,7 +5,11 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Fri May  2 15:02:46 2008 caner candan
+<<<<<<< .mine
+** Last update Tue May 13 18:11:02 2008 majdi toumi
+=======
 ** Last update Wed May 14 11:23:16 2008 florent hochwelker
+>>>>>>> .r434
 */
 
 #include <stdlib.h>
@@ -34,12 +38,14 @@ static void	free_clients(t_list *list)
 static void	free_queues(t_list *list)
 {
   void		*data;
+  t_queue	*queue;
 
   while ((data = pop_list(&list)))
     {
-      free(((t_queue *)data)->param);
-      free(((t_queue *)data)->time);
-      free(data);
+      queue = (t_queue *)data;
+      free(queue->param);
+      free(queue->time);
+      free(queue);
     }
 }
 
