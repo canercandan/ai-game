@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Tue Jun  3 00:19:02 2008 caner candan
+// Last update Tue Jun  3 19:49:23 2008 caner candan
 //
 
 #include <sys/types.h>
@@ -34,15 +34,18 @@ Socket::Socket(const Socket& s)
 
 Socket::~Socket()
 {
-  closeSocket();
+  if (_socket >= 0)
+    {
+      ::close(_socket);
+      if (DEBUG)
+	std::cout << "Socket: socket closed" << std::endl;
+    }
 }
 
 Socket&	Socket::operator=(const Socket& s)
 {
   if (this != &s)
-    {
-      this->_socket = s._socket;
-    }
+    this->_socket = s._socket;
   return (*this);
 }
 
@@ -59,7 +62,9 @@ void	Socket::connectSocket(const std::string& host, int port)
       if ((_socket = ::socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
 	throw 1;
       sin.sin_family = AF_INET;
-      std::cout << "Resolving " << host << " ..." << std::endl;
+      if (DEBUG)
+	std::cout << "Socket: Resolving " << host
+		  << " ..." << std::endl;
       if (!(h = ::gethostbyname(host.c_str())))
 	throw 2;
       ::memcpy(&in, h->h_addr, sizeof(in));
@@ -70,6 +75,7 @@ void	Socket::connectSocket(const std::string& host, int port)
     }
   catch (int e)
     {
+      std::cout << "Socket: ";
       if (e == 1)
 	std::cout << "socket error" << std::endl;
       else if (e == 2)
@@ -88,11 +94,10 @@ void	Socket::closeSocket(void)
 	throw true;
       ::close(this->_socket);
       this->_socket = -1;
-      std::cout << "socket closed" << std::endl;
     }
   catch (bool)
     {
-      std::cout << "socket already closed" << std::endl;
+      std::cout << "Socket: socket already closed" << std::endl;
     }
 }
 
@@ -104,9 +109,12 @@ void	Socket::send(const std::string& s)
 	throw 1;
       if (::send(this->_socket, s.c_str(), s.size(), 0) < 0)
 	throw 2;
+      if (DEBUG)
+	std::cout << "Socket: send [" << s << "]" << std::endl;
     }
   catch (int e)
     {
+      std::cout << "Socket: ";
       if (e == 1)
 	std::cout << "send error, not connected" << std::endl;
       else if (e == 2)
@@ -125,11 +133,13 @@ std::string	Socket::recv(void)
 	throw true;
       size = ::recv(this->_socket, buf, sizeof(buf), 0);
       buf[size] = 0;
+      if (DEBUG)
+	std::cout << "Socket: recv [" << buf << "]" << std::endl;
       return (std::string(buf));
     }
   catch (bool)
     {
-      std::cout << "error recv, not connected" << std::endl;
+      std::cout << "Socket: error recv, not connected" << std::endl;
     }
   return ("");
 }

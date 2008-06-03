@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Tue Jun  3 00:53:13 2008 caner candan
+// Last update Tue Jun  3 19:43:01 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -17,20 +17,28 @@
 class	AI
 {
 public:
+  AI();
   AI(const std::string& host, int port, const std::string& team);
   AI(const AI& ai);
   ~AI();
   AI&	operator=(const AI& ai);
 
-  void	connectToServer(void);
-  void	getHeader(void);
+  void	setHost(const std::string& host, int port);
+  void	setTeamName(const std::string& team);
+  bool	connectToServer(void);
+  bool	getHeader(void);
+  bool	forkWorld(void);
 private:
+  void	_sendTeamName(void);
+  bool	_getNbClientAndMapSize(void);
+
   Socket	_socket;
   std::string	_host;
   int		_port;
   std::string	_team;
   int		_x;
   int		_y;
+  int		_nbClient;
 };
 
 #endif /* !__AI_H__ */

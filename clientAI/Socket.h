@@ -5,13 +5,15 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:26:34 2008 caner candan
-// Last update Tue Jun  3 00:08:40 2008 caner candan
+// Last update Tue Jun  3 19:49:55 2008 caner candan
 //
 
 #ifndef __SOCKET_H__
 # define __SOCKET_H__
 
 # include <string>
+
+# define DEBUG	0
 
 class	Socket
 {
