@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Tue May 13 23:20:00 2008 jordan aubry
+** Last update Tue Jun  3 19:58:23 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -86,6 +86,8 @@
 /*
 ** Structures
 */
+
+/*
 typedef struct	s_matrix
 {
   int		move;
@@ -137,15 +139,13 @@ typedef struct	s_obs
   int		y;
 }		t_obs;
 
-/*
-** Functions
-*/
+// Functions
+
 void		main_usage(void);
 int		parse_args(int ac, char **av, t_obs *obs);
 
-/*
-** Init's functions
-*/
+// Init's functions
+
 void		init_obs(t_obs *obs);
 t_window	*init_window(void);
 t_matrix	**init_matrix(t_obs *obs);
@@ -166,4 +166,6 @@ void		rm_rock(t_obs *obs, int x, int y, int type);
 
 void		free_obs(t_obs *obs);
 
-#endif /* !__OBSERVATOR_3D_H__ */
+#endif
+
+*/

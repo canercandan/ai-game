@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:37:03 2008 majdi toumi
-// Last update Wed May 14 12:43:49 2008 jordan aubry
+// Last update Tue Jun  3 12:25:00 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -19,10 +19,10 @@ int	main(int ac, char **av)
 
   parse_args(ac, av, &obs);
   init_obs(&obs);
-  draw_rock(&obs, 2, 2, 5);
-  draw_rock(&obs, 4, 4, 5);
-  draw_player(&obs, 1, 3, 0);
-  draw_player(&obs, 4, 2, 2);
+  //draw_rock(&obs, 2, 2, 5);
+  //draw_rock(&obs, 4, 4, 5);
+  //draw_player(&obs, 1, 3, 0);
+  //draw_player(&obs, 4, 2, 2);
   while (DEVICE(obs.window->device)->run())
     {
       //msg_reception(obs);
