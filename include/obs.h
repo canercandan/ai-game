@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Tue Jun  3 19:41:33 2008 jordan aubry
+** Last update Tue Jun  3 20:05:44 2008 jordan aubry
 */
 
 #ifndef __OBS_H__
@@ -18,7 +18,7 @@
 # include "window.h"
 # include "item.h"
 
-class	Obs
+class	Obs : public Window
 {
  private:
   std::string	_host;
