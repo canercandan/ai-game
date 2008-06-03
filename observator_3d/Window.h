@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:43:36 2008 jordan aubry
-** Last update Tue Jun  3 19:58:45 2008 jordan aubry
+** Last update Tue Jun  3 20:19:17 2008 jordan aubry
 */
 
 #ifndef __WINDOW_H__
@@ -18,16 +18,16 @@
 
 class	Window
 {
- protected:
-  IrrlichtDevice*	_device;
-  IVideoDriver*		_driver;
-  ISceneManager*	_scene;
-  IGUIEnvironement*	_env;
-  ICameraSceneNore*	_camera;
-
  public:
   Window();
   ~Window();
+
+ protected:
+  IrrlichtDevice*       _device;
+  IVideoDriver*         _driver;
+  ISceneManager*        _scene;
+  IGUIEnvironement*     _env;
+  ICameraSceneNore*     _camera;
 };
 
 #endif

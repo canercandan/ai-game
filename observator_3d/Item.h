@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:50:13 2008 jordan aubry
-** Last update Tue Jun  3 19:59:02 2008 jordan aubry
+** Last update Tue Jun  3 20:18:53 2008 jordan aubry
 */
 
 #ifndef __ITEM_H__
@@ -17,10 +17,10 @@
 class	Item
 {
  private:
-  IVideoDriver*		img;
-  int			x;
-  int			y;
-  int			z;
+  IVideoDriver*         img;
+  int                   x;
+  int                   y;
+  int                   z;
 
  public:
   Item();
