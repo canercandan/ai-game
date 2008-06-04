@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Wed Jun  4 08:11:06 2008 caner candan
+// Last update Wed Jun  4 09:30:37 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -31,11 +31,13 @@ public:
   void	setTeamName(const std::string& team);
   bool	connectToServer(void);
   bool	getHeader(void);
-  void	actionRandom(void);
+  void	actionLoop(void);
 private:
   void	_sendTeamName(void);
   bool	_getNbClientAndMapSize(void);
   bool	_forkWorld(void);
+  void	_actionRandom(void);
+  void	_actionAI(const std::string& mesg);
 
   Socket	_socket;
   std::string	_host;

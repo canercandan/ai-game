@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Wed Jun  4 09:02:42 2008 caner candan
+// Last update Wed Jun  4 10:04:38 2008 caner candan
 //
 
 #include <string>
@@ -17,9 +17,11 @@
 #include "Socket.h"
 #include "AI.h"
 
-std::string	AI::actions[] =
-  {"avance", "droite", "gauche", "voir", "inventaire", "prend objet",
-   "pose objet", "expulse", "broadcast text", "incantation"};
+std::string	AI::actionsMove[] = {"avance", "droite", "gauche"};
+
+std::string	AI::actionsOther[] =
+  {"voir", "inventaire", "prend objet", "pose objet", "expulse",
+   "broadcast text", "incantation"};
 
 AI::AI()
   : _port(0), _x(0), _y(0), _nbClient(0)
@@ -155,18 +157,29 @@ bool	AI::_forkWorld(void)
   return (true);
 }
 
-void		AI::actionRandom(void)
+void		AI::actionLoop(void)
 {
   std::string	mesg;
-  long		action;
 
   ::srandom(::getpid());
   this->_socket.send("voir\n");
   while (!(mesg = this->_socket.recv()).empty())
     {
-      action = ::random() % NB_ACTIONS;
-      this->_socket.send(actions[action] + '\n');
-      std::cout << "action [" << actions[action] << "]" << std::endl;
+      this->_actionRandom();
       ::sleep(1);
     }
+}
+
+void	AI::_actionMove(void)
+{
+  long	action;
+
+  action = ::random() % NB_ACTIONS;
+  this->_socket.send(actionsMove[action] + '\n');
+  std::cout << "action [" << actionsMove[action] << "]" << std::endl;
+}
+
+void	AI::_actionAI(const std::string&)
+{
+
 }
