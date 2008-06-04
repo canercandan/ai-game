@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May 14 08:56:50 2008 caner candan
-** Last update Wed Jun  4 18:21:37 2008 caner candan
+** Last update Wed Jun  4 20:05:51 2008 caner candan
 */
 
 #include <SDL.h>
@@ -31,20 +31,14 @@ static void	put_clients(t_info *info, char anim)
   t = info->clients;
   while (t)
     {
-      if (CLIENT(t->data)->id % 2)
-	{
-	  if (!anim)
-	    put_direction_to_anim(t->data);
-	  set_character(info->gfx, CLIENT(t->data)->anim,
-			CLIENT(t->data)->x, CLIENT(t->data)->y);
-	}
+      if (!anim)
+	put_direction_to_anim(t->data);
+      if (CLIENT(t->data)->team_id % 2)
+	set_character(info->gfx, CLIENT(t->data)->anim,
+		      CLIENT(t->data)->x, CLIENT(t->data)->y);
       else
-	{
-	  if (!anim)
-	    put_direction_to_anim(t->data);
-	  set_pirate(info->gfx, CLIENT(t->data)->anim,
-		     CLIENT(t->data)->x, CLIENT(t->data)->y);
-	}
+	set_pirate(info->gfx, CLIENT(t->data)->anim,
+		   CLIENT(t->data)->x, CLIENT(t->data)->y);
       t = t->next;
     }
 }
@@ -56,6 +50,6 @@ int	draw_gfx(t_info *info, char anim)
   set_backdrop(info);
   put_clients(info, anim);
   SDL_Flip(info->gfx->video);
-  SDL_Delay(info->time);
+  SDL_Delay(1);
   return (0);
 }

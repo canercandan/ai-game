@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Wed Jun  4 17:54:07 2008 caner candan
+** Last update Wed Jun  4 19:49:06 2008 caner candan
 */
 
 #include <string.h>
@@ -29,7 +29,7 @@ static void	send_list_players(t_client *obs, t_info *info)
 
 void	send_info_to_obs(t_client *client, t_info *info)
 {
-  snprintf(client->buf_write, BUF_SIZE, "%d %d %f\n",
-	   info->x, info->y, info->time);
+  snprintf(client->buf_write, BUF_SIZE, "%d %d\n",
+	   info->x, info->y);
   send_list_players(client, info);
 }

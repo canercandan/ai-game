@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-// Last update Wed Jun  4 17:54:50 2008 caner candan
+// Last update Wed Jun  4 18:52:17 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -136,6 +136,7 @@ typedef struct	s_client
 {
   int		id;
   char		*team_name;
+  int		team_id;
   int		level;
   float		x;
   float		y;

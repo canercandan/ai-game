@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 02:11:04 2008 florent hochwelker
-** Last update Wed May 14 00:07:15 2008 caner candan
+** Last update Wed Jun  4 19:59:56 2008 caner candan
 */
 
 #include <string.h>
@@ -21,6 +21,8 @@ void	obs_add_client_in_char(char *buf, t_client *client,
   putnbr(id, buf);
   strcat(buf, " ");
   strcat(buf, client->team->name);
+  strcat(buf, " ");
+  putnbr(get_position_from_list(info->team, client->team), buf);
   strcat(buf, " ");
   putnbr(client->level, buf);
   strcat(buf, " ");
