@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Wed May 14 12:07:17 2008 caner candan
+// Last update Wed Jun  4 08:38:47 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -378,6 +378,7 @@ void	free_client(t_client *client);
 /*
 ** Info's functions
 */
+t_info	*init();
 t_info	*init_info();
 void	free_info(t_info *info);
 int	get_ressource_idx(char *data);

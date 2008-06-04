@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:20:25 2008 caner candan
-// Last update Tue Jun  3 19:42:28 2008 caner candan
+// Last update Wed Jun  4 08:12:44 2008 caner candan
 //
 
 #include <iostream>
@@ -47,5 +47,6 @@ int	main(int ac, char **av)
     return (-1);
   if (!ai.getHeader())
     return (-1);
+  ai.actionRandom();
   return (0);
 }

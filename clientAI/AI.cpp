@@ -5,16 +5,22 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Tue Jun  3 19:45:41 2008 caner candan
+// Last update Wed Jun  4 08:57:49 2008 caner candan
 //
 
 #include <string>
 #include <iostream>
 #include <sstream>
-#include <unistd.h>
 #include <cctype>
+#include <cstdlib>
+#include <unistd.h>
 #include "Socket.h"
 #include "AI.h"
+
+std::string	AI::actions[] =
+  {"avance", "droite", "gauche", "voir", "inventaire",
+   "prend objet", "pose objet", "expulse", "broadcast text",
+   "incantation"};
 
 AI::AI()
   : _port(0), _x(0), _y(0), _nbClient(0)
@@ -30,8 +36,7 @@ AI::AI(const AI& ai)
 
 AI::~AI()
 {
-  std::cout << "AI: ";
-  std::cout << "bye bye ..." << std::endl;
+  std::cout << "AI: bye bye ..." << std::endl;
 }
 
 AI&	AI::operator=(const AI& ai)
@@ -61,19 +66,13 @@ bool	AI::connectToServer(void)
 {
   try
     {
-      if (this->_socket.isConnected())
-	throw 1;
       this->_socket.connectSocket(this->_host, this->_port);
       if (!this->_socket.isConnected())
-	throw 2;
+	throw true;
     }
-  catch (int e)
+  catch (bool)
     {
-      std::cout << "AI: ";
-      if (e == 1)
-	std::cout << "already connected" << std::endl;
-      else if (e == 2)
-	std::cout << "not connected" << std::endl;
+      std::cout << "AI: not connected" << std::endl;
       return (false);
     }
   return (true);
@@ -91,12 +90,13 @@ bool		AI::getHeader(void)
 	throw true;
       this->_sendTeamName();
       if (!this->_getNbClientAndMapSize())
-	throw true;
+	return (false);
+      if (this->_nbClient > 0)
+	this->_forkWorld();
     }
   catch (bool)
     {
-      std::cout << "AI: ";
-      std::cout << "incorrect header" << std::endl;
+      std::cout << "AI: incorrect header" << std::endl;
       return (false);
     }
   return (true);
@@ -117,37 +117,59 @@ bool			AI::_getNbClientAndMapSize(void)
       iss.str(this->_socket.recv());
       if (iss.str().substr(0, iss.str().find_last_of('\n')) == "ko")
 	throw 1;
-      std::cout << "AI: team ok" << std::endl;
+      std::cout << "AI: [" << this->_team << "] ok" << std::endl;
       iss >> this->_nbClient;
+      if (this->_nbClient < 0)
+	throw 2;
       iss >> this->_x;
       if (!this->_x)
-	throw 2;
+	throw 3;
       iss >> this->_y;
       if (!this->_y)
-	throw 3;
-      std::cout << "nbClient: " << this->_nbClient << std::endl;
-      std::cout << "X: " << this->_x << std::endl;
-      std::cout << "Y: " << this->_y << std::endl;
+	throw 4;
+      std::cout << "AI: nbClient [" << this->_nbClient << "]"
+		<< std::endl;
+      std::cout << "AI: X: " << this->_x << "]" << std::endl;
+      std::cout << "AI: Y: " << this->_y << "]" << std::endl;
     }
   catch (int e)
     {
       std::cout << "AI: ";
       if (e == 1)
-	std::cout << "team not found" << std::endl;
-      else if (e == 1)
-	std::cout << "x value incorrect" << std::endl;
+	std::cout << "team not found";
       else if (e == 2)
-	std::cout << "y value incorrect" << std::endl;
+	std::cout << "[" << this->_team << "] is full";
+      else if (e == 3)
+	std::cout << "x value incorrect";
+      else if (e == 4)
+	std::cout << "y value incorrect";
+      std::cout << std::endl;
       return (false);
     }
   return (true);
 }
 
-bool	AI::forkWorld(void)
+bool	AI::_forkWorld(void)
 {
   if (::fork())
     return (false);
   this->connectToServer();
   this->getHeader();
   return (true);
+}
+
+void		AI::actionRandom(void)
+{
+  std::string	mesg;
+  long		action;
+
+  ::srandom(::getpid());
+  this->_socket.send("voir\n");
+  while (!(mesg = this->_socket.recv()).empty())
+    {
+      action = ::random() % NB_ACTIONS;
+      this->_socket.send(actions[action] + '\n');
+      std::cout << "action [" << actions[action] << "]" << std::endl;
+      ::sleep(1);
+    }
 }

@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Tue Jun  3 19:43:01 2008 caner candan
+// Last update Wed Jun  4 08:11:06 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -13,6 +13,8 @@
 
 # include <string>
 # include "Socket.h"
+
+# define NB_ACTIONS	10
 
 class	AI
 {
@@ -23,14 +25,17 @@ public:
   ~AI();
   AI&	operator=(const AI& ai);
 
+  static std::string	actions[];
+
   void	setHost(const std::string& host, int port);
   void	setTeamName(const std::string& team);
   bool	connectToServer(void);
   bool	getHeader(void);
-  bool	forkWorld(void);
+  void	actionRandom(void);
 private:
   void	_sendTeamName(void);
   bool	_getNbClientAndMapSize(void);
+  bool	_forkWorld(void);
 
   Socket	_socket;
   std::string	_host;

@@ -5,12 +5,13 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Wed May 14 12:01:18 2008 florent hochwelker
+** Last update Wed Jun  4 08:49:46 2008 caner candan
 */
 
 #include <stdio.h>
 #include <sys/time.h>
 #include <string.h>
+#include <stdlib.h>
 #include "common.h"
 #include "server.h"
 
@@ -61,7 +62,17 @@ static int		inc_and_check_max_user(t_team *team, t_client **client,
 
 static void	send_map_and_nb_connect(t_client *cli, t_team *team, t_info *info)
 {
-  putnbr(team->max - team->nb, cli->buf_write);
+  /* this */
+
+/*   putnbr(team->max - team->nb, cli->buf_write); */
+
+  /* replaced by this */
+
+  snprintf(cli->buf_write, sizeof(cli->buf_write),
+	   "%d", team->max - team->nb);
+
+  /* end */
+
   SEND(cli->buf_write, "\n");
   putnbr(info->x, cli->buf_write);
   SEND(cli->buf_write, " ");
