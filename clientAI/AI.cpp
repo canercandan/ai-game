@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Wed Jun  4 10:04:38 2008 caner candan
+// Last update Wed Jun  4 16:29:21 2008 caner candan
 //
 
 #include <string>
@@ -17,19 +17,31 @@
 #include "Socket.h"
 #include "AI.h"
 
-std::string	AI::actionsMove[] = {"avance", "droite", "gauche"};
+std::string	AI::actionsMove[NB_ACTIONS_MOVE] =
+  {"avance", "droite", "gauche"};
 
-std::string	AI::actionsOther[] =
+std::string	AI::actionsOther[NB_ACTIONS_OTHER] =
   {"voir", "inventaire", "prend objet", "pose objet", "expulse",
    "broadcast text", "incantation"};
 
+int	AI::nbClientPerLevel[NB_LEVEL] = {1, 2, 2, 4, 4, 6, 6};
+int	AI::nbObjectPerLevel[NB_LEVEL][NB_OBJECT] = {
+  {1, 0, 0, 0, 0, 0},
+  {1, 1, 1, 0, 0, 0},
+  {2, 0, 1, 0, 2, 0},
+  {1, 1, 2, 0, 1, 0},
+  {1, 2, 1, 3, 0, 0},
+  {1, 2, 3, 0, 1, 0},
+  {2, 2, 2, 2, 2, 1}
+};
+
 AI::AI()
-  : _port(0), _x(0), _y(0), _nbClient(0)
+  : _port(0), _x(0), _y(0), _nbClient(0), _level(0)
 {}
 
 AI::AI(const std::string& host, int port, const std::string& team)
   : _host(host), _port(port), _team(team),
-    _x(0), _y(0), _nbClient(0)
+    _x(0), _y(0), _nbClient(0), _level(1)
 {}
 
 AI::AI(const AI& ai)
@@ -46,6 +58,10 @@ AI&	AI::operator=(const AI& ai)
       this->_host = ai._host;
       this->_port = ai._port;
       this->_team = ai._team;
+      this->_x = ai._x;
+      this->_y = ai._y;
+      this->_nbClient = ai._nbClient;
+      this->_level = ai._level;
     }
   return (*this);
 }
@@ -165,21 +181,21 @@ void		AI::actionLoop(void)
   this->_socket.send("voir\n");
   while (!(mesg = this->_socket.recv()).empty())
     {
-      this->_actionRandom();
+      this->_actionRandomMove();
       ::sleep(1);
     }
 }
 
-void	AI::_actionMove(void)
+void	AI::_actionRandomMove(void)
 {
   long	action;
 
-  action = ::random() % NB_ACTIONS;
+  action = ::random() % NB_ACTIONS_MOVE;
   this->_socket.send(actionsMove[action] + '\n');
   std::cout << "action [" << actionsMove[action] << "]" << std::endl;
 }
 
 void	AI::_actionAI(const std::string&)
 {
-
+  
 }
