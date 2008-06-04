@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-** Last update Wed May 14 11:49:10 2008 caner candan
+// Last update Wed Jun  4 17:54:50 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -171,6 +171,7 @@ typedef struct	s_info
   int		port;
   t_list	*clients;
   t_gfx		*gfx;
+  float		time;
 }		t_info;
 
 /*

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 12:03:28 2008 caner candan
-** Last update Wed May 14 00:34:58 2008 caner candan
+** Last update Wed Jun  4 17:51:48 2008 caner candan
 */
 
 #include "observator_2d.h"
@@ -21,5 +21,6 @@ int	init_info(t_info *info, t_gfx *gfx)
   info->port = 0;
   info->clients = NULL;
   info->gfx = gfx;
+  info->time = 0;
   return (0);
 }
