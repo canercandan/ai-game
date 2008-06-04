@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:20:25 2008 caner candan
-// Last update Wed Jun  4 08:12:44 2008 caner candan
+// Last update Wed Jun  4 09:00:37 2008 caner candan
 //
 
 #include <iostream>
@@ -33,7 +33,8 @@ static bool	parse_args(int ac, char **av, AI& ai)
       ai.setTeamName(av[1]);
       return (true);
     }
-  std::cout << "Usage: ./AI [Team Name] [Host] [Port]" << std::endl;
+  std::cout << "usage: ./AI [[Team Name] [[Host] [Port]]]"
+	    << std::endl;
   return (false);
 }
 

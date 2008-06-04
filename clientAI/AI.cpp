@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Wed Jun  4 08:57:49 2008 caner candan
+// Last update Wed Jun  4 09:02:42 2008 caner candan
 //
 
 #include <string>
@@ -18,9 +18,8 @@
 #include "AI.h"
 
 std::string	AI::actions[] =
-  {"avance", "droite", "gauche", "voir", "inventaire",
-   "prend objet", "pose objet", "expulse", "broadcast text",
-   "incantation"};
+  {"avance", "droite", "gauche", "voir", "inventaire", "prend objet",
+   "pose objet", "expulse", "broadcast text", "incantation"};
 
 AI::AI()
   : _port(0), _x(0), _y(0), _nbClient(0)
@@ -35,9 +34,7 @@ AI::AI(const AI& ai)
 {*this = ai;}
 
 AI::~AI()
-{
-  std::cout << "AI: bye bye ..." << std::endl;
-}
+{}
 
 AI&	AI::operator=(const AI& ai)
 {
