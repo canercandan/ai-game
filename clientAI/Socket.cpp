@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Thu Jun  5 11:56:49 2008 caner candan
+// Last update Thu Jun  5 18:13:10 2008 caner candan
 //
 
 #include <sys/types.h>
@@ -58,33 +58,29 @@ void	Socket::connectSocket(const std::string& host, int port)
 
   try
     {
-//       if (this->isConnected())
-// 	throw 1;
       pe = ::getprotobyname("tcp");
       if ((_socket = ::socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
-	throw 2;
+	throw 1;
       sin.sin_family = AF_INET;
       if (DEBUG)
 	std::cout << "Socket: Resolving " << host
 		  << " ..." << std::endl;
       if (!(h = ::gethostbyname(host.c_str())))
-	throw 3;
+	throw 2;
       ::memcpy(&in, h->h_addr, sizeof(in));
       sin.sin_port = ::htons(port);
       sin.sin_addr.s_addr = ::inet_addr(inet_ntoa(in));
       if (::connect(_socket, (struct sockaddr*)&sin, sizeof(sin)) < 0)
-	throw 4;
+	throw 3;
     }
   catch (int e)
     {
       std::cout << "Socket: ";
       if (e == 1)
-	std::cout << "already connected";
-      else if (e == 2)
 	std::cout << "socket error";
-      else if (e == 3)
+      else if (e == 2)
 	std::cout << "resolving error";
-      else if (e == 4)
+      else if (e == 3)
 	std::cout << "connect error";
       std::cout << std::endl;
       this->closeSocket();
@@ -150,7 +146,7 @@ std::string	Socket::recv(void)
   return ("");
 }
 
-std::string	sendRecv(const std::string &s)
+std::string	Socket::sendRecv(const std::string &s)
 {
   this->send(s);
   return (this->recv());
