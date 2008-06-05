@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:17 2008 majdi toumi
-// Last update Wed May 14 14:03:19 2008 jordan aubry
+// Last update Thu Jun  5 17:58:19 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -23,10 +23,10 @@ void		draw_rock(t_obs *obs, int x, int y, int type)
   rock = MANAGER(obs->window->smgr)->addSphereSceneNode();
   if (rock)
     {
-      rock = setScale(vector3df(1, 1, 1));
-      rock = setPosition(vector3df(X(x), obs->item[type].z, Y(y)));
-      rock = setMaterialFlag(EMF_LIGHTING, false);
-      rock = setMaterialTexture(0, TEXTURE(obs->item[type].img));
+      rock->setScale(vector3df(1, 1, 1));
+      rock->setPosition(vector3df(X(x), obs->item[type].z, Y(y)));
+      rock->setMaterialFlag(EMF_LIGHTING, false);
+      rock->setMaterialTexture(0, TEXTURE(obs->item[type].img));
     }
   if (obs->matrix[x][y].move == 1)
     {
