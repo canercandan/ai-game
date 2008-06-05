@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Wed Jun  4 16:29:21 2008 caner candan
+// Last update Thu Jun  5 09:23:06 2008 caner candan
 //
 
 #include <string>
@@ -21,10 +21,11 @@ std::string	AI::actionsMove[NB_ACTIONS_MOVE] =
   {"avance", "droite", "gauche"};
 
 std::string	AI::actionsOther[NB_ACTIONS_OTHER] =
-  {"voir", "inventaire", "prend objet", "pose objet", "expulse",
-   "broadcast text", "incantation"};
+  {"voir", "inventaire", "prend objet", "pose objet",
+   "expulse", "broadcast text", "incantation"};
 
-int	AI::nbClientPerLevel[NB_LEVEL] = {1, 2, 2, 4, 4, 6, 6};
+int	AI::nbClientPerLevel[NB_LEVEL] =
+  {1, 2, 2, 4, 4, 6, 6};
 int	AI::nbObjectPerLevel[NB_LEVEL][NB_OBJECT] = {
   {1, 0, 0, 0, 0, 0},
   {1, 1, 1, 0, 0, 0},
@@ -34,6 +35,10 @@ int	AI::nbObjectPerLevel[NB_LEVEL][NB_OBJECT] = {
   {1, 2, 3, 0, 1, 0},
   {2, 2, 2, 2, 2, 1}
 };
+
+std::string	AI::objectName[NB_OBJECT] =
+  {"linemate", "deraumere", "sibur",
+   "mendiane", "phiras", "thystame"};
 
 AI::AI()
   : _port(0), _x(0), _y(0), _nbClient(0), _level(0)
@@ -181,7 +186,8 @@ void		AI::actionLoop(void)
   this->_socket.send("voir\n");
   while (!(mesg = this->_socket.recv()).empty())
     {
-      this->_actionRandomMove();
+      if (this->_canLevelUp())
+	this->_actionRandomMove();
       ::sleep(1);
     }
 }
@@ -196,6 +202,37 @@ void	AI::_actionRandomMove(void)
 }
 
 void	AI::_actionAI(const std::string&)
+{}
+
+bool		AI::_hasEnoughClientSameCase(void)
 {
-  
+  std::string	mesg;
+  int		nbclient;
+
+  nbclient = 0;
+  this->_socket.send("broadcast " + POSITION + "\n");
+  while ((mesg = this->_socket.recv()).find("message")
+	 != std::string::npos)
+    if (mesg.find("message 0") != std::string::npos)
+      nbclient++;
+  if (nbclient == nbClientPerLevel[LEVEL(this->_level + 1)])
+    return (true);
+  return (false);
+}
+
+bool		AI::_canLevelUp(void)
+{
+  std::string	mesg;
+  int		i;
+
+  if (this->_hasEnoughClientSameCase())
+    
+  this->_socket.send("voir\n");
+  mesg = this->_socket.recv();
+  for (i = 0; i < NB_OBJECT; i++)
+    if (mesg.find(objectName[i]) != std::string::npos)
+      {
+	break;
+      }
+  return (false);
 }

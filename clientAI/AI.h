@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Wed Jun  4 15:59:52 2008 caner candan
+// Last update Thu Jun  5 09:58:45 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -17,7 +17,7 @@
 # define NB_ACTIONS_MOVE	3
 # define NB_ACTIONS_OTHER	7
 # define NB_LEVEL		7
-# define NB_OBJECT		7
+# define NB_OBJECT		6
 
 # define LEVEL(x)	((x) - 2)
 
@@ -30,15 +30,9 @@ public:
   ~AI();
   AI&	operator=(const AI& ai);
 
-  enum	Object
+  enum	Broadcast
     {
-      LINEMATE,
-      DERAUMERE,
-      SIBUR,
-      MENDIANE,
-      PHIRAS,
-      THYSTAME,
-      FOOD
+      POSITION = 42
     };
 
   static std::string	actionsMove[NB_ACTIONS_MOVE];
@@ -46,6 +40,8 @@ public:
 
   static int	nbClientPerLevel[NB_LEVEL];
   static int	nbObjectPerLevel[NB_LEVEL][NB_OBJECT];
+
+  static std::string	objectName[NB_OBJECT];
 
   void	setHost(const std::string& host, int port);
   void	setTeamName(const std::string& team);
@@ -58,6 +54,8 @@ private:
   bool	_forkWorld(void);
   void	_actionRandomMove(void);
   void	_actionAI(const std::string& mesg);
+  bool	_hasEnoughClientSameCase(void);
+  bool	_canLevelUp(void);
 
   Socket	_socket;
   std::string	_host;
@@ -65,9 +63,13 @@ private:
   std::string	_team;
   int		_x;
   int		_y;
-  int		_nbClient;
+  int		_nbClientSameCase;
+  int		_nbClientNeed;
   int		_level;
   int		_qtePerObject[NB_OBJECT];
+
+  bool	_isIncantation;
+  
 };
 
 #endif /* !__AI_H__ */
