@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:26:34 2008 caner candan
-// Last update Tue Jun  3 20:49:23 2008 caner candan
+// Last update Thu Jun  5 11:55:32 2008 caner candan
 //
 
 #ifndef __SOCKET_H__
@@ -28,6 +28,7 @@ public:
   void		closeSocket(void);
   void		send(const std::string& s);
   std::string	recv(void);
+  std::string	sendRecv(const std::string &s);
 
   bool		isConnected(void);
 private:

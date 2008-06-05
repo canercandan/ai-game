@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Tue Jun  3 21:04:10 2008 caner candan
+// Last update Thu Jun  5 11:56:49 2008 caner candan
 //
 
 #include <sys/types.h>
@@ -148,6 +148,12 @@ std::string	Socket::recv(void)
       std::cout << "Socket: error recv, not connected" << std::endl;
     }
   return ("");
+}
+
+std::string	sendRecv(const std::string &s)
+{
+  this->send(s);
+  return (this->recv());
 }
 
 bool	Socket::isConnected(void)

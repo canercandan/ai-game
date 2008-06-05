@@ -5,13 +5,14 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Thu Jun  5 09:58:45 2008 caner candan
+// Last update Thu Jun  5 18:04:57 2008 caner candan
 //
 
 #ifndef __AI_H__
 # define __AI_H__
 
 # include <string>
+# include <vector>
 # include "Socket.h"
 
 # define NB_ACTIONS_MOVE	3
@@ -57,19 +58,23 @@ private:
   bool	_hasEnoughClientSameCase(void);
   bool	_canLevelUp(void);
 
+  bool	_hasClientSameCase(const std::string& mesg);
+  void	_moveToK(const std::string& mesg);
+  bool	_hasObjectInventoryToLevelUp(void);
+  bool	_hasObjectSeeToLevelUp(const std::string& mesg);
+  void	_takeNeedObject(const std::string& mesg);
+
   Socket	_socket;
   std::string	_host;
   int		_port;
   std::string	_team;
   int		_x;
   int		_y;
-  int		_nbClientSameCase;
-  int		_nbClientNeed;
   int		_level;
-  int		_qtePerObject[NB_OBJECT];
+  int		_maxClient;
+  int		_nbClientSameCase;
 
-  bool	_isIncantation;
-  
+  std::vector<int>	_qtePerObject;
 };
 
 #endif /* !__AI_H__ */
