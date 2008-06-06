@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:48:54 2008 majdi toumi
-// Last update Mon May 12 19:22:14 2008 caner candan
+// Last update Thu Jun  5 18:08:37 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -36,6 +36,7 @@ t_window	*init_window()
   DEVICE(w->device)->getCursorControl()->setVisible(false);
   DEVICE(w->device)->getFileSystem()->addZipFileArchive(OBS_PK3);
   DRIVER(w->driver)->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, false);
+  /*
   MANAGER(w->smgr)->addSkyBoxSceneNode(DRIVER(w->driver)->getTexture(SKY_UP),
                               DRIVER(w->driver)->getTexture(SKY_DN),
                               DRIVER(w->driver)->getTexture(SKY_RT),
@@ -43,5 +44,6 @@ t_window	*init_window()
                               DRIVER(w->driver)->getTexture(SKY_FT),
                               DRIVER(w->driver)->getTexture(SKY_BK));
   DRIVER(w->driver)->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, true);
+  */
   return (w);
 }
