@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sat Jun  7 11:24:14 2008 florent hochwelker
+** Last update Sat Jun  7 16:58:30 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -51,7 +51,7 @@ int			act_see(char *param, t_client *client, t_info *info)
     {
       len = get_see_len(client, info);
       buff = xmalloc(sizeof(*buff) * (len + 1));
-      bzero(buff, sizeof(buff)); /* WTF ? Mother &?#@% ! */
+      bzero(buff, BUF_SIZE);
       strcpy(buff, START_CMD);
       get_ressources(client, info, buff);
     }

@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 15:24:54 2008 majdi toumi
-** Last update Sat Jun  7 11:52:36 2008 florent hochwelker
+** Last update Sat Jun  7 16:56:02 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -17,6 +17,7 @@ int		send_ressources(t_info *info, t_client *client, char *buff,
 				int *diff)
 {
   t_list	*ressources;
+  t_list	*players;
   int		x;
   int		y;
   int		i;
@@ -26,6 +27,16 @@ int		send_ressources(t_info *info, t_client *client, char *buff,
   is_in_map(info, &x, &y);
   printf("x: [%d], y: [%d]\n", x, y);
   ressources = info->zone[x][y].ressources;
+  players = info->zone[x][y].clients;
+  i = 0;
+  while (players)
+    {
+      if (diff[0] != 0 || diff[1] != 0 || i != 0)
+	strcat(buff, SEPARATOR_ELM);
+      strcat(buff, "player");
+      players = players->next;
+      i++;
+    }
   i = 0;
   while (ressources)
     {
