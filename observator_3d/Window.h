@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:43:36 2008 jordan aubry
-** Last update Tue Jun  3 20:19:17 2008 jordan aubry
+** Last update Fri Jun  6 19:31:12 2008 florent hochwelker
 */
 
 #ifndef __WINDOW_H__
@@ -14,20 +14,22 @@
 # include <iostream>
 # include <vector>
 # include <irrlicht.h>
-# include "observateur_3d.h"
+# include "observator_3d.h"
 
 class	Window
 {
  public:
   Window();
-  ~Window();
+  ~Window() {}
+
+  void	InitWindow();
 
  protected:
-  IrrlichtDevice*       _device;
-  IVideoDriver*         _driver;
-  ISceneManager*        _scene;
-  IGUIEnvironement*     _env;
-  ICameraSceneNore*     _camera;
+  irr::IrrlichtDevice*		_device;
+  irr::video::IVideoDriver*	_driver;
+  irr::scene::ISceneManager*	_scene;
+  irr::gui::IGUIEnvironment*	_env;
+  irr::scene::ICameraSceneNode*	_camera;
 };
 
 #endif

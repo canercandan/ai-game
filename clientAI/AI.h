@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Fri Jun  6 19:47:28 2008 caner candan
+** Last update Sat Jun  7 13:42:15 2008 florent hochwelker
 //
 
 #ifndef __AI_H__
@@ -25,7 +25,7 @@
 
 class	AI
 {
-public:
+ public:
   AI();
   AI(const std::string& host, int port, const std::string& team);
   AI(const AI& ai);
@@ -33,37 +33,37 @@ public:
   AI&	operator=(const AI& ai);
 
   enum	Action
-    {
-      UP,
-      RIGHT,
-      LEFT,
-      SEE,
-      INVENTORY,
-      TAKE_OBJ,
-      DROP_OBJ,
-      KICK,
-      BROADCAST,
-      LEVELUP,
-      FORK
-    };
+  {
+    UP,
+    RIGHT,
+    LEFT,
+    SEE,
+    INVENTORY,
+    TAKE_OBJ,
+    DROP_OBJ,
+    KICK,
+    BROADCAST,
+    LEVELUP,
+    FORK
+  };
 
   enum	Reply
-    {
-      OK,
-      KO,
-      MESSAGE
-    };
+  {
+    OK,
+    KO,
+    MESSAGE
+  };
 
   enum	Object
-    {
-      LINEMATE,
-      DERAUMERE,
-      SIBUR,
-      MENDIANE,
-      PHIRAS,
-      THYSTAME,
-      FOOD
-    };
+  {
+    LINEMATE,
+    DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME,
+    FOOD
+  };
 
   static std::string	actionsName[NB_ACTIONS];
   static std::string	actionsMove[NB_ACTIONS_MOVE];
@@ -81,7 +81,7 @@ public:
   bool	connectToServer(void);
   bool	getHeader(void);
   void	actionLoop(void);
-private:
+ private:
   void	_sendTeamName(void);
   bool	_getNbClientAndMapSize(void);
   bool	_forkWorld(void);

@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Thu Jun  5 17:49:21 2008 jordan aubry
+** Last update Thu Jun  5 18:09:49 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__

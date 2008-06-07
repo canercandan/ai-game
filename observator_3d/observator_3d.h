@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Thu Jun  5 17:49:21 2008 jordan aubry
+** Last update Fri Jun  6 20:02:15 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -37,7 +37,7 @@
 /*
 ** Files
 */
-#define OBS_PK3		"bin/map.pk3"
+#define OBS_PK3		"map.pk3"
 
 #define SKY_UP		"env/up.tga"
 #define SKY_DN		"env/dn.tga"
@@ -77,11 +77,11 @@
 /*
 ** Get x/y
 */
-#define X(data)		((data * 100) - ((obs->x + 1) * 50))
-#define Y(data)		((data * 100) - ((obs->y + 1) * 50))
+#define X(data)		((data * 100) - ((this->_x + 1) * 50))
+#define Y(data)		((data * 100) - ((this->_y + 1) * 50))
 
-#define CASEX(data)	(((data + 1) * 100) - ((obs->x + 1) * 50))
-#define CASEY(data)	(((data + 1) * 100) - ((obs->y + 1) * 50))
+#define CASEX(data)	(((data + 1) * 100) - ((this->_x + 1) * 50))
+#define CASEY(data)	(((data + 1) * 100) - ((this->_y + 1) * 50))
 
 /*
 ** Structures

@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:53:08 2008 jordan aubry
-** Last update Tue Jun  3 20:18:40 2008 jordan aubry
+** Last update Sat Jun  7 13:24:20 2008 florent hochwelker
 */
 
 #ifndef __PLAYER_H__
@@ -14,23 +14,27 @@
 # include <vector>
 # include <iostream>
 # include <string>
+# include <irrlicht.h>
 # include "observator_3d.h"
 
 class	Player
 {
  public:
-  Player();
-  ~Player();
+  Player(int x, int y, irr::scene::IAnimatedMeshSceneNode* img);
+  ~Player() {}
+
+  inline int		GetX() const { return this->_x; }
+  inline int		GetY() const { return this->_y; }
 
  private:
-  std::string   _team;
-  int           _id;
-  int           _x;
-  int           _y;
-  int           _casex;
-  int           _casey;
-  int           _life;
-  std::vector<int>   _inventory (NB_RESSOURCE, 0);
+  int					_id;
+  std::vector<int>			_inventory;
+  std::string				_team;
+  int					_id_team;
+  int					_x;
+  int					_y;
+  int					_lvl;
+  irr::scene::IAnimatedMeshSceneNode*	_img;
 };
 
 #endif
