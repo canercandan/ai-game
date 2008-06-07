@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Sat Jun  7 14:03:07 2008 florent hochwelker
+** Last update Sat Jun  7 17:10:41 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -13,9 +13,28 @@
 #include "server.h"
 #include "common.h"
 
+static void	strcat_nb_items_case(t_list *ressources, t_client *client)
+{
+  int	tab[NOURRITURE + 1];
+  int	i;
+
+  bzero(tab, sizeof(tab));
+  while (ressources)
+    {
+      tab[(int)((t_ressource *)ressources->data)->idx]++;
+      ressources = ressources->next;
+    }
+  i = 0;
+  while (i < NOURRITURE)
+    {
+      strcat(client->buf_write, " ");
+      putnbr(tab[i], client->buf_write);
+      i++;
+    }
+}
+
 static void	send_map_items(t_client *client, t_info *info)
 {
-  t_list	*ressources;
   int		x;
   int		y;
 
@@ -26,20 +45,12 @@ static void	send_map_items(t_client *client, t_info *info)
       y = 0;
       while (y < info->y)
 	{
-	  ressources = info->zone[x][y].ressources;
-	  if (ressources)
+	  if (info->zone[x][y].ressources)
 	    {
 	      putnbr(x, client->buf_write);
 	      strcat(client->buf_write, " ");
 	      putnbr(y, client->buf_write);
-	      strcat(client->buf_write, " ");
-	      while (ressources)
-		{
-		  putnbr(((t_ressource *)ressources->data)->idx, client->buf_write);
-		  if (ressources->next)
-		    strcat(client->buf_write, SEPARATOR_ELM);
-		  ressources = ressources->next;
-		}
+	      strcat_nb_items_case(info->zone[x][y].ressources, client);
 	      strcat(client->buf_write, "\n");
 	    }
 	  y++;

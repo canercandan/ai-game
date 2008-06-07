@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Sat Jun  7 16:05:50 2008 florent hochwelker
+** Last update Sat Jun  7 17:39:35 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__
@@ -41,7 +41,7 @@ class	Obs : public Window
   int					_x;
   int					_y;
   std::vector<Player*>			_player;
-  std::vector< std::vector<Item> >	_item;
+  std::vector< std::vector< std::vector<Item> > >	_item;
   int					_t;
   std::string				_host;
   int					_port;

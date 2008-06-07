@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Sat Jun  7 16:54:09 2008 florent hochwelker
+// Last update Sat Jun  7 17:37:38 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -31,17 +31,23 @@ Obs::Obs(int ac, char **av)
 void		Obs::Auth(Socket& socket)
 {
   std::stringstream	ss;
+  std::string		tmp;
+  std::string		tmp2;
 
   if (socket.recv() == "BIENVENUE\n")
     {
       socket.send(std::string(MAGIC_OBS) + "\n");
-
       ss << socket.recv();
-      ss >> this->_x >> this->_y;
+
+      ss >> this->_x >> this->_y >> tmp;
       this->DrawPlate();
-      std::string	tmp;
-      ss >> tmp;
-      std::cout << "[" << tmp << "]" << std::endl;
+      if (tmp == START_LIST)
+	{
+	  while (tmp != END_LIST)
+	    {
+	      
+	    }
+	}
     }
 }
 
