@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 11:13:18 2008 caner candan
-** Last update Sat Jun  7 13:58:03 2008 florent hochwelker
+** Last update Sat Jun  7 16:27:48 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -27,11 +27,12 @@ void			get_inventory_id(t_client *client, char *buff,
 	 buff);
   while (i < NB_INVENTORY - 1)
     {
+      strcat(buff, " ");
       /*      
 	      if (i != (NB_INVENTORY - 1))
 	      strcat(strcat(buff, SEPARATOR_CMD), SEPARATOR_ELM);
+	      putnbr(gl_ressource[i].idx, buff);
       */
-      putnbr(gl_ressource[i].idx, buff);
       putnbr(client->qte_ressource[i], buff);
       i++;
     }
