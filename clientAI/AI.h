@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Thu Jun  5 18:04:57 2008 caner candan
+// Last update Fri Jun  6 19:47:28 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -15,10 +15,11 @@
 # include <vector>
 # include "Socket.h"
 
+# define NB_ACTIONS		11
 # define NB_ACTIONS_MOVE	3
-# define NB_ACTIONS_OTHER	7
 # define NB_LEVEL		7
-# define NB_OBJECT		6
+# define NB_OBJECT		7
+# define NB_REPLY		3
 
 # define LEVEL(x)	((x) - 2)
 
@@ -31,13 +32,44 @@ public:
   ~AI();
   AI&	operator=(const AI& ai);
 
-  enum	Broadcast
+  enum	Action
     {
-      POSITION = 42
+      UP,
+      RIGHT,
+      LEFT,
+      SEE,
+      INVENTORY,
+      TAKE_OBJ,
+      DROP_OBJ,
+      KICK,
+      BROADCAST,
+      LEVELUP,
+      FORK
     };
 
+  enum	Reply
+    {
+      OK,
+      KO,
+      MESSAGE
+    };
+
+  enum	Object
+    {
+      LINEMATE,
+      DERAUMERE,
+      SIBUR,
+      MENDIANE,
+      PHIRAS,
+      THYSTAME,
+      FOOD
+    };
+
+  static std::string	actionsName[NB_ACTIONS];
   static std::string	actionsMove[NB_ACTIONS_MOVE];
-  static std::string	actionsOther[NB_ACTIONS_OTHER];
+  static int		actionsHp[NB_ACTIONS];
+
+  static std::string	actionsReply[NB_REPLY];
 
   static int	nbClientPerLevel[NB_LEVEL];
   static int	nbObjectPerLevel[NB_LEVEL][NB_OBJECT];
@@ -63,6 +95,11 @@ private:
   bool	_hasObjectInventoryToLevelUp(void);
   bool	_hasObjectSeeToLevelUp(const std::string& mesg);
   void	_takeNeedObject(const std::string& mesg);
+  bool	_isNeedFood(Action idx);
+  void	_seekFood(void);
+  void	_goToGoodCase(const std::string& mesg,
+		      Object idx);
+  void	_randomMove(void);
 
   Socket	_socket;
   std::string	_host;
