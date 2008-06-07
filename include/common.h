@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Wed May 14 11:45:00 2008 majdi
+// Last update Sat Jun  7 16:40:06 2008 caner candan
 */
 
 #ifndef __COMMON_H__
@@ -45,6 +45,12 @@
 # define DEFAULT_HOST		"localhost"
 # define DEFAULT_PORT		12345
 # define TCP			"tcp"
+
+/*
+** Item
+*/
+# define START_LIST	"LIST_ITEM"
+# define END_LIST	"END_LIST_ITEM"
 
 /*
 ** Directions
