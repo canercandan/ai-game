@@ -5,10 +5,11 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Sat Jun  7 17:37:38 2008 florent hochwelker
+// Last update Sat Jun  7 17:51:15 2008 florent hochwelker
 //
 
 #include <sstream>
+#include <vector>
 #include "Obs.h"
 #include "observator_3d.h"
 #include "common.h"
@@ -38,9 +39,9 @@ void		Obs::Auth(Socket& socket)
     {
       socket.send(std::string(MAGIC_OBS) + "\n");
       ss << socket.recv();
-
       ss >> this->_x >> this->_y >> tmp;
-      this->DrawPlate();
+      std::vector	v_item(NOURRITURE + 1);
+      this->_item.assign(this->x,);
       if (tmp == START_LIST)
 	{
 	  while (tmp != END_LIST)
@@ -48,6 +49,7 @@ void		Obs::Auth(Socket& socket)
 	      
 	    }
 	}
+      this->DrawPlate();
     }
 }
 
