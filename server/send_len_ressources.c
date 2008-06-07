@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Mon May 12 19:23:02 2008 majdi toumi
-** Last update Sat Jun  7 17:04:31 2008 majdi toumi
+** Last update Sat Jun  7 17:35:14 2008 majdi toumi
 */
 
 #include <string.h>
@@ -37,8 +37,6 @@ int		send_len_ressources(t_info *info, t_client *client,
       players = players->next;
       i++;
     }
-  i = 0;
-  len = (info->zone[x][y].clients ? len + 1 : len);
   while (ressources)
     {
       if (x_diff != 0 || y_diff != 0 || i != 0)
