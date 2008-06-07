@@ -5,9 +5,10 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 16:30:12 2008 caner candan
-** Last update Wed Jun  4 19:54:59 2008 caner candan
+** Last update Sat Jun  7 14:01:10 2008 caner candan
 */
 
+#include <stdio.h>
 #include "observator_2d.h"
 
 void	get_map_size(t_info *info, char **buf, char *first)

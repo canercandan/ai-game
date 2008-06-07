@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 12:10:55 2008 caner candan
-** Last update Wed May 14 00:36:45 2008 caner candan
+** Last update Sat Jun  7 16:05:12 2008 caner candan
 */
 
 #include <string.h>
@@ -33,7 +33,10 @@ int	get_trame(t_info *info)
 	return (0);
       else
 	if (!info->x || !info->y)
-	  get_map_size(info, &tmp, first);
+	  {
+	    get_map_size(info, &tmp, first);
+/* 	    get_object(info, &tmp); */
+	  }
 	else
 	  execute_action(info, &tmp, first);
     }
