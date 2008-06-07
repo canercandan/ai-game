@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Sat Jun  7 13:17:36 2008 florent hochwelker
+** Last update Sat Jun  7 14:03:07 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -20,7 +20,7 @@ static void	send_map_items(t_client *client, t_info *info)
   int		y;
 
   x = 0;
-  strcat(client->buf_write, "LIST ITEM\n");
+  strcat(client->buf_write, "LIST_ITEM\n");
   while (x < info->x)
     {
       y = 0;
@@ -46,7 +46,7 @@ static void	send_map_items(t_client *client, t_info *info)
 	}
       x++;
     }
-  strcat(client->buf_write, "END LIST ITEM\n");
+  strcat(client->buf_write, "END_LIST_ITEM\n");
 }
 
 static void	send_list_players(t_client *obs, t_info *info)
