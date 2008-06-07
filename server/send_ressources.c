@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 15:24:54 2008 majdi toumi
-** Last update Mon May 12 19:29:19 2008 majdi toumi
+** Last update Sat Jun  7 11:52:36 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -31,7 +31,7 @@ int		send_ressources(t_info *info, t_client *client, char *buff,
     {
       if (diff[0] != 0 || diff[1] != 0 || i != 0)
 	strcat(buff, SEPARATOR_ELM);
-      strcat(buff, ((t_ressource *) ressources->data)->name);
+      strcat(buff, ((t_ressource *)ressources->data)->name);
       ressources = ressources->next;
       i++;
     }
