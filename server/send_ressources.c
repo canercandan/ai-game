@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 15:24:54 2008 majdi toumi
-** Last update Sat Jun  7 16:56:02 2008 majdi toumi
+** Last update Sat Jun  7 17:11:39 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -33,11 +33,13 @@ int		send_ressources(t_info *info, t_client *client, char *buff,
     {
       if (diff[0] != 0 || diff[1] != 0 || i != 0)
 	strcat(buff, SEPARATOR_ELM);
-      strcat(buff, "player");
+      strncat(buff, "joueur");
       players = players->next;
       i++;
     }
   i = 0;
+  if (info->zone[x][y].clients)
+    strcat(buff, " ");
   while (ressources)
     {
       if (diff[0] != 0 || diff[1] != 0 || i != 0)
