@@ -5,12 +5,13 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Sat Jun  7 17:51:15 2008 florent hochwelker
+// Last update Sat Jun  7 21:58:05 2008 florent hochwelker
 //
 
 #include <sstream>
 #include <vector>
 #include "Obs.h"
+#include "Item.h"
 #include "observator_3d.h"
 #include "common.h"
 
@@ -27,30 +28,58 @@ Obs::Obs(int ac, char **av)
       _host = DEFAULT_HOST;
       _port = DEFAULT_PORT;
     }
+  _texture[0] = _driver->getTexture(ITEM_1);
+  _texture[1] = _driver->getTexture(ITEM_2);
+  _texture[2] = _driver->getTexture(ITEM_3);
+  _texture[3] = _driver->getTexture(ITEM_4);
+  _texture[4] = _driver->getTexture(ITEM_5);
+  _texture[5] = _driver->getTexture(ITEM_6);
 }
 
 void		Obs::Auth(Socket& socket)
 {
   std::stringstream	ss;
   std::string		tmp;
-  std::string		tmp2;
+  int			x, y, type[NB_RESSOURCE];
 
   if (socket.recv() == "BIENVENUE\n")
     {
       socket.send(std::string(MAGIC_OBS) + "\n");
       ss << socket.recv();
       ss >> this->_x >> this->_y >> tmp;
-      std::vector	v_item(NOURRITURE + 1);
-      this->_item.assign(this->x,);
-      if (tmp == START_LIST)
-	{
-	  while (tmp != END_LIST)
-	    {
-	      
-	    }
-	}
-      this->DrawPlate();
-    }
+      std::vector<Item>			v_item(NB_RESSOURCE);
+      std::vector<std::vector<Item> >	v_y(this->_y, v_item);
+
+  this->_item.assign(this->_x, v_y);
+
+if (tmp == START_LIST)
+  {
+    while (ss.str().find(END_LIST) == std::string::npos)
+      ss << socket.recv();
+    tmp = ss.str().substr(sizeof(START_LIST) + ss.str().find(START_LIST));
+    ss.str("");
+    ss << tmp;
+    while (tmp.find(END_LIST) != 0)
+      {
+      	ss >> x >> y;
+      	ss 
+      	  >> this->_item[x][y][0]._qte
+      	  >> this->_item[x][y][1]._qte
+      	  >> this->_item[x][y][2]._qte
+      	  >> this->_item[x][y][3]._qte
+      	  >> this->_item[x][y][4]._qte
+      	  >> this->_item[x][y][5]._qte
+      	  >> this->_item[x][y][6]._qte;
+      	tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
+      	ss.str("");
+      	ss << tmp;
+      	for (int i = 0; i < NB_RESSOURCE; i++)
+      	  if (this->_item[x][y][i]._qte > 0)
+	    this->DrawItem(x, y, i);
+      }
+  }
+this->DrawPlate();
+}
 }
 
 void				Obs::DrawPlate()
@@ -109,25 +138,22 @@ void					Obs::DrawPlayer(int x, int y, int z)
     }
 }
 
-void			Obs::DrawItem(int x, int y, int type)
+void		Obs::DrawItem(int x, int y, int type)
 {
-  //   irr::scene::ISceneNode	*rock;
+  this->_item[x][y][type]._img = this->_scene->addSphereSceneNode();
+  if (this->_item[x][y][type]._img)
+    {
+      this->_item[x][y][type]._img->setScale(irr::core::vector3df(1, 1, 1));
+      this->_item[x][y][type]._img->setPosition(irr::core::vector3df(ItemX(x, type), -20, ItemY(y, type)));
+      this->_item[x][y][type]._img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+      if (type != NOURRITURE)
+	this->_item[x][y][type]._img->setMaterialTexture(0, this->_texture[type]);
+    }
+}
 
-  //   rock = this->_scene->addSphereSceneNode();
-  //   if (rock)
-  //     {
-  //       rock->setScale(irr::core::vector3df(1, 1, 1));
-  //       rock->setPosition(irr::core::vector3df(X(x), obs->item[type].z, Y(y)));
-  //       rock->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-  //       rock->setMaterialTexture(0, TEXTURE(obs->item[type].img));
-  //     }
-  //   if (obs->matrix[x][y].move == 1)
-  //     {
-  //       obs->matrix[x][y].item[type] += 1;
-  //       if (obs->matrix[x][y].item[type] > 1)
-  // 	rock->~ISceneNode();
-  //       else
-  // 	obs->matrix[x][y].rock[type] = rock;
-  //       obs->matrix[x][y].item[type] += 1;
-  //     }
+void		Obs::DeleteItem(int x, int y, int type)
+{
+  std::cout << "addr = " << this->_item[x][y][type]._img << std::endl;
+  if (--this->_item[x][y][type]._qte == 0)
+    this->_item[x][y][type]._img->remove();
 }
