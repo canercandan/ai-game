@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-// Last update Wed Jun  4 18:52:17 2008 caner candan
+// Last update Sun Jun  8 04:55:35 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -15,7 +15,7 @@
 ** Useful's defines
 */
 # define DELIMIT	" \n"
-# define BUF_SIZE	1024
+# define BUF_SIZE	8192
 
 /*
 ** SDL's defines
@@ -34,7 +34,7 @@
 # define MSG_WELCOME	"BIENVENUE\n"
 # define ADD_CLIENT	"ADD_CLIENT"
 # define BROADCAST_MESG	"message"
-# define NB_INVENTORY		7
+# define NB_OBJECT		7
 
 /*
 ** Character's infos
@@ -76,6 +76,17 @@
 # define PIRATE_R		102
 # define PIRATE_G		78
 # define PIRATE_B		79
+
+/*
+** Object's infos
+*/
+# define OBJECT_FILE		"images/object.bmp"
+# define OBJECT_MAX_PER_LINE	4
+# define OBJECT_X		32
+# define OBJECT_Y		32
+# define OBJECT_R		0
+# define OBJECT_G		0
+# define OBJECT_B		0
 
 /*
 ** Null's define
@@ -142,7 +153,7 @@ typedef struct	s_client
   float		y;
   int		direction;
   int		anim;
-  int		inventory[NB_INVENTORY];
+  int		inventory[NB_OBJECT];
 }		t_client;
 
 /*
@@ -156,6 +167,7 @@ typedef struct	s_gfx
   void		*status;
   void		*floor;
   void		*pirate;
+  void		*object;
 }		t_gfx;
 
 /*
@@ -173,6 +185,8 @@ typedef struct	s_info
   t_list	*clients;
   t_gfx		*gfx;
   float		time;
+  int		(**object)[NB_OBJECT];
+  int		**broadcast;
 }		t_info;
 
 /*
@@ -195,6 +209,7 @@ int	create_socket(t_info *info);
 int	get_header(t_info *info);
 int	get_trame(t_info *info);
 void	get_map_size(t_info *info, char **buf, char *first);
+int	get_object(t_info *info, char **buf);
 
 /*
 ** Client's functions
@@ -237,6 +252,7 @@ void	set_character(t_gfx *gfx, int nbr, float x, float y);
 void	set_status(t_gfx *gfx, int nbr, float x, float y);
 void	set_floor(t_gfx *gfx, int nbr, float x, float y);
 void	set_pirate(t_gfx *gfx, int nbr, float x, float y);
+void	set_object(t_gfx *gfx, int nbr, float x, float y);
 int	draw_gfx(t_info *info, char anim);
 
 /*

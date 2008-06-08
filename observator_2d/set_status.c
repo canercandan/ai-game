@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 20:03:20 2008 caner candan
-** Last update Wed May 14 10:17:25 2008 caner candan
+** Last update Sun Jun  8 05:08:59 2008 caner candan
 */
 
 #include <SDL.h>
@@ -21,7 +21,7 @@ void		set_status(t_gfx *gfx, int nbr, float x, float y)
   src.w = STATUS_X;
   src.h = STATUS_Y;
   dst.x = (x * FLOOR_X) - 5;
-  dst.y = (y * FLOOR_Y) - 10;
+  dst.y = (y * FLOOR_Y) - 35;
   dst.w = STATUS_X;
   dst.h = STATUS_Y;
   SDL_SetColorKey(gfx->status, SDL_SRCCOLORKEY,

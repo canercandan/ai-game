@@ -5,10 +5,11 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May 14 08:56:50 2008 caner candan
-** Last update Wed Jun  4 20:05:51 2008 caner candan
+** Last update Sun Jun  8 05:06:57 2008 caner candan
 */
 
 #include <SDL.h>
+#include <stdio.h>
 #include "observator_2d.h"
 #include "common.h"
 
@@ -43,12 +44,41 @@ static void	put_clients(t_info *info, char anim)
     }
 }
 
+static void	put_object(t_info *info)
+{
+  int		x;
+  int		y;
+  int		z;
+
+  for (x = 0; x < info->x - 2; x++)
+    for (y = 0; y < info->y - 2; y++)
+      for (z = 0; z < NB_OBJECT - 1; z++)
+	if (info->object[x][y][z])
+	  set_object(info->gfx, z + 1, x, y + 1);
+}
+
+static void	put_broadcast(t_info *info)
+{
+  int		x;
+  int		y;
+
+  for (x = 0; x < info->x - 2; x++)
+    for (y = 0; y < info->y - 2; y++)
+      if (info->broadcast[x][y])
+	{
+	  set_status(info->gfx, 0, x + 1, y + 1);
+	  info->broadcast[x][y] = 0;
+	}
+}
+
 int	draw_gfx(t_info *info, char anim)
 {
   if (!info->x || !info->y)
     return (-1);
   set_backdrop(info);
+  put_object(info);
   put_clients(info, anim);
+  put_broadcast(info);
   SDL_Flip(info->gfx->video);
   SDL_Delay(1);
   return (0);

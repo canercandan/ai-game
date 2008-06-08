@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 20:16:58 2008 caner candan
-** Last update Wed May 14 11:47:46 2008 caner candan
+** Last update Sat Jun  7 19:59:40 2008 caner candan
 */
 
 #include <unistd.h>
@@ -16,6 +16,7 @@ void		destroy_info(t_info *info)
 {
   t_list	*clients;
   t_client	*client;
+  int		i;
 
   close(info->socket);
   clients = info->clients;
@@ -24,4 +25,7 @@ void		destroy_info(t_info *info)
       free(client->team_name);
       free(client);
     }
+  for (i = 0; i < info->x; i++)
+    free(info->object[i]);
+  free(info->object);
 }
