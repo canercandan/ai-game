@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-** Last update Sat Jun  7 13:42:15 2008 florent hochwelker
+// Last update Sun Jun  8 05:20:34 2008 caner candan
 //
 
 #ifndef __AI_H__

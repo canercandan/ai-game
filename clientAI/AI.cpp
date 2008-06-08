@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Sat Jun  7 13:36:02 2008 caner candan
+// Last update Sun Jun  8 05:15:35 2008 caner candan
 //
 
 #include <string>
@@ -248,11 +248,11 @@ void		AI::_seekFood(void)
   while ((mesg = this->_socket.sendRecv(actionsName[SEE] + '\n'))
 	 != "")
     {
-      if (mesg.find(objectName[FOOD]) != std::string::npos)
+      if (mesg.find(objectName[LINEMATE]) != std::string::npos)
 	{
-	  this->_goToGoodCase(mesg, FOOD);
+	  this->_goToGoodCase(mesg, LINEMATE);
 	  this->_socket.sendRecv(actionsName[TAKE_OBJ] + ' ' +
-				 objectName[FOOD] + '\n');
+				 objectName[LINEMATE] + '\n');
 	  break;
 	}
       this->_randomMove();
