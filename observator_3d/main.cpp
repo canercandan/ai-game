@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:37:03 2008 majdi toumi
-// Last update Sat Jun  7 21:37:54 2008 florent hochwelker
+// Last update Mon Jun  9 14:29:28 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -24,8 +24,8 @@ int	main(int ac, char **av)
   Socket	socket(obs.GetHost(), obs.GetPort());
 
   obs.Auth(socket);
-  obs.DrawPlayer(2, 3, 1);
-  obs.DrawAll();
+  //obs.DrawPlayer(2, 3, 1);
+  obs.DrawAll(socket);
   //  init_obs(&obs);
   //  draw_rock(&obs, 2, 2, 5);
   //  draw_rock(&obs, 4, 4, 5);

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Sat Jun  7 17:10:41 2008 florent hochwelker
+** Last update Sun Jun  8 14:42:07 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -64,6 +64,8 @@ static void	send_list_players(t_client *obs, t_info *info)
 {
   t_list	*clients;
 
+  strcat(obs->buf_write, START_LIST_PLAYER);
+  strcat(obs->buf_write, "\n");
   clients = info->clients;
   while (clients)
     {
@@ -73,6 +75,8 @@ static void	send_list_players(t_client *obs, t_info *info)
 			       CLIENT(clients->data)->id);
       clients = clients->next;
     }
+  strcat(obs->buf_write, END_LIST_PLAYER);
+  strcat(obs->buf_write, "\n");
 }
 
 void	send_info_to_obs(t_client *client, t_info *info)

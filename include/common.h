@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-// Last update Sat Jun  7 16:40:06 2008 caner candan
+** Last update Mon Jun  9 14:17:53 2008 florent hochwelker
 */
 
 #ifndef __COMMON_H__
@@ -47,10 +47,12 @@
 # define TCP			"tcp"
 
 /*
-** Item
+** List OBS
 */
-# define START_LIST	"LIST_ITEM"
-# define END_LIST	"END_LIST_ITEM"
+# define START_LIST_ITEM	"LIST_ITEM"
+# define END_LIST_ITEM		"END_LIST_ITEM"
+# define START_LIST_PLAYER	"LIST_PLAYER"
+# define END_LIST_PLAYER	"END_LIST_PLAYER"
 
 /*
 ** Directions

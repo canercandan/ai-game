@@ -17,7 +17,7 @@ class	Socket
   void		connectSocket(const std::string& host, int port);
   void		closeSocket(void);
   void		send(const std::string& s);
-  std::string	recv(void);
+  std::string	recv(bool wait);
   std::string	sendRecv(const std::string &s);
 
   bool		isConnected(void);

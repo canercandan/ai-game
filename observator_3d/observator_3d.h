@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Sat Jun  7 21:12:02 2008 florent hochwelker
+** Last update Mon Jun  9 14:35:01 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -77,10 +77,10 @@
 /*
 ** Get x/y
 */
-#define X(data)		((data * 100) - ((this->_x + 1) * 50))
-#define Y(data)		((data * 100) - ((this->_y + 1) * 50))
+#define X(data)		(((data + 1) * 100) - ((this->_x + 1) * 50))
+#define Y(data)		(((data + 1) * 100) - ((this->_y + 1) * 50))
 
-#define ItemX(data, type)	((data * 100) - (this->_x * 50) + 10)
+#define ItemX(data, type)	((data * 100) - (this->_x * 50) + 1)
 #define ItemY(data, type)	((data * 100) - (this->_y * 50) + (type + 1) * 10)
 
 #define CASEX(data)	(((data + 1) * 100) - ((this->_x + 1) * 50))

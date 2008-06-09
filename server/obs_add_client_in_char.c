@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 02:11:04 2008 florent hochwelker
-** Last update Sat Jun  7 17:47:36 2008 caner candan
+** Last update Mon Jun  9 13:26:42 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -17,6 +17,7 @@ void	obs_add_client_in_char(char *buf, t_client *client,
 {
   char	buff[LEN_INVENTORY];
 
+  buff[0] = 0;
   strcat(buf, "ADD_CLIENT ");
   putnbr(id, buf);
   strcat(buf, " ");
@@ -34,5 +35,5 @@ void	obs_add_client_in_char(char *buf, t_client *client,
   strcat(buf, " ");
   get_inventory_id(client, buff, info);
   strcat(buf, buff);
-  strcat(buf, END_CMD);
+  strcat(buf, "\n");
 }

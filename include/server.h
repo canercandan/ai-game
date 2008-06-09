@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Sat Jun  7 11:58:28 2008 florent hochwelker
+** Last update Mon Jun  9 14:12:34 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -29,7 +29,7 @@
 # define MAX_LEVEL		8
 
 # define FOOD_HP		126.0	/* en float */
-# define COEFFICIENT		0.5
+# define COEFFICIENT		0.5	/* en float */
 # define BUF_SIZE		8192
 # define NB_INVENTORY		7
 # define LEN_INVENTORY		512

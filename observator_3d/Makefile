@@ -5,7 +5,7 @@
 ## Login   <hochwe_f@epitech.net>
 ## 
 ## Started on  Fri Jun  6 18:48:55 2008 florent hochwelker
-## Last update Sat Jun  7 21:45:11 2008 florent hochwelker
+## Last update Sun Jun  8 13:34:37 2008 florent hochwelker
 ##
 
 CC		=	g++
@@ -21,7 +21,7 @@ INCLUDES	=	-I. -I/usr/local/include/irrlicht/ -I/usr/X11R6/include -I../include
 LIB		=	-L/usr/X11R6/lib -L/usr/local/lib 		\
 			-lGL -lGLU -lXxf86vm -lXext -lX11 -lpng -ljpeg	\
 			-lIrrlicht
-CXXFLAGS	=	-W -Wall $(INCLUDES) -g #-O3 -ffast-math 
+CXXFLAGS	=	-W -Wall $(INCLUDES) -O3 -ffast-math 
 
 all:	$(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LIB)

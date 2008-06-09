@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Fri Jun  6 19:06:33 2008 florent hochwelker
+// Last update Mon Jun  9 14:39:30 2008 florent hochwelker
 //
 
 #include <sys/types.h>
@@ -130,7 +130,7 @@ void	Socket::send(const std::string& s)
     }
 }
 
-std::string	Socket::recv(void)
+std::string	Socket::recv(bool wait)
 {
   char		buf[1024];
   int		size;
@@ -139,7 +139,10 @@ std::string	Socket::recv(void)
     {
       if (!this->isConnected())
 	throw true;
-      size = ::recv(this->_socket, buf, sizeof(buf), 0);
+      if (wait)
+	size = ::recv(this->_socket, buf, sizeof(buf), 0);
+      else
+	size = ::recv(this->_socket, buf, sizeof(buf), MSG_DONTWAIT);
       buf[size] = 0;
       if (DEBUG)
 	std::cout << "Socket: recv [" << buf << "]" << std::endl;
@@ -155,7 +158,7 @@ std::string	Socket::recv(void)
 std::string	Socket::sendRecv(const std::string &s)
 {
   this->send(s);
-  return (this->recv());
+  return (this->recv(true));
 }
 
 bool	Socket::isConnected(void)

@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Sat Jun  7 21:58:05 2008 florent hochwelker
+// Last update Mon Jun  9 18:14:11 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -42,44 +42,79 @@ void		Obs::Auth(Socket& socket)
   std::string		tmp;
   int			x, y, type[NB_RESSOURCE];
 
-  if (socket.recv() == "BIENVENUE\n")
+  if (socket.recv(true) == "BIENVENUE\n")
     {
       socket.send(std::string(MAGIC_OBS) + "\n");
-      ss << socket.recv();
+      ss << socket.recv(true);
       ss >> this->_x >> this->_y >> tmp;
       std::vector<Item>			v_item(NB_RESSOURCE);
       std::vector<std::vector<Item> >	v_y(this->_y, v_item);
 
-  this->_item.assign(this->_x, v_y);
+      this->_item.assign(this->_x, v_y);
 
-if (tmp == START_LIST)
-  {
-    while (ss.str().find(END_LIST) == std::string::npos)
-      ss << socket.recv();
-    tmp = ss.str().substr(sizeof(START_LIST) + ss.str().find(START_LIST));
-    ss.str("");
-    ss << tmp;
-    while (tmp.find(END_LIST) != 0)
-      {
-      	ss >> x >> y;
-      	ss 
-      	  >> this->_item[x][y][0]._qte
-      	  >> this->_item[x][y][1]._qte
-      	  >> this->_item[x][y][2]._qte
-      	  >> this->_item[x][y][3]._qte
-      	  >> this->_item[x][y][4]._qte
-      	  >> this->_item[x][y][5]._qte
-      	  >> this->_item[x][y][6]._qte;
-      	tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
-      	ss.str("");
-      	ss << tmp;
-      	for (int i = 0; i < NB_RESSOURCE; i++)
-      	  if (this->_item[x][y][i]._qte > 0)
-	    this->DrawItem(x, y, i);
-      }
-  }
-this->DrawPlate();
-}
+      if (tmp == START_LIST_ITEM)
+	{
+	  while (ss.str().find(END_LIST_ITEM) == std::string::npos)
+	    ss << socket.recv(true);
+	  tmp = ss.str().substr(sizeof(START_LIST_ITEM) + ss.str().find(START_LIST_ITEM));
+	  ss.str("");
+	  ss << tmp;
+	  while (tmp.find(END_LIST_ITEM) != 0)
+	    {
+	      ss >> x >> y;
+	      ss
+		>> this->_item[x][y][0]._qte
+		>> this->_item[x][y][1]._qte
+		>> this->_item[x][y][2]._qte
+		>> this->_item[x][y][3]._qte
+		>> this->_item[x][y][4]._qte
+		>> this->_item[x][y][5]._qte
+		>> this->_item[x][y][6]._qte;
+	      tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
+	      ss.clear();
+	      ss.str("");
+	      ss << tmp;
+	      for (int i = 0; i < NB_RESSOURCE; i++)
+		if (this->_item[x][y][i]._qte > 0)
+		  this->DrawItem(x, y, i);
+	    }
+	  ss.clear();
+	  ss.str("");
+	  ss << tmp;
+	  while (ss.str().find(END_LIST_PLAYER) == std::string::npos)
+	    ss << socket.recv(true);
+	  tmp = ss.str().substr(sizeof(START_LIST_PLAYER) + ss.str().find(START_LIST_PLAYER));
+	  ss.clear();
+	  ss.str("");
+	  ss << tmp;
+	  while (tmp.find(END_LIST_PLAYER) != 0)
+	    {
+	      Player* player = new Player();
+	      ss >> tmp
+		 >> player->_id
+		 >> player->_team
+		 >> player->_id_team
+		 >> player->_lvl
+		 >> player->_x
+		 >> player->_y
+		 >> player->_z
+		 >> player->_inventory[0]
+		 >> player->_inventory[1]
+		 >> player->_inventory[2]
+		 >> player->_inventory[3]
+		 >> player->_inventory[4]
+		 >> player->_inventory[5]
+		 >> player->_inventory[6];
+	      this->DrawPlayer(player);
+	      this->_player[player->_id] = player;
+	      tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
+	      ss.clear();
+	      ss.str("");
+	      ss << tmp;
+	    }
+	}
+      this->DrawPlate();
+    }
 }
 
 void				Obs::DrawPlate()
@@ -101,7 +136,7 @@ void				Obs::DrawPlate()
     }
 }
 
-void		Obs::DrawAll()
+void		Obs::DrawAll(Socket &socket)
 {
   while (this->_device->run())
     {
@@ -110,31 +145,29 @@ void		Obs::DrawAll()
       _env->drawAll();
       _device->getGUIEnvironment()->drawAll();
       _driver->endScene();
+      std::cout << socket.recv(false);
     }
 }
 
-void					Obs::DrawPlayer(int x, int y, int z)
+void					Obs::DrawPlayer(Player* player)
 {
-  irr::scene::IAnimatedMeshSceneNode	*node;
-
-  node = this->_scene->addAnimatedMeshSceneNode(this->_scene->getMesh(INVADER));
-  if (node)
+  player->_img = this->_scene->addAnimatedMeshSceneNode(this->_scene->getMesh(INVADER));
+  if (player->_img)
     {
-      node->setFrameLoop(1, 1);
-      node->setAnimationSpeed(0);
-      node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-      node->setPosition(irr::core::vector3df(X(x), 0, Y(y)));
-      node->setMaterialTexture(0, this->_driver->getTexture(SKIN_1));
-      if (z == NORTH)
-	z = OBS_NORTH;
-      else if (z == EAST)
-	z = OBS_EAST;
-      else if (z == WEST)
-	z = OBS_WEST;
+      player->_img->setFrameLoop(1, 1);
+      player->_img->setAnimationSpeed(0);
+      player->_img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+      player->_img->setPosition(irr::core::vector3df(X(player->_x), 0, Y(player->_y)));
+      player->_img->setMaterialTexture(0, this->_driver->getTexture(SKIN_1));
+      if (player->_z == NORTH)
+	player->_z = OBS_NORTH;
+      else if (player->_z == EAST)
+	player->_z = OBS_EAST;
+      else if (player->_z == WEST)
+	player->_z = OBS_WEST;
       else
-	z = OBS_SOUTH;
-      node->setRotation(irr::core::vector3df(0, z, 0));
-      this->_player.push_back(new Player(x, y, node));
+	player->_z = OBS_SOUTH;
+      player->_img->setRotation(irr::core::vector3df(0, player->_z, 0));
     }
 }
 
@@ -153,7 +186,6 @@ void		Obs::DrawItem(int x, int y, int type)
 
 void		Obs::DeleteItem(int x, int y, int type)
 {
-  std::cout << "addr = " << this->_item[x][y][type]._img << std::endl;
   if (--this->_item[x][y][type]._qte == 0)
     this->_item[x][y][type]._img->remove();
 }
