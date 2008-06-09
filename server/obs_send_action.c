@@ -5,20 +5,21 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 15:49:07 2008 florent hochwelker
-** Last update Sun Jun  8 03:30:58 2008 caner candan
+** Last update Mon Jun  9 18:22:04 2008 florent hochwelker
 */
 
 #include <string.h>
 #include <stdio.h>
 #include "server.h"
+#include "common.h"
 
 static int	send_param(t_list *obs, char idx_f, char *param)
 {
   int		i;
 
   printf("send_param: [%d]\n", idx_f);
-  if (idx_f == 5 ||
-      idx_f == 6)
+  if (idx_f == TAKE_OBJ ||
+      idx_f == DROP_OBJ)
     for (i = 0; gl_ressource[i].idx >= 0; i++)
       if (!strcmp(gl_ressource[i].name, param))
 	{

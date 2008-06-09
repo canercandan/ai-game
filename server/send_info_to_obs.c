@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Sun Jun  8 14:42:07 2008 florent hochwelker
+** Last update Mon Jun  9 18:41:16 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -25,7 +25,7 @@ static void	strcat_nb_items_case(t_list *ressources, t_client *client)
       ressources = ressources->next;
     }
   i = 0;
-  while (i < NOURRITURE)
+  while (i < NOURRITURE + 1)
     {
       strcat(client->buf_write, " ");
       putnbr(tab[i], client->buf_write);
