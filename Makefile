@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Sat Jun  7 20:01:16 2008 caner candan
+## Last update Mon Jun  9 21:06:47 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -157,16 +157,19 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)set_object.c			\
 			$(PATH_OBS_2D)push_list.c			\
 			$(PATH_OBS_2D)pop_list.c			\
+			$(PATH_OBS_2D)sort_client_list.c		\
 			$(PATH_OBS_2D)create_socket.c			\
 			$(PATH_OBS_2D)parse_args.c			\
 			$(PATH_OBS_2D)init_gfx.c			\
 			$(PATH_OBS_2D)destroy_gfx.c			\
 			$(PATH_OBS_2D)get_header.c			\
 			$(PATH_OBS_2D)create_client.c			\
+			$(PATH_OBS_2D)add_client.c			\
 			$(PATH_OBS_2D)get_trame.c			\
 			$(PATH_OBS_2D)put_char_from_buf.c		\
 			$(PATH_OBS_2D)put_int_from_buf.c		\
 			$(PATH_OBS_2D)put_float_from_buf.c		\
+			$(PATH_OBS_2D)skip_from_buf.c			\
 			$(PATH_OBS_2D)execute_action.c			\
 			$(PATH_OBS_2D)get_map_size.c			\
 			$(PATH_OBS_2D)get_object.c			\

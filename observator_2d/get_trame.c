@@ -5,13 +5,33 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 12:10:55 2008 caner candan
-** Last update Sat Jun  7 20:49:54 2008 caner candan
+** Last update Mon Jun  9 20:39:07 2008 caner candan
 */
 
 #include <string.h>
 #include <stdio.h>
 #include "observator_2d.h"
+#include "common.h"
 #include "x.h"
+
+static void	loop(t_info *info, char **tmp, char *first)
+{
+  printf("first: [%s]\n", first);
+  if (!strncmp(first, START_LIST_PLAYER, strlen(START_LIST_PLAYER)))
+    create_client(info, tmp);
+  else if (!strncmp(first, ADD_CLIENT, strlen(ADD_CLIENT)))
+    add_client(info, tmp);
+  else if (!strncmp(BROADCAST_MESG, first, strlen(BROADCAST_MESG)))
+    {}
+  else
+    if (!info->x || !info->y)
+      {
+	get_map_size(info, tmp, first);
+	get_object(info, tmp);
+      }
+    else
+      execute_action(info, tmp, first);
+}
 
 int	get_trame(t_info *info)
 {
@@ -25,20 +45,6 @@ int	get_trame(t_info *info)
   printf("buf: [%s]\n", info->buf);
   tmp = info->buf;
   while ((first = strsep(&tmp, DELIMIT)))
-    {
-      printf("first: [%s]\n", first);
-      if (!strncmp(ADD_CLIENT, first, strlen(ADD_CLIENT)))
-	create_client(info, &tmp);
-      else if (!strncmp(BROADCAST_MESG, first, strlen(BROADCAST_MESG)))
-	return (0);
-      else
-	if (!info->x || !info->y)
-	  {
-	    get_map_size(info, &tmp, first);
-	    get_object(info, &tmp);
-	  }
-	else
-	  execute_action(info, &tmp, first);
-    }
+    loop(info, &tmp, first);
   return (0);
 }

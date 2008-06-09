@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May 14 08:56:50 2008 caner candan
-** Last update Sun Jun  8 05:06:57 2008 caner candan
+** Last update Mon Jun  9 18:51:47 2008 caner candan
 */
 
 #include <SDL.h>
@@ -52,9 +52,9 @@ static void	put_object(t_info *info)
 
   for (x = 0; x < info->x - 2; x++)
     for (y = 0; y < info->y - 2; y++)
-      for (z = 0; z < NB_OBJECT - 1; z++)
+      for (z = 0; z < NB_OBJECT; z++)
 	if (info->object[x][y][z])
-	  set_object(info->gfx, z + 1, x, y + 1);
+	  set_object(info->gfx, z, x, y + 1);
 }
 
 static void	put_broadcast(t_info *info)

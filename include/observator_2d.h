@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-// Last update Sun Jun  8 04:55:35 2008 caner candan
+// Last update Mon Jun  9 21:06:14 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -214,7 +214,8 @@ int	get_object(t_info *info, char **buf);
 /*
 ** Client's functions
 */
-void	create_client(t_info *info, char **buf);
+int	create_client(t_info *info, char **buf);
+void	add_client(t_info *info, char **buf);
 void	dump_clients(t_info *info);
 void	*get_client_from_list(t_list *t, int socket);
 
@@ -261,6 +262,7 @@ int	draw_gfx(t_info *info, char anim);
 void	push_list(t_list **t, void *data);
 void	*pop_list(t_list **t);
 void	*rm_data_from_list(t_list **t, void *data);
+void	sort_client_list(t_list **begin);
 
 /*
 ** Buffer's functions
@@ -268,6 +270,7 @@ void	*rm_data_from_list(t_list **t, void *data);
 void	put_char_from_buf(char **elm, char **buf);
 void	put_int_from_buf(int *elm, char **buf);
 void	put_float_from_buf(float *elm, char **buf);
+void	skip_from_buf(char **buf);
 
 /*
 ** Matimatical's functions
