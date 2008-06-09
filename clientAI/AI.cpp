@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Sun Jun  8 05:15:35 2008 caner candan
+// Last update Mon Jun  9 12:13:39 2008 caner candan
 //
 
 #include <string>
@@ -45,18 +45,18 @@ int	AI::nbObjectPerLevel[NB_LEVEL][NB_OBJECT] = {
 
 std::string	AI::objectName[NB_OBJECT] =
   {"linemate", "deraumere", "sibur", "mendiane",
-   "phiras", "thystame", "nourriture"};
+   "phiras", "thystame", "nourriture", "joueur"};
 
 AI::AI()
   : _port(0), _x(0), _y(0), _level(0), _maxClient(0),
-    _nbClientSameCase(0), _qtePerObject(NB_OBJECT)
+    _qtePerObject(NB_OBJECT)
 {}
 
 AI::AI(const std::string& host, int port,
        const std::string& team)
   : _host(host), _port(port), _team(team),
     _x(0), _y(0), _level(1), _maxClient(0),
-    _nbClientSameCase(0), _qtePerObject(NB_OBJECT)
+    _qtePerObject(NB_OBJECT)
 {}
 
 AI::AI(const AI& ai)
@@ -148,12 +148,18 @@ bool			AI::_getNbClientAndMapSize(void)
 	throw 1;
       std::cout << "AI: [" << this->_team << "] ok" << std::endl;
       iss >> this->_maxClient;
+      iss >> this->_x;
+      iss >> this->_y;
       if (this->_maxClient < 0)
 	throw 2;
-      iss >> this->_x;
+      if (!this->_x)
+	{
+	  iss.str(this->_socket.recv());
+	  iss >> this->_x;
+	  iss >> this->_y;
+	}
       if (!this->_x)
 	throw 3;
-      iss >> this->_y;
       if (!this->_y)
 	throw 4;
       std::cout << "AI: maxClient [" << this->_maxClient << "]"
@@ -192,10 +198,13 @@ void		AI::actionLoop(void)
   std::string	mesg;
 
   ::srandom(::getpid());
-  while (42)
-    {
-      if (!this->_isNeedFood(SEE));
-      this->_seekFood();
+//   while (42)
+//     {
+      if (this->_isNeedFood(SEE))
+	this->_seekFood();
+      this->_socket.sendRecv("broadcast\n");
+      mesg = this->_socket.recv();
+      this->_moveToK(mesg);
       //::sleep(1);
 //       if (!this->_hasObjectInventoryToLevelUp())
 // 	{
@@ -209,13 +218,12 @@ void		AI::actionLoop(void)
 //       mesg = this->_socket.recv();
 //       if (this->_hasClientSameCase(mesg))
 // 	this->_moveToK(mesg);
-    }
+//}
 }
 
 bool			AI::_isNeedFood(AI::Action idx)
 {
   std::string		mesg;
-  std::string		pattern(objectName[FOOD]);
   std::istringstream	value;
   size_t		pos;
   int			hp;
@@ -223,11 +231,11 @@ bool			AI::_isNeedFood(AI::Action idx)
   try
     {
       mesg = this->_socket.sendRecv(actionsName[INVENTORY] + '\n');
-      if ((pos = mesg.find(pattern))
+      if ((pos = mesg.find(objectName[FOOD]))
 	  == std::string::npos)
 	throw true;
-      mesg = mesg.substr(mesg.find(pattern)
-			 + pattern.size());
+      mesg = mesg.substr(mesg.find(objectName[FOOD])
+			 + objectName[FOOD].size());
       value.str(mesg.substr(0, mesg.find(',')));
       value >> hp;
       if (hp > actionsHp[idx])
@@ -248,11 +256,11 @@ void		AI::_seekFood(void)
   while ((mesg = this->_socket.sendRecv(actionsName[SEE] + '\n'))
 	 != "")
     {
-      if (mesg.find(objectName[LINEMATE]) != std::string::npos)
+      if (mesg.find(objectName[FOOD]) != std::string::npos)
 	{
-	  this->_goToGoodCase(mesg, LINEMATE);
+	  this->_goToGoodCase(mesg, FOOD);
 	  this->_socket.sendRecv(actionsName[TAKE_OBJ] + ' ' +
-				 objectName[LINEMATE] + '\n');
+				 objectName[FOOD] + '\n');
 	  break;
 	}
       this->_randomMove();
@@ -361,21 +369,15 @@ void	AI::_takeNeedObject(const std::string& mesg)
 			       ' ' + objectName[i]);
 }
 
-bool	AI::_hasClientSameCase(const std::string& mesg)
-{
-  if (mesg.find(MESSAGE + " 0") != std::string::npos)
-    this->_nbClientSameCase++;
-  return (_nbClientSameCase != 0);
-}
-
 void		AI::_moveToK(const std::string& mesg)
 {
+  std::string	recv;
   size_t	pos;
+  int		i;
 
-  if ((pos = mesg.find(MESSAGE)) != std::string::npos)
-    if (mesg.find(MESSAGE + " 0") == std::string::npos)
+  if ((pos = mesg.find(actionsReply[MESSAGE])) != std::string::npos)
+    if (mesg.find(actionsReply[MESSAGE] + " 0") == std::string::npos)
       {
-	this->_nbClientSameCase = 0;
 	if (mesg[pos] == '3')
 	  this->_socket.sendRecv(actionsName[LEFT] + '\n');
 	else if (mesg[pos] == '7')
@@ -387,7 +389,33 @@ void		AI::_moveToK(const std::string& mesg)
 	    this->_socket.sendRecv(actionsName[RIGHT] + '\n');
 	    this->_socket.sendRecv(actionsName[RIGHT] + '\n');
 	  }
-	this->_socket.sendRecv(actionsName[UP] + '\n');
+	i = 0;
+	while ((recv = this->_socket.sendRecv(actionsName[SEE])) != "")
+	  {
+	    if (recv.substr(objectName[PLAYER].size()).find(objectName[PLAYER])
+		!= std::string::npos)
+	      {
+		this->_goToGoodCase(recv, PLAYER);
+		break;
+	      }
+	    if (mesg[pos] == '4' || mesg[pos] == '8')
+	      {
+		if (!(i % 2))
+		  this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+		else
+		  this->_socket.sendRecv(actionsName[UP] + '\n');
+	      }
+	    else if (mesg[pos] == '6' || mesg[pos] == '2')
+	      {
+		if (!(i % 2))
+		  this->_socket.sendRecv(actionsName[LEFT] + '\n');
+		else
+		  this->_socket.sendRecv(actionsName[UP] + '\n');
+	      }
+	    else
+	      this->_socket.sendRecv(actionsName[UP] + '\n');
+	    i++;
+	  }
       }
 }
 
@@ -400,9 +428,6 @@ void	AI::_actionRandomMove(void)
   std::cout << "action [" << actionsName[idx]
 	    << "]" << std::endl;
 }
-
-void	AI::_actionAI(const std::string&)
-{}
 
 bool		AI::_hasEnoughClientSameCase(void)
 {

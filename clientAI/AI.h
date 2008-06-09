@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Sun Jun  8 05:20:34 2008 caner candan
+// Last update Mon Jun  9 12:01:55 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -18,7 +18,7 @@
 # define NB_ACTIONS		11
 # define NB_ACTIONS_MOVE	3
 # define NB_LEVEL		7
-# define NB_OBJECT		7
+# define NB_OBJECT		8
 # define NB_REPLY		3
 
 # define LEVEL(x)	((x) - 2)
@@ -62,7 +62,8 @@ class	AI
     MENDIANE,
     PHIRAS,
     THYSTAME,
-    FOOD
+    FOOD,
+    PLAYER
   };
 
   static std::string	actionsName[NB_ACTIONS];
@@ -86,11 +87,9 @@ class	AI
   bool	_getNbClientAndMapSize(void);
   bool	_forkWorld(void);
   void	_actionRandomMove(void);
-  void	_actionAI(const std::string& mesg);
   bool	_hasEnoughClientSameCase(void);
   bool	_canLevelUp(void);
 
-  bool	_hasClientSameCase(const std::string& mesg);
   void	_moveToK(const std::string& mesg);
   bool	_hasObjectInventoryToLevelUp(void);
   bool	_hasObjectSeeToLevelUp(const std::string& mesg);
@@ -109,7 +108,6 @@ class	AI
   int		_y;
   int		_level;
   int		_maxClient;
-  int		_nbClientSameCase;
 
   std::vector<int>	_qtePerObject;
 };
