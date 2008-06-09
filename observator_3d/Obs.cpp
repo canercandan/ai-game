@@ -5,13 +5,14 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Mon Jun  9 18:36:16 2008 florent hochwelker
+// Last update Mon Jun  9 21:38:56 2008 florent hochwelker
 //
 
 #include <sstream>
 #include <vector>
 #include "Obs.h"
 #include "Item.h"
+#include "Action.h"
 #include "observator_3d.h"
 #include "common.h"
 
@@ -89,24 +90,7 @@ void		Obs::Auth(Socket& socket)
 	  ss << tmp;
 	  while (tmp.find(END_LIST_PLAYER) != 0)
 	    {
-	      Player* player = new Player();
-	      ss >> tmp
-		 >> player->_id
-		 >> player->_team
-		 >> player->_id_team
-		 >> player->_lvl
-		 >> player->_x
-		 >> player->_y
-		 >> player->_z
-		 >> player->_inventory[0]
-		 >> player->_inventory[1]
-		 >> player->_inventory[2]
-		 >> player->_inventory[3]
-		 >> player->_inventory[4]
-		 >> player->_inventory[5]
-		 >> player->_inventory[6];
-	      this->DrawPlayer(player);
-	      this->_player[player->_id] = player;
+	      this->AddPlayer(ss);
 	      tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
 	      ss.clear();
 	      ss.str("");
@@ -115,6 +99,30 @@ void		Obs::Auth(Socket& socket)
 	}
       this->DrawPlate();
     }
+}
+
+void				Obs::AddPlayer(std::stringstream& ss)
+{
+  std::string	tmp;
+  Player* player = new Player();
+
+  ss >> tmp
+     >> player->_id
+     >> player->_team
+     >> player->_id_team
+     >> player->_lvl
+     >> player->_x
+     >> player->_y
+     >> player->_z
+     >> player->_inventory[0]
+     >> player->_inventory[1]
+     >> player->_inventory[2]
+     >> player->_inventory[3]
+     >> player->_inventory[4]
+     >> player->_inventory[5]
+     >> player->_inventory[6];
+  this->DrawPlayer(player);
+  this->_player[player->_id] = player;
 }
 
 void				Obs::DrawPlate()
@@ -161,7 +169,7 @@ void					Obs::DrawPlayer(Player* player)
       player->_img->setFrameLoop(1, 1);
       player->_img->setAnimationSpeed(0);
       player->_img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-      player->_img->setPosition(irr::core::vector3df(X(player->_x), 0, Y(player->_y)));
+      player->_img->setPosition(irr::core::vector3df(Y(player->_y), 0, X(player->_x)));
       player->_img->setMaterialTexture(0, this->_driver->getTexture(SKIN_1));
       if (player->_z == NORTH)
 	player->_z = OBS_NORTH;
@@ -181,7 +189,7 @@ void		Obs::DrawItem(int x, int y, int type)
   if (this->_item[x][y][type]._img)
     {
       this->_item[x][y][type]._img->setScale(irr::core::vector3df(1, 1, 1));
-      this->_item[x][y][type]._img->setPosition(irr::core::vector3df(ItemX(x, type), -20, ItemY(y, type)));
+      this->_item[x][y][type]._img->setPosition(irr::core::vector3df(ItemY(y, type), -20, ItemX(x, type)));
       this->_item[x][y][type]._img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
       if (type != NOURRITURE)
 	this->_item[x][y][type]._img->setMaterialTexture(0, this->_texture[type]);
@@ -196,9 +204,27 @@ void		Obs::DeleteItem(int x, int y, int type)
 
 void		Obs::ExecuteAction(std::string& line)
 {
-  std::cout << "exec actio = [" << line.substr(0, line.find_first_of(" ")) << "]" << std::endl;
-  if (line.substr(0, line.find_first_of(" ")) == "ADD_CLIENT")
+  Action	action(this);
+  std::stringstream	ss;
+  int			id, idx_action,;
+  std::string		param;
+
+  while (!line.empty())
     {
-      
+      ss.clear();
+      ss.str("");
+      if (line.substr(0, line.find_first_of(" ")) == "ADD_CLIENT")
+	{
+	  ss << line;
+	  this->AddPlayer(ss);
+	}
+      else
+	{
+	  ss << line;
+	  ss >> id >> idx_action >> param;
+	  std::cout << "Executetion de " << idx_action << " par " << id << std::endl;
+	  action.ApplyAction(this->_player[id], idx_action, param);
+	}
+      line = line.substr(line.find_first_of("\n") + 1);
     }
 }

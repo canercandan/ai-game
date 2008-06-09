@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:43:36 2008 jordan aubry
-** Last update Fri Jun  6 19:31:12 2008 florent hochwelker
+** Last update Mon Jun  9 21:08:34 2008 florent hochwelker
 */
 
 #ifndef __WINDOW_H__
@@ -23,6 +23,7 @@ class	Window
   ~Window() {}
 
   void	InitWindow();
+  inline irr::scene::ISceneManager*	GetScene() { return this->_scene; }
 
  protected:
   irr::IrrlichtDevice*		_device;

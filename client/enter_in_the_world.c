@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu Apr 10 19:18:20 2008 florent hochwelker
-** Last update Sat Jun  7 12:12:06 2008 majdi toumi
+** Last update Mon Jun  9 19:00:58 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -35,7 +35,7 @@ static int	step_two(t_info *info)
     return (-1);
   if (!isdigit(*p))
     return (-1);
-  if (atoi(p) > 1)
+  if (atoi(p) >= 1)
     fork_in_the_word(info);
   else
     get_x_y_map(info, p);

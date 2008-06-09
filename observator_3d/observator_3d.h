@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Mon Jun  9 18:25:10 2008 florent hochwelker
+** Last update Mon Jun  9 20:55:10 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -85,6 +85,8 @@
 
 #define CASEX(data)	(((data + 1) * 100) - ((this->_x + 1) * 50))
 #define CASEY(data)	(((data + 1) * 100) - ((this->_y + 1) * 50))
+
+#define COORD(data, a)		(((data + 1) * 100) - (((a) + 1) * 50))
 
 /*
 ** Structures

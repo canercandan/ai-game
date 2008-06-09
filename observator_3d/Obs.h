@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Mon Jun  9 18:36:00 2008 florent hochwelker
+** Last update Mon Jun  9 21:23:36 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__
@@ -16,6 +16,7 @@
 # include <vector>
 # include <map>
 # include <string>
+# include <sstream>
 # include "common.h"
 # include "Player.h"
 # include "Window.h"
@@ -50,7 +51,9 @@ class	Obs : public Window
   void					DrawItem(int x, int y, int type);
   void					DeleteItem(int x, int y, int type);
   void					DrawPlayer(Player* player);
+  void					AddPlayer(std::stringstream& ss);
   void					ExecuteAction(std::string& line);
+
 };
 
 #endif
