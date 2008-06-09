@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Mon Jun  9 18:14:11 2008 florent hochwelker
+// Last update Mon Jun  9 18:36:16 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -138,6 +138,8 @@ void				Obs::DrawPlate()
 
 void		Obs::DrawAll(Socket &socket)
 {
+  std::string	line;
+
   while (this->_device->run())
     {
       _driver->beginScene(true, true, 0);
@@ -145,7 +147,9 @@ void		Obs::DrawAll(Socket &socket)
       _env->drawAll();
       _device->getGUIEnvironment()->drawAll();
       _driver->endScene();
-      std::cout << socket.recv(false);
+      line = socket.recv(false);
+      if (line != "")
+	this->ExecuteAction(line);
     }
 }
 
@@ -188,4 +192,13 @@ void		Obs::DeleteItem(int x, int y, int type)
 {
   if (--this->_item[x][y][type]._qte == 0)
     this->_item[x][y][type]._img->remove();
+}
+
+void		Obs::ExecuteAction(std::string& line)
+{
+  std::cout << "exec actio = [" << line.substr(0, line.find_first_of(" ")) << "]" << std::endl;
+  if (line.substr(0, line.find_first_of(" ")) == "ADD_CLIENT")
+    {
+      
+    }
 }

@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Mon Jun  9 14:38:44 2008 florent hochwelker
+** Last update Mon Jun  9 18:36:00 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__
@@ -50,8 +50,7 @@ class	Obs : public Window
   void					DrawItem(int x, int y, int type);
   void					DeleteItem(int x, int y, int type);
   void					DrawPlayer(Player* player);
-
-  std::string				RecvSocket();
+  void					ExecuteAction(std::string& line);
 };
 
 #endif
