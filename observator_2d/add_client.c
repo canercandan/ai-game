@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon Jun  9 20:34:37 2008 caner candan
-** Last update Mon Jun  9 21:07:36 2008 caner candan
+** Last update Tue Jun 10 09:38:03 2008 caner candan
 */
 
 #include "observator_2d.h"
@@ -28,5 +28,4 @@ void		add_client(t_info *info, char **buf)
   for (i = 0; i < NB_OBJECT; i++)
     put_int_from_buf(&(client->inventory[i]), buf);
   push_list(&(info->clients), client);
-  sort_client_list(&info->clients);
 }

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May 14 08:56:50 2008 caner candan
-** Last update Mon Jun  9 18:51:47 2008 caner candan
+** Last update Tue Jun 10 09:46:18 2008 caner candan
 */
 
 #include <SDL.h>
@@ -29,6 +29,7 @@ static void	put_clients(t_info *info, char anim)
 {
   t_list	*t;
 
+  sort_client_list(&info->clients);
   t = info->clients;
   while (t)
     {
@@ -77,7 +78,8 @@ int	draw_gfx(t_info *info, char anim)
     return (-1);
   set_backdrop(info);
   put_object(info);
-  put_clients(info, anim);
+  if (info->clients)
+    put_clients(info, anim);
   put_broadcast(info);
   SDL_Flip(info->gfx->video);
   SDL_Delay(1);

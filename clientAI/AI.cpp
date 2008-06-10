@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Mon Jun  9 12:13:39 2008 caner candan
+// Last update Tue Jun 10 10:21:08 2008 caner candan
 //
 
 #include <string>
@@ -19,8 +19,8 @@
     
 std::string	AI::actionsName[NB_ACTIONS] =
   {"avance", "droite", "gauche", "voir", "inventaire",
-   "prend objet", "pose objet", "expulse",
-   "broadcast", "incantation", "fork"};
+   "prend", "pose", "expulse", "broadcast",
+   "incantation", "fork"};
 
 std::string	AI::actionsMove[NB_ACTIONS_MOVE] =
   {"avance", "droite", "gauche"};
@@ -198,13 +198,14 @@ void		AI::actionLoop(void)
   std::string	mesg;
 
   ::srandom(::getpid());
-//   while (42)
-//     {
-      if (this->_isNeedFood(SEE))
+  while (42)
+    {
+//       if (this->_isNeedFood(SEE))
 	this->_seekFood();
-      this->_socket.sendRecv("broadcast\n");
-      mesg = this->_socket.recv();
-      this->_moveToK(mesg);
+//       this->_socket.sendRecv("broadcast\n");
+//       mesg = this->_socket.recv();
+//       std::cout << "mesg: [" << mesg << "]" << std::endl;
+//       this->_moveToK(mesg);
       //::sleep(1);
 //       if (!this->_hasObjectInventoryToLevelUp())
 // 	{
@@ -218,7 +219,7 @@ void		AI::actionLoop(void)
 //       mesg = this->_socket.recv();
 //       if (this->_hasClientSameCase(mesg))
 // 	this->_moveToK(mesg);
-//}
+    }
 }
 
 bool			AI::_isNeedFood(AI::Action idx)
@@ -259,6 +260,7 @@ void		AI::_seekFood(void)
       if (mesg.find(objectName[FOOD]) != std::string::npos)
 	{
 	  this->_goToGoodCase(mesg, FOOD);
+	  std::cout << actionsName[TAKE_OBJ] + ' ' + objectName[FOOD] << std::endl;
 	  this->_socket.sendRecv(actionsName[TAKE_OBJ] + ' ' +
 				 objectName[FOOD] + '\n');
 	  break;
@@ -286,22 +288,21 @@ void	AI::_goToGoodCase(const std::string& mesg,
       cnt++;
   if (!cnt)
     return;
+  std::cout << "going to good case" << std::endl;
   up = 1;
   add = 1;
   begin = 1;
   middle = 2;
   end = 3;
   for (i = 1; i < cnt; i++)
-    {
-      if (i > end)
-	{
-	  up++;
-	  add += 2;
-	  begin += add;
-	  middle += add + 1;
-	  end += add + 2;
-	}
-    }
+    if (i > end)
+      {
+	up++;
+	add += 2;
+	begin += add;
+	middle += add + 1;
+	end += add + 2;
+      }
   for (i = 0; i < up; i++)
     this->_socket.sendRecv(actionsMove[UP] + '\n');
   if (cnt == middle)
@@ -374,49 +375,61 @@ void		AI::_moveToK(const std::string& mesg)
   std::string	recv;
   size_t	pos;
   int		i;
-
+  
+  if (mesg.find(actionsReply[MESSAGE] + " 0") != std::string::npos)
+    return;
   if ((pos = mesg.find(actionsReply[MESSAGE])) != std::string::npos)
-    if (mesg.find(actionsReply[MESSAGE] + " 0") == std::string::npos)
-      {
-	if (mesg[pos] == '3')
-	  this->_socket.sendRecv(actionsName[LEFT] + '\n');
-	else if (mesg[pos] == '7')
+    {
+      pos += actionsReply[MESSAGE].size() + 1;
+      std::cout << "i know " << mesg[pos] << std::endl;
+      if (mesg[pos] == '3')
+	this->_socket.sendRecv(actionsName[LEFT] + '\n');
+      else if (mesg[pos] == '7')
+	this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+      else if (mesg[pos] == '4' ||
+	       mesg[pos] == '5' ||
+	       mesg[pos] == '6')
+	{
 	  this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-	else if (mesg[pos] == '4' ||
-		 mesg[pos] == '5' ||
-		 mesg[pos] == '6')
-	  {
-	    this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-	    this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-	  }
-	i = 0;
-	while ((recv = this->_socket.sendRecv(actionsName[SEE])) != "")
-	  {
-	    if (recv.substr(objectName[PLAYER].size()).find(objectName[PLAYER])
-		!= std::string::npos)
-	      {
-		this->_goToGoodCase(recv, PLAYER);
-		break;
-	      }
-	    if (mesg[pos] == '4' || mesg[pos] == '8')
-	      {
-		if (!(i % 2))
-		  this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-		else
-		  this->_socket.sendRecv(actionsName[UP] + '\n');
-	      }
-	    else if (mesg[pos] == '6' || mesg[pos] == '2')
-	      {
-		if (!(i % 2))
-		  this->_socket.sendRecv(actionsName[LEFT] + '\n');
-		else
-		  this->_socket.sendRecv(actionsName[UP] + '\n');
-	      }
-	    else
+	  this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+	}
+      i = 0;
+      while ((recv = this->_socket.sendRecv(actionsName[SEE] + '\n')) != "")
+	{
+	  std::cout << "i know too" << std::endl;
+	  if (recv.substr(objectName[PLAYER].size()).find(objectName[PLAYER])
+	      != std::string::npos)
+	    {
+	      std::cout << "go to case" << std::endl;
+	      this->_goToGoodCase(recv.substr(objectName[PLAYER].size()), PLAYER);
+	      break;
+	    }
+	  if (mesg[pos] == '4' || mesg[pos] == '8')
+	    {
+	      std::cout << "turn right" << std::endl;
+	      if (!(i % 2))
+		this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+	      else
+		this->_socket.sendRecv(actionsName[LEFT] + '\n');
 	      this->_socket.sendRecv(actionsName[UP] + '\n');
-	    i++;
-	  }
-      }
+	    }
+	  else if (mesg[pos] == '6' || mesg[pos] == '2')
+	    {
+	      std::cout << "turn left" << std::endl;
+	      if (!(i % 2))
+		this->_socket.sendRecv(actionsName[LEFT] + '\n');
+	      else
+		this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+	      this->_socket.sendRecv(actionsName[UP] + '\n');
+	    }
+	  else
+	    {
+	      std::cout << "up" << std::endl;
+	      this->_socket.sendRecv(actionsName[UP] + '\n');
+	    }
+	  i++;
+	}
+    }
 }
 
 void	AI::_actionRandomMove(void)
