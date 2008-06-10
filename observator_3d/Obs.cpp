@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Mon Jun  9 21:38:56 2008 florent hochwelker
+// Last update Tue Jun 10 10:30:19 2008 jordan aubry
 //
 
 #include <sstream>
@@ -41,7 +41,7 @@ void		Obs::Auth(Socket& socket)
 {
   std::stringstream	ss;
   std::string		tmp;
-  int			x, y, type[NB_RESSOURCE];
+  int			x, y;
 
   if (socket.recv(true) == "BIENVENUE\n")
     {
