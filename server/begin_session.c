@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Wed Jun  4 08:49:46 2008 caner candan
+** Last update Wed Jun 11 13:22:24 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -63,9 +63,7 @@ static int		inc_and_check_max_user(t_team *team, t_client **client,
 static void	send_map_and_nb_connect(t_client *cli, t_team *team, t_info *info)
 {
   /* this */
-
-/*   putnbr(team->max - team->nb, cli->buf_write); */
-
+  /*   putnbr(team->max - team->nb, cli->buf_write); */
   /* replaced by this */
 
   snprintf(cli->buf_write, sizeof(cli->buf_write),

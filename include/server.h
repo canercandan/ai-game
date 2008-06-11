@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon Jun  9 14:12:34 2008 florent hochwelker
+** Last update Wed Jun 11 13:51:22 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -81,7 +81,6 @@
 ** Macro useful
 */
 # define IS_PRINTABLE(c)	(((c) <= 32 || (c) > 126) ? 1 : 0)
-# define ABS(x)			(((x) < 0) ? (x) * -1 : (x))
 # define PWR(x)			(1 << (x))
 # define CONCATXY(x, y)		((x) << 16 | (y))
 # define EXPLODEX(ptr)		((ptr) & 0xFFFF)
@@ -279,6 +278,7 @@ void		send_info_to_obs(t_client *client, t_info *info);
 void		obs_add_client_in_char(char *buf, t_client *client, t_info *info, int id);
 void		obs_new_client(t_list *obs, t_client *client, t_info *info);
 void		obs_send_action(int id, t_info *info, char idx_f, char *param);
+void		obs_send_new_item(t_list *obs, int x, int y, void *data);
 
 /*
 ** Options' functions

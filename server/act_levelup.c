@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May 13 21:55:16 2008 caner candan
+** Last update Wed Jun 11 13:51:17 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -134,6 +134,7 @@ static void	levelup(t_client *client, t_info *info)
       x = get_random(info->x, client->x);
       y = get_random(info->y, client->y);
       push_list(&(info->zone[x][y].ressources), data);
+      obs_send_new_item(info->observator, x, y, data);
     }
 }
 
