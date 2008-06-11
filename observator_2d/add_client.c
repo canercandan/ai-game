@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon Jun  9 20:34:37 2008 caner candan
-** Last update Tue Jun 10 09:38:03 2008 caner candan
+** Last update Wed Jun 11 22:17:55 2008 caner candan
 */
 
 #include "observator_2d.h"
@@ -14,9 +14,11 @@
 void		add_client(t_info *info, char **buf)
 {
   t_client	*client;
+  int		is_egg;
   int		i;
 
   client = xmalloc(sizeof(*client));
+  put_int_from_buf(&is_egg, buf);
   put_int_from_buf(&(client->id), buf);
   put_char_from_buf(&(client->team_name), buf);
   put_int_from_buf(&(client->team_id), buf);
