@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Wed Jun 11 16:20:47 2008 jordan aubry
+// Last update Wed Jun 11 19:13:05 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -149,6 +149,7 @@ void		Action::ActionLevelUp(Player*, std::string&)
 
 void		Action::ActionFork(Player*, std::string&)
 {
+  
 }
 
 void		Action::ActionCount(Player*, std::string&)

@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Tue Jun 10 15:06:24 2008 florent hochwelker
+** Last update Wed Jun 11 19:13:04 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -57,6 +57,7 @@
 #define ITEM_4	"textures/purple.bmp"
 #define ITEM_5	"textures/grass.bmp"
 #define ITEM_6	"textures/lava.bmp"
+#define EGG	"textures/egg.bmp"
 
 #define	INVADER			"models/perso.md2"
 #define	SKIN_1			"models/alien.bmp"
