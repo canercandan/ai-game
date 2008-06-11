@@ -5,20 +5,22 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Jun 11 19:01:30 2008 caner candan
-** Last update Wed Jun 11 20:08:07 2008 caner candan
+** Last update Wed Jun 11 22:03:20 2008 caner candan
 */
 
 #include <SDL.h>
 #include "observator_2d.h"
 
-static t_object	object[] = {
+static t_object	object[NB_GFX] = {
   {"images/floor.bmp", 4, FLOOR_X, FLOOR_Y, 0, 0, 0, 0, 0},
   {"images/status.bmp", 5, 17, 17, -5, -35, 192, 192, 192},
   {"images/object.bmp", 4, 32, 32, 0, 0, 0, 0, 0},
   {"images/bibi.bmp", 4, 32, 48, 0, 0, 255, 255, 255},
   {"images/pirate.bmp", 4, 40,	56, 0, 0, 255, 255, 255},
   {"images/fenix.bmp", 4, 96, 96, -30, -15, 255, 255, 255},
-  {NULL, 0, 0, 0, 0, 0, 0, 0, 0}
+  {"images/chicken.bmp", 4, 30, 30, 5, 20, 255, 255, 255},
+  {"images/kuipou.bmp", 4, 80, 96, -25, -30, 255, 255, 255},
+  {"images/egg.bmp", 4, 24, 24, 0, 0, 255, 255, 255}
 };
 
 static void	init(t_gfx *gfx, int idx)

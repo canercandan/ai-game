@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-// Last update Wed Jun 11 19:43:28 2008 caner candan
+// Last update Wed Jun 11 21:48:09 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -27,7 +27,8 @@
 # define UNIT_X		5.0
 # define UNIT_Y		5.0
 # define TITLE		"OBS 2D !!!"
-# define NB_GFX		6
+# define NB_GFX		9
+# define NB_CHARACTER	5
 # define FLOOR_X	32
 # define FLOOR_Y	32
 
@@ -83,7 +84,10 @@ enum
     OBJECT,
     BIBI,
     PIRATE,
-    FENIX
+    FENIX,
+    CHICKEN,
+    KUIPOU,
+    EGG
   };
 
 /*

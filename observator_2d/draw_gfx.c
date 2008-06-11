@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May 14 08:56:50 2008 caner candan
-** Last update Wed Jun 11 19:56:59 2008 caner candan
+** Last update Wed Jun 11 21:51:03 2008 caner candan
 */
 
 #include <SDL.h>
@@ -40,12 +40,7 @@ static void	put_clients(t_info *info, int anim)
       p.y = CLIENT(t->data)->y * FLOOR_Y;
       p.anim = CLIENT(t->data)->anim
 	+ (16 * (CLIENT(t->data)->level - 1));
-      if ((CLIENT(t->data)->team_id % 3) == 0)
-	p.gfx = BIBI;
-      else if ((CLIENT(t->data)->team_id % 3) == 1)
-	p.gfx = PIRATE;
-      else
-	p.gfx = FENIX;
+      p.gfx = BIBI + (CLIENT(t->data)->team_id % NB_CHARACTER);
       set_object(info->gfx, &p);
       t = t->next;
     }
