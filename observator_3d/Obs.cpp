@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Wed Jun 11 21:00:55 2008 florent hochwelker
+// Last update Wed Jun 11 22:54:10 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -105,8 +105,9 @@ void				Obs::AddPlayer(std::stringstream& ss)
 {
   std::string	tmp;
   Player* player = new Player();
+  int			isaBird;
 
-  ss >> tmp
+  ss >> tmp >> isaBird
      >> player->_id
      >> player->_team
      >> player->_id_team
