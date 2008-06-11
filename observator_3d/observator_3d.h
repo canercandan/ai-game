@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Wed Jun 11 19:13:04 2008 florent hochwelker
+** Last update Wed Jun 11 19:46:14 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -59,8 +59,16 @@
 #define ITEM_6	"textures/lava.bmp"
 #define EGG	"textures/egg.bmp"
 
-#define	INVADER			"models/perso.md2"
-#define	SKIN_1			"models/alien.bmp"
+#define	INVADER			"models/Invader/invader.md2"
+#define	INVADER_1			"models/Invader/Alien.bmp"
+
+#define DAEMON			"models/Daemon/daemon.md2"
+
+#define YOHKO			"models/Yohko/yohko.md2"
+
+#define HOMICIDAL		"models/Homicidal/homicidal.md2"
+
+#define DROID			"models/Droid/droid.md2"
 
 /*
 ** Casts macros

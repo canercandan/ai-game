@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Wed Jun 11 19:35:14 2008 jordan aubry
+// Last update Wed Jun 11 19:47:08 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -178,7 +178,7 @@ void					Obs::DrawPlayer(Player* player)
       player->_img->setAnimationSpeed(0);
       player->_img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
       player->_img->setPosition(irr::core::vector3df(Y(player->_y), 0, X(player->_x)));
-      player->_img->setMaterialTexture(0, this->_driver->getTexture(SKIN_1));
+      player->_img->setMaterialTexture(0, this->_driver->getTexture(INVADER_1));
       if (player->_z == NORTH)
 	player->_z = OBS_NORTH;
       else if (player->_z == EAST)
