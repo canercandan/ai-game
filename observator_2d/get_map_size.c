@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 16:30:12 2008 caner candan
-** Last update Sun Jun  8 05:05:58 2008 caner candan
+** Last update Wed Jun 11 09:50:20 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -30,19 +30,19 @@ static void	alloc_object(t_info *info)
     }
 }
 
-static void	alloc_broadcast(t_info *info)
+static void	alloc_status(t_info *info)
 {
   int	x;
   int	y;
 
-  info->broadcast = malloc(sizeof(*(info->broadcast))
-			   * info->x);
+  info->status = malloc(sizeof(*(info->status))
+			* info->x);
   for (x = 0; x < info->x; x++)
     {
-      info->broadcast[x] = malloc(sizeof(**(info->broadcast))
-				  * info->y);
+      info->status[x] = malloc(sizeof(**(info->status))
+			       * info->y);
       for (y = 0; y < info->y; y++)
-	info->broadcast[x][y] = 0;
+	info->status[x][y] = -1;
     }
 }
 
@@ -53,7 +53,7 @@ void	get_map_size(t_info *info, char **buf, char *first)
   if (info->x && info->y)
     {
       alloc_object(info);
-      alloc_broadcast(info);
+      alloc_status(info);
       info->x += 2;
       info->y += 2;
       create_video(info);

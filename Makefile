@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Wed Jun 11 13:48:59 2008 florent hochwelker
+## Last update Wed Jun 11 20:12:55 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -151,10 +151,6 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)destroy_screen.c			\
 			$(PATH_OBS_2D)catch_keys.c			\
 			$(PATH_OBS_2D)set_backdrop.c			\
-			$(PATH_OBS_2D)set_character.c			\
-			$(PATH_OBS_2D)set_status.c			\
-			$(PATH_OBS_2D)set_floor.c			\
-			$(PATH_OBS_2D)set_pirate.c			\
 			$(PATH_OBS_2D)set_object.c			\
 			$(PATH_OBS_2D)push_list.c			\
 			$(PATH_OBS_2D)pop_list.c			\
@@ -184,6 +180,7 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)act_kick.c			\
 			$(PATH_OBS_2D)act_broadcast.c			\
 			$(PATH_OBS_2D)act_levelup.c			\
+			$(PATH_OBS_2D)act_levelup_progress.c		\
 			$(PATH_OBS_2D)act_fork.c			\
 			$(PATH_OBS_2D)act_count.c			\
 			$(PATH_OBS_2D)act_bird.c			\

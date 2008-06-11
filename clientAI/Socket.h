@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:26:34 2008 caner candan
-// Last update Thu Jun  5 11:55:32 2008 caner candan
+// Last update Tue Jun 10 20:38:32 2008 caner candan
 //
 
 #ifndef __SOCKET_H__
@@ -13,26 +13,28 @@
 
 # include <string>
 
-# define DEBUG	0
-
 class	Socket
 {
 public:
-  Socket();
-  Socket(const std::string& host, int port);
+  Socket(bool verbose = false);
+  Socket(const std::string& host, int port,
+	 bool verbose = false);
   Socket(const Socket& s);
   ~Socket();
   Socket&	operator=(const Socket& s);
 
   void		connectSocket(const std::string& host, int port);
   void		closeSocket(void);
-  void		send(const std::string& s);
-  std::string	recv(void);
-  std::string	sendRecv(const std::string &s);
+  void		send(const std::string& s,
+		     bool verbose = false);
+  std::string	recv(bool verbose = false);
+  std::string	sendRecv(const std::string &s,
+			 bool verbose = false);
 
   bool		isConnected(void);
 private:
   int	_socket;
+  bool	_verbose;
 };
 
 #endif /* !__SOCKET_H__ */

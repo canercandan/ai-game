@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Tue Jun 10 10:21:08 2008 caner candan
+// Last update Wed Jun 11 09:38:04 2008 caner candan
 //
 
 #include <string>
@@ -48,8 +48,8 @@ std::string	AI::objectName[NB_OBJECT] =
    "phiras", "thystame", "nourriture", "joueur"};
 
 AI::AI()
-  : _port(0), _x(0), _y(0), _level(0), _maxClient(0),
-    _qtePerObject(NB_OBJECT)
+  : _port(0), _x(0), _y(0), _level(1),
+    _maxClient(0), _qtePerObject(NB_OBJECT)
 {}
 
 AI::AI(const std::string& host, int port,
@@ -200,26 +200,86 @@ void		AI::actionLoop(void)
   ::srandom(::getpid());
   while (42)
     {
-//       if (this->_isNeedFood(SEE))
-	this->_seekFood();
-//       this->_socket.sendRecv("broadcast\n");
-//       mesg = this->_socket.recv();
-//       std::cout << "mesg: [" << mesg << "]" << std::endl;
-//       this->_moveToK(mesg);
-      //::sleep(1);
-//       if (!this->_hasObjectInventoryToLevelUp())
-// 	{
-// 	  mesg = this->_socket.sendRecv("voir\n");
-// 	  if (!this->_hasObjectSeeToLevelUp(mesg))
-// 	    this->_actionRandomMove();
-// 	  else
-// 	    this->_takeNeedObject(mesg);
-// 	  continue;
-// 	}
-//       mesg = this->_socket.recv();
-//       if (this->_hasClientSameCase(mesg))
-// 	this->_moveToK(mesg);
+      if (this->_isNeedFood(SEE))
+	this->_seekForObject(FOOD);
+      if (this->_prepareToLevelUp())
+	{
+	  this->_seekForPlayerToLevelUp();
+	  this->_emptyCase();
+	  this->_dropNeedsOnCase();
+	  this->_socket.sendRecv(actionsName[LEVELUP] + '\n', true);
+	  this->_socket.recv(true);
+	  this->_socket.sendRecv(actionsName[SEE] + '\n', true);
+	  break;
+	}
     }
+}
+
+void	AI::_dropNeedsOnCase(void)
+{
+  int	i;
+  int	j;
+
+  for (i = 0; i < NB_ROCK; i++)
+    for (j = 0; j < nbObjectPerLevel[LEVEL(this->_level + 1)][i]; j++)
+      this->_socket.sendRecv(actionsName[DROP_OBJ] + ' '
+			     + objectName[i] + '\n', true);
+}
+
+void		AI::_emptyCase(void)
+{
+  std::string	mesg;
+  int		fnd;
+  int		i;
+
+  fnd = 1;
+  while (fnd)
+    {
+      fnd = 0;
+      if ((mesg = this->_socket.sendRecv(actionsName[SEE] + '\n')) == "")
+	return;
+      mesg = mesg.substr(0, mesg.find(','));
+      for (i = 0; i < NB_ROCK + 1; i++)
+	{
+	  if (mesg.find(objectName[i]) == std::string::npos)
+	    continue;
+	  this->_socket.sendRecv(actionsName[TAKE_OBJ] + ' '
+				 + objectName[i] + '\n');
+	  fnd = 1;
+	}
+    }
+}
+
+bool			AI::_prepareToLevelUp(void)
+{
+  std::istringstream	iss;
+  std::string		mesg;
+  size_t		pos;
+  int			value;
+  int			i;
+
+  try
+    {
+      if ((mesg = this->_socket.sendRecv(actionsName[INVENTORY] + '\n')) == "")
+	throw true;
+      for (i = 0; i < NB_ROCK; i++)
+	{
+	  if ((pos = mesg.find(objectName[i])) == std::string::npos)
+	    return (false);
+	  mesg = mesg.substr(pos + objectName[i].size() + 1);
+	  iss.str(mesg.substr(0, mesg.find(' ')));
+	  iss >> value;
+	  if (nbObjectPerLevel[LEVEL(this->_level + 1)][i] > value)
+	    this->_seekForObject(static_cast<Object>(i));
+	}
+      return (true);
+    }
+  catch (bool)
+    {
+      std::cout << "AI: trame incorrect to prepare "
+		<< "to level up" << std::endl;
+    }
+  return (false);
 }
 
 bool			AI::_isNeedFood(AI::Action idx)
@@ -250,22 +310,67 @@ bool			AI::_isNeedFood(AI::Action idx)
   return (true);
 }
 
-void		AI::_seekFood(void)
+void		AI::_seekForObject(AI::Object idx)
 {
   std::string	mesg;
 
-  while ((mesg = this->_socket.sendRecv(actionsName[SEE] + '\n'))
-	 != "")
+  try
     {
-      if (mesg.find(objectName[FOOD]) != std::string::npos)
+      while (42)
 	{
-	  this->_goToGoodCase(mesg, FOOD);
-	  std::cout << actionsName[TAKE_OBJ] + ' ' + objectName[FOOD] << std::endl;
-	  this->_socket.sendRecv(actionsName[TAKE_OBJ] + ' ' +
-				 objectName[FOOD] + '\n');
-	  break;
+	  if ((mesg = this->_socket.sendRecv(actionsName[SEE] + '\n')) == "")
+	    throw true;
+	  if (mesg.find(objectName[idx]) != std::string::npos)
+	    {
+	      this->_goToGoodCase(mesg, idx);
+	      if (this->_socket.sendRecv(actionsName[TAKE_OBJ] + ' ' +
+					 objectName[idx] + '\n', true)
+		  == actionsReply[OK] + '\n')
+		break;
+	    }
+	  this->_randomMove();
 	}
-      this->_randomMove();
+    }
+  catch (bool)
+    {
+      std::cout << "trame incorrect to seek for object"
+		<< std::endl;
+    }
+}
+
+void		AI::_seekForPlayerToLevelUp(void)
+{
+  std::string	mesg;
+
+  try
+    {
+      if (nbClientPerLevel[LEVEL(this->_level + 1)] <= 1)
+	throw 1;
+      while (42)
+	{
+	  if ((mesg = this->_socket.sendRecv(actionsName[SEE] + '\n')) == "")
+	    throw 2;
+	  mesg = mesg.substr(objectName[PLAYER].size());
+	  if (mesg.find(objectName[PLAYER]) != std::string::npos)
+	    {
+	      this->_goToGoodCase(mesg, PLAYER);
+	      if (this->_hasEnoughClientSameCase())
+		throw 3;
+	    }
+	  this->_randomMove();
+	}
+    }
+  catch (int e)
+    {
+      std::cout << "AI: ";
+      if (e == 1)
+	std::cout << "player not necessary";
+      else if (e == 2)
+	std::cout << "trame incorrect to seek for "
+		  << "player to level up";
+      else if (e == 3)
+	std::cout << "player found";
+      std::cout << std::endl;
     }
 }
 
@@ -288,7 +393,6 @@ void	AI::_goToGoodCase(const std::string& mesg,
       cnt++;
   if (!cnt)
     return;
-  std::cout << "going to good case" << std::endl;
   up = 1;
   add = 1;
   begin = 1;
@@ -329,8 +433,6 @@ void	AI::_randomMove(void)
 
   idx = ::random() % NB_ACTIONS_MOVE;
   this->_socket.sendRecv(actionsMove[idx] + '\n');
-  std::cout << "action [" << actionsMove[idx]
-	    << "]" << std::endl;
 }
 
 bool	AI::_hasObjectInventoryToLevelUp(void)
@@ -354,122 +456,129 @@ bool	AI::_hasObjectSeeToLevelUp(const std::string& mesg)
   return (true);
 }
 
-void	AI::_takeNeedObject(const std::string& mesg)
+void		AI::_takeNeedObject(void)
 {
-  int	i;
-
-  for (i = 0; i < NB_OBJECT; i++)
-    if (mesg.find(objectName[i]) != std::string::npos)
-      if (_qtePerObject[i]
-	  < nbObjectPerLevel[LEVEL(this->_level + 1)][i])
-	this->_socket.sendRecv(actionsName[TAKE_OBJ] +
-			       ' ' + objectName[i]);
-      else if (_qtePerObject[i]
-	       > nbObjectPerLevel[LEVEL(this->_level + 1)][i])
-	this->_socket.sendRecv(actionsName[DROP_OBJ] +
-			       ' ' + objectName[i]);
-}
-
-void		AI::_moveToK(const std::string& mesg)
-{
-  std::string	recv;
-  size_t	pos;
+  std::string	mesg;
   int		i;
-  
-  if (mesg.find(actionsReply[MESSAGE] + " 0") != std::string::npos)
-    return;
-  if ((pos = mesg.find(actionsReply[MESSAGE])) != std::string::npos)
+
+  try
     {
-      pos += actionsReply[MESSAGE].size() + 1;
-      std::cout << "i know " << mesg[pos] << std::endl;
-      if (mesg[pos] == '3')
-	this->_socket.sendRecv(actionsName[LEFT] + '\n');
-      else if (mesg[pos] == '7')
-	this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-      else if (mesg[pos] == '4' ||
-	       mesg[pos] == '5' ||
-	       mesg[pos] == '6')
-	{
-	  this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-	  this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-	}
-      i = 0;
-      while ((recv = this->_socket.sendRecv(actionsName[SEE] + '\n')) != "")
-	{
-	  std::cout << "i know too" << std::endl;
-	  if (recv.substr(objectName[PLAYER].size()).find(objectName[PLAYER])
-	      != std::string::npos)
-	    {
-	      std::cout << "go to case" << std::endl;
-	      this->_goToGoodCase(recv.substr(objectName[PLAYER].size()), PLAYER);
-	      break;
-	    }
-	  if (mesg[pos] == '4' || mesg[pos] == '8')
-	    {
-	      std::cout << "turn right" << std::endl;
-	      if (!(i % 2))
-		this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-	      else
-		this->_socket.sendRecv(actionsName[LEFT] + '\n');
-	      this->_socket.sendRecv(actionsName[UP] + '\n');
-	    }
-	  else if (mesg[pos] == '6' || mesg[pos] == '2')
-	    {
-	      std::cout << "turn left" << std::endl;
-	      if (!(i % 2))
-		this->_socket.sendRecv(actionsName[LEFT] + '\n');
-	      else
-		this->_socket.sendRecv(actionsName[RIGHT] + '\n');
-	      this->_socket.sendRecv(actionsName[UP] + '\n');
-	    }
-	  else
-	    {
-	      std::cout << "up" << std::endl;
-	      this->_socket.sendRecv(actionsName[UP] + '\n');
-	    }
-	  i++;
-	}
+      if ((mesg = this->_socket.sendRecv(actionsName[SEE] + '\n')) == "")
+	throw true;
+      for (i = 0; i < NB_OBJECT; i++)
+	if (mesg.find(objectName[i]) != std::string::npos)
+	  if (_qtePerObject[i]
+	      < nbObjectPerLevel[LEVEL(this->_level + 1)][i])
+	    this->_socket.sendRecv(actionsName[TAKE_OBJ] +
+				   ' ' + objectName[i]);
+	  else if (_qtePerObject[i]
+		   > nbObjectPerLevel[LEVEL(this->_level + 1)][i])
+	    this->_socket.sendRecv(actionsName[DROP_OBJ] +
+				   ' ' + objectName[i]);
+    }
+  catch (bool)
+    {
+      std::cout << "trame incorrect to take need object"
+		<< std::endl;
     }
 }
 
-void	AI::_actionRandomMove(void)
+void		AI::_moveToK(void)
 {
-  long	idx;
+  std::string	mesg;
+  std::string	recv;
+  size_t	pos;
+  int		i;
 
-  idx = ::random() % NB_ACTIONS;
-  this->_socket.sendRecv(actionsName[idx] + '\n');
-  std::cout << "action [" << actionsName[idx]
-	    << "]" << std::endl;
+  try
+    {
+      if ((mesg = this->_socket.recv()) == "")
+	throw 1;
+      if (mesg.find(actionsReply[MESSAGE] + " 0") != std::string::npos)
+	throw 2;
+      if ((pos = mesg.find(actionsReply[MESSAGE])) != std::string::npos)
+	{
+	  pos += actionsReply[MESSAGE].size() + 1;
+	  if (mesg[pos] == '3')
+	    this->_socket.sendRecv(actionsName[LEFT] + '\n');
+	  else if (mesg[pos] == '7')
+	    this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+	  else if (mesg[pos] == '4' ||
+		   mesg[pos] == '5' ||
+		   mesg[pos] == '6')
+	    {
+	      this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+	      this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+	    }
+	  i = 0;
+	  while ((recv = this->_socket.sendRecv(actionsName[SEE] + '\n'))
+		 != "")
+	    {
+	      if (recv.substr(objectName[PLAYER].size()
+			      ).find(objectName[PLAYER])
+		  != std::string::npos)
+		{
+		  this->_goToGoodCase(recv.substr(objectName[PLAYER].size()), PLAYER);
+		  break;
+		}
+	      if (mesg[pos] == '4' || mesg[pos] == '8')
+		{
+		  if (!(i % 2))
+		    this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+		  else
+		    this->_socket.sendRecv(actionsName[LEFT] + '\n');
+		  this->_socket.sendRecv(actionsName[UP] + '\n');
+		}
+	      else if (mesg[pos] == '6' || mesg[pos] == '2')
+		{
+		  if (!(i % 2))
+		    this->_socket.sendRecv(actionsName[LEFT] + '\n');
+		  else
+		    this->_socket.sendRecv(actionsName[RIGHT] + '\n');
+		  this->_socket.sendRecv(actionsName[UP] + '\n');
+		}
+	      else
+		this->_socket.sendRecv(actionsName[UP] + '\n');
+	      i++;
+	    }
+	}
+    }
+  catch (int e)
+    {
+      std::cout << "AI: ";
+      if (e == 1)
+	std::cout << "trame incorrect to going to good case";
+      else if (e == 2)
+	std::cout << "it's the same case that client one";
+      std::cout << std::endl;
+    }
 }
 
 bool		AI::_hasEnoughClientSameCase(void)
 {
   std::string	mesg;
-  int		nbclient;
+  int		cnt;
+  size_t	pos;
 
-  nbclient = 0;
-  this->_socket.sendRecv(actionsName[BROADCAST] + '\n');
-  while ((mesg = this->_socket.recv()).find(actionsReply[MESSAGE])
-	 != std::string::npos)
-    if (mesg.find(actionsReply[MESSAGE] + " 0") != std::string::npos)
-      nbclient++;
-  if (nbclient == nbClientPerLevel[LEVEL(this->_level + 1)])
-    return (true);
-  return (false);
-}
-
-bool		AI::_canLevelUp(void)
-{
-  std::string	mesg;
-  int		i;
-
-  if (this->_hasEnoughClientSameCase())
-    this->_socket.send(actionsName[SEE] + '\n');
-  mesg = this->_socket.recv();
-  for (i = 0; i < NB_OBJECT; i++)
-    if (mesg.find(objectName[i]) != std::string::npos)
-      {
-	break;
-      }
+  try
+    {
+      if ((mesg = this->_socket.sendRecv(actionsName[SEE] + '\n')) == "")
+	throw true;
+      mesg = mesg.substr(0, mesg.find(','));
+      cnt = 0;
+      while ((pos = mesg.find(objectName[PLAYER])) != std::string::npos)
+	{
+	  cnt++;
+	  mesg = mesg.substr(pos + objectName[PLAYER].size());
+	}
+      if (cnt == nbClientPerLevel[LEVEL(this->_level + 1)])
+	return (true);
+    }
+  catch (bool)
+    {
+      std::cout << "AI: trame incorrect to test if there"
+		<< "are enought client in the same case"
+		<< std::endl;
+    }
   return (false);
 }

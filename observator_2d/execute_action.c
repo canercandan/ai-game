@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 16:43:47 2008 caner candan
-** Last update Tue May 13 22:33:57 2008 caner candan
+** Last update Wed Jun 11 09:59:43 2008 caner candan
 */
 
 #include <stdio.h>
@@ -21,6 +21,7 @@ static t_actions	actions[] = {
   {KICK, act_kick},
   {BROADCAST, act_broadcast},
   {LEVELUP, act_levelup},
+  {LEVELUP_PROGRESS, act_levelup_progress},
   {FORK, act_fork},
   {COUNT, act_count},
   {BIRD, act_bird},

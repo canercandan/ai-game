@@ -5,11 +5,12 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 19:20:08 2008 caner candan
-** Last update Sun Jun  8 04:31:57 2008 caner candan
+** Last update Wed Jun 11 10:11:54 2008 caner candan
 */
 
 #include <stdlib.h>
 #include "observator_2d.h"
+#include "common.h"
 
 int	act_drop_obj(t_info *info, t_client *client, char *param)
 {
@@ -19,5 +20,6 @@ int	act_drop_obj(t_info *info, t_client *client, char *param)
     return (-1);
   object = atoi(param);
   info->object[(int)client->x][(int)client->y][object]++;
+  info->status[(int)client->x][(int)client->y] = DROP_OBJ;
   return (0);
 }

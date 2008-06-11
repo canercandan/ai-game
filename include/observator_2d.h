@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-// Last update Mon Jun  9 21:06:14 2008 caner candan
+// Last update Wed Jun 11 19:43:28 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -27,6 +27,9 @@
 # define UNIT_X		5.0
 # define UNIT_Y		5.0
 # define TITLE		"OBS 2D !!!"
+# define NB_GFX		6
+# define FLOOR_X	32
+# define FLOOR_Y	32
 
 /*
 ** Server's infos
@@ -34,59 +37,7 @@
 # define MSG_WELCOME	"BIENVENUE\n"
 # define ADD_CLIENT	"ADD_CLIENT"
 # define BROADCAST_MESG	"message"
-# define NB_OBJECT		7
-
-/*
-** Character's infos
-*/
-# define CHARACTER_FILE		"images/bibi.bmp"
-# define CHARACTER_MAX_PER_LINE	4
-# define CHARACTER_X		32
-# define CHARACTER_Y		48
-# define CHARACTER_R		255
-# define CHARACTER_G		255
-# define CHARACTER_B		255
-
-/*
-** Status' infos
-*/
-# define STATUS_FILE		"images/status.bmp"
-# define STATUS_MAX_PER_LINE	5
-# define STATUS_X		17
-# define STATUS_Y		17
-# define STATUS_R		192
-# define STATUS_G		192
-# define STATUS_B		192
-
-/*
-** Floor's infos
-*/
-# define FLOOR_FILE		"images/floor.bmp"
-# define FLOOR_MAX_PER_LINE	4
-# define FLOOR_X		32
-# define FLOOR_Y		32
-
-/*
-** Pirate's infos
-*/
-# define PIRATE_FILE		"images/pirate.bmp"
-# define PIRATE_MAX_PER_LINE	4
-# define PIRATE_X		40
-# define PIRATE_Y		56
-# define PIRATE_R		102
-# define PIRATE_G		78
-# define PIRATE_B		79
-
-/*
-** Object's infos
-*/
-# define OBJECT_FILE		"images/object.bmp"
-# define OBJECT_MAX_PER_LINE	4
-# define OBJECT_X		32
-# define OBJECT_Y		32
-# define OBJECT_R		0
-# define OBJECT_G		0
-# define OBJECT_B		0
+# define NB_OBJECT	7
 
 /*
 ** Null's define
@@ -121,6 +72,19 @@
 # define CLIENT(data)		((t_client *) (data))
 # define INVENTORY(data)	((t_inventory *) (data))
 # define TIMEVAL(data)		((struct timeval *) (data))
+
+/*
+** Gfx objects
+*/
+enum
+  {
+    FLOOR,
+    STATUS,
+    OBJECT,
+    BIBI,
+    PIRATE,
+    FENIX
+  };
 
 /*
 ** Gerneric list of list chaine
@@ -163,11 +127,7 @@ typedef struct	s_gfx
 {
   void		*video;
   void		*infos;
-  void		*character;
-  void		*status;
-  void		*floor;
-  void		*pirate;
-  void		*object;
+  void		*object[NB_GFX];
 }		t_gfx;
 
 /*
@@ -186,7 +146,7 @@ typedef struct	s_info
   t_gfx		*gfx;
   float		time;
   int		(**object)[NB_OBJECT];
-  int		**broadcast;
+  int		**status;
 }		t_info;
 
 /*
@@ -197,6 +157,30 @@ typedef struct	s_actions
   int		idx;
   int		(*f)();
 }		t_actions;
+
+/*
+** Object's infos
+*/
+typedef struct	s_object
+{
+  char		*path;
+  int		max_per_line;
+  int		size_x;
+  int		size_y;
+  int		padding_x;
+  int		padding_y;
+  int		r;
+  int		g;
+  int		b;
+}		t_object;
+
+typedef struct	s_param
+{
+  int		gfx;
+  float		x;
+  float		y;
+  int		anim;
+}		t_param;
 
 /*
 ** Useful's functions
@@ -231,6 +215,8 @@ int	act_drop_obj(t_info *info, t_client *client, char *param);
 int	act_kick(t_info *info, t_client *client, char *param);
 int	act_broadcast(t_info *info, t_client *client, char *param);
 int	act_levelup(t_info *info, t_client *client, char *param);
+int	act_levelup_progress(t_info *info, t_client *client,
+			     char *param);
 int	act_fork(t_info *info, t_client *client, char *param);
 int	act_count(t_info *info, t_client *client, char *param);
 int	act_bird(t_info *info, t_client *client, char *param);
@@ -249,12 +235,8 @@ void	destroy_surface(void *surface);
 void	destroy_screen(void);
 int	catch_keys(void);
 void	set_backdrop(t_info *info);
-void	set_character(t_gfx *gfx, int nbr, float x, float y);
-void	set_status(t_gfx *gfx, int nbr, float x, float y);
-void	set_floor(t_gfx *gfx, int nbr, float x, float y);
-void	set_pirate(t_gfx *gfx, int nbr, float x, float y);
-void	set_object(t_gfx *gfx, int nbr, float x, float y);
-int	draw_gfx(t_info *info, char anim);
+void	set_object(t_gfx *gfx, t_param *p);
+int	draw_gfx(t_info *info, int anim);
 
 /*
 ** List chaine's functions

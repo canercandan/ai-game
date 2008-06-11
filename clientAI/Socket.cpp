@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Thu Jun  5 18:13:10 2008 caner candan
+// Last update Tue Jun 10 20:37:54 2008 caner candan
 //
 
 #include <sys/types.h>
@@ -19,12 +19,13 @@
 #include <iostream>
 #include "Socket.h"
 
-Socket::Socket()
-  : _socket(-1)
+Socket::Socket(bool verbose /*=false*/)
+  : _socket(-1), _verbose(verbose)
 {}
 
-Socket::Socket(const std::string& host, int port)
-  : _socket(-1)
+Socket::Socket(const std::string& host, int port,
+	       bool verbose /*=false*/)
+  : _socket(-1), _verbose(verbose)
 {
   connectSocket(host, port);
 }
@@ -37,7 +38,7 @@ Socket::~Socket()
   if (_socket >= 0)
     {
       ::close(_socket);
-      if (DEBUG)
+      if (_verbose)
 	std::cout << "Socket: socket closed" << std::endl;
     }
 }
@@ -59,10 +60,10 @@ void	Socket::connectSocket(const std::string& host, int port)
   try
     {
       pe = ::getprotobyname("tcp");
-      if ((_socket = ::socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
+      if ((this->_socket = ::socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
 	throw 1;
       sin.sin_family = AF_INET;
-      if (DEBUG)
+      if (this->_verbose)
 	std::cout << "Socket: Resolving " << host
 		  << " ..." << std::endl;
       if (!(h = ::gethostbyname(host.c_str())))
@@ -70,7 +71,7 @@ void	Socket::connectSocket(const std::string& host, int port)
       ::memcpy(&in, h->h_addr, sizeof(in));
       sin.sin_port = ::htons(port);
       sin.sin_addr.s_addr = ::inet_addr(inet_ntoa(in));
-      if (::connect(_socket, (struct sockaddr*)&sin, sizeof(sin)) < 0)
+      if (::connect(this->_socket, (struct sockaddr*)&sin, sizeof(sin)) < 0)
 	throw 3;
     }
   catch (int e)
@@ -102,7 +103,8 @@ void	Socket::closeSocket(void)
     }
 }
 
-void	Socket::send(const std::string& s)
+void	Socket::send(const std::string& s,
+		     bool verbose /*=false*/)
 {
   try
     {
@@ -110,7 +112,7 @@ void	Socket::send(const std::string& s)
 	throw 1;
       if (::send(this->_socket, s.c_str(), s.size(), 0) < 0)
 	throw 2;
-      if (DEBUG)
+      if (this->_verbose || verbose)
 	std::cout << "Socket: send [" << s << "]" << std::endl;
     }
   catch (int e)
@@ -124,7 +126,7 @@ void	Socket::send(const std::string& s)
     }
 }
 
-std::string	Socket::recv(void)
+std::string	Socket::recv(bool verbose /*=false*/)
 {
   char		buf[1024];
   int		size;
@@ -135,7 +137,7 @@ std::string	Socket::recv(void)
 	throw true;
       size = ::recv(this->_socket, buf, sizeof(buf), 0);
       buf[size] = 0;
-      if (DEBUG)
+      if (this->_verbose || verbose)
 	std::cout << "Socket: recv [" << buf << "]" << std::endl;
       return (std::string(buf));
     }
@@ -146,10 +148,11 @@ std::string	Socket::recv(void)
   return ("");
 }
 
-std::string	Socket::sendRecv(const std::string &s)
+std::string	Socket::sendRecv(const std::string &s,
+				 bool verbose /*=false*/)
 {
-  this->send(s);
-  return (this->recv());
+  this->send(s, verbose);
+  return (this->recv(verbose));
 }
 
 bool	Socket::isConnected(void)

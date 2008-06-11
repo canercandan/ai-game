@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May 14 08:56:50 2008 caner candan
-** Last update Tue Jun 10 09:46:18 2008 caner candan
+** Last update Wed Jun 11 19:56:59 2008 caner candan
 */
 
 #include <SDL.h>
@@ -25,9 +25,10 @@ static void	put_direction_to_anim(t_client *client)
     client->anim = 4;
 }
 
-static void	put_clients(t_info *info, char anim)
+static void	put_clients(t_info *info, int anim)
 {
   t_list	*t;
+  t_param	p;
 
   sort_client_list(&info->clients);
   t = info->clients;
@@ -35,18 +36,24 @@ static void	put_clients(t_info *info, char anim)
     {
       if (!anim)
 	put_direction_to_anim(t->data);
-      if (CLIENT(t->data)->team_id % 2)
-	set_character(info->gfx, CLIENT(t->data)->anim,
-		      CLIENT(t->data)->x, CLIENT(t->data)->y);
+      p.x = (CLIENT(t->data)->x + 1) * FLOOR_X;
+      p.y = CLIENT(t->data)->y * FLOOR_Y;
+      p.anim = CLIENT(t->data)->anim
+	+ (16 * (CLIENT(t->data)->level - 1));
+      if ((CLIENT(t->data)->team_id % 3) == 0)
+	p.gfx = BIBI;
+      else if ((CLIENT(t->data)->team_id % 3) == 1)
+	p.gfx = PIRATE;
       else
-	set_pirate(info->gfx, CLIENT(t->data)->anim,
-		   CLIENT(t->data)->x, CLIENT(t->data)->y);
+	p.gfx = FENIX;
+      set_object(info->gfx, &p);
       t = t->next;
     }
 }
 
 static void	put_object(t_info *info)
 {
+  t_param	p;
   int		x;
   int		y;
   int		z;
@@ -55,24 +62,44 @@ static void	put_object(t_info *info)
     for (y = 0; y < info->y - 2; y++)
       for (z = 0; z < NB_OBJECT; z++)
 	if (info->object[x][y][z])
-	  set_object(info->gfx, z, x, y + 1);
+	  {
+	    p.gfx = OBJECT;
+	    p.x = (x + 1) * FLOOR_X;
+	    p.y = (y + 1) * FLOOR_Y;
+	    p.anim = z;
+	    set_object(info->gfx, &p);
+	  }
 }
 
-static void	put_broadcast(t_info *info)
+static void	put_status(t_info *info)
 {
+  t_param	p;
   int		x;
   int		y;
 
   for (x = 0; x < info->x - 2; x++)
     for (y = 0; y < info->y - 2; y++)
-      if (info->broadcast[x][y])
+      if (info->status[x][y] >= 0)
 	{
-	  set_status(info->gfx, 0, x + 1, y + 1);
-	  info->broadcast[x][y] = 0;
+	  p.gfx = STATUS;
+	  p.x = (x + 1) * FLOOR_X;
+	  p.y = (y + 1) * FLOOR_Y;
+	  if (info->status[x][y] == BROADCAST)
+	    p.anim = 0;
+	  else if (info->status[x][y] == LEVELUP_PROGRESS)
+	    p.anim = 2;
+	  else if (info->status[x][y] == LEVELUP)
+	    p.anim = 8;
+	  else if (info->status[x][y] == TAKE_OBJ)
+	    p.anim = 20;
+	  else if (info->status[x][y] == DROP_OBJ)
+	    p.anim = 9;
+	  info->status[x][y] = -1;
+	  set_object(info->gfx, &p);
 	}
 }
 
-int	draw_gfx(t_info *info, char anim)
+int	draw_gfx(t_info *info, int anim)
 {
   if (!info->x || !info->y)
     return (-1);
@@ -80,7 +107,7 @@ int	draw_gfx(t_info *info, char anim)
   put_object(info);
   if (info->clients)
     put_clients(info, anim);
-  put_broadcast(info);
+  put_status(info);
   SDL_Flip(info->gfx->video);
   SDL_Delay(1);
   return (0);
