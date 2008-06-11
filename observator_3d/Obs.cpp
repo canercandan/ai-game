@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Wed Jun 11 19:47:08 2008 florent hochwelker
+// Last update Wed Jun 11 21:00:55 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -35,8 +35,6 @@ Obs::Obs(int ac, char **av)
   _texture[3] = _driver->getTexture(ITEM_4);
   _texture[4] = _driver->getTexture(ITEM_5);
   _texture[5] = _driver->getTexture(ITEM_6);
-  //_texture[6] = _driver->getTexture(FOOD);
-  _texture[7] = _driver->getTexture(EGG);
 }
 
 void		Obs::Auth(Socket& socket)

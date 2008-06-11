@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Wed May 14 11:39:25 2008 florent hochwelker
+** Last update Wed Jun 11 21:49:33 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -59,7 +59,7 @@ static int		get_last_action(struct timeval *empty,
   i = 0;
   while (queue && i < MAX_QUEUE)
     {
-      if (((t_queue*)queue->data)->client == client)
+      if (((t_queue*)queue->data)->client == client && ((t_queue*)queue->data)->idx_f != BIRD)
 	{
 	  empty->tv_sec = TIMEVAL(((t_queue*)queue->data)->time)->tv_sec;
 	  empty->tv_usec = TIMEVAL(((t_queue*)queue->data)->time)->tv_usec;
@@ -98,7 +98,7 @@ static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
 			       set_timeout(actions[BIRD].delay +
 					   actions[FORK].delay, info,
 					   tp),
-			       (t_client*)new_queue->client->team);
+			       new_queue->client);
       queue->idx_f = BIRD;
       push_list(&info->queue, queue);
     }

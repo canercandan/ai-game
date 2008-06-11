@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 02:11:04 2008 florent hochwelker
-** Last update Mon Jun  9 13:26:42 2008 florent hochwelker
+** Last update Wed Jun 11 22:06:04 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -13,13 +13,15 @@
 #include "common.h"
 
 void	obs_add_client_in_char(char *buf, t_client *client,
-			       t_info *info, int id)
+			       t_info *info, char is_a_bird)
 {
   char	buff[LEN_INVENTORY];
 
   buff[0] = 0;
   strcat(buf, "ADD_CLIENT ");
-  putnbr(id, buf);
+  putnbr(is_a_bird, buf);
+  strcat(buf, " ");
+  putnbr(client->id, buf);
   strcat(buf, " ");
   strcat(buf, client->team->name);
   strcat(buf, " ");

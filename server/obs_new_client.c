@@ -5,17 +5,17 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 02:32:45 2008 florent hochwelker
-** Last update Wed May 14 11:32:46 2008 florent hochwelker
+** Last update Wed Jun 11 22:05:32 2008 florent hochwelker
 */
 
 #include "server.h"
 
-void	obs_new_client(t_list *obs, t_client *client, t_info *info)
+void	obs_new_client(t_list *obs, t_client *client, t_info *info, char is_a_bird)
 {
   while (obs)
     {
       obs_add_client_in_char(CLIENT(obs->data)->buf_write, client, info,
-			     client->id);
+			     is_a_bird);
       obs = obs->next;
     }
 }

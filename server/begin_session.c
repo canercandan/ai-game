@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Wed Jun 11 13:22:24 2008 florent hochwelker
+** Last update Wed Jun 11 22:08:08 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -91,7 +91,7 @@ static int	check_team_and_connect(t_client **cli, t_info *info)
 	return (0);
       (*cli)->team = team;
       if (res != RESPAWN)
-	obs_new_client(info->observator, *cli, info);
+	obs_new_client(info->observator, *cli, info, 0);
       send_map_and_nb_connect(*cli, team, info);
     }
   else if (team == (t_team*)1)	/* le client est un observateur */
