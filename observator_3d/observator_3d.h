@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Mon Jun  9 20:55:10 2008 florent hochwelker
+** Last update Tue Jun 10 15:06:24 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -21,7 +21,7 @@
 #define FAR_VALUE		100000
 #define WIN_WEIGHT		640
 #define WIN_HEIGHT		480
-#define	CAMERA_SPEED		100
+#define	CAMERA_SPEED		100.0f
 
 #define NB_RESSOURCE		7
 

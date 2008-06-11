@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Mon Jun  9 19:05:49 2008 florent hochwelker
-** Last update Mon Jun  9 20:47:15 2008 florent hochwelker
+** Last update Tue Jun 10 14:13:34 2008 florent hochwelker
 */
 
 #include <map>
@@ -34,6 +34,8 @@ class	Action
   void		ActionLevelUpProgress(Player*, std::string&);
   void		ActionLevelUp(Player*, std::string&);
   void		ActionFork(Player*, std::string&);
+  void		ActionCount(Player*, std::string&);
+  void		ActionBird(Player*, std::string&);
   void		ActionDeath(Player*, std::string&);
   void		MovePlayer(Player*, int x, int y);
 

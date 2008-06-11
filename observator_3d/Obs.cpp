@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Tue Jun 10 10:30:19 2008 jordan aubry
+// Last update Tue Jun 10 14:28:35 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -150,7 +150,7 @@ void		Obs::DrawAll(Socket &socket)
 
   while (this->_device->run())
     {
-      _driver->beginScene(true, true, 0);
+      _driver->beginScene(false, true, 0);
       _scene->drawAll();
       _env->drawAll();
       _device->getGUIEnvironment()->drawAll();

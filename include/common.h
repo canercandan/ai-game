@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Mon Jun  9 14:17:53 2008 florent hochwelker
+** Last update Tue Jun 10 14:20:48 2008 florent hochwelker
 */
 
 #ifndef __COMMON_H__
@@ -53,6 +53,11 @@
 # define END_LIST_ITEM		"END_LIST_ITEM"
 # define START_LIST_PLAYER	"LIST_PLAYER"
 # define END_LIST_PLAYER	"END_LIST_PLAYER"
+
+/*
+** Macro useful
+*/
+# define ABS(value)		((value) < 0 ? -(value) : (value))
 
 /*
 ** Directions
