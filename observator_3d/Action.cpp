@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Wed Jun 11 14:57:43 2008 florent hochwelker
+// Last update Wed Jun 11 16:20:47 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -102,8 +102,13 @@ void		Action::ActionLeft(Player* player, std::string&)
   player->_img->setRotation(irr::core::vector3df(player->_y, player->_z ,player->_x));
 }
 
-void		Action::ActionSee(Player*, std::string&){ }
-void		Action::ActionInventory(Player*, std::string&){ }
+void		Action::ActionSee(Player*, std::string&)
+{
+}
+
+void		Action::ActionInventory(Player*, std::string&)
+{
+}
 
 void		Action::ActionTakeObj(Player* player, std::string& param)
 {
@@ -112,6 +117,7 @@ void		Action::ActionTakeObj(Player* player, std::string& param)
 
   ss >> idx;
   this->_obs->DeleteItem(player->_x, player->_y, idx);
+  player->_inventory[idx]++;
 }
 
 void		Action::ActionDropObj(Player* player, std::string& param)
@@ -122,13 +128,37 @@ void		Action::ActionDropObj(Player* player, std::string& param)
   ss >> idx;
   if (++this->_obs->_item[player->_x][player->_y][idx]._qte == 1)
     this->_obs->DrawItem(player->_x, player->_y, idx);
+  player->_inventory[idx]--;
 }
-  
-void		Action::ActionKick(Player*, std::string&){ }
-void		Action::ActionBroadcast(Player*, std::string&){ }
-void		Action::ActionLevelUpProgress(Player*, std::string&){ }
-void		Action::ActionLevelUp(Player*, std::string&){ }
-void		Action::ActionFork(Player*, std::string&){ }
-void		Action::ActionCount(Player*, std::string&){ }
-void		Action::ActionBird(Player*, std::string&){ }
-void		Action::ActionDeath(Player*, std::string&){ }
+
+void		Action::ActionKick(Player*, std::string&)
+{
+}
+
+void		Action::ActionBroadcast(Player*, std::string&)
+{
+}
+
+void		Action::ActionLevelUpProgress(Player*, std::string&)
+{
+}
+
+void		Action::ActionLevelUp(Player*, std::string&)
+{
+}
+
+void		Action::ActionFork(Player*, std::string&)
+{
+}
+
+void		Action::ActionCount(Player*, std::string&)
+{
+}
+
+void		Action::ActionBird(Player*, std::string&)
+{
+}
+
+void		Action::ActionDeath(Player*, std::string&)
+{
+}
