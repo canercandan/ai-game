@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Wed Jun 11 19:13:05 2008 florent hochwelker
+// Last update Wed Jun 11 19:41:03 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -131,35 +131,48 @@ void		Action::ActionDropObj(Player* player, std::string& param)
   player->_inventory[idx]--;
 }
 
-void		Action::ActionKick(Player*, std::string&)
+void		Action::ActionKick(Player* player, std::string&)
 {
+  (void) player;
 }
 
-void		Action::ActionBroadcast(Player*, std::string&)
+void		Action::ActionBroadcast(Player* player, std::string&)
 {
+  (void) player;
 }
 
-void		Action::ActionLevelUpProgress(Player*, std::string&)
+void		Action::ActionLevelUpProgress(Player* player, std::string&)
 {
+  (void) player;
 }
 
-void		Action::ActionLevelUp(Player*, std::string&)
+void		Action::ActionLevelUp(Player* player, std::string&)
 {
+  (void) player;
 }
 
-void		Action::ActionFork(Player*, std::string&)
+void		Action::ActionFork(Player* player, std::string&)
 {
-  
+  this->_obs->_item[player->_x][player->_y][7]._img =
+    this->_obs->GetScene()->addSphereSceneNode(5, 16, 0, -1,
+					   irr::core::vector3df(COORD(player->_x, this->_obs->GetX()), 35, COORD(player->_y, this->_obs->GetY())),
+					   irr::core::vector3df(0, 0, 0),
+					   irr::core::vector3df(6, 8, 5));
+  this->_obs->_item[player->_x][player->_y][7]._img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+  this->_obs->_item[player->_x][player->_y][7]._img->setMaterialTexture(0, this->_obs->_texture[7]);
 }
 
-void		Action::ActionCount(Player*, std::string&)
+void		Action::ActionCount(Player* player, std::string&)
 {
+  (void) player;
 }
 
-void		Action::ActionBird(Player*, std::string&)
+void		Action::ActionBird(Player* player, std::string&)
 {
+  (void) player;
 }
 
-void		Action::ActionDeath(Player*, std::string&)
+void		Action::ActionDeath(Player* player, std::string&)
 {
+  (void) player;
 }

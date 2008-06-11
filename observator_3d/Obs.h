@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Wed Jun 11 14:49:26 2008 florent hochwelker
+** Last update Wed Jun 11 19:40:15 2008 jordan aubry
 */
 
 #ifndef __OBS_H__
@@ -29,6 +29,8 @@ class	Obs : public Window
   Obs(int, char**);
   ~Obs() {}
 
+  irr::video::ITexture*                 _texture[NB_RESSOURCE];
+
   void		Auth(Socket& socket);
   void		DrawAll(Socket& socket);
 
@@ -48,7 +50,6 @@ class	Obs : public Window
   int					_t;
   std::string				_host;
   int					_port;
-  irr::video::ITexture*			_texture[NB_RESSOURCE];
 
   void					DrawPlate();
   void					DrawPlayer(Player* player);

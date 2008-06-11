@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Wed Jun 11 14:49:05 2008 florent hochwelker
+// Last update Wed Jun 11 19:35:14 2008 jordan aubry
 //
 
 #include <sstream>
@@ -35,6 +35,8 @@ Obs::Obs(int ac, char **av)
   _texture[3] = _driver->getTexture(ITEM_4);
   _texture[4] = _driver->getTexture(ITEM_5);
   _texture[5] = _driver->getTexture(ITEM_6);
+  //_texture[6] = _driver->getTexture(FOOD);
+  _texture[7] = _driver->getTexture(EGG);
 }
 
 void		Obs::Auth(Socket& socket)
@@ -146,10 +148,13 @@ void				Obs::DrawPlate()
 
 void		Obs::DrawAll(Socket &socket)
 {
+  irr::ITimer	*timer = this->_device->getTimer();
   std::string	line;
+  int		time;
 
   while (this->_device->run())
     {
+      time = timer->getRealTime();
       _driver->beginScene(false, true, 0);
       _scene->drawAll();
       _env->drawAll();
@@ -158,6 +163,9 @@ void		Obs::DrawAll(Socket &socket)
       line = socket.recv(false);
       if (line != "")
 	this->ExecuteAction(line);
+      time = timer->getRealTime() - time;
+      if (time < 50)
+	this->_device->sleep(50 - time);
     }
 }
 
