@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Tue Jun 10 14:28:35 2008 florent hochwelker
+// Last update Wed Jun 11 14:49:05 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -222,7 +222,7 @@ void		Obs::ExecuteAction(std::string& line)
 	{
 	  ss << line;
 	  ss >> id >> idx_action >> param;
-	  std::cout << "Executetion de " << idx_action << " par " << id << std::endl;
+	  std::cout << "Execution de " << idx_action << " par " << id << std::endl;
 	  action.ApplyAction(this->_player[id], idx_action, param);
 	}
       line = line.substr(line.find_first_of("\n") + 1);

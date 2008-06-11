@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Mon Jun  9 21:23:36 2008 florent hochwelker
+** Last update Wed Jun 11 14:49:26 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__
@@ -37,19 +37,20 @@ class	Obs : public Window
   inline std::string	GetHost() const { return this->_host; }
   inline int		GetPort() const { return this->_port; }
 
+  void			DrawItem(int x, int y, int type);
+  void			DeleteItem(int x, int y, int type);
+
+  std::vector< std::vector< std::vector<Item> > >	_item;
  private:
   int					_x;
   int					_y;
   std::map<int, Player*>		_player;
-  std::vector< std::vector< std::vector<Item> > >	_item;
   int					_t;
   std::string				_host;
   int					_port;
   irr::video::ITexture*			_texture[NB_RESSOURCE];
 
   void					DrawPlate();
-  void					DrawItem(int x, int y, int type);
-  void					DeleteItem(int x, int y, int type);
   void					DrawPlayer(Player* player);
   void					AddPlayer(std::stringstream& ss);
   void					ExecuteAction(std::string& line);

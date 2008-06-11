@@ -5,10 +5,11 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Tue Jun 10 14:27:19 2008 florent hochwelker
+// Last update Wed Jun 11 14:57:43 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
+#include <sstream>
 #include "common.h"
 #include "Action.h"
 #include "Obs.h"
@@ -103,8 +104,26 @@ void		Action::ActionLeft(Player* player, std::string&)
 
 void		Action::ActionSee(Player*, std::string&){ }
 void		Action::ActionInventory(Player*, std::string&){ }
-void		Action::ActionTakeObj(Player*, std::string&){ }
-void		Action::ActionDropObj(Player*, std::string&){ }
+
+void		Action::ActionTakeObj(Player* player, std::string& param)
+{
+  std::stringstream	ss(param);
+  int			idx;
+
+  ss >> idx;
+  this->_obs->DeleteItem(player->_x, player->_y, idx);
+}
+
+void		Action::ActionDropObj(Player* player, std::string& param)
+{
+  std::stringstream	ss(param);
+  int			idx;
+
+  ss >> idx;
+  if (++this->_obs->_item[player->_x][player->_y][idx]._qte == 1)
+    this->_obs->DrawItem(player->_x, player->_y, idx);
+}
+  
 void		Action::ActionKick(Player*, std::string&){ }
 void		Action::ActionBroadcast(Player*, std::string&){ }
 void		Action::ActionLevelUpProgress(Player*, std::string&){ }

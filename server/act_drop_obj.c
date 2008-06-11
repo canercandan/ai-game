@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May 13 21:01:04 2008 majdi
+** Last update Wed Jun 11 15:00:54 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -15,6 +15,7 @@
 
 static int		check_if_enough_hp(t_info *info, t_client *client)
 {
+  t_ressource		*ressource;
   struct timeval	tp;
 
   gettimeofday(&tp, NULL);
@@ -22,6 +23,9 @@ static int		check_if_enough_hp(t_info *info, t_client *client)
       (FOOD_HP * info->time) > 0)
     {
       client->hp -= FOOD_HP * info->time;
+      ressource = &gl_ressource[NOURRITURE];
+      push_list(&(info->zone[client->x][client->y].ressources),
+		ressource);
       SEND(client->buf_write, OK);
       return (1);
     }
