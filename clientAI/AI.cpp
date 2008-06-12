@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Thu Jun 12 19:42:26 2008 caner candan
+// Last update Thu Jun 12 20:26:59 2008 caner candan
 //
 
 #include <string>
@@ -205,10 +205,10 @@ void		AI::actionLoop(void)
   try
     {
       this->_socket.send(actionsName[SEE] + END);
-      if (!this->_level)
-	this->_foundLevel(mesg);
       while ((mesg = this->_socket.recv(true)) != EMPTY)
 	{
+	  if (!this->_level)
+	    this->_foundLevel(mesg);
 // 	  if (this->_isNeedFood(SEE))
 // 	    this->_seekForObject(FOOD);
 	  if (this->_prepareToLevelUp())
@@ -240,17 +240,15 @@ void		AI::_foundLevel(const std::string& mesg)
   size_t	size;
   size_t	i;
   size_t	cnt;
-  int		lvl;
 
   size = mesg.size();
   cnt = 0;
   for (i = 0; i < size; i++)
     if (mesg[i] == CM)
       cnt++;
-  lvl = 0;
   for (i = 1; i < cnt; i += 2)
-    lvl++;
-  std::cout << "level found: [" << lvl
+    this->_level++;
+  std::cout << "level found: [" << this->_level
 	    << "]" << std::endl;
 }
 
