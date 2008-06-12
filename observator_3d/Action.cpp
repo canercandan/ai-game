@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Thu Jun 12 13:40:14 2008 florent hochwelker
+// Last update Thu Jun 12 15:31:51 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -110,6 +110,8 @@ void		Action::ActionTakeObj(Player* player, std::string& param)
   ss >> idx;
   this->_obs->DeleteItem(player->_x, player->_y, idx);
   player->_inventory[idx]++;
+  player->_img->setFrameLoop(532, 548);
+  player->_anim = 15;
 }
 
 void		Action::ActionDropObj(Player* player, std::string& param)
@@ -121,6 +123,8 @@ void		Action::ActionDropObj(Player* player, std::string& param)
   if (++this->_obs->_item[player->_x][player->_y][idx]._qte == 1)
     this->_obs->DrawItem(player->_x, player->_y, idx);
   player->_inventory[idx]--;
+  player->_img->setFrameLoop(532, 548);
+  player->_anim = 15;
 }
 
 void		Action::ActionFork(Player* player, std::string&)

@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:53:08 2008 jordan aubry
-** Last update Thu Jun 12 11:49:10 2008 jordan aubry
+** Last update Thu Jun 12 15:37:01 2008 florent hochwelker
 */
 
 #ifndef __PLAYER_H__
@@ -21,7 +21,7 @@
 class	Player
 {
  public:
- Player() : _inventory(NB_RESSOURCE, 0) {}
+ Player() : _inventory(NB_RESSOURCE, 0) { _anim = 0; }
   ~Player() {}
 
   inline int		GetX() const { return this->_x; }

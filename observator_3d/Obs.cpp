@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Thu Jun 12 13:39:35 2008 florent hochwelker
+// Last update Thu Jun 12 18:37:00 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -177,22 +177,23 @@ void		Obs::DrawAll(Socket &socket)
       this->_env->drawAll();
       this->_device->getGUIEnvironment()->drawAll();
       this->_driver->endScene();
-      for (it = this->_player.begin(); it != this->_player.end(); it++)
-	{
-	  if (it->second->_anim > 0)
-	    it->second->_anim--;
-	  else if (it->second->_anim == 0)
-	    {
-	      it->second->_img->setFrameLoop(105, 120);
-	      it->second->_anim--;
-	    }
-	}
+      for (it = this->_player.begin(); it != this->_player.end(); ++it)
+      	{
+      	  if (it->second->_anim > 0)
+      	    it->second->_anim--;
+      	  else if (it->second->_anim == 0)
+      	    {
+      	      std::cout << "un mac de chocolat" << std::endl;
+      	      it->second->_img->setFrameLoop(1, 159);
+      	      it->second->_anim--;
+      	    }
+      	}
       line = socket.recv(false);
       if (line != "")
 	this->ExecuteAction(line);
       time = timer->getRealTime() - time;
       if (time < 50)
-	this->_device->sleep(50 - time);
+      	this->_device->sleep(50 - time);
     }
 }
 
@@ -216,6 +217,7 @@ void					Obs::DrawPlayer(Player* player)
 	player->_z = OBS_SOUTH;
       player->_img->setRotation(irr::core::vector3df(0, player->_z, 0));
       player->_anim = 0;
+      player->_img->setLoopMode(true);
     }
 }
 

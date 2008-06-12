@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Tue May 13 20:04:29 2008 majdi
+** Last update Thu Jun 12 15:39:38 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -20,12 +20,18 @@ int		act_take_obj(char *param, t_client *client, t_info *info)
 
   list = info->zone[client->x][client->y].ressources;
   if (!exist_data_from_list(list, param))
-    SEND(client->buf_write, KO);
+    {
+      SEND(client->buf_write, KO);
+      return (-1);
+    }
   else
     {
       idx = get_ressource_idx(param);
       if (idx == -1)
-	SEND(client->buf_write, KO);
+	{
+	  SEND(client->buf_write, KO);
+	  return (-1);
+	}
       else
 	{
 	  if (!strcmp(param, gl_ressource[NB_INVENTORY - 1].name))
