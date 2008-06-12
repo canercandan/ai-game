@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Wed Jun 11 19:46:14 2008 florent hochwelker
+** Last update Thu Jun 12 13:12:54 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -60,7 +60,7 @@
 #define EGG	"textures/egg.bmp"
 
 #define	INVADER			"models/Invader/invader.md2"
-#define	INVADER_1			"models/Invader/Alien.bmp"
+#define	INVADER_1		"models/Invader/Alien.bmp"
 
 #define DAEMON			"models/Daemon/daemon.md2"
 

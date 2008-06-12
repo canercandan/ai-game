@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Thu Jun 12 12:41:03 2008 jordan aubry
+// Last update Thu Jun 12 13:40:14 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -125,22 +125,14 @@ void		Action::ActionDropObj(Player* player, std::string& param)
 
 void		Action::ActionFork(Player* player, std::string&)
 {
-  player->_egg =
-    this->_obs->GetScene()->addSphereSceneNode(5, 16, 0, -1,
-					       irr::core::vector3df(COORD(player->_y, this->_obs->GetY()), 17, COORD(player->_x, this->_obs->GetX())),
-					       irr::core::vector3df(0, 0, 0),
-					       irr::core::vector3df(6, 8, 5));
-  player->_egg->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-  player->_egg->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(EGG));
-
-  std::cout << "addr de _egg = " << player->_egg << std::endl;
+  if (++this->_obs->_item[player->_x][player->_y][7]._qte == 1)
+    this->_obs->DrawEgg(player->_x, player->_y);
 }
 
-void		Action::ActionBird(Player* player, std::string&)
+void		Action::ActionBird(Player*, std::string&)
 {
-  player->_egg->remove();
+  std::cout << "On a un nouveau dans la famille !" << std::endl;
 }
-
 
 void            Action::ActionSee(Player*, std::string&)		{}
 void            Action::ActionKick(Player*, std::string&)		{}

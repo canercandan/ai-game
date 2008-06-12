@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Mon May 12 21:19:27 2008 florent hochwelker
-** Last update Wed Jun 11 22:06:24 2008 florent hochwelker
+** Last update Thu Jun 12 12:42:03 2008 florent hochwelker
 */
 
 #include <stdio.h>		/* a vire printf */
@@ -21,6 +21,7 @@ int			act_bird(char *param, t_client *cli, t_info *info)
   client = add_client(info, 0,
 		      EXPLODEY(*((long *)(param))), EXPLODEX(*((long *)(param))));
   printf("oeuf place en (%ld, %ld)\n", EXPLODEY((long)(*param)), EXPLODEX((long)(*param)));
+  info->zone[EXPLODEX(*((long *)(param)))][EXPLODEY(*((long *)(param)))].nb_egg--;
   client->team = cli->team;
   client->socket = 0;
   client->status = ST_DISCONNECT;

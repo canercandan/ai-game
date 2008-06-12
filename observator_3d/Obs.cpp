@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Thu Jun 12 12:22:08 2008 jordan aubry
+// Last update Thu Jun 12 13:39:35 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -35,9 +35,10 @@ Obs::Obs(int ac, char **av)
   _texture[3] = _driver->getTexture(ITEM_4);
   _texture[4] = _driver->getTexture(ITEM_5);
   _texture[5] = _driver->getTexture(ITEM_6);
+  _texture[7] = _driver->getTexture(EGG);
 }
 
-void		Obs::Auth(Socket& socket)
+void			Obs::Auth(Socket& socket)
 {
   std::stringstream	ss;
   std::string		tmp;
@@ -70,7 +71,8 @@ void		Obs::Auth(Socket& socket)
 		>> this->_item[x][y][3]._qte
 		>> this->_item[x][y][4]._qte
 		>> this->_item[x][y][5]._qte
-		>> this->_item[x][y][6]._qte;
+		>> this->_item[x][y][6]._qte
+		>> this->_item[x][y][7]._qte;
 	      tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
 	      ss.clear();
 	      ss.str("");
@@ -78,6 +80,8 @@ void		Obs::Auth(Socket& socket)
 	      for (int i = 0; i < NB_RESSOURCE; i++)
 		if (this->_item[x][y][i]._qte > 0)
 		  this->DrawItem(x, y, i);
+	      if (this->_item[x][y][7]._qte > 0)
+		this->DrawEgg(x, y);
 	    }
 	  ss.clear();
 	  ss.str("");
@@ -101,10 +105,21 @@ void		Obs::Auth(Socket& socket)
     }
 }
 
+void				Obs::DrawEgg(int x, int y)
+{
+  this->_item[x][y][7]._img =
+    this->GetScene()->addSphereSceneNode(5, 16, 0, -1,
+					 irr::core::vector3df(COORD(y, this->GetY()), 17, COORD(x, this->GetX())),
+					 irr::core::vector3df(0, 0, 0),
+					 irr::core::vector3df(6, 8, 5));
+  this->_item[x][y][7]._img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+  this->_item[x][y][7]._img->setMaterialTexture(0, this->GetDriver()->getTexture(EGG));
+}
+
 void				Obs::AddPlayer(std::stringstream& ss)
 {
-  std::string	tmp;
-  Player* player = new Player();
+  std::string		tmp;
+  Player*		player = new Player();
   int			isaBird;
 
   ss >> tmp >> isaBird
@@ -124,6 +139,8 @@ void				Obs::AddPlayer(std::stringstream& ss)
      >> player->_inventory[6];
   this->DrawPlayer(player);
   this->_player[player->_id] = player;
+  if (isaBird)
+    this->DeleteItem(player->_x, player->_y, 7);
 }
 
 void				Obs::DrawPlate()
@@ -223,7 +240,7 @@ void		Obs::DeleteItem(int x, int y, int type)
 
 void		Obs::ExecuteAction(std::string& line)
 {
-  Action	action(this);
+  Action		action(this);
   std::stringstream	ss;
   int			id, idx_action,;
   std::string		param;

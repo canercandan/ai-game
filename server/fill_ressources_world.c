@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Mon May 12 12:59:06 2008 majdi toumi
+** Last update Thu Jun 12 12:38:14 2008 florent hochwelker
 */
 
 #include <stdlib.h>
@@ -45,6 +45,7 @@ void		fill_ressources_world(t_zone **world, t_info *info)
       last_y = y;
       ressource = &gl_ressource[i % NB_INVENTORY];
       push_list(&(world[x][y].ressources), ressource);
+      world[x][y].nb_egg = 0;
       printf("#DUMP WORLD#\t[%d][%d] -> [%s]\n", x, y, ressource->name);
       i++;
     }

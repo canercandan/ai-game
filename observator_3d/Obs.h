@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Wed Jun 11 22:40:45 2008 florent hochwelker
+** Last update Thu Jun 12 13:30:24 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__
@@ -29,7 +29,7 @@ class	Obs : public Window
   Obs(int, char**);
   ~Obs() {}
 
-  irr::video::ITexture*                 _texture[NB_RESSOURCE];
+  irr::video::ITexture*                 _texture[NB_RESSOURCE + 1];
 
   void		Auth(Socket& socket);
   void		DrawAll(Socket& socket);
@@ -40,9 +40,11 @@ class	Obs : public Window
   inline int		GetPort() const { return this->_port; }
 
   void			DrawItem(int x, int y, int type);
+  void			DrawEgg(int x, int y);
   void			DeleteItem(int x, int y, int type);
 
   std::vector< std::vector< std::vector<Item> > >	_item;
+
  private:
   int					_x;
   int					_y;

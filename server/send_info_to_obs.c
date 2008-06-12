@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Thu Jun 12 10:33:15 2008 caner candan
+** Last update Thu Jun 12 12:56:24 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -52,6 +52,8 @@ static void	send_map_items(t_client *client, t_info *info)
 	      strcat(client->buf_write, " ");
 	      putnbr(y, client->buf_write);
 	      strcat_nb_items_case(info->zone[x][y].ressources, client);
+	      strcat(client->buf_write, " ");
+	      putnbr(info->zone[x][y].nb_egg, client->buf_write);
 	      strcat(client->buf_write, "\n");
 	    }
 	  y++;
