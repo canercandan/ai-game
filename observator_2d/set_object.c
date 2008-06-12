@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Jun 11 19:01:30 2008 caner candan
-** Last update Wed Jun 11 22:03:20 2008 caner candan
+** Last update Thu Jun 12 10:06:41 2008 caner candan
 */
 
 #include <SDL.h>
@@ -19,8 +19,7 @@ static t_object	object[NB_GFX] = {
   {"images/pirate.bmp", 4, 40,	56, 0, 0, 255, 255, 255},
   {"images/fenix.bmp", 4, 96, 96, -30, -15, 255, 255, 255},
   {"images/chicken.bmp", 4, 30, 30, 5, 20, 255, 255, 255},
-  {"images/kuipou.bmp", 4, 80, 96, -25, -30, 255, 255, 255},
-  {"images/egg.bmp", 4, 24, 24, 0, 0, 255, 255, 255}
+  {"images/kuipou.bmp", 4, 80, 96, -25, -30, 255, 255, 255}
 };
 
 static void	init(t_gfx *gfx, int idx)

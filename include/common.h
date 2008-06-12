@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-** Last update Wed Jun 11 13:25:53 2008 florent hochwelker
+// Last update Thu Jun 12 10:11:31 2008 caner candan
 */
 
 #ifndef __COMMON_H__
@@ -82,7 +82,8 @@ typedef enum
     MENDIANE,
     PHIRAS,
     THYSTAME,
-    NOURRITURE
+    NOURRITURE,
+    EGGOBJ
   }	t_idx_ressource;
 
 /*

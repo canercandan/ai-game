@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-// Last update Wed Jun 11 21:48:09 2008 caner candan
+// Last update Thu Jun 12 10:01:15 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -38,7 +38,7 @@
 # define MSG_WELCOME	"BIENVENUE\n"
 # define ADD_CLIENT	"ADD_CLIENT"
 # define BROADCAST_MESG	"message"
-# define NB_OBJECT	7
+# define NB_OBJECT	8
 
 /*
 ** Null's define

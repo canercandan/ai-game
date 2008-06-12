@@ -5,10 +5,11 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon Jun  9 20:34:37 2008 caner candan
-** Last update Wed Jun 11 22:17:55 2008 caner candan
+** Last update Thu Jun 12 10:11:41 2008 caner candan
 */
 
 #include "observator_2d.h"
+#include "common.h"
 #include "x.h"
 
 void		add_client(t_info *info, char **buf)
@@ -30,4 +31,7 @@ void		add_client(t_info *info, char **buf)
   for (i = 0; i < NB_OBJECT; i++)
     put_int_from_buf(&(client->inventory[i]), buf);
   push_list(&(info->clients), client);
+  if (is_egg)
+    if (info->object[(int)client->x][(int)client->y][EGGOBJ] > 0)
+      info->object[(int)client->x][(int)client->y][EGGOBJ]--;
 }
