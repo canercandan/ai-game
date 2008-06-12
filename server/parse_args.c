@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu Jun 12 19:26:42 2008 florent hochwelker
+** Last update Thu Jun 12 19:49:24 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -26,7 +26,7 @@ static void	fill_default_info(t_info *info)
   info->x = DEFAULT_WIDTH;
   info->nb_player = DEFAULT_NB_PLAYER;
   opt_name_team(info, default_name_team, 0);
-  info->time = DEFAULT_TIME;
+  info->time = 1.0 / DEFAULT_TIME;
   info->queue = 0;
 }
 
