@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:53:08 2008 jordan aubry
-** Last update Wed Jun 11 21:08:37 2008 florent hochwelker
+** Last update Thu Jun 12 11:49:10 2008 jordan aubry
 */
 
 #ifndef __PLAYER_H__
@@ -34,6 +34,7 @@ class	Player
   int					_x;
   int					_y;
   int					_z;
+  int					_anim;
   std::vector<int>			_inventory;
   irr::scene::IAnimatedMeshSceneNode*	_img;
   irr::scene::ISceneNode*		_egg;

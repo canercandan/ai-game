@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Thu Jun 12 11:45:44 2008 jordan aubry
+// Last update Thu Jun 12 12:22:08 2008 jordan aubry
 //
 
 #include <sstream>
@@ -147,28 +147,29 @@ void				Obs::DrawPlate()
 
 void		Obs::DrawAll(Socket &socket)
 {
-  irr::ITimer	*timer = this->_device->getTimer();
-  std::string	line;
-  int		time = 0;
-  int		anim = 0;
+  std::map<int, Player*>::iterator	it;
+  irr::ITimer				*timer = this->_device->getTimer();
+  std::string				line;
+  int					time = 0;
 
   while (this->_device->run())
     {
       time = timer->getRealTime();
-      _driver->beginScene(false, true, 0);
-      _scene->drawAll();
-      _env->drawAll();
-      _device->getGUIEnvironment()->drawAll();
-      _driver->endScene();
-      if (anim % 5 == 0)
+      this->_driver->beginScene(false, true, 0);
+      this->_scene->drawAll();
+      this->_env->drawAll();
+      this->_device->getGUIEnvironment()->drawAll();
+      this->_driver->endScene();
+      for (it = this->_player.begin(); it != this->_player.end(); it++)
 	{
-	  anim = 0;
-	  //pour chaque joueurs
-	  //si anim de joueur = 0
-	  //alors anim par defaut
-	  //sinon decrementer compteur anim
+	  if (it->second->_anim > 0)
+	    it->second->_anim--;
+	  else if (it->second->_anim == 0)
+	    {
+	      it->second->_img->setFrameLoop(105, 120);
+	      it->second->_anim--;
+	    }
 	}
-      anim++;
       line = socket.recv(false);
       if (line != "")
 	this->ExecuteAction(line);
@@ -197,6 +198,7 @@ void					Obs::DrawPlayer(Player* player)
       else
 	player->_z = OBS_SOUTH;
       player->_img->setRotation(irr::core::vector3df(0, player->_z, 0));
+      player->_anim = 0;
     }
 }
 
