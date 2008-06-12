@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Thu Jun 12 19:57:11 2008 florent hochwelker
+** Last update Thu Jun 12 20:12:37 2008 caner candan
 */
 
 #include <string.h>
@@ -88,5 +88,6 @@ void	send_info_to_obs(t_client *client, t_info *info)
 	   info->x, info->y);
   send_map_items(client, info);
   send_list_players(client, info);
-  sprintf(client->buf_write, "%sTIME %f\n", client->buf_write, 1.0 / info->time);
+  sprintf(client->buf_write, "%s%s %f\n",
+	  client->buf_write, TIME, 1.0 / info->time);
 }
