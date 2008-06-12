@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Wed Jun 11 22:54:10 2008 florent hochwelker
+// Last update Thu Jun 12 11:45:44 2008 jordan aubry
 //
 
 #include <sstream>
@@ -149,7 +149,8 @@ void		Obs::DrawAll(Socket &socket)
 {
   irr::ITimer	*timer = this->_device->getTimer();
   std::string	line;
-  int		time;
+  int		time = 0;
+  int		anim = 0;
 
   while (this->_device->run())
     {
@@ -159,6 +160,15 @@ void		Obs::DrawAll(Socket &socket)
       _env->drawAll();
       _device->getGUIEnvironment()->drawAll();
       _driver->endScene();
+      if (anim % 5 == 0)
+	{
+	  anim = 0;
+	  //pour chaque joueurs
+	  //si anim de joueur = 0
+	  //alors anim par defaut
+	  //sinon decrementer compteur anim
+	}
+      anim++;
       line = socket.recv(false);
       if (line != "")
 	this->ExecuteAction(line);
