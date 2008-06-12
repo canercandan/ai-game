@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Mon Jun  9 18:41:16 2008 florent hochwelker
+** Last update Thu Jun 12 10:33:15 2008 caner candan
 */
 
 #include <string.h>
@@ -39,7 +39,8 @@ static void	send_map_items(t_client *client, t_info *info)
   int		y;
 
   x = 0;
-  strcat(client->buf_write, "LIST_ITEM\n");
+  strcat(client->buf_write, START_LIST_ITEM);
+  strcat(client->buf_write, "\n");
   while (x < info->x)
     {
       y = 0;
@@ -57,7 +58,8 @@ static void	send_map_items(t_client *client, t_info *info)
 	}
       x++;
     }
-  strcat(client->buf_write, "END_LIST_ITEM\n");
+  strcat(client->buf_write, END_LIST_ITEM);
+  strcat(client->buf_write, "\n");
 }
 
 static void	send_list_players(t_client *obs, t_info *info)
@@ -71,8 +73,7 @@ static void	send_list_players(t_client *obs, t_info *info)
     {
       if (CLIENT(clients->data)->status == ST_CLIENT ||
 	  CLIENT(clients->data)->status == ST_DISCONNECT)
-	obs_add_client_in_char(obs->buf_write, clients->data, info,
-			       CLIENT(clients->data)->id);
+	obs_add_client_in_char(obs->buf_write, clients->data, info, 0);
       clients = clients->next;
     }
   strcat(obs->buf_write, END_LIST_PLAYER);

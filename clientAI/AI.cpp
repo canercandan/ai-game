@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Wed Jun 11 09:38:04 2008 caner candan
+// Last update Thu Jun 12 10:27:34 2008 caner candan
 //
 
 #include <string>
@@ -207,9 +207,8 @@ void		AI::actionLoop(void)
 	  this->_seekForPlayerToLevelUp();
 	  this->_emptyCase();
 	  this->_dropNeedsOnCase();
-	  this->_socket.sendRecv(actionsName[LEVELUP] + '\n', true);
-	  this->_socket.recv(true);
-	  this->_socket.sendRecv(actionsName[SEE] + '\n', true);
+	  this->_socket.sendRecv(actionsName[LEVELUP] + '\n');
+	  this->_socket.recv();
 	  break;
 	}
     }
