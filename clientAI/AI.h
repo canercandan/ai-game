@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Thu Jun 12 14:08:26 2008 caner candan
+// Last update Thu Jun 12 19:41:20 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -20,6 +20,11 @@
 # define NB_LEVEL		7
 # define NB_ROCK		6
 # define NB_OBJECT		8
+
+# define SP	' '
+# define END	'\n'
+# define CM	','
+# define EMPTY	""
 
 # define LEVEL(x)	((x) - 2)
 
@@ -56,7 +61,7 @@ class	AI
     OK,
     KO,
     MESSAGE,
-    NIVEAU_CUR
+    CUR_LEVEL
   };
 
   enum	Protocol
@@ -85,7 +90,7 @@ class	AI
   static int		actionsHp[NB_ACTIONS];
   static std::string	actionsReply[];
 
-  static std::string	broadcastProtocol[];
+  static std::string	protocolMesg[];
 
   static int		nbClientPerLevel[NB_LEVEL];
   static int		nbObjectPerLevel[NB_LEVEL][NB_OBJECT];
@@ -125,6 +130,7 @@ class	AI
   void	_dropNeedsOnCase(void);
   void	_waitLevelUp(const std::string& mesg);
   bool	_isLockToLevelUp(const std::string& mesg);
+  void	_foundLevel(const std::string& mesg);
 
   /*
   ** Generic method

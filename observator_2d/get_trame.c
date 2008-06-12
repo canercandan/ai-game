@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 12:10:55 2008 caner candan
-** Last update Wed Jun 11 21:12:19 2008 caner candan
+** Last update Thu Jun 12 19:50:46 2008 caner candan
 */
 
 #include <string.h>
@@ -35,8 +35,10 @@ static void	loop(t_info *info, char **tmp, char *first)
     add_client(info, tmp);
   else if (!strncmp(first, NEW_ITEM, strlen(NEW_ITEM)))
     new_item(info, tmp);
-  else if (!strncmp(BROADCAST_MESG, first, strlen(BROADCAST_MESG)))
+  else if (!strncmp(first, BROADCAST_MESG, strlen(BROADCAST_MESG)))
     {}
+  else if (!strncmp(first, TIME, strlen(TIME)))
+    put_float_from_buf(&info->time, tmp);
   else
     if (!info->x || !info->y)
       {

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-// Last update Thu Jun 12 10:11:31 2008 caner candan
+// Last update Thu Jun 12 19:44:31 2008 caner candan
 */
 
 #ifndef __COMMON_H__
@@ -54,6 +54,7 @@
 # define START_LIST_PLAYER	"LIST_PLAYER"
 # define END_LIST_PLAYER	"END_LIST_PLAYER"
 # define NEW_ITEM		"NEW_ITEM"
+# define TIME			"TIME"
 
 /*
 ** Macro useful
