@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed Jun 11 15:00:54 2008 florent hochwelker
+** Last update Thu Jun 12 18:48:51 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -41,7 +41,10 @@ int		act_drop_obj(char *param, t_client *client,
 
   idx = get_ressource_idx(param);
   if (idx == -1)
-    SEND(client->buf_write, KO);
+    {
+      SEND(client->buf_write, KO);
+      return (-1);
+    }
   else if (!strcmp(param, gl_ressource[NOURRITURE].name))
     check_if_enough_hp(info, client);
   else if (client->qte_ressource[idx] > 0)
@@ -53,6 +56,9 @@ int		act_drop_obj(char *param, t_client *client,
       SEND(client->buf_write, OK);
     }
   else
-    SEND(client->buf_write, KO);
+    {
+      SEND(client->buf_write, KO);
+      return (-1);
+    }
   return (0);
 }

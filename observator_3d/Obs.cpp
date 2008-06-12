@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Thu Jun 12 18:37:00 2008 florent hochwelker
+// Last update Thu Jun 12 18:46:13 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -203,7 +203,7 @@ void					Obs::DrawPlayer(Player* player)
   if (player->_img)
     {
       player->_img->setFrameLoop(1, 1);
-      player->_img->setAnimationSpeed(0);
+      player->_img->setAnimationSpeed(40);
       player->_img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
       player->_img->setPosition(irr::core::vector3df(Y(player->_y), 0, X(player->_x)));
       player->_img->setMaterialTexture(0, this->_driver->getTexture(INVADER_1));
