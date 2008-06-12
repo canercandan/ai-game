@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Thu Jun 12 12:36:44 2008 jordan aubry
+// Last update Thu Jun 12 12:41:03 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -58,9 +58,9 @@ void		Action::MovePlayer(Player* player, int x, int y)
 							       1000, false);
       player->_x = x;
       player->_y = y;
-      player->_img->setFrameLoop(160, 183);
       player->_img->addAnimator(anim);
-      player->_img->setFrameLoop(1, 1);
+      player->_img->setFrameLoop(160, 183);
+      player->_anim = 20;
       anim->drop();
     }
 }
