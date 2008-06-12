@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Thu Jun 12 10:27:34 2008 caner candan
+// Last update Thu Jun 12 14:10:04 2008 caner candan
 //
 
 #include <string>
@@ -25,8 +25,11 @@ std::string	AI::actionsName[NB_ACTIONS] =
 std::string	AI::actionsMove[NB_ACTIONS_MOVE] =
   {"avance", "droite", "gauche"};
 
-std::string	AI::actionsReply[NB_REPLY] =
-  {"ok", "ko", "message"};
+std::string	AI::actionsReply[] =
+  {"ok", "ko", "message", "niveau actuel"};
+
+std::string	AI::broadcastProtocol[] =
+  {"level ?", "level ok"};
 
 int	AI::actionsHp[NB_ACTIONS] =
   {7, 7, 7, 7, 1, 7, 7, 7, 7, 300, 42};
@@ -198,19 +201,74 @@ void		AI::actionLoop(void)
   std::string	mesg;
 
   ::srandom(::getpid());
+  try
+    {
   while (42)
     {
+      if ((mesg = this->_socket.recv()) == "")
+	throw true;
       if (this->_isNeedFood(SEE))
 	this->_seekForObject(FOOD);
+      if (this->_isLockToLevelUp(mesg))
+	this->_waitLevelUp();
       if (this->_prepareToLevelUp())
 	{
 	  this->_seekForPlayerToLevelUp();
 	  this->_emptyCase();
 	  this->_dropNeedsOnCase();
 	  this->_socket.sendRecv(actionsName[LEVELUP] + '\n');
-	  this->_socket.recv();
+	  this->_socket.recv(true);
 	  break;
 	}
+    }
+    }
+  catch (bool)
+    {
+      std::cout << "AI: trame incorrect to loop "
+		<< "action" << std::endl;
+    }
+}
+
+bool	AI::_isLockToLevelUp(const std::string& mesg)
+{
+  try
+    {
+      if ((mesg = this->_socket.sendRecv(actionsName[BROADCAST]
+					 + IS_SAME_LEVEL + ' '
+					 + this->_level + '\n'))
+	  == "")
+	throw true;
+
+    }
+  catch (bool)
+    {
+      std::cout << "AI: trame incorrect to lock to "
+		<< "level up" << std::endl;
+    }
+}
+
+void		AI::_waitLevelUp(const std::string& mesg)
+{
+  std::string	recv;
+
+  try
+    {
+      if ((recv = mesg) == "")
+	throw true;
+      while (42)
+	{
+	  if ((recv = this->_socket.recv())
+	      == "")
+	    throw true;
+	  if (recv.find(actionsReply[NIVEAU_CUR])
+	      != std::string::npos)
+	    break;
+	}
+    }
+  catch (bool)
+    {
+      std::cout << "AI: trame incorrect to wait "
+		<< "level up" << std::endl;
     }
 }
 
@@ -482,16 +540,15 @@ void		AI::_takeNeedObject(void)
     }
 }
 
-void		AI::_moveToK(void)
+void		AI::_moveToK(const std::string& mesg)
 {
-  std::string	mesg;
   std::string	recv;
   size_t	pos;
   int		i;
 
   try
     {
-      if ((mesg = this->_socket.recv()) == "")
+      if (mesg == "")
 	throw 1;
       if (mesg.find(actionsReply[MESSAGE] + " 0") != std::string::npos)
 	throw 2;

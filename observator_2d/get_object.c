@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Jun  7 14:02:20 2008 caner candan
-** Last update Mon Jun  9 20:33:27 2008 caner candan
+** Last update Thu Jun 12 14:22:39 2008 caner candan
 */
 
 #include <string.h>
@@ -37,6 +37,7 @@ static int	loop(t_info *info, char **buf)
   put_int_from_buf(&info->object[x][y][4], buf);
   put_int_from_buf(&info->object[x][y][5], buf);
   put_int_from_buf(&info->object[x][y][6], buf);
+  put_int_from_buf(&info->object[x][y][7], buf);
   return (0);
 }
 

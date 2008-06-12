@@ -5,10 +5,11 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:57 2008 majdi toumi
-** Last update Wed Apr 30 12:29:17 2008 majdi toumi
+** Last update Thu Jun 12 11:21:52 2008 caner candan
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "server.h"
 
 int	opt_nb_player(t_info *info, char **argv, int i)
@@ -17,4 +18,3 @@ int	opt_nb_player(t_info *info, char **argv, int i)
     info->nb_player = atoi(argv[i]);
   return (i + 1);
 }
-

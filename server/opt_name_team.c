@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:36 2008 majdi toumi
-** Last update Mon May 12 15:52:25 2008 caner candan
+** Last update Thu Jun 12 11:29:21 2008 caner candan
 */
 
 #include <stdio.h>
@@ -17,7 +17,6 @@ int		opt_name_team(t_info *info, char **argv, int i)
   t_team	*team;
   void		*data;
 
-  debug("opt_name_team()", -1);
   while ((data = pop_list(&info->team)))
     printf("Team removed: [%s]\n", ((t_team *) (data))->name);
   while (argv[i] && (is_options(argv[i]) == -1))

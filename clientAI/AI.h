@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Tue Jun 10 20:20:42 2008 caner candan
+// Last update Thu Jun 12 14:08:26 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -20,7 +20,6 @@
 # define NB_LEVEL		7
 # define NB_ROCK		6
 # define NB_OBJECT		8
-# define NB_REPLY		3
 
 # define LEVEL(x)	((x) - 2)
 
@@ -56,8 +55,15 @@ class	AI
   {
     OK,
     KO,
-    MESSAGE
+    MESSAGE,
+    NIVEAU_CUR
   };
+
+  enum	Protocol
+    {
+      IS_SAME_LEVEL,
+      SAME_LEVEL
+    };
 
   enum	Object
   {
@@ -77,7 +83,9 @@ class	AI
   static std::string	actionsName[NB_ACTIONS];
   static std::string	actionsMove[NB_ACTIONS_MOVE];
   static int		actionsHp[NB_ACTIONS];
-  static std::string	actionsReply[NB_REPLY];
+  static std::string	actionsReply[];
+
+  static std::string	broadcastProtocol[];
 
   static int		nbClientPerLevel[NB_LEVEL];
   static int		nbObjectPerLevel[NB_LEVEL][NB_OBJECT];
@@ -115,13 +123,15 @@ class	AI
   bool	_hasObjectSeeToLevelUp(const std::string& mesg);
   void	_emptyCase(void);
   void	_dropNeedsOnCase(void);
+  void	_waitLevelUp(const std::string& mesg);
+  bool	_isLockToLevelUp(const std::string& mesg);
 
   /*
   ** Generic method
   */
   void	_seekForObject(Object idx);
   void	_takeNeedObject(void);
-  void	_moveToK(void);
+  void	_moveToK(const std::string& mesg);
   void	_goToGoodCase(const std::string& mesg,
 		      Object idx);
   void	_randomMove(void);

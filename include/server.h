@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Thu Jun 12 12:34:41 2008 florent hochwelker
+// Last update Thu Jun 12 14:14:33 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -20,6 +20,7 @@
 # define FLAG_N			8
 # define FLAG_C			16
 # define FLAG_T			32
+# define FLAG_H			64
 
 /*
 ** Defines
