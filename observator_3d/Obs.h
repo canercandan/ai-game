@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Thu Jun 12 13:30:24 2008 florent hochwelker
+** Last update Thu Jun 12 19:42:46 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__
@@ -52,6 +52,7 @@ class	Obs : public Window
   int					_t;
   std::string				_host;
   int					_port;
+  float					_time;
 
   void					DrawPlate();
   void					DrawPlayer(Player* player);
