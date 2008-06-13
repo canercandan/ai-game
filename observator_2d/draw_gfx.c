@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May 14 08:56:50 2008 caner candan
-** Last update Thu Jun 12 20:31:10 2008 caner candan
+** Last update Fri Jun 13 15:47:42 2008 caner candan
 */
 
 #include <SDL.h>
@@ -89,7 +89,8 @@ static void	put_status(t_info *info)
 	    p.anim = 20;
 	  else if (info->status[x][y] == DROP_OBJ)
 	    p.anim = 9;
-	  info->status[x][y] = -1;
+	  if (info->status[x][y] != LEVELUP_PROGRESS)
+	    info->status[x][y] = -1;
 	  set_object(info->gfx, &p);
 	}
 }

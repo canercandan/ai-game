@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Fri Jun 13 15:31:52 2008 caner candan
+// Last update Fri Jun 13 15:39:46 2008 caner candan
 //
 
 #include <string>
@@ -205,7 +205,7 @@ void		AI::actionLoop(void)
   try
     {
       this->_socket.send(actionsName[SEE] + END);
-      while ((mesg = this->_socket.recv()) != EMPTY)
+      while ((mesg = this->_socket.recv(true)) != EMPTY)
 	{
 	  if (!this->_level)
 	    this->_foundLevel(mesg);
