@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Fri Jun 13 17:26:36 2008 florent hochwelker
+// Last update Fri Jun 13 18:16:54 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -163,7 +163,9 @@ void            Action::ActionCount(Player*, std::string&)		{}
 void            Action::ActionLevelUp(Player* player, std::string& param)
 {
   player->_img->setFrameLoop(1, 159);
-  player->_anim = 0; //this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
+  player->_anim = 0;
+
+  this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
 
   if (param == "1")
     for (int i = 0; i < 7; ++i)
