@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Fri Jun 13 13:42:53 2008 jordan aubry
+** Last update Fri Jun 13 16:44:49 2008 jordan aubry
 */
 
 #ifndef __OBS_H__
@@ -39,6 +39,7 @@ class	Obs : public Window
   inline std::string	GetHost() const { return this->_host; }
   inline int		GetPort() const { return this->_port; }
   inline float		GetTime() const { return this->_time; }
+  inline int		GetRealTime() const { return this->_timer->getRealTime(); }
 
   void			DrawItem(int x, int y, int type);
   void			DrawEgg(int x, int y);
@@ -54,12 +55,12 @@ class	Obs : public Window
   std::string				_host;
   int					_port;
   float					_time;
+  irr::ITimer*				_timer;
 
   void					DrawPlate();
   void					DrawPlayer(Player* player);
   void					AddPlayer(std::stringstream& ss);
   void					ExecuteAction(std::string& line);
-
 };
 
 #endif

@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Fri Jun 13 13:48:06 2008 jordan aubry
+// Last update Fri Jun 13 16:57:07 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -55,12 +55,12 @@ void		Action::MovePlayer(Player* player, int x, int y)
 
       anim = this->_obs->GetScene()->createFlyStraightAnimator(irr::core::vector3df(COORD(player->_y, this->_obs->GetY()), 0, COORD(player->_x, this->_obs->GetX())),
 							       irr::core::vector3df(COORD(y, this->_obs->GetY()), 0, COORD(x, this->_obs->GetX())),
-							       static_cast<int>(1000 * this->_obs->GetTime()), false);
+							       static_cast<int>(this->_obs->GetTime() + 1), false);
       player->_x = x;
       player->_y = y;
       player->_img->addAnimator(anim);
       player->_img->setFrameLoop(160, 183);
-      player->_anim = static_cast<int>(10 * this->_obs->GetTime());
+      player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
       anim->drop();
     }
 }
@@ -111,7 +111,7 @@ void		Action::ActionTakeObj(Player* player, std::string& param)
   this->_obs->DeleteItem(player->_x, player->_y, idx);
   player->_inventory[idx]++;
   player->_img->setFrameLoop(532, 548);
-  player->_anim = static_cast<int>(10 * this->_obs->GetTime());
+  player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
 }
 
 void		Action::ActionDropObj(Player* player, std::string& param)
@@ -124,7 +124,7 @@ void		Action::ActionDropObj(Player* player, std::string& param)
     this->_obs->DrawItem(player->_x, player->_y, idx);
   player->_inventory[idx]--;
   player->_img->setFrameLoop(532, 548);
-  player->_anim = static_cast<int>(10 * this->_obs->GetTime());
+  player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
 }
 
 void		Action::ActionFork(Player* player, std::string&)
@@ -138,11 +138,31 @@ void		Action::ActionBird(Player*, std::string&)
   std::cout << "On a un nouveau dans la famille !" << std::endl;
 }
 
+void		Action::ActionLevelUp(Player* player, std::string&)
+{
+  player->_img->setFrameLoop(263, 286);
+  player->_anim = this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
+}
+
+void		Action::ActionLevelUpProgress(Player* player, std::string&)
+{
+  player->_img->setFrameLoop(263, 286);
+  player->_anim = this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
+}
+
+void		 Action::ActionKick(Player* player, std::string&)
+{
+  player->_img->setFrameLoop(336, 383);
+  player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
+}
+
+void		Action::ActionDeath(Player* player, std::string&)
+{
+  player->_img->setFrameLoop(760, 800);
+  player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
+}
+
 void            Action::ActionSee(Player*, std::string&)		{}
-void            Action::ActionKick(Player*, std::string&)		{}
-void		Action::ActionDeath(Player*, std::string&)		{}
 void            Action::ActionCount(Player*, std::string&)		{}
-void            Action::ActionLevelUp(Player*, std::string&)		{}
 void            Action::ActionBroadcast(Player*, std::string&)		{}
 void            Action::ActionInventory(Player*, std::string&)		{}
-void            Action::ActionLevelUpProgress(Player*, std::string&)	{}

@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Fri Jun 13 13:33:56 2008 jordan aubry
+// Last update Fri Jun 13 16:48:08 2008 jordan aubry
 //
 
 #include <sstream>
@@ -36,6 +36,7 @@ Obs::Obs(int ac, char **av)
   _texture[4] = _driver->getTexture(ITEM_5);
   _texture[5] = _driver->getTexture(ITEM_6);
   _texture[7] = _driver->getTexture(EGG);
+  _timer = this->_device->getTimer();
 }
 
 void			Obs::Auth(Socket& socket)
@@ -105,7 +106,7 @@ void			Obs::Auth(Socket& socket)
 	  ss.str("");
 	  ss << tmp;
 	  ss >> tmp >> this->_time;
-	  this->_time = 1 / this->_time;
+	  this->_time = 1 / this->_time * 1000;
 	  std::cout << "LE TIME EST " << this->_time << std::endl;
 	}
       this->DrawPlate();
@@ -169,36 +170,42 @@ void				Obs::DrawPlate()
     }
 }
 
-void		Obs::DrawAll(Socket &socket)
+void					Obs::DrawAll(Socket &socket)
 {
   std::map<int, Player*>::iterator	it;
-  irr::ITimer				*timer = this->_device->getTimer();
   std::string				line;
   int					time = 0;
+  int					action = 0;
 
   while (this->_device->run())
     {
-      time = timer->getRealTime();
+      time = this->_timer->getRealTime();
       this->_driver->beginScene(false, true, 0);
       this->_scene->drawAll();
       this->_env->drawAll();
       this->_device->getGUIEnvironment()->drawAll();
       this->_driver->endScene();
+      action = this->_timer->getRealTime();
       for (it = this->_player.begin(); it != this->_player.end(); ++it)
       	{
-      	  if (it->second->_anim > 0)
-      	    it->second->_anim--;
-      	  else if (it->second->_anim == 0)
-      	    {
-      	      std::cout << "un mac de chocolat" << std::endl;
-      	      it->second->_img->setFrameLoop(1, 159);
-      	      it->second->_anim--;
-      	    }
+	  if (it->second->_anim != 0)
+	    {
+	      if (it->second->_anim <= action && it->second->_life == 1)
+		{
+		  it->second->_img->setFrameLoop(1, 159);
+		  it->second->_anim = 0;
+		}
+	      if (it->second->_anim <= action && it->second->_life == 0)
+		{
+		  it->second->_img->setFrameLoop(800, 800);
+		  it->second->_anim = 0;
+		}
+	    }
       	}
       line = socket.recv(false);
       if (line != "")
 	this->ExecuteAction(line);
-      time = timer->getRealTime() - time;
+      time = this->_timer->getRealTime() - time;
       if (time < 50)
       	this->_device->sleep(50 - time);
     }
@@ -223,8 +230,8 @@ void					Obs::DrawPlayer(Player* player)
       else
 	player->_z = OBS_SOUTH;
       player->_img->setRotation(irr::core::vector3df(0, player->_z, 0));
-      player->_anim = 0;
-      player->_img->setLoopMode(true);
+      player->_anim = 1;
+      player->_life = 1;
     }
 }
 
