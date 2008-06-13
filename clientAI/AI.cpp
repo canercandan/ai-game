@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Thu Jun 12 20:26:59 2008 caner candan
+// Last update Fri Jun 13 14:59:28 2008 caner candan
 //
 
 #include <string>
@@ -205,7 +205,7 @@ void		AI::actionLoop(void)
   try
     {
       this->_socket.send(actionsName[SEE] + END);
-      while ((mesg = this->_socket.recv(true)) != EMPTY)
+      while ((mesg = this->_socket.recv()) != EMPTY)
 	{
 	  if (!this->_level)
 	    this->_foundLevel(mesg);
@@ -219,8 +219,8 @@ void		AI::actionLoop(void)
 		this->_seekForPlayerToLevelUp();
 		this->_emptyCase();
 		this->_dropNeedsOnCase();
-		this->_socket.sendRecv(actionsName[LEVELUP] + END, true);
-		if (this->_socket.recv(true)
+		this->_socket.sendRecv(actionsName[LEVELUP] + END);
+		if (this->_socket.recv()
 		    == actionsReply[CUR_LEVEL])
 		  this->_level++;
 	      }
@@ -240,16 +240,19 @@ void		AI::_foundLevel(const std::string& mesg)
   size_t	size;
   size_t	i;
   size_t	cnt;
+  size_t	add;
 
   size = mesg.size();
   cnt = 0;
   for (i = 0; i < size; i++)
     if (mesg[i] == CM)
       cnt++;
-  for (i = 1; i < cnt; i += 2)
-    this->_level++;
-  std::cout << "level found: [" << this->_level
-	    << "]" << std::endl;
+  add = 1;
+  for (i = 0; i < cnt; i += add)
+    {
+      this->_level++;
+      add += 2;
+    }
 }
 
 bool			AI::_isLockToLevelUp(const std::string& mesg)
@@ -269,12 +272,12 @@ bool			AI::_isLockToLevelUp(const std::string& mesg)
 	  same_level << actionsName[BROADCAST] << SP
 		     << protocolMesg[SAME_LEVEL] << SP
 		     << this->_level << END;
-	  if (this->_socket.sendRecv(same_level.str())
+	  if (this->_socket.sendRecv(same_level.str(), true)
 	      == EMPTY)
 	    throw true;
 	  return (true);
 	}
-      if (this->_socket.sendRecv(is_same_level.str())
+      if (this->_socket.sendRecv(is_same_level.str(), true)
 	  == EMPTY)
 	throw true;
     }
@@ -424,7 +427,7 @@ void		AI::_seekForObject(AI::Object idx)
 	    {
 	      this->_goToGoodCase(mesg, idx);
 	      if (this->_socket.sendRecv(actionsName[TAKE_OBJ] + SP +
-					 objectName[idx] + END, true)
+					 objectName[idx] + END)
 		  == actionsReply[OK] + END)
 		break;
 	    }
@@ -444,7 +447,6 @@ void		AI::_seekForPlayerToLevelUp(void)
 
   try
     {
-      std::cout << "level: " << this->_level + 1 << std::endl;
       if (nbClientPerLevel[LEVEL(this->_level + 1)] <= 1)
 	throw 1;
       while (42)
