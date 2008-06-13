@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Thu Jun 12 13:12:54 2008 florent hochwelker
+** Last update Fri Jun 13 18:23:42 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -60,15 +60,54 @@
 #define EGG	"textures/egg.bmp"
 
 #define	INVADER			"models/Invader/invader.md2"
-#define	INVADER_1		"models/Invader/Alien.bmp"
+#define	INVADER_1		"models/Invader/i_1.bmp"
+#define INVADER_2		"models/Invader/i_2.bmp"
+#define INVADER_3               "models/Invader/i_3.bmp"
+#define INVADER_4               "models/Invader/i_4.bmp"
+#define INVADER_5               "models/Invader/i_5.bmp"
+#define INVADER_6               "models/Invader/i_6.bmp"
+#define INVADER_7               "models/Invader/i_7.bmp"
+#define INVADER_8               "models/Invader/i_8.bmp"
 
 #define DAEMON			"models/Daemon/daemon.md2"
+#define DAEMON_1               "models/Daemon/d_1.bmp"
+#define DAEMON_2               "models/Daemon/d_2.bmp"
+#define DAEMON_3               "models/Daemon/d_3.bmp"
+#define DAEMON_4               "models/Daemon/d_4.bmp"
+#define DAEMON_5               "models/Daemon/d_5.bmp"
+#define DAEMON_6               "models/Daemon/d_6.bmp"
+#define DAEMON_7               "models/Daemon/d_7.bmp"
+#define DAEMON_8               "models/Daemon/d_8.bmp"
 
 #define YOHKO			"models/Yohko/yohko.md2"
+#define YOHKO_1			"models/Yohko/y_1.bmp"
+#define YOHKO_2                 "models/Yohko/y_2.bmp"
+#define YOHKO_3                 "models/Yohko/y_3.bmp"
+#define YOHKO_4                 "models/Yohko/y_4.bmp"
+#define YOHKO_5                 "models/Yohko/y_5.bmp"
+#define YOHKO_6                 "models/Yohko/y_6.bmp"
+#define YOHKO_7                 "models/Yohko/y_7.bmp"
+#define YOHKO_8                 "models/Yohko/y_8.bmp"
 
 #define HOMICIDAL		"models/Homicidal/homicidal.md2"
+#define HOMICIDAL_1		"models/Homicidal/h_1.bmp"
+#define HOMICIDAL_2             "models/Homicidal/h_2.bmp"
+#define HOMICIDAL_3             "models/Homicidal/h_3.bmp"
+#define HOMICIDAL_4             "models/Homicidal/h_4.bmp"
+#define HOMICIDAL_5             "models/Homicidal/h_5.bmp"
+#define HOMICIDAL_6             "models/Homicidal/h_6.bmp"
+#define HOMICIDAL_7             "models/Homicidal/h_7.bmp"
+#define HOMICIDAL_8             "models/Homicidal/h_8.bmp"
 
-#define DROID			"models/Droid/droid.md2"
+#define GUARDIAN		"models/Guardian/guardian.md2"
+#define GUARDIAN_1		"modals/Guardian/g_1.bmp"
+#define GUARDIAN_2              "modals/Guardian/g_2.bmp"
+#define GUARDIAN_3              "modals/Guardian/g_3.bmp"
+#define GUARDIAN_4              "modals/Guardian/g_4.bmp"
+#define GUARDIAN_5              "modals/Guardian/g_5.bmp"
+#define GUARDIAN_6              "modals/Guardian/g_6.bmp"
+#define GUARDIAN_7              "modals/Guardian/g_7.bmp"
+#define GUARDIAN_8              "modals/Guardian/g_8.bmp"
 
 /*
 ** Casts macros
