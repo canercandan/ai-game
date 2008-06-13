@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Wed Jun 11 13:51:17 2008 florent hochwelker
+** Last update Fri Jun 13 17:02:27 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -103,7 +103,7 @@ static int	has_ressources(t_info *info, t_client *client)
   mask_res = 0;
   while (ressources)
     {
-      mask_res += PWR(((t_ressource *) ressources->data)->idx);
+      mask_res += PWR(((t_ressource *)ressources->data)->idx);
       ressources = ressources->next;
     }
   if (mask_res != mask_ressources(client))

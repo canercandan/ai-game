@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Wed Jun 11 21:21:45 2008 florent hochwelker
+** Last update Fri Jun 13 17:06:39 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -21,17 +21,18 @@ int			scheduler_exec(t_info *info, void *tp)
   int			ret;
 
   while (info->queue && (elem = info->queue->data) &&
-	 ((TIMEVAL(elem->time)->tv_sec <
-	   TIMEVAL(tp)->tv_sec) ||
-	  ((TIMEVAL(elem->time)->tv_sec ==
-	    TIMEVAL(tp)->tv_sec) &&
-	   TIMEVAL(elem->time)->tv_usec <=
-	   TIMEVAL(tp)->tv_usec)))
+	 ((TIMEVAL(elem->time)->tv_sec < TIMEVAL(tp)->tv_sec) ||
+	  ((TIMEVAL(elem->time)->tv_sec == TIMEVAL(tp)->tv_sec) &&
+	   TIMEVAL(elem->time)->tv_usec <= TIMEVAL(tp)->tv_usec)))
     {
       if ((ret = elem->f(elem->param, elem->client, info)) == LOOP_FOR_SEND)
 	break;
       if (elem->idx_f == BIRD)
 	obs_send_action(elem->client->id, info, elem->idx_f, "");
+      else if (elem->idx_f == LEVELUP && ret < 0)
+	obs_send_action(elem->client->id, info, elem->idx_f, "0");
+      else if (elem->idx_f == LEVELUP && ret >= 0)
+	obs_send_action(elem->client->id, info, elem->idx_f, "1");
       else if (ret >= 0)
 	obs_send_action(elem->client->id, info, elem->idx_f, elem->param);
       dump_client_position(info->clients);
