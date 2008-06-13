@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Fri Jun 13 16:57:07 2008 jordan aubry
+// Last update Fri Jun 13 17:16:11 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -38,7 +38,8 @@ Action::Action(Obs* obs)
 
 void	Action::ApplyAction(Player* player, int idx, std::string& param)
 {
-  ((*this).*(this->_map[idx]))(player, param);
+  if (this->_map.count(idx) > 0)
+    ((*this).*(this->_map[idx]))(player, param);
 }
 
 void		Action::MovePlayer(Player* player, int x, int y)
@@ -138,12 +139,6 @@ void		Action::ActionBird(Player*, std::string&)
   std::cout << "On a un nouveau dans la famille !" << std::endl;
 }
 
-void		Action::ActionLevelUp(Player* player, std::string&)
-{
-  player->_img->setFrameLoop(263, 286);
-  player->_anim = this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
-}
-
 void		Action::ActionLevelUpProgress(Player* player, std::string&)
 {
   player->_img->setFrameLoop(263, 286);
@@ -164,5 +159,20 @@ void		Action::ActionDeath(Player* player, std::string&)
 
 void            Action::ActionSee(Player*, std::string&)		{}
 void            Action::ActionCount(Player*, std::string&)		{}
+
+void            Action::ActionLevelUp(Player* player, std::string& param)
+{
+  player->_img->setFrameLoop(263, 286);
+  player->_anim = this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
+
+  if (param == "1")
+    for (int i = 0; i < 7; ++i)
+      if (this->_obs->_item[player->_x][player->_y][i]._qte > 0)
+	{
+	  this->_obs->_item[player->_x][player->_y][i]._qte == 0;
+	  this->_obs->DeleteItem(player->_x, player->_y, i);
+	}
+}
+
 void            Action::ActionBroadcast(Player*, std::string&)		{}
 void            Action::ActionInventory(Player*, std::string&)		{}

@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:37:03 2008 majdi toumi
-// Last update Thu Jun 12 11:48:29 2008 jordan aubry
+// Last update Fri Jun 13 16:37:22 2008 florent hochwelker
 //
 
 #include <irrlicht.h>

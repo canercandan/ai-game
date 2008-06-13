@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Fri Jun 13 16:48:08 2008 jordan aubry
+// Last update Fri Jun 13 17:11:25 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -258,9 +258,10 @@ void		Obs::ExecuteAction(std::string& line)
 {
   Action		action(this);
   std::stringstream	ss;
-  int			id, idx_action,;
+  int			id, idx_action, x, y, type;
   std::string		param;
 
+  std::cout << "J'ai recu = [" << line  << "]" << std::endl;
   while (!line.empty())
     {
       ss.clear();
@@ -269,6 +270,14 @@ void		Obs::ExecuteAction(std::string& line)
 	{
 	  ss << line;
 	  this->AddPlayer(ss);
+	}
+      else if (line.substr(0, line.find_first_of(" ")) == NEW_ITEM)
+	{
+	  ss << line;
+	  ss >> param >> x >> y >> type;
+	  if (++this->_item[x][y][type]._qte == 1)
+	    this->DrawItem(x, y, type);
+	  std::cout << "Hop les pierres sont dispersee." << std::endl;
 	}
       else
 	{

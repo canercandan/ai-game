@@ -5,11 +5,12 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Mon Jun  9 14:39:30 2008 florent hochwelker
+// Last update Fri Jun 13 16:32:49 2008 florent hochwelker
 //
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <errno.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -146,7 +147,8 @@ std::string	Socket::recv(bool wait)
       buf[size] = 0;
       if (DEBUG)
 	std::cout << "Socket: recv [" << buf << "]" << std::endl;
-      return (std::string(buf));
+      if (errno != EAGAIN)
+	return (std::string(buf));
     }
   catch (bool)
     {
