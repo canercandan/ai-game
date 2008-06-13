@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Fri Jun 13 18:16:54 2008 florent hochwelker
+// Last update Fri Jun 13 20:06:46 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -168,12 +168,16 @@ void            Action::ActionLevelUp(Player* player, std::string& param)
   this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
 
   if (param == "1")
-    for (int i = 0; i < 7; ++i)
-      if (this->_obs->_item[player->_x][player->_y][i]._qte > 0)
-	{
-	  this->_obs->_item[player->_x][player->_y][i]._qte == 0;
-	  this->_obs->DeleteItem(player->_x, player->_y, i);
-	}
+    {
+      for (int i = 0; i < 7; ++i)
+	if (this->_obs->_item[player->_x][player->_y][i]._qte > 0)
+	  {
+	    this->_obs->_item[player->_x][player->_y][i]._qte == 0;
+	    this->_obs->DeleteItem(player->_x, player->_y, i);
+	  }
+      ++player->_lvl;
+      player->_img->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(player->_skin[player->_id_team][player->_lvl].c_str()));
+    }
 }
 
 void            Action::ActionBroadcast(Player*, std::string&)		{}

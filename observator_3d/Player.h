@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:53:08 2008 jordan aubry
-** Last update Fri Jun 13 16:46:00 2008 jordan aubry
+** Last update Fri Jun 13 19:43:54 2008 florent hochwelker
 */
 
 #ifndef __PLAYER_H__
@@ -21,7 +21,7 @@
 class	Player
 {
  public:
- Player() : _inventory(NB_RESSOURCE, 0) { _anim = 0; }
+  Player();
   ~Player() {}
 
   inline int		GetX() const { return this->_x; }
@@ -37,6 +37,7 @@ class	Player
   float					_anim;
   int					_life;
   std::vector<int>			_inventory;
+  std::vector< std::vector<std::string> >			_skin;
   irr::scene::IAnimatedMeshSceneNode*	_img;
   irr::scene::ISceneNode*		_egg;
 };

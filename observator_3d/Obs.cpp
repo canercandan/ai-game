@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Fri Jun 13 17:22:19 2008 florent hochwelker
+// Last update Fri Jun 13 20:01:47 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -214,14 +214,14 @@ void					Obs::DrawAll(Socket &socket)
 
 void					Obs::DrawPlayer(Player* player)
 {
-  player->_img = this->_scene->addAnimatedMeshSceneNode(this->_scene->getMesh(INVADER));
+  player->_img = this->_scene->addAnimatedMeshSceneNode(this->_scene->getMesh(player->_skin[player->_id_team][0].c_str()));
   if (player->_img)
     {
       player->_img->setFrameLoop(1, 1);
       player->_img->setAnimationSpeed(40);
       player->_img->setMaterialFlag(irr::video::EMF_LIGHTING, false);
       player->_img->setPosition(irr::core::vector3df(Y(player->_y), 0, X(player->_x)));
-      player->_img->setMaterialTexture(0, this->_driver->getTexture(INVADER_1));
+      player->_img->setMaterialTexture(0, this->_driver->getTexture(player->_skin[player->_id_team][player->_lvl].c_str()));
       if (player->_z == NORTH)
 	player->_z = OBS_NORTH;
       else if (player->_z == EAST)
