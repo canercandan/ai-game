@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Fri Jun 13 14:59:28 2008 caner candan
+// Last update Fri Jun 13 15:31:52 2008 caner candan
 //
 
 #include <string>
@@ -361,7 +361,7 @@ bool			AI::_prepareToLevelUp(void)
 
   try
     {
-      if ((mesg = this->_socket.sendRecv(actionsName[INVENTORY] + END, true))
+      if ((mesg = this->_socket.sendRecv(actionsName[INVENTORY] + END))
 	  == EMPTY)
 	throw true;
       for (i = 0; i < NB_ROCK; i++)
