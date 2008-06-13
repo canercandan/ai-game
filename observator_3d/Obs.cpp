@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Thu Jun 12 19:43:18 2008 florent hochwelker
+// Last update Fri Jun 13 13:33:56 2008 jordan aubry
 //
 
 #include <sstream>
@@ -105,6 +105,7 @@ void			Obs::Auth(Socket& socket)
 	  ss.str("");
 	  ss << tmp;
 	  ss >> tmp >> this->_time;
+	  this->_time = 1 / this->_time;
 	  std::cout << "LE TIME EST " << this->_time << std::endl;
 	}
       this->DrawPlate();
