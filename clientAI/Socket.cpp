@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Thu Jun 12 11:09:52 2008 caner candan
+// Last update Fri Jun 13 18:41:17 2008 caner candan
 //
 
 #include <sys/types.h>
@@ -138,12 +138,39 @@ std::string	Socket::recv(bool verbose /*=false*/)
       size = ::recv(this->_socket, buf, sizeof(buf), 0);
       buf[size] = 0;
       if (this->_verbose || verbose)
-	std::cout << "Socket: recv [" << buf << "]" << std::endl;
+	std::cout << "Socket: recv [" << buf
+		  << "]" << std::endl;
       return (std::string(buf));
     }
   catch (bool)
     {
-      std::cout << "Socket: error recv, not connected" << std::endl;
+      std::cout << "Socket: error recv, not connected"
+		<< std::endl;
+    }
+  return ("");
+}
+
+std::string	Socket::recvNoWait(bool verbose /*=false*/)
+{
+  char		buf[1024];
+  int		size;
+
+  try
+    {
+      if (!this->isConnected())
+	throw true;
+      size = ::recv(this->_socket, buf, sizeof(buf),
+		    MSG_DONTWAIT);
+      buf[size] = 0;
+      if (this->_verbose || verbose)
+	std::cout << "Socket: recvNoWait [" << buf
+		  << "]" << std::endl;
+      return (std::string(buf));
+    }
+  catch (bool)
+    {
+      std::cout << "Socket: error recvNoWait, not connected"
+		<< std::endl;
     }
   return ("");
 }

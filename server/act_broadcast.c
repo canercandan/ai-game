@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Thu Jun  5 08:41:45 2008 caner candan
+** Last update Fri Jun 13 20:31:10 2008 caner candan
 */
 
 #include <string.h>
@@ -15,6 +15,8 @@
 
 static int	return_res_k(int diff_x, int diff_y)
 {
+/*   if (!diff_x && !diff_y) */
+/*     return (0); */
   if (diff_x == 0 && diff_y > 0)
     return (1);
   if (diff_x > 0 && diff_y > 0)
@@ -73,7 +75,8 @@ static int	give_me_the_k(t_client *dst, t_client *src,
     }
   diff_x = dst->x - src->x;
   diff_y = dst->y - src->y;
-  res = return_res_k(diff_x, diff_y);
+  if (!(res = return_res_k(diff_x, diff_y)))
+    return (0);
   return (with_direction(res, dst));
 }
 

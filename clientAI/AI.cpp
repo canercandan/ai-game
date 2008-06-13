@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Fri Jun 13 15:39:46 2008 caner candan
+// Last update Fri Jun 13 18:53:01 2008 caner candan
 //
 
 #include <string>
@@ -199,64 +199,64 @@ bool	AI::_forkWorld(void)
 
 void		AI::actionLoop(void)
 {
-  std::string	mesg;
-
   ::srandom(::getpid());
-  try
+  while (42)
     {
-      this->_socket.send(actionsName[SEE] + END);
-      while ((mesg = this->_socket.recv(true)) != EMPTY)
-	{
-	  if (!this->_level)
-	    this->_foundLevel(mesg);
+      if (!this->_level)
+	this->_foundLevel();
 // 	  if (this->_isNeedFood(SEE))
 // 	    this->_seekForObject(FOOD);
-	  if (this->_prepareToLevelUp())
-	    if (this->_isLockToLevelUp(mesg))
-	      this->_waitLevelUp(mesg);
-	    else
-	      {
-		this->_seekForPlayerToLevelUp();
-		this->_emptyCase();
-		this->_dropNeedsOnCase();
-		this->_socket.sendRecv(actionsName[LEVELUP] + END);
-		if (this->_socket.recv()
-		    == actionsReply[CUR_LEVEL])
-		  this->_level++;
-	      }
-	  this->_socket.send(actionsName[SEE] + END);
+      if (this->_prepareToLevelUp())
+	if (this->_isLockToLevelUp())
+	  this->_waitLevelUp();
+	else
+	  {
+	    this->_seekForPlayerToLevelUp();
+	    this->_emptyCase();
+	    this->_dropNeedsOnCase();
+	    this->_socket.sendRecv(actionsName[LEVELUP] + END);
+	    if (this->_socket.recv(true).find(actionsReply[CUR_LEVEL])
+		!= std::string::npos)
+	      this->_level++;
+	  }
+    }
+}
+
+void		AI::_foundLevel(void)
+{
+  std::string	mesg;
+  size_t	size;
+  size_t	cnt;
+  size_t	add;
+  size_t	i;
+
+  try
+    {
+      if ((mesg = this->_socket.sendRecv(actionsName[SEE] + END))
+	  == EMPTY)
+	throw true;
+      size = mesg.size();
+      cnt = 0;
+      for (i = 0; i < size; i++)
+	if (mesg[i] == CM)
+	  cnt++;
+      add = 1;
+      for (i = 0; i < cnt; i += add)
+	{
+	  this->_level++;
+	  add += 2;
 	}
-      throw true;
     }
   catch (bool)
     {
-      std::cout << "AI: trame incorrect to loop "
-		<< "action" << std::endl;
+      std::cout << "AI: trame incorrect to found "
+		<< "level" << std::endl;
     }
 }
 
-void		AI::_foundLevel(const std::string& mesg)
+bool			AI::_isLockToLevelUp(void)
 {
-  size_t	size;
-  size_t	i;
-  size_t	cnt;
-  size_t	add;
-
-  size = mesg.size();
-  cnt = 0;
-  for (i = 0; i < size; i++)
-    if (mesg[i] == CM)
-      cnt++;
-  add = 1;
-  for (i = 0; i < cnt; i += add)
-    {
-      this->_level++;
-      add += 2;
-    }
-}
-
-bool			AI::_isLockToLevelUp(const std::string& mesg)
-{
+  std::string		mesg;
   std::stringstream	is_same_level;
   std::stringstream	same_level;
 
@@ -264,11 +264,15 @@ bool			AI::_isLockToLevelUp(const std::string& mesg)
     {
       if (this->_level <= 1)
 	return (false);
+      if ((mesg = this->_socket.recvNoWait())
+	  == EMPTY)
+	throw true;
       is_same_level << protocolMesg[IS_SAME_LEVEL]
 		    << SP << this->_level;
       if (mesg.find(is_same_level.str())
 	  != std::string::npos)
 	{
+	  std::cout << "" << std::endl;
 	  same_level << actionsName[BROADCAST] << SP
 		     << protocolMesg[SAME_LEVEL] << SP
 		     << this->_level << END;
@@ -277,7 +281,8 @@ bool			AI::_isLockToLevelUp(const std::string& mesg)
 	    throw true;
 	  return (true);
 	}
-      if (this->_socket.sendRecv(is_same_level.str(), true)
+      if (this->_socket.sendRecv(actionsName[BROADCAST] + SP
+				 + is_same_level.str() + END, true)
 	  == EMPTY)
 	throw true;
     }
@@ -289,21 +294,19 @@ bool			AI::_isLockToLevelUp(const std::string& mesg)
   return (false);
 }
 
-void		AI::_waitLevelUp(const std::string& mesg)
+void		AI::_waitLevelUp(void)
 {
-  std::string	recv;
+  std::string	mesg;
 
   try
     {
-      if ((recv = mesg) == EMPTY)
-	throw true;
       while (42)
 	{
 	  std::cout << "I WaiT MAN" << std::endl;
-	  if ((recv = this->_socket.recv())
+	  if ((mesg = this->_socket.recv())
 	      == EMPTY)
 	    throw true;
-	  if (recv.find(actionsReply[CUR_LEVEL])
+	  if (mesg.find(actionsReply[CUR_LEVEL])
 	      != std::string::npos)
 	    break;
 	}

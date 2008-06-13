@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Thu Jun 12 19:41:20 2008 caner candan
+// Last update Fri Jun 13 18:45:00 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -128,9 +128,9 @@ class	AI
   bool	_hasObjectSeeToLevelUp(const std::string& mesg);
   void	_emptyCase(void);
   void	_dropNeedsOnCase(void);
-  void	_waitLevelUp(const std::string& mesg);
-  bool	_isLockToLevelUp(const std::string& mesg);
-  void	_foundLevel(const std::string& mesg);
+  void	_waitLevelUp(void);
+  bool	_isLockToLevelUp(void);
+  void	_foundLevel(void);
 
   /*
   ** Generic method

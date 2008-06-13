@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:26:34 2008 caner candan
-// Last update Tue Jun 10 20:38:32 2008 caner candan
+// Last update Fri Jun 13 18:40:41 2008 caner candan
 //
 
 #ifndef __SOCKET_H__
@@ -28,6 +28,7 @@ public:
   void		send(const std::string& s,
 		     bool verbose = false);
   std::string	recv(bool verbose = false);
+  std::string	recvNoWait(bool verbose = false);
   std::string	sendRecv(const std::string &s,
 			 bool verbose = false);
 
