@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Fri Jun 13 16:44:49 2008 jordan aubry
+** Last update Sat Jun 14 16:04:02 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__
@@ -46,11 +46,12 @@ class	Obs : public Window
   void			DeleteItem(int x, int y, int type);
 
   std::vector< std::vector< std::vector<Item> > >	_item;
+  std::map<int, Player*>		_player;
+
 
  private:
   int					_x;
   int					_y;
-  std::map<int, Player*>		_player;
   int					_t;
   std::string				_host;
   int					_port;

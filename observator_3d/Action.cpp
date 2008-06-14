@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Sat Jun 14 16:14:02 2008 jordan aubry
+// Last update Sat Jun 14 17:09:28 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -150,6 +150,29 @@ void		 Action::ActionKick(Player* player, std::string&)
 {
   player->_img->setFrameLoop(336, 383);
   player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
+  std::map<int, Player*>::iterator	it = this->_obs->_player.begin();
+  std::map<int, Player*>::iterator	it_end = this->_obs->_player.end();
+  for (;it != it_end; ++it)
+    if (it->second->_x == player->_x
+	&& it->second->_y == player->_y
+	&& player != it->second)
+      {
+	switch (player->_z)
+	  {
+	  case OBS_NORTH:
+	    this->MovePlayer(it->second, it->second->_x, (it->second->_y == 0) ? this->_obs->GetY() - 1 : it->second->_y - 1);
+	    break;
+	  case OBS_EAST:
+	    this->MovePlayer(it->second, (it->second->_x == this->_obs->GetX() - 1) ? 0 : it->second->_x + 1, it->second->_y);
+	    break;
+	  case OBS_WEST:
+	    this->MovePlayer(it->second, (it->second->_x == 0) ? this->_obs->GetX() - 1 : it->second->_x - 1, it->second->_y);
+	    break;
+	  case OBS_SOUTH:
+	    this->MovePlayer(it->second, it->second->_x, (it->second->_y == this->_obs->GetY() - 1) ? 0 : it->second->_y + 1);
+	    break;
+	  }
+      }
 }
 
 void		Action::ActionDeath(Player* player, std::string&)
@@ -170,14 +193,21 @@ void            Action::ActionLevelUp(Player* player, std::string& param)
 
   if (param == "1")
     {
-      for (int i = 0; i < 7; ++i)
+      for (int i = 0; i < 6; ++i)
 	if (this->_obs->_item[player->_x][player->_y][i]._qte > 0)
 	  {
 	    this->_obs->_item[player->_x][player->_y][i]._qte == 0;
 	    this->_obs->DeleteItem(player->_x, player->_y, i);
 	  }
-      ++player->_lvl;
-      player->_img->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(player->_skin[player->_id_team][player->_lvl].c_str()));
+      std::map<int, Player*>::iterator	it = this->_obs->_player.begin();
+      std::map<int, Player*>::iterator	it_end = this->_obs->_player.end();
+      for (;it != it_end; ++it)
+	if (it->second->_x == player->_x
+	    && it->second->_y == player->_y)
+	  {
+	    ++(it->second->_lvl);
+	    it->second->_img->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(it->second->_skin[it->second->_id_team][it->second->_lvl].c_str()));
+	  }
     }
 }
 

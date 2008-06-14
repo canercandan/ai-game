@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Fri Jun 13 16:32:49 2008 florent hochwelker
+// Last update Sat Jun 14 15:49:51 2008 florent hochwelker
 //
 
 #include <sys/types.h>
@@ -133,7 +133,7 @@ void	Socket::send(const std::string& s)
 
 std::string	Socket::recv(bool wait)
 {
-  char		buf[1024];
+  char		buf[8192];
   int		size;
 
   try
