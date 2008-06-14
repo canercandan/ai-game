@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Fri Jun 13 20:06:46 2008 florent hochwelker
+// Last update Sat Jun 14 16:14:02 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -44,26 +44,27 @@ void	Action::ApplyAction(Player* player, int idx, std::string& param)
 
 void		Action::MovePlayer(Player* player, int x, int y)
 {
+  irr::scene::ISceneNodeAnimator*   anim;
+
   if (ABS(player->_x - x) > 1 || ABS(player->_y - y) > 1)
     {
-      player->_x = x;
-      player->_y = y;
-      player->_img->setPosition(irr::core::vector3df(COORD(player->_y, this->_obs->GetY()), 0, COORD(player->_x, this->_obs->GetX())));
+      anim = this->_obs->GetScene()->createFlyStraightAnimator(irr::core::vector3df(COORD(player->_y, this->_obs->GetY()), 0, COORD(player->_x, this->_obs->GetX())),
+                                                               irr::core::vector3df(COORD(y, this->_obs->GetY()), 0, COORD(x, this->_obs->GetX())),
+                                                               0, false);
+      player->_img->setFrameLoop(1, 159);
     }
   else
     {
-      irr::scene::ISceneNodeAnimator*	anim;
-
       anim = this->_obs->GetScene()->createFlyStraightAnimator(irr::core::vector3df(COORD(player->_y, this->_obs->GetY()), 0, COORD(player->_x, this->_obs->GetX())),
 							       irr::core::vector3df(COORD(y, this->_obs->GetY()), 0, COORD(x, this->_obs->GetX())),
 							       static_cast<int>(this->_obs->GetTime() + 1), false);
-      player->_x = x;
-      player->_y = y;
-      player->_img->addAnimator(anim);
       player->_img->setFrameLoop(160, 183);
-      player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
-      anim->drop();
     }
+  player->_img->addAnimator(anim);
+  player->_x = x;
+  player->_y = y;
+  player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
+  anim->drop();
 }
 
 void		Action::ActionUp(Player* player, std::string&)
