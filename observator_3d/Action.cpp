@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Sat Jun 14 17:09:28 2008 florent hochwelker
+// Last update Sat Jun 14 18:55:01 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -177,8 +177,10 @@ void		 Action::ActionKick(Player* player, std::string&)
 
 void		Action::ActionDeath(Player* player, std::string&)
 {
-  player->_img->setFrameLoop(760, 800);
-  player->_anim = this->_obs->GetRealTime() + this->_obs->GetTime();
+  player->_img->setFrameLoop(776, 791);
+  player->_img->setLoopMode(false);
+  player->_life = 0;
+  player->_anim = this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
 }
 
 void            Action::ActionSee(Player*, std::string&)		{}

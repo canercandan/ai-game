@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Fri Jun 13 20:01:47 2008 florent hochwelker
+// Last update Sat Jun 14 18:53:32 2008 jordan aubry
 //
 
 #include <sstream>
@@ -173,7 +173,7 @@ void				Obs::DrawPlate()
 
 void					Obs::DrawAll(Socket &socket)
 {
-  std::map<int, Player*>::iterator	it;
+  std::map<int, Player*>::iterator	it, itErase;
   std::string				line;
   int					time = 0;
   int					action = 0;
@@ -196,10 +196,16 @@ void					Obs::DrawAll(Socket &socket)
 		  it->second->_img->setFrameLoop(1, 159);
 		  it->second->_anim = 0;
 		}
-	      if (it->second->_anim <= action && it->second->_life == 0)
+	      if (it->second->_life == 0)
 		{
-		  it->second->_img->setFrameLoop(800, 800);
-		  it->second->_anim = 0;
+		  if (it->second->_img->getFrameNr() == 791)
+		    it->second->_img->setFrameLoop(791, 791);
+		  if (it->second->_anim <= action)
+		    {
+		      this->_player.erase(it);
+		      it->second->_img->remove();
+		      it->second->~Player();
+		    }
 		}
 	    }
       	}

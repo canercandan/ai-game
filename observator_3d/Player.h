@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:53:08 2008 jordan aubry
-** Last update Fri Jun 13 19:43:54 2008 florent hochwelker
+** Last update Sat Jun 14 17:15:29 2008 jordan aubry
 */
 
 #ifndef __PLAYER_H__
