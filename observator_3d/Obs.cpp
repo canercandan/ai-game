@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Sat Jun 14 21:32:17 2008 jordan aubry
+// Last update Sat Jun 14 22:47:08 2008 jordan aubry
 //
 
 #include <sstream>
@@ -172,7 +172,7 @@ void				Obs::DrawPlate()
     }
   palace = this->_scene->getMesh(PALACE);
   node = this->_scene->addOctTreeSceneNode(palace->getMesh(0));
-  node->setPosition(irr::core::vector3df((this->_y * 50 - 64), 1118, 550));
+  node->setPosition(irr::core::vector3df((this->_y * 50 - 64), 1118, 650));
 }
 
 void					Obs::DrawAll(Socket &socket)
