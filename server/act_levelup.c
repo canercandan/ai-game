@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Fri Jun 13 17:02:27 2008 florent hochwelker
+** Last update Sat Jun 14 15:01:06 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -124,9 +124,9 @@ static void	levelup(t_client *client, t_info *info)
     {
       c = t->data;
       c->level++;
-      SEND(client->buf_write, LVLUP_OK);
-      putnbr(c->level, client->buf_write);
-      SEND(client->buf_write, "\n");
+      SEND(c->buf_write, LVLUP_OK);
+      putnbr(c->level, c->buf_write);
+      SEND(c->buf_write, "\n");
       t = t->next;
     }
   while ((data = pop_list(&(info->zone[client->x][client->y].ressources))))
