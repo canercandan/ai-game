@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 18:04:30 2008 florent hochwelker
-// Last update Thu Jun 12 18:17:29 2008 florent hochwelker
+// Last update Sat Jun 14 21:32:59 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -26,9 +26,9 @@ Window::Window()
   _scene = _device->getSceneManager();
   _env = _device->getGUIEnvironment();
   _driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, true);
-  //_camera = _scene->addCameraSceneNodeFPS(0, 100, CAMERA_SPEED);
+  _camera = _scene->addCameraSceneNodeFPS(0, 100, CAMERA_SPEED);
+  //_camera = _scene->addCameraSceneNodeMaya(0, 100, CAMERA_SPEED);
 
-  _camera = _scene->addCameraSceneNodeMaya(0, 100, CAMERA_SPEED);
   _camera->setPosition(vector3df(0, 0, 0));
   _camera->setTarget(vector3df(10, 0, 10));
   _camera->setFarValue(FAR_VALUE);

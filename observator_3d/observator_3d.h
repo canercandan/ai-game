@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Fri Jun 13 18:23:42 2008 jordan aubry
+** Last update Sat Jun 14 21:19:20 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -47,6 +47,7 @@
 #define SKY_BK		"env/bk.tga"
 
 #define MAP_CASE	"maps/case.bmp"
+#define PALACE		"maps/test.bsp"
 
 /*
 ** Item's defines

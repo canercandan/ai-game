@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Sat Jun 14 18:53:32 2008 jordan aubry
+// Last update Sat Jun 14 21:32:17 2008 jordan aubry
 //
 
 #include <sstream>
@@ -155,6 +155,7 @@ void				Obs::AddPlayer(std::stringstream& ss)
 void				Obs::DrawPlate()
 {
   irr::scene::ISceneNode	*node;
+  irr::scene::IAnimatedMesh	*palace;
   int				x;
   int				y;
 
@@ -169,6 +170,9 @@ void				Obs::DrawPlate()
 	  node->setPosition(irr::core::vector3df(CASEX(x), -29, CASEY(y)));
 	}
     }
+  palace = this->_scene->getMesh(PALACE);
+  node = this->_scene->addOctTreeSceneNode(palace->getMesh(0));
+  node->setPosition(irr::core::vector3df((this->_y * 50 - 64), 1118, 550));
 }
 
 void					Obs::DrawAll(Socket &socket)
