@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Tue Jun 17 23:39:01 2008 jordan aubry
+// Last update Wed Jun 18 00:03:23 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -206,8 +206,10 @@ void            Action::ActionLevelUp(Player* player, std::string& param)
 	  {
 	    irr::scene::ISceneNodeAnimator*   anim = this->_obs->GetScene()->createFlyCircleAnimator(irr::core::vector3df(0, 20, 0), 20, 0.01);
 	    irr::scene::IParticleAffector*    paf = it->second->_ps->createFadeOutParticleAffector();
-	    irr::scene::IParticleEmitter*     pem = it->second->_ps->createBoxEmitter(irr::core::aabbox3d<float>(-3, 0, -3, 4, 4, 4), irr::core::vector3df(0, 0.03, 0), 100, 100,
-										      irr::video::SColor(0, 255, 255, 255), irr::video::SColor(0, 255, 255, 255), 400, 100);
+	    irr::scene::IParticleEmitter*     pem = it->second->_ps->createBoxEmitter(irr::core::aabbox3d<float>(-3, 0, -3, 4, 4, 4),
+										      irr::core::vector3df(0, 0.03, 0), 100, 100,
+										      irr::video::SColor(0, 255, 255, 255),
+										      irr::video::SColor(0, 255, 255, 255), 400, 1000);
 	    ++(it->second->_lvl);
 	    it->second->_img->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(it->second->_skin[it->second->_id_team][it->second->_lvl].c_str()));
 	    it->second->_light = this->_obs->GetScene()->addLightSceneNode();
@@ -222,6 +224,7 @@ void            Action::ActionLevelUp(Player* player, std::string& param)
 	    it->second->_ps->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 	    it->second->_ps->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(FIRE));
 	    it->second->_ps->setMaterialType(irr::video::EMT_TRANSPARENT_VERTEX_ALPHA);
+	    it->second->_anim2 = this->_obs->GetRealTime() + 100 * this->_obs->GetTime();
 	  }
     }
 }
