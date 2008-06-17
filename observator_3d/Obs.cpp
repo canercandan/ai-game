@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Tue Jun 17 19:47:52 2008 jordan aubry
+// Last update Tue Jun 17 20:00:29 2008 jordan aubry
 //
 
 #include <sstream>
@@ -178,6 +178,7 @@ void				Obs::DrawPlate()
 					  irr::core::vector3df(0, 0, 0),
 					  irr::core::vector3df(LOC(this->_y), 0.1, LOC(this->_x)));
   node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+  node->setMaterialTexture(0, _driver->getTexture(MAP_CASE));
 }
 
 void					Obs::DrawAll(Socket &socket)
