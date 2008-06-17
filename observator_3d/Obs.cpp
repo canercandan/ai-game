@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Tue Jun 17 20:00:29 2008 jordan aubry
+// Last update Tue Jun 17 23:30:11 2008 jordan aubry
 //
 
 #include <sstream>
@@ -217,6 +217,11 @@ void					Obs::DrawAll(Socket &socket)
 		      it->second->~Player();
 		    }
 		}
+	    }
+	  if (it->second->_anim2 <= action)
+	    {
+	      it->second->_ps->remove();
+	      it->second->_light->remove();
 	    }
       	}
       line = socket.recv(false);

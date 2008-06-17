@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 19:55:06 2008 florent hochwelker
-// Last update Fri Jun 13 19:59:25 2008 florent hochwelker
+// Last update Tue Jun 17 22:45:11 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -16,8 +16,9 @@
 Player::Player() : _inventory(NB_RESSOURCE, 0)
 {
   _anim = 0;
-  std::vector<std::string>			_str(9);
+  _anim2 = 0;
 
+  std::vector<std::string>			_str(9);
   _skin.assign(5, _str);
 
   _skin[0][0] = INVADER;

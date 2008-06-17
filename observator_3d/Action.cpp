@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Tue Jun 17 20:22:35 2008 jordan aubry
+// Last update Tue Jun 17 23:39:01 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -191,8 +191,6 @@ void            Action::ActionLevelUp(Player* player, std::string& param)
   player->_img->setFrameLoop(1, 159);
   player->_anim = 0;
 
-  this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
-
   if (param == "1")
     {
       for (int i = 0; i < 6; ++i)
@@ -204,11 +202,26 @@ void            Action::ActionLevelUp(Player* player, std::string& param)
       std::map<int, Player*>::iterator	it = this->_obs->_player.begin();
       std::map<int, Player*>::iterator	it_end = this->_obs->_player.end();
       for (;it != it_end; ++it)
-	if (it->second->_x == player->_x
-	    && it->second->_y == player->_y)
+	if (it->second->_x == player->_x && it->second->_y == player->_y)
 	  {
+	    irr::scene::ISceneNodeAnimator*   anim = this->_obs->GetScene()->createFlyCircleAnimator(irr::core::vector3df(0, 20, 0), 20, 0.01);
+	    irr::scene::IParticleAffector*    paf = it->second->_ps->createFadeOutParticleAffector();
+	    irr::scene::IParticleEmitter*     pem = it->second->_ps->createBoxEmitter(irr::core::aabbox3d<float>(-3, 0, -3, 4, 4, 4), irr::core::vector3df(0, 0.03, 0), 100, 100,
+										      irr::video::SColor(0, 255, 255, 255), irr::video::SColor(0, 255, 255, 255), 400, 100);
 	    ++(it->second->_lvl);
 	    it->second->_img->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(it->second->_skin[it->second->_id_team][it->second->_lvl].c_str()));
+	    it->second->_light = this->_obs->GetScene()->addLightSceneNode();
+	    it->second->_light->addAnimator(anim);
+	    anim->drop();
+	    it->second->_ps = this->_obs->GetScene()->addParticleSystemSceneNode(false, it->second->_light);
+	    it->second->_ps->setParticleSize(irr::core::dimension2d<float>(5, 5));
+	    it->second->_ps->setEmitter(pem);
+	    pem->drop();
+	    it->second->_ps->addAffector(paf);
+	    paf->drop();
+	    it->second->_ps->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+	    it->second->_ps->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(FIRE));
+	    it->second->_ps->setMaterialType(irr::video::EMT_TRANSPARENT_VERTEX_ALPHA);
 	  }
     }
 }

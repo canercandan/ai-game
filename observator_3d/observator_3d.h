@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Tue Jun 17 19:40:26 2008 jordan aubry
+** Last update Tue Jun 17 23:39:53 2008 jordan aubry
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -59,6 +59,8 @@
 #define ITEM_5	"textures/grass.bmp"
 #define ITEM_6	"textures/lava.bmp"
 #define EGG	"textures/egg.bmp"
+
+#define FIRE	"textures/fire.bmp"
 
 #define	INVADER			"models/Invader/invader.md2"
 #define	INVADER_1		"models/Invader/i_1.bmp"

@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:53:08 2008 jordan aubry
-** Last update Sat Jun 14 17:15:29 2008 jordan aubry
+** Last update Tue Jun 17 23:23:26 2008 jordan aubry
 */
 
 #ifndef __PLAYER_H__
@@ -35,11 +35,14 @@ class	Player
   int					_y;
   int					_z;
   float					_anim;
+  float					_anim2;
   int					_life;
   std::vector<int>			_inventory;
   std::vector< std::vector<std::string> >			_skin;
   irr::scene::IAnimatedMeshSceneNode*	_img;
   irr::scene::ISceneNode*		_egg;
+  irr::scene::ISceneNode*		_light;
+  irr::scene::IParticleSystemSceneNode*	_ps;
 };
 
 #endif
