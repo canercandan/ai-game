@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sat May  3 15:19:05 2008 florent hochwelker
-** Last update Thu Jun 12 20:12:37 2008 caner candan
+** Last update Thu Jun 19 21:53:42 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -55,6 +55,7 @@ static void	send_map_items(t_client *client, t_info *info)
 	      strcat(client->buf_write, " ");
 	      putnbr(info->zone[x][y].nb_egg, client->buf_write);
 	      strcat(client->buf_write, "\n");
+	      client_write(info, client);
 	    }
 	  y++;
 	}
@@ -62,6 +63,7 @@ static void	send_map_items(t_client *client, t_info *info)
     }
   strcat(client->buf_write, END_LIST_ITEM);
   strcat(client->buf_write, "\n");
+  client_write(info, client);
 }
 
 static void	send_list_players(t_client *obs, t_info *info)
@@ -75,19 +77,25 @@ static void	send_list_players(t_client *obs, t_info *info)
     {
       if (CLIENT(clients->data)->status == ST_CLIENT ||
 	  CLIENT(clients->data)->status == ST_DISCONNECT)
-	obs_add_client_in_char(obs->buf_write, clients->data, info, 0);
+	{
+	  obs_add_client_in_char(obs->buf_write, clients->data, info, 0);
+	  client_write(info, obs);
+	}
       clients = clients->next;
     }
   strcat(obs->buf_write, END_LIST_PLAYER);
   strcat(obs->buf_write, "\n");
+  client_write(info, obs);
 }
 
 void	send_info_to_obs(t_client *client, t_info *info)
 {
   snprintf(client->buf_write, BUF_SIZE, "%d %d\n",
 	   info->x, info->y);
+  client_write(info, client);
   send_map_items(client, info);
   send_list_players(client, info);
   sprintf(client->buf_write, "%s%s %f\n",
 	  client->buf_write, TIME, 1.0 / info->time);
+  client_write(info, client);
 }

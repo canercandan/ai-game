@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Sat Jun 14 16:04:02 2008 florent hochwelker
+** Last update Sat Jun 14 19:30:44 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__

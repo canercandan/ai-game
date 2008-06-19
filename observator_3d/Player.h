@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:53:08 2008 jordan aubry
-** Last update Tue Jun 17 23:23:26 2008 jordan aubry
+** Last update Thu Jun 19 21:36:45 2008 florent hochwelker
 */
 
 #ifndef __PLAYER_H__
@@ -18,7 +18,9 @@
 # include "observator_3d.h"
 # include "common.h"
 
-class	Player
+//#pragma comment(lib, "Irrlicht.lib")
+
+class	Player// : public irr::IEventReceiver
 {
  public:
   Player();
@@ -43,6 +45,7 @@ class	Player
   irr::scene::ISceneNode*		_egg;
   irr::scene::ISceneNode*		_light;
   irr::scene::IParticleSystemSceneNode*	_ps;
+
 };
 
 #endif

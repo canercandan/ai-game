@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Tue Jun 17 23:52:45 2008 jordan aubry
+// Last update Thu Jun 19 21:48:40 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -54,11 +54,10 @@ void			Obs::Auth(Socket& socket)
       std::vector<std::vector<Item> >	v_y(this->_y, v_item);
 
       this->_item.assign(this->_x, v_y);
-
+      while (ss.str().find(END_LIST_ITEM) == std::string::npos)
+	ss << socket.recv(true);
       if (tmp == START_LIST_ITEM)
 	{
-	  while (ss.str().find(END_LIST_ITEM) == std::string::npos)
-	    ss << socket.recv(true);
 	  tmp = ss.str().substr(sizeof(START_LIST_ITEM) + ss.str().find(START_LIST_ITEM));
 	  ss.str("");
 	  ss << tmp;
