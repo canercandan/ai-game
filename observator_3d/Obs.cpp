@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Thu Jun 19 21:48:40 2008 florent hochwelker
+// Last update Thu Jun 19 23:09:08 2008 florent hochwelker
 //
 
 #include <sstream>
@@ -49,66 +49,63 @@ void			Obs::Auth(Socket& socket)
     {
       socket.send(std::string(MAGIC_OBS) + "\n");
       ss << socket.recv(true);
-      ss >> this->_x >> this->_y >> tmp;
+      ss >> this->_x >> this->_y;// >> tmp;
       std::vector<Item>			v_item(NB_RESSOURCE);
       std::vector<std::vector<Item> >	v_y(this->_y, v_item);
 
       this->_item.assign(this->_x, v_y);
       while (ss.str().find(END_LIST_ITEM) == std::string::npos)
 	ss << socket.recv(true);
-      if (tmp == START_LIST_ITEM)
+      tmp = ss.str().substr(sizeof(START_LIST_ITEM) + ss.str().find(START_LIST_ITEM));
+      ss.str("");
+      ss << tmp;
+      while (tmp.find(END_LIST_ITEM) != 0)
 	{
-	  tmp = ss.str().substr(sizeof(START_LIST_ITEM) + ss.str().find(START_LIST_ITEM));
-	  ss.str("");
-	  ss << tmp;
-	  while (tmp.find(END_LIST_ITEM) != 0)
-	    {
-	      ss >> x >> y;
-	      ss
-		>> this->_item[x][y][0]._qte
-		>> this->_item[x][y][1]._qte
-		>> this->_item[x][y][2]._qte
-		>> this->_item[x][y][3]._qte
-		>> this->_item[x][y][4]._qte
-		>> this->_item[x][y][5]._qte
-		>> this->_item[x][y][6]._qte
-		>> this->_item[x][y][7]._qte;
-	      tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
-	      ss.clear();
-	      ss.str("");
-	      ss << tmp;
-	      for (int i = 0; i < NB_RESSOURCE; i++)
-		if (this->_item[x][y][i]._qte > 0)
-		  this->DrawItem(x, y, i);
-	      if (this->_item[x][y][7]._qte > 0)
-		this->DrawEgg(x, y);
-	    }
+	  ss >> x >> y;
+	  ss
+	    >> this->_item[x][y][0]._qte
+	    >> this->_item[x][y][1]._qte
+	    >> this->_item[x][y][2]._qte
+	    >> this->_item[x][y][3]._qte
+	    >> this->_item[x][y][4]._qte
+	    >> this->_item[x][y][5]._qte
+	    >> this->_item[x][y][6]._qte
+	    >> this->_item[x][y][7]._qte;
+	  tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
 	  ss.clear();
 	  ss.str("");
 	  ss << tmp;
-	  while (ss.str().find(END_LIST_PLAYER) == std::string::npos)
-	    ss << socket.recv(true);
-	  tmp = ss.str().substr(sizeof(START_LIST_PLAYER) + ss.str().find(START_LIST_PLAYER));
-	  ss.clear();
-	  ss.str("");
-	  ss << tmp;
-	  while (tmp.find(END_LIST_PLAYER) != 0)
-	    {
-	      this->AddPlayer(ss);
-	      tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
-	      ss.clear();
-	      ss.str("");
-	      ss << tmp;
-	    }
-	  tmp = ss.str().substr(sizeof(END_LIST_PLAYER) + ss.str().find(END_LIST_PLAYER));
-	  ss.clear();
-	  ss.str("");
-	  ss << tmp;
-	  ss >> tmp >> this->_time;
-	  std::cout << "LE TIME EST " << this->_time << std::endl;
-	  this->_time = 1 / this->_time * 1000;
-	  std::cout << "LE TIME EST " << this->_time << std::endl;
+	  for (int i = 0; i < NB_RESSOURCE; i++)
+	    if (this->_item[x][y][i]._qte > 0)
+	      this->DrawItem(x, y, i);
+	  if (this->_item[x][y][7]._qte > 0)
+	    this->DrawEgg(x, y);
 	}
+      ss.clear();
+      ss.str("");
+      ss << tmp;
+      while (ss.str().find(END_LIST_PLAYER) == std::string::npos)
+	ss << socket.recv(true);
+      tmp = ss.str().substr(sizeof(START_LIST_PLAYER) + ss.str().find(START_LIST_PLAYER));
+      ss.clear();
+      ss.str("");
+      ss << tmp;
+      while (tmp.find(END_LIST_PLAYER) != 0)
+	{
+	  this->AddPlayer(ss);
+	  tmp = ss.str().substr(ss.str().find_first_of("\n") + 1);
+	  ss.clear();
+	  ss.str("");
+	  ss << tmp;
+	}
+      tmp = ss.str().substr(sizeof(END_LIST_PLAYER) + ss.str().find(END_LIST_PLAYER));
+      ss.clear();
+      ss.str("");
+      ss << tmp;
+      ss >> tmp >> this->_time;
+      std::cout << "LE TIME EST " << this->_time << std::endl;
+      this->_time = 1 / this->_time * 1000;
+      std::cout << "LE TIME EST " << this->_time << std::endl;
       this->DrawPlate();
     }
 }
