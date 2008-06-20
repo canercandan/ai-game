@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Wed Jun 18 00:36:23 2008 jordan aubry
+// Last update Fri Jun 20 12:24:58 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -180,7 +180,7 @@ void		Action::ActionDeath(Player* player, std::string&)
   player->_img->setFrameLoop(778, 791);
   player->_img->setLoopMode(false);
   player->_life = 0;
-  player->_anim = this->_obs->GetRealTime() + 300 * this->_obs->GetTime();
+  player->_anim = this->_obs->GetRealTime() + 100 * this->_obs->GetTime();
 }
 
 void            Action::ActionSee(Player*, std::string&)		{}
@@ -204,7 +204,8 @@ void            Action::ActionLevelUp(Player* player, std::string& param)
       for (;it != it_end; ++it)
 	if (it->second->_x == player->_x && it->second->_y == player->_y)
 	  {
-	    irr::scene::ISceneNodeAnimator*   anim = this->_obs->GetScene()->createFlyCircleAnimator(irr::core::vector3df(0, 20, 0), 20, 0.01);
+	    irr::scene::ISceneNodeAnimator*   anim = this->_obs->GetScene()->
+	      createFlyCircleAnimator(irr::core::vector3df(COORD(player->_y, this->_obs->GetY()), 0, COORD(player->_x, this->_obs->GetX())), 20, 0.01);
 	    ++(it->second->_lvl);
 	    it->second->_img->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(it->second->_skin[it->second->_id_team][it->second->_lvl].c_str()));
 	    it->second->_light = this->_obs->GetScene()->addLightSceneNode();
@@ -221,7 +222,7 @@ void            Action::ActionLevelUp(Player* player, std::string& param)
 	    it->second->_ps->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 	    it->second->_ps->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(FIRE));
 	    it->second->_ps->setMaterialType(irr::video::EMT_TRANSPARENT_VERTEX_ALPHA);
-	    it->second->_anim2 = this->_obs->GetRealTime() + 100 * this->_obs->GetTime();
+	    it->second->_anim2 = this->_obs->GetRealTime() + 10 * this->_obs->GetTime();
 	    anim->drop();
 	    paf->drop();
 	    pem->drop();
