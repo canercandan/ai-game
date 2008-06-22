@@ -5,11 +5,11 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun Jun 22 21:51:02 2008 florent hochwelker
-** Last update Sun Jun 22 22:40:18 2008 florent hochwelker
+** Last update Mon Jun 23 00:17:14 2008 florent hochwelker
 */
 
 #include <irrlicht.h>
-#include <iostream>
+#include "Obs.h"
 
 using namespace irr;
 
@@ -17,40 +17,16 @@ class MyEventReceiver : public irr::IEventReceiver
 {
 
  public:
-  MyEventReceiver(scene::ISceneManager* smgr, gui::ICursorControl* curseur)
-    {
-      selectedSceneNode = 0;
-      m_smgr = smgr;
-      m_curseur = curseur;
-    }
+  MyEventReceiver(scene::ISceneManager* smgr, gui::ICursorControl* curseur);
+  bool OnEvent(const SEvent& event);
 
-  bool OnEvent(const SEvent& event)
-  {
-    if (event.EventType == EET_MOUSE_INPUT_EVENT && event.MouseInput.Event == EMIE_RMOUSE_LEFT_UP)
-      {
-	core::vector3df intersection;
-	core::triangle3df tri;
-
-	selectedSceneNode = m_smgr->getSceneCollisionManager()->getSceneNodeFromScreenCoordinatesBB(m_curseur->getPosition());
-
-	if (selectedSceneNode)
-	  {
-	    std::cout << "j'ai clique sur le node " << selectedSceneNode << std::endl
-		      << std::flush;
-	  }
-      }
-    return (true);
-  }
+  inline void	SetObs(Obs* obs)  { this->_obs = obs; }
 
  protected:
   //scene::IAnimatedMeshSceneNode* node;
   scene::ISceneNode* selectedSceneNode;
   scene::ISceneManager* m_smgr;
   gui::ICursorControl* m_curseur;
+
+  Obs*	_obs;
 };
-
-/* int main() */
-/* { */
-
-/*   return 0; */
-/* } */

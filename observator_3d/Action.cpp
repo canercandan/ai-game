@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Fri Jun 20 12:24:58 2008 jordan aubry
+// Last update Mon Jun 23 01:24:24 2008 florent hochwelker
 //
 
 #include <irrlicht.h>

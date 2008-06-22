@@ -5,7 +5,7 @@
 // Login   <toumi_m@epitech.net>
 // 
 // Started on  Mon May 12 13:37:03 2008 majdi toumi
-// Last update Sun Jun 22 22:14:37 2008 florent hochwelker
+// Last update Sun Jun 22 23:10:56 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -25,6 +25,7 @@ int			main(int ac, char **av)
 
   //  gui::ICursorControl*	monCurseur = obs.GetDevice()->getCursorControl();
   MyEventReceiver receiver(obs.GetScene(), obs.GetDevice()->getCursorControl());
+  receiver.SetObs(&obs);
   obs.GetDevice()->setEventReceiver(&receiver);
 
   obs.DrawAll(socket);

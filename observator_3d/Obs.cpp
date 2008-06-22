@@ -5,9 +5,10 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Sun Jun 22 22:22:26 2008 florent hochwelker
+// Last update Mon Jun 23 01:23:21 2008 florent hochwelker
 //
 
+#include <irrlicht.h>
 #include <sstream>
 #include <vector>
 #include "Obs.h"
@@ -50,10 +51,14 @@ void			Obs::Auth(Socket& socket)
       socket.send(std::string(MAGIC_OBS) + "\n");
       ss << socket.recv(true);
       ss >> this->_x >> this->_y;// >> tmp;
-      std::vector<Item>			v_item(NB_RESSOURCE);
-      std::vector<std::vector<Item> >	v_y(this->_y, v_item);
 
+      std::vector<Item>			v_item(NB_RESSOURCE);
+      std::vector<std::vector<Item> >	v_y(this->_y, v_item);      
       this->_item.assign(this->_x, v_y);
+
+      std::vector<irr::core::vector3df>	v_vector3d(this->_y);
+      this->_case.assign(this->_x, v_vector3d);
+
       while (ss.str().find(END_LIST_ITEM) == std::string::npos)
 	ss << socket.recv(true);
       tmp = ss.str().substr(sizeof(START_LIST_ITEM) + ss.str().find(START_LIST_ITEM));
@@ -164,6 +169,7 @@ void				Obs::DrawPlate()
 	  node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 	  node->setMaterialTexture(0, _driver->getTexture(MAP_CASE));
 	  node->setPosition(irr::core::vector3df(CASEX(x), -29, CASEY(y)));
+	  this->_case[y][x] = node->getPosition();
 	}
     }
   palace = this->_scene->getMesh(PALACE);
@@ -283,7 +289,7 @@ void		Obs::ExecuteAction(std::string& line)
   int			id, idx_action, x, y, type;
   std::string		param;
 
-  std::cout << "J'ai recu = [" << line  << "]" << std::endl;
+  //  std::cout << "J'ai recu = [" << line  << "]" << std::endl;
   while (!line.empty())
     {
       ss.clear();
@@ -299,13 +305,13 @@ void		Obs::ExecuteAction(std::string& line)
 	  ss >> param >> x >> y >> type;
 	  if (++this->_item[x][y][type]._qte == 1)
 	    this->DrawItem(x, y, type);
-	  std::cout << "Hop les pierres sont dispersee." << std::endl;
+	  //	  std::cout << "Hop les pierres sont dispersee." << std::endl;
 	}
       else
 	{
 	  ss << line;
 	  ss >> id >> idx_action >> param;
-	  std::cout << "Execution de " << idx_action << " par " << id << std::endl;
+	  //	  std::cout << "Execution de " << idx_action << " par " << id << std::endl;
 	  action.ApplyAction(this->_player[id], idx_action, param);
 	}
       line = line.substr(line.find_first_of("\n") + 1);
