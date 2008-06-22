@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 17:22:42 2008 florent hochwelker
-** Last update Wed Jun 11 21:49:33 2008 florent hochwelker
+** Last update Mon Jun 23 01:23:38 2008 caner candan
 */
 
 #include <sys/time.h>
@@ -51,15 +51,17 @@ static struct timeval	*set_timeout(float delay,
   return (cur);
 }
 
-static int		get_last_action(struct timeval *empty,
-					t_list *queue, t_client *client)
+static int	get_last_action(struct timeval *empty,
+				t_list *queue,
+				t_client *client)
 {
-  int			i;
+  int		i;
 
   i = 0;
   while (queue && i < MAX_QUEUE)
     {
-      if (((t_queue*)queue->data)->client == client && ((t_queue*)queue->data)->idx_f != BIRD)
+      if (((t_queue*)queue->data)->client == client &&
+	  ((t_queue*)queue->data)->idx_f != BIRD)
 	{
 	  empty->tv_sec = TIMEVAL(((t_queue*)queue->data)->time)->tv_sec;
 	  empty->tv_usec = TIMEVAL(((t_queue*)queue->data)->time)->tv_usec;
@@ -74,11 +76,28 @@ static int		get_last_action(struct timeval *empty,
   return (1);
 }
 
-static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
-				  t_info *info)
+static void	forkme(t_queue *new_queue, struct timeval *tp,
+		       t_info *info)
 {
-  t_queue		*queue;
-  int			*p;
+  t_queue	*queue;
+  int		*p;
+
+  p = xmalloc(sizeof(int));
+  *p = CONCATXY(new_queue->client->x, new_queue->client->y);
+  queue = create_new_queue((char *)p, actions[BIRD].f,
+			   set_timeout(actions[BIRD].delay
+				       + actions[FORK].delay,
+				       info, tp),
+			   new_queue->client);
+  queue->idx_f = BIRD;
+  push_list(&info->queue, queue);
+}
+
+static void	set_idx_f(t_queue *new_queue, int i,
+			  struct timeval *tp,
+			  t_info *info)
+{
+  t_queue	*queue;
 
   new_queue->idx_f = i;
   push_list(&info->queue, new_queue);
@@ -91,21 +110,12 @@ static void		set_idx_f(t_queue *new_queue, int i, struct timeval *tp,
       push_list(&info->queue, queue);
     }
   if (i == FORK)
-    {
-      p = xmalloc(sizeof(int));
-      *p = CONCATXY(new_queue->client->x, new_queue->client->y);
-      queue = create_new_queue((char *)p, actions[BIRD].f,
-			       set_timeout(actions[BIRD].delay +
-					   actions[FORK].delay, info,
-					   tp),
-			       new_queue->client);
-      queue->idx_f = BIRD;
-      push_list(&info->queue, queue);
-    }
+    forkme(new_queue, tp, info);
   sort_queue_list(&info->queue);
 }
 
-int			execute_action(char *str, t_client *cli, t_info *info)
+int			execute_action(char *str, t_client *cli,
+				       t_info *info)
 {
   int			i;
   t_queue		*new_queue;

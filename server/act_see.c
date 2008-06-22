@@ -5,22 +5,21 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sat Jun  7 17:13:47 2008 majdi toumi
+** Last update Mon Jun 23 00:59:47 2008 caner candan
 */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
 #include "common.h"
 #include "x.h"
 
-static void		get_ressources(t_client *client, t_info *info,
-				       char *buff)
+static void	get_ressources(t_client *client, t_info *info,
+			       char *buff)
 {
-  int			i;
-  int			j;
-  int			diff[2];
+  int		i;
+  int		j;
+  int		diff[2];
 
   i = 0;
   while (i <= client->level)

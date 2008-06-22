@@ -5,12 +5,11 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Mon May  5 17:53:30 2008 majdi toumi
-** Last update Tue May 13 20:05:13 2008 majdi
+** Last update Mon Jun 23 01:24:04 2008 caner candan
 */
 
 #include <string.h>
 #include "server.h"
-#include <stdio.h>
 
 int		exist_data_from_list(t_list *t, void *data)
 {

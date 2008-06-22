@@ -5,14 +5,14 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 15:10:27 2008 florent hochwelker
-** Last update Tue May 13 23:04:37 2008 majdi
+** Last update Mon Jun 23 01:11:45 2008 caner candan
 */
 
 #include <stdio.h>
 #include "server.h"
 #include "x.h"
 
-void		client_disconnect(t_client *client, t_info *info)
+void	client_disconnect(t_client *client, t_info *info)
 {
   printf("%d: Connection closed\n", client->id);
   xclose(client->socket);

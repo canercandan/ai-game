@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon May 12 16:28:50 2008 majdi toumi
+** Last update Mon Jun 23 00:53:20 2008 caner candan
 */
 
 #include <string.h>
@@ -14,8 +14,8 @@
 
 int	act_right(char *param, t_client *client, t_info *info)
 {
-  (void) param;
-  (void) info;
+  (void)param;
+  (void)info;
   if (client->direction == NORTH)
     client->direction = EAST;
   else if (client->direction == EAST)
