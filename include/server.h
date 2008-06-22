@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Thu Jun 12 19:04:16 2008 florent hochwelker
+// Last update Mon Jun 23 01:26:59 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -287,7 +287,7 @@ void		obs_send_new_item(t_list *obs, int x, int y, void *data);
 */
 void		usage_server();
 int		is_options(char *args);
-t_info		*parse_args(int argc, char **argv, t_info *info);
+void		parse_args(int argc, char **argv, t_info *info);
 int		check_flag(int flag);
 int		opt_port(t_info *info, char **argv, int i);
 int		opt_width(t_info *info, char **argv, int i);
@@ -295,6 +295,7 @@ int		opt_lenght(t_info *info, char **argv, int i);
 int		opt_name_team(t_info *info, char **argv, int i);
 int		opt_nb_player(t_info *info, char **argv, int i);
 int		opt_delay(t_info *info, char **argv, int i);
+int		opt_help(t_info *info, char **argv, int i);
 
 /*
 ** Zones' functions
@@ -397,7 +398,7 @@ int	send_len_ressources(t_info *info, t_client *client,
 */
 char	*get_word_n(char *str, int n);
 char	*trim(char *str);
-void	putnbr(unsigned int nb, char *buff);
+void	putnbr(int nb, char *buff);
 
 /*
 ** Random's functions
