@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 12:10:55 2008 caner candan
-** Last update Fri Jun 13 19:32:32 2008 caner candan
+** Last update Mon Jun 23 00:25:46 2008 caner candan
 */
 
 #include <string.h>
@@ -28,7 +28,6 @@ static void	new_item(t_info *info, char **buf)
 
 static void	loop(t_info *info, char **tmp, char *first)
 {
-  printf("first: [%s]\n", first);
   if (!strncmp(first, START_LIST_PLAYER, strlen(START_LIST_PLAYER)))
     create_client(info, tmp);
   else if (!strncmp(first, ADD_CLIENT, strlen(ADD_CLIENT)))
@@ -39,12 +38,11 @@ static void	loop(t_info *info, char **tmp, char *first)
     {}
   else if (!strncmp(first, TIME, strlen(TIME)))
     put_float_from_buf(&info->time, tmp);
+  else if (!strncmp(first, START_LIST_ITEM, strlen(START_LIST_ITEM)))
+    get_object(info, tmp);
   else
     if (!info->x || !info->y)
-      {
-	get_map_size(info, tmp, first);
-	get_object(info, tmp);
-      }
+      get_map_size(info, tmp, first);
     else
       execute_action(info, tmp, first);
 }
@@ -58,7 +56,6 @@ int	get_trame(t_info *info)
   if (!(nbr = xrecv(info->socket, info->buf, BUF_SIZE, 0)))
     return (-1);
   info->buf[nbr] = 0;
-  printf("buf: [%s]\n", info->buf);
   tmp = info->buf;
   while ((first = strsep(&tmp, DELIMIT)))
     loop(info, &tmp, first);

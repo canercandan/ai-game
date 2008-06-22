@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Fri Jun 13 18:45:00 2008 caner candan
+// Last update Mon Jun 16 20:22:32 2008 caner candan
 //
 
 #ifndef __AI_H__
@@ -104,7 +104,9 @@ class	AI
   void	setTeamName(const std::string& team);
   bool	connectToServer(void);
   bool	getHeader(void);
+  void	incPid(void);
   void	actionLoop(void);
+  void	headMessage(void);
  private:
   /*
   ** To get header
@@ -131,6 +133,7 @@ class	AI
   void	_waitLevelUp(void);
   bool	_isLockToLevelUp(void);
   void	_foundLevel(void);
+  void	_goToLevelUp(void);
 
   /*
   ** Generic method
@@ -145,6 +148,7 @@ class	AI
   /*
   ** Client's infos
   */
+  int		_pid;
   Socket	_socket;
   std::string	_host;
   int		_port;
@@ -153,6 +157,7 @@ class	AI
   int		_y;
   int		_level;
   int		_maxClient;
+  std::string	_buf;
 
   std::vector<int>	_qtePerObject;
 };

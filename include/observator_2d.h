@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-// Last update Thu Jun 12 10:01:15 2008 caner candan
+** Last update Mon Jun 23 00:07:54 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__

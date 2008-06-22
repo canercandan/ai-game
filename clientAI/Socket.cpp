@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Fri Jun 13 18:41:17 2008 caner candan
+// Last update Mon Jun 16 20:10:32 2008 caner candan
 //
 
 #include <sys/types.h>
@@ -15,19 +15,20 @@
 #include <arpa/inet.h>
 #include <cstring>
 #include <cstdlib>
+#include <cerrno>
 #include <string>
 #include <iostream>
 #include "Socket.h"
 
-Socket::Socket(bool verbose /*=false*/)
-  : _socket(-1), _verbose(verbose)
+Socket::Socket(bool verbose/*=false*/, int pid/*= 0*/)
+  : _pid(pid), _socket(-1), _verbose(verbose)
 {}
 
 Socket::Socket(const std::string& host, int port,
-	       bool verbose /*=false*/)
-  : _socket(-1), _verbose(verbose)
+	       bool verbose/*=false*/, int pid/* = 0*/)
+  : _pid(pid), _socket(-1), _verbose(verbose)
 {
-  connectSocket(host, port);
+  connectSocket(host, port, pid);
 }
 
 Socket::Socket(const Socket& s)
@@ -39,7 +40,11 @@ Socket::~Socket()
     {
       ::close(_socket);
       if (_verbose)
-	std::cout << "Socket: socket closed" << std::endl;
+	{
+	  this->headMessage();
+	  std::cout << "socket closed"
+		    << std::endl;
+	}
     }
 }
 
@@ -50,7 +55,8 @@ Socket&	Socket::operator=(const Socket& s)
   return (*this);
 }
 
-void	Socket::connectSocket(const std::string& host, int port)
+void	Socket::connectSocket(const std::string& host,
+			      int port, int pid/*= 0*/)
 {
   struct sockaddr_in	sin;
   struct protoent	*pe;
@@ -59,13 +65,18 @@ void	Socket::connectSocket(const std::string& host, int port)
 
   try
     {
+      if (pid)
+	this->_pid = pid;
       pe = ::getprotobyname("tcp");
       if ((this->_socket = ::socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
 	throw 1;
       sin.sin_family = AF_INET;
       if (this->_verbose)
-	std::cout << "Socket: Resolving " << host
-		  << " ..." << std::endl;
+	{
+	  this->headMessage();
+	  std::cout << "Resolving " << host
+		    << " ..." << std::endl;
+	}
       if (!(h = ::gethostbyname(host.c_str())))
 	throw 2;
       ::memcpy(&in, h->h_addr, sizeof(in));
@@ -76,7 +87,7 @@ void	Socket::connectSocket(const std::string& host, int port)
     }
   catch (int e)
     {
-      std::cout << "Socket: ";
+      this->headMessage();
       if (e == 1)
 	std::cout << "socket error";
       else if (e == 2)
@@ -99,7 +110,9 @@ void	Socket::closeSocket(void)
     }
   catch (bool)
     {
-      std::cout << "Socket: socket already closed" << std::endl;
+      this->headMessage();
+      std::cout << "socket already closed"
+		<< std::endl;
     }
 }
 
@@ -113,11 +126,15 @@ void	Socket::send(const std::string& s,
       if (::send(this->_socket, s.c_str(), s.size(), 0) < 0)
 	throw 2;
       if (this->_verbose || verbose)
-	std::cout << "Socket: send [" << s << "]" << std::endl;
+	{
+	  this->headMessage();
+	  std::cout << "send [" << s << ']'
+		    << std::endl;
+	}
     }
   catch (int e)
     {
-      std::cout << "Socket: ";
+      this->headMessage();
       if (e == 1)
 	std::cout << "send error, not connected";
       else if (e == 2)
@@ -136,15 +153,21 @@ std::string	Socket::recv(bool verbose /*=false*/)
       if (!this->isConnected())
 	throw true;
       size = ::recv(this->_socket, buf, sizeof(buf), 0);
+      if (!this->isGoodRecv())
+	return ("");
       buf[size] = 0;
       if (this->_verbose || verbose)
-	std::cout << "Socket: recv [" << buf
-		  << "]" << std::endl;
+	{
+	  this->headMessage();
+	  std::cout << "recv [" << buf << ']'
+		    << std::endl;
+	}
       return (std::string(buf));
     }
   catch (bool)
     {
-      std::cout << "Socket: error recv, not connected"
+      this->headMessage();
+      std::cout << "error recv, not connected"
 		<< std::endl;
     }
   return ("");
@@ -161,18 +184,31 @@ std::string	Socket::recvNoWait(bool verbose /*=false*/)
 	throw true;
       size = ::recv(this->_socket, buf, sizeof(buf),
 		    MSG_DONTWAIT);
+      if (!this->isGoodRecv())
+	return ("");
       buf[size] = 0;
       if (this->_verbose || verbose)
-	std::cout << "Socket: recvNoWait [" << buf
-		  << "]" << std::endl;
+	{
+	  this->headMessage();
+	  std::cout << "recvNoWait [" << buf << ']'
+		    << std::endl;
+	}
       return (std::string(buf));
     }
   catch (bool)
     {
-      std::cout << "Socket: error recvNoWait, not connected"
-		<< std::endl;
+      this->headMessage();
+      std::cout << "error recvNoWait, "
+		<< "not connected" << std::endl;
     }
   return ("");
+}
+
+bool	Socket::isGoodRecv(void)
+{
+  if (errno == EAGAIN)
+    return (false);
+  return (true);
 }
 
 std::string	Socket::sendRecv(const std::string &s,
@@ -185,4 +221,10 @@ std::string	Socket::sendRecv(const std::string &s,
 bool	Socket::isConnected(void)
 {
   return (this->_socket >= 0);
+}
+
+void	Socket::headMessage(void)
+{
+  std::cout << '[' << this->_pid << ']'
+	    << " Socket: ";
 }

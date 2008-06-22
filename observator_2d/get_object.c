@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Sat Jun  7 14:02:20 2008 caner candan
-** Last update Thu Jun 12 14:22:39 2008 caner candan
+** Last update Mon Jun 23 00:25:32 2008 caner candan
 */
 
 #include <string.h>
@@ -43,9 +43,8 @@ static int	loop(t_info *info, char **buf)
 
 int	get_object(t_info *info, char **buf)
 {
-  if (strncmp(*buf, START_LIST_ITEM, strlen(START_LIST_ITEM)))
+  if (!buf[0])
     return (-1);
-  skip_from_buf(buf);
   while (strncmp(*buf, END_LIST_ITEM, strlen(END_LIST_ITEM)))
     if (loop(info, buf) < 0)
       return (-1);
