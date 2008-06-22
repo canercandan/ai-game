@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 12:06:08 2008 majdi toumi
-** Last update Thu Jun 12 14:18:35 2008 caner candan
+** Last update Fri Jun 13 19:38:14 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -20,7 +20,7 @@ t_opt	gl_opt_srv[] = {
   {FLAG_N, "-n", "name_team_number1 name_team_number2 ...", opt_name_team},
   {FLAG_C, "-c", "number of client at the begining", opt_nb_player},
   {FLAG_T, "-t", "temporal execution action's delay", opt_delay},
-  {FLAG_H, "-h", "help", NULL},
+  {FLAG_H, "--help", "help", opt_help},
   {0, NULL, NULL, NULL}
 };
 

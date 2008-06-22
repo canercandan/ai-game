@@ -5,12 +5,12 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:10:57 2008 majdi toumi
-** Last update Wed Jun  4 08:38:52 2008 caner candan
+** Last update Fri Jun 13 19:47:54 2008 majdi toumi
 */
 
 #include "server.h"
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
   t_info	*info;
 

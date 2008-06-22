@@ -5,17 +5,22 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 11:37:06 2008 majdi toumi
-** Last update Mon May 12 17:53:40 2008 florent hochwelker
+** Last update Mon Jun 23 01:26:45 2008 majdi toumi
 */
 
 #include <string.h>
 #include "server.h"
 
-void	putnbr(unsigned int n, char *buff)
+void	putnbr(int n, char *buff)
 {
   int	rest;
   char	c;
 
+  if (n < 0)
+    {
+      strncat(buff, "-", 1);
+      putnbr(-n, buff);
+    }
   rest = n % 10;
   n = n / 10;
   if (n != 0)

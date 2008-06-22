@@ -5,13 +5,34 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 15:24:54 2008 majdi toumi
-** Last update Sat Jun  7 17:32:53 2008 majdi toumi
+** Last update Mon Jun 23 00:41:15 2008 majdi toumi
 */
 
 #include <stdio.h>
 #include <string.h>
 #include "server.h"
 #include "common.h"
+
+static int	cat_players(t_list *players, char *buff, int *diff)
+{
+  t_client	*clt;
+  int		i;
+
+  i = 0;
+  while (players)
+    {
+      clt = players->data;
+      if (clt->status == ST_CLIENT || clt->status == ST_DISCONNECT)
+	{
+	  if (diff[0] != 0 || diff[1] != 0 || i != 0)
+	    strcat(buff, SEPARATOR_ELM);
+	  strcat(buff, "joueur");
+	}
+      players = players->next;
+      i++;
+    }
+  return (i);
+}
 
 int		send_ressources(t_info *info, t_client *client, char *buff,
 				int *diff)
@@ -28,15 +49,7 @@ int		send_ressources(t_info *info, t_client *client, char *buff,
   printf("x: [%d], y: [%d]\n", x, y);
   ressources = info->zone[x][y].ressources;
   players = info->zone[x][y].clients;
-  i = 0;
-  while (players)
-    {
-      if (diff[0] != 0 || diff[1] != 0 || i != 0)
-	strcat(buff, SEPARATOR_ELM);
-      strcat(buff, "joueur");
-      players = players->next;
-      i++;
-    }
+  i = cat_players(players, buff, diff);
   while (ressources)
     {
       if (diff[0] != 0 || diff[1] != 0 || i != 0)

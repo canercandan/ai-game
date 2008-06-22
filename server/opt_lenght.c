@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:14 2008 majdi toumi
-** Last update Fri May  2 16:41:36 2008 caner candan
+** Last update Fri Jun 13 19:22:42 2008 majdi toumi
 */
 
 #include <stdlib.h>
@@ -14,6 +14,11 @@
 int	opt_lenght(t_info *info, char **argv, int i)
 {
   if (argv[i])
-    info->y = atoi(argv[i]);
-  return (i + 1);
+    {
+      info->y = atoi(argv[i]);
+      i++;
+    }
+  else
+    i = -1;
+  return (i);
 }

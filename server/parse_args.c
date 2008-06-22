@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Thu Jun 12 19:49:24 2008 florent hochwelker
+** Last update Sat Jun 14 08:47:46 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -30,7 +30,7 @@ static void	fill_default_info(t_info *info)
   info->queue = 0;
 }
 
-t_info	*parse_args(int argc, char **argv, t_info *info)
+void	parse_args(int argc, char **argv, t_info *info)
 {
   int	flag;
   int	idx;
@@ -45,9 +45,12 @@ t_info	*parse_args(int argc, char **argv, t_info *info)
 	{
 	  flag |= gl_opt_srv[idx].opt;
 	  i = gl_opt_srv[idx].fun(info, argv, i);
+	  if (i == -1)
+	    usage_server();
 	}
       else
-	return (0);
+	usage_server();
     }
-  return (info);
+/*   if (!check_flag(flag)) */
+/*     usage_server(); */
 }

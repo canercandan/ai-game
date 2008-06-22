@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:52:30 2008 majdi toumi
-** Last update Fri May  2 16:41:28 2008 caner candan
+** Last update Fri Jun 13 19:22:58 2008 majdi toumi
 */
 
 #include <stdlib.h>
@@ -14,6 +14,11 @@
 int		opt_width(t_info *info, char **argv, int i)
 {
   if (argv[i])
-    info->x = atoi(argv[i]);
-  return (i + 1);
+    {
+      info->x = atoi(argv[i]);
+      i++;
+    }
+  else
+    i = -1;
+  return (i);
 }

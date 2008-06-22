@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:44:27 2008 majdi toumi
-** Last update Thu Jun 12 19:50:03 2008 florent hochwelker
+** Last update Fri Jun 13 19:25:14 2008 majdi toumi
 */
 
 #include <stdlib.h>
@@ -14,6 +14,11 @@
 int	opt_delay(t_info *info, char **argv, int i)
 {
   if (argv[i])
-    info->time = 1.0 / atof(argv[i]);
-  return (i + 1);
+    {
+      info->time = 1.0 / atof(argv[i]);
+      i++;
+    }
+  else
+    i = -1;
+  return (i);
 }
