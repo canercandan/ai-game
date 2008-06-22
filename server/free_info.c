@@ -5,11 +5,8 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Fri May  2 15:02:46 2008 caner candan
-<<<<<<< .mine
-** Last update Tue May 13 18:11:02 2008 majdi toumi
-=======
+** Last update Mon Jun 23 01:28:32 2008 caner candan
 ** Last update Wed May 14 11:23:16 2008 florent hochwelker
->>>>>>> .r434
 */
 
 #include <stdlib.h>
@@ -76,7 +73,6 @@ void	free_info(t_info *info)
   free_list(info->team);
   free_clients(info->clients);
   free_queues(info->queue);
-  /*   free_list(info->observator); */
   free(info->timeout);
   free(info);
 }

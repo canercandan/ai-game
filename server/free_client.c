@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Thu May  1 19:40:01 2008 caner candan
-** Last update Sat May  3 16:28:37 2008 florent hochwelker
+** Last update Mon Jun 23 01:26:29 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -13,6 +13,5 @@
 
 void	free_client(t_client *client)
 {
-  debug("free_client()", -1);
   free(client);
 }
