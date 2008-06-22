@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 19:43:36 2008 jordan aubry
-** Last update Wed Jun 11 21:04:20 2008 florent hochwelker
+** Last update Sun Jun 22 22:13:51 2008 florent hochwelker
 */
 
 #ifndef __WINDOW_H__
@@ -25,6 +25,7 @@ class	Window
   void	InitWindow();
   inline irr::scene::ISceneManager*	GetScene() { return this->_scene; }
   inline irr::video::IVideoDriver*	GetDriver() { return this->_driver; }
+  inline irr::IrrlichtDevice*		GetDevice() { return this->_device; }
 
  protected:
   irr::IrrlichtDevice*		_device;

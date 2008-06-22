@@ -5,7 +5,7 @@
 ## Login   <hochwe_f@epitech.net>
 ## 
 ## Started on  Fri Jun  6 18:48:55 2008 florent hochwelker
-## Last update Sat Jun 14 15:45:57 2008 florent hochwelker
+## Last update Sun Jun 22 22:14:29 2008 florent hochwelker
 ##
 
 CC		=	g++
@@ -14,7 +14,8 @@ SRC		=	main.cpp \
 			Socket.cpp \
 			Window.cpp \
 			Player.cpp \
-			Action.cpp
+			Action.cpp \
+			Event.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 NAME		=	obs_3d
