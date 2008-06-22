@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 20:07:40 2008 caner candan
-** Last update Mon Jun 23 01:12:38 2008 caner candan
+** Last update Mon Jun 23 01:38:21 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -19,8 +19,10 @@ void	client_write(t_info *info, t_client *client)
 
   (void)info;
   len = strlen(client->buf_write);
-  while ((total_send = xsend(client->socket, client->buf_write,
-			     strlen(client->buf_write), 0) < len))
-    len -= total_send;
+  while ((total_send = xsend(client->socket, client->buf_write, len, 0)) < len)
+    { 
+      memmove(client->buf_write, client->buf_write + total_send, len - total_send);
+      len -= total_send;
+    }
   client->buf_write[0] = 0;
 }

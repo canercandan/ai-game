@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 17:31:24 2008 caner candan
-** Last update Mon May 12 18:32:39 2008 caner candan
+** Last update Mon Jun 23 01:34:53 2008 florent hochwelker
 */
 
 #include "server.h"
@@ -21,7 +21,7 @@ int		is_levelmax(t_client *client, t_info *info)
 	if (count_list_with_same_team_n_lvl(info->clients,
 					    CLIENT(t->data)->team,
 					    CLIENT(t->data)->level) ==
-	    CLIENT(t->data)->team->nb)
+	    6)
 	  return (0);
       t = t->next;
     }
