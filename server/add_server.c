@@ -5,13 +5,14 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:40:48 2008 caner candan
-** Last update Mon Jun 23 01:04:14 2008 caner candan
+** Last update Mon Jun 23 03:54:38 2008 caner candan
 */
 
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <stdio.h>
 #include "server.h"
 #include "common.h"
 #include "x.h"
@@ -37,4 +38,5 @@ void			add_server(t_info *info)
   client->buf_write[0] = 0;
   client->buf_read[0] = 0;
   push_list(&info->clients, (void *)client);
+  printf("Server started in [%s : %d]\n", "localhost", info->port);
 }
