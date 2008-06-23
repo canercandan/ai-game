@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Sun Jun 22 23:07:28 2008 florent hochwelker
+** Last update Mon Jun 23 02:35:28 2008 jordan aubry
 */
 
 #ifndef __OBS_H__
@@ -34,6 +34,8 @@ class	Obs : public Window
   void		Auth(Socket& socket);
   void		DrawAll(Socket& socket);
 
+  inline bool		GetCursor() { return this->_cursor; }
+  inline void		SetCursor(bool b) { this->_cursor = b; }
   inline int		GetX() const { return this->_x; }
   inline int		GetY() const { return this->_y; }
   inline std::string	GetHost() const { return this->_host; }
@@ -49,7 +51,6 @@ class	Obs : public Window
   std::map<int, Player*>				_player;
   std::vector<std::vector<irr::core::vector3df> >	_case;
 
-
  private:
   int					_x;
   int					_y;
@@ -58,6 +59,7 @@ class	Obs : public Window
   int					_port;
   float					_time;
   irr::ITimer*				_timer;
+  bool					_cursor;
 
   void					DrawPlate();
   void					DrawPlayer(Player* player);

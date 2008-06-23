@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Mon Jun 23 01:23:21 2008 florent hochwelker
+// Last update Mon Jun 23 02:28:06 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -38,6 +38,7 @@ Obs::Obs(int ac, char **av)
   _texture[5] = _driver->getTexture(ITEM_6);
   _texture[7] = _driver->getTexture(EGG);
   _timer = this->_device->getTimer();
+  _cursor = true;
 }
 
 void			Obs::Auth(Socket& socket)
@@ -53,7 +54,7 @@ void			Obs::Auth(Socket& socket)
       ss >> this->_x >> this->_y;// >> tmp;
 
       std::vector<Item>			v_item(NB_RESSOURCE);
-      std::vector<std::vector<Item> >	v_y(this->_y, v_item);      
+      std::vector<std::vector<Item> >	v_y(this->_y, v_item);
       this->_item.assign(this->_x, v_y);
 
       std::vector<irr::core::vector3df>	v_vector3d(this->_y);

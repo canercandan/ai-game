@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Sun Jun 22 21:49:55 2008 florent hochwelker
-// Last update Mon Jun 23 01:59:56 2008 florent hochwelker
+// Last update Mon Jun 23 02:30:29 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -34,6 +34,16 @@ bool MyEventReceiver::OnEvent(const SEvent& event)
 	  if (camera)
 	    {
 	      camera->setInputReceiverEnabled(!camera->isInputReceiverEnabled());
+	      if (this->_obs->GetCursor())
+		{
+		  this->_obs->SetCursor(false);
+		  this->_obs->GetDevice()->getCursorControl()->setVisible(true);
+		}
+	      else
+		{
+		  this->_obs->SetCursor(true);
+		  this->_obs->GetDevice()->getCursorControl()->setVisible(false);
+		}
 	    }
 	  return true;
 	}
