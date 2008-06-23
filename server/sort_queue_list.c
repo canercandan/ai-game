@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Wed Apr 30 17:53:33 2008 florent hochwelker
-** Last update Mon May 12 19:17:19 2008 florent hochwelker
+** Last update Mon Jun 23 03:51:30 2008 florent hochwelker
 */
 
 #include <stdio.h>
@@ -27,7 +27,6 @@ void		sort_queue_list(t_list **begin)
 	      && TIMEVAL(((t_queue*)(*begin)->data)->time)->tv_usec >
 	      TIMEVAL(((t_queue*)(*begin)->next->data)->time)->tv_usec))
 	{
-	  printf("petit swap\n");
 	  swap = (*begin)->next->data;
 	  (*begin)->next->data = (*begin)->data;
 	  (*begin)->data = swap;

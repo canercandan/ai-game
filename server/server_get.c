@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Mon Jun 23 03:47:26 2008 caner candan
+** Last update Mon Jun 23 03:57:50 2008 florent hochwelker
 */
 
 #include <sys/select.h>
@@ -91,6 +91,5 @@ void			server_get(t_info *info)
       get_isset_fd(info, &fd_read, &fd_write);
       check_death_clients(info, &tp);
       scheduler_exec(info, &tp);
-      printf("waiting...\n");
     }
 }

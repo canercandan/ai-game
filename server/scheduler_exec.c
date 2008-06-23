@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Thu May  1 19:23:49 2008 florent hochwelker
-** Last update Mon Jun 23 01:43:13 2008 caner candan
+** Last update Mon Jun 23 04:02:16 2008 florent hochwelker
 */
 
 #include <sys/time.h>
@@ -29,7 +29,6 @@ static int	execme(t_info *info, t_queue *elem)
     obs_send_action(elem->client->id, info, elem->idx_f, "1");
   else if (ret >= 0)
     obs_send_action(elem->client->id, info, elem->idx_f, elem->param);
-  dump_client_position(info->clients);
   info->queue = info->queue->next;
   free(elem->param);
   free(elem->time);

@@ -2,10 +2,10 @@
 // Obs.cpp for Obs3D in /home/hochwe_f/zappy/observator_3d
 // 
 // Made by florent hochwelker
-// Login   <hochwe_f@epitech.net>
+// Login   <hochSrecwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Mon Jun 23 02:28:06 2008 jordan aubry
+// Last update Mon Jun 23 04:22:11 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -37,6 +37,14 @@ Obs::Obs(int ac, char **av)
   _texture[4] = _driver->getTexture(ITEM_5);
   _texture[5] = _driver->getTexture(ITEM_6);
   _texture[7] = _driver->getTexture(EGG);
+  for (int i = 0; i <= 7; ++i)
+    {
+      if (_texture[i] == 0)
+	{
+	  std::cout << "Error loading texture. Be care run the observator 3D in his directory" << std::endl;
+	  exit(0);
+	}
+    }
   _timer = this->_device->getTimer();
   _cursor = true;
 }
@@ -290,7 +298,7 @@ void		Obs::ExecuteAction(std::string& line)
   int			id, idx_action, x, y, type;
   std::string		param;
 
-  //  std::cout << "J'ai recu = [" << line  << "]" << std::endl;
+  std::cout << "J'ai recu = [" << line  << "]" << std::endl;
   while (!line.empty())
     {
       ss.clear();
@@ -312,7 +320,7 @@ void		Obs::ExecuteAction(std::string& line)
 	{
 	  ss << line;
 	  ss >> id >> idx_action >> param;
-	  //	  std::cout << "Execution de " << idx_action << " par " << id << std::endl;
+	  std::cout << "Execution de " << idx_action << " par " << id << std::endl;
 	  action.ApplyAction(this->_player[id], idx_action, param);
 	}
       line = line.substr(line.find_first_of("\n") + 1);

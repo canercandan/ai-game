@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Mon Jun 23 02:33:15 2008 florent hochwelker
+** Last update Mon Jun 23 03:44:00 2008 florent hochwelker
 */
 
 #include <string.h>

@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Mon Jun 23 02:37:59 2008 florent hochwelker
+// Last update Mon Jun 23 04:29:57 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -188,45 +188,48 @@ void            Action::ActionCount(Player*, std::string&)		{}
 
 void            Action::ActionLevelUp(Player* player, std::string& param)
 {
-  player->_img->setFrameLoop(1, 159);
-  player->_anim = 0;
-
-  if (param == "1")
+  if (player)
     {
-      for (int i = 0; i < 6; ++i)
-	if (this->_obs->_item[player->_x][player->_y][i]._qte > 0)
-	  {
-	    this->_obs->_item[player->_x][player->_y][i]._qte == 0;
-	    this->_obs->DeleteItem(player->_x, player->_y, i);
-	  }
-      std::map<int, Player*>::iterator	it = this->_obs->_player.begin();
-      std::map<int, Player*>::iterator	it_end = this->_obs->_player.end();
-      for (;it != it_end; ++it)
-	if (it->second->_x == player->_x && it->second->_y == player->_y)
-	  {
-	    irr::scene::ISceneNodeAnimator*   anim = this->_obs->GetScene()->
-	      createFlyCircleAnimator(irr::core::vector3df(COORD(player->_y, this->_obs->GetY()), 0, COORD(player->_x, this->_obs->GetX())), 20, 0.01);
-	    ++(it->second->_lvl);
-	    it->second->_img->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(it->second->_skin[it->second->_id_team][it->second->_lvl].c_str()));
-	    it->second->_light = this->_obs->GetScene()->addLightSceneNode();
-	    it->second->_light->addAnimator(anim);
-	    it->second->_ps = this->_obs->GetScene()->addParticleSystemSceneNode(false, it->second->_light);
-	    it->second->_ps->setParticleSize(irr::core::dimension2d<float>(5, 5));
-	    irr::scene::IParticleEmitter*     pem = it->second->_ps->createBoxEmitter(irr::core::aabbox3d<float>(-3, 0, -3, 4, 4, 4),
-                                                                                      irr::core::vector3df(0, 0.03, 0), 100, 100,
-                                                                                      irr::video::SColor(0, 255, 255, 255),
-                                                                                      irr::video::SColor(0, 255, 255, 255), 400, 1000);
-	    it->second->_ps->setEmitter(pem);
-	    irr::scene::IParticleAffector*    paf = it->second->_ps->createFadeOutParticleAffector();
-	    it->second->_ps->addAffector(paf);
-	    it->second->_ps->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-	    it->second->_ps->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(FIRE));
-	    it->second->_ps->setMaterialType(irr::video::EMT_TRANSPARENT_VERTEX_ALPHA);
-	    it->second->_anim2 = this->_obs->GetRealTime() + 10 * this->_obs->GetTime();
-	    anim->drop();
-	    paf->drop();
-	    pem->drop();
-	  }
+      player->_img->setFrameLoop(1, 159);
+      player->_anim = 0;
+
+      if (param == "1")
+	{
+	  for (int i = 0; i < 6; ++i)
+	    if (this->_obs->_item[player->_x][player->_y][i]._qte > 0)
+	      {
+		this->_obs->_item[player->_x][player->_y][i]._qte == 0;
+		this->_obs->DeleteItem(player->_x, player->_y, i);
+	      }
+	  std::map<int, Player*>::iterator	it = this->_obs->_player.begin();
+	  std::map<int, Player*>::iterator	it_end = this->_obs->_player.end();
+	  for (;it != it_end; ++it)
+	    if (it->second->_x == player->_x && it->second->_y == player->_y)
+	      {
+		irr::scene::ISceneNodeAnimator*   anim = this->_obs->GetScene()->
+		  createFlyCircleAnimator(irr::core::vector3df(COORD(player->_y, this->_obs->GetY()), 0, COORD(player->_x, this->_obs->GetX())), 20, 0.01);
+		++(it->second->_lvl);
+		it->second->_img->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(it->second->_skin[it->second->_id_team][it->second->_lvl].c_str()));
+		it->second->_light = this->_obs->GetScene()->addLightSceneNode();
+		it->second->_light->addAnimator(anim);
+		it->second->_ps = this->_obs->GetScene()->addParticleSystemSceneNode(false, it->second->_light);
+		it->second->_ps->setParticleSize(irr::core::dimension2d<float>(5, 5));
+		irr::scene::IParticleEmitter*     pem = it->second->_ps->createBoxEmitter(irr::core::aabbox3d<float>(-3, 0, -3, 4, 4, 4),
+											  irr::core::vector3df(0, 0.03, 0), 100, 100,
+											  irr::video::SColor(0, 255, 255, 255),
+											  irr::video::SColor(0, 255, 255, 255), 400, 1000);
+		it->second->_ps->setEmitter(pem);
+		irr::scene::IParticleAffector*    paf = it->second->_ps->createFadeOutParticleAffector();
+		it->second->_ps->addAffector(paf);
+		it->second->_ps->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+		it->second->_ps->setMaterialTexture(0, this->_obs->GetDriver()->getTexture(FIRE));
+		it->second->_ps->setMaterialType(irr::video::EMT_TRANSPARENT_VERTEX_ALPHA);
+		it->second->_anim2 = this->_obs->GetRealTime() + 10 * this->_obs->GetTime();
+		anim->drop();
+		paf->drop();
+		pem->drop();
+	      }
+	}
     }
 }
 

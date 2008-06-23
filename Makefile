@@ -5,23 +5,20 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon Jun 23 03:38:48 2008 caner candan
+## Last update Mon Jun 23 04:03:49 2008 florent hochwelker
 ##
 
 NAME_SRV	=	server
-NAME_CLI	=	client
 NAME_OBS_2D	=	observator_2d
 NAME_X		=	x
 NAME_BIN	=	bin
 
 PATH_SRV	=	$(NAME_SRV)/
-PATH_CLI	=	$(NAME_CLI)/
 PATH_OBS_2D	=	$(NAME_OBS_2D)/
 PATH_X		=	$(NAME_X)/
 PATH_BIN	=	$(NAME_BIN)/
 
 BIN_SRV		=	$(PATH_BIN)$(NAME_SRV)
-BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
 BIN_OBS_2D	=	$(PATH_BIN)$(NAME_OBS_2D)
 
 SRCS_X		=	$(PATH_X)xaccept.c				\
@@ -128,17 +125,6 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)get_position_from_list.c		\
 			$(PATH_SRV)check_death_clients.c
 
-SRCS_CLI	=	$(PATH_CLI)main.c				\
-			$(PATH_CLI)enter_in_the_world.c			\
-			$(PATH_CLI)new_connection.c			\
-			$(PATH_CLI)print_usage.c			\
-			$(PATH_CLI)check_response.c			\
-			$(PATH_CLI)fork_in_the_word.c			\
-			$(PATH_CLI)get_rnd_action.c			\
-			$(PATH_CLI)init_info.c				\
-			$(PATH_CLI)free_info.c				\
-			$(PATH_CLI)parse_args.c
-
 SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)init_info.c			\
 			$(PATH_OBS_2D)destroy_info.c			\
@@ -191,7 +177,6 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
-OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
 OBJS_OBS_2D	=	$(SRCS_OBS_2D:.c=.o) $(OBJS_X)
 
 INCLUDES	=	-I./include
@@ -228,7 +213,6 @@ KEY_VALUE	=	42
 all		:
 			@$(MKD) $(PATH_BIN)
 			@$(MK) $(BIN_SRV)
-			@$(MK) $(BIN_CLI)
 			@if [ "$(OBS_2D)" = "$(KEY_VALUE)" ]; then	\
 				$(MK) $(BIN_OBS_2D);			\
 			fi
@@ -236,10 +220,6 @@ all		:
 $(BIN_SRV)	:	$(OBJS_SRV)
 			@$(MKD) $(PATH_SRV)
 			$(CC) -o $@ $(OBJS_SRV) $(LDFLAGS)
-
-$(BIN_CLI)	:	$(OBJS_CLI)
-			@$(MKD) $(PATH_CLI)
-			$(CC) -o $@ $(OBJS_CLI) $(LDFLAGS)
 
 $(BIN_OBS_2D)	:	$(OBJS_OBS_2D)
 			@$(MKD) $(PATH_OBS_2D)
@@ -252,7 +232,6 @@ clean		:
 
 fclean		:	clean
 			$(RM) $(BIN_SRV)
-			$(RM) $(BIN_CLI)
 			$(RM) $(BIN_OBS_2D)
 
 re		:	fclean all
