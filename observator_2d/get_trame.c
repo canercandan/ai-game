@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 12:10:55 2008 caner candan
-** Last update Mon Jun 23 00:25:46 2008 caner candan
+** Last update Mon Jun 23 04:55:57 2008 caner candan
 */
 
 #include <string.h>
@@ -26,6 +26,14 @@ static void	new_item(t_info *info, char **buf)
   info->object[x][y][z]++;
 }
 
+static void	win(t_info *info, char **buf)
+{
+  char		*team;
+
+  (void)info;
+  put_char_from_buf(&team, buf);
+}
+
 static void	loop(t_info *info, char **tmp, char *first)
 {
   if (!strncmp(first, START_LIST_PLAYER, strlen(START_LIST_PLAYER)))
@@ -40,6 +48,8 @@ static void	loop(t_info *info, char **tmp, char *first)
     put_float_from_buf(&info->time, tmp);
   else if (!strncmp(first, START_LIST_ITEM, strlen(START_LIST_ITEM)))
     get_object(info, tmp);
+  else if (!strncmp(first, WIN, strlen(WIN)))
+    win(info, tmp);
   else
     if (!info->x || !info->y)
       get_map_size(info, tmp, first);

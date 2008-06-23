@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-** Last update Mon Jun 23 00:07:54 2008 caner candan
+** Last update Mon Jun 23 04:16:50 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -15,7 +15,7 @@
 ** Useful's defines
 */
 # define DELIMIT	" \n"
-# define BUF_SIZE	8192
+# define BUF_SIZE	1024 * 16
 
 /*
 ** SDL's defines
