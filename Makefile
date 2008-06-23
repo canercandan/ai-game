@@ -5,27 +5,24 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Mon Jun 23 02:36:31 2008 florent hochwelker
+## Last update Mon Jun 23 03:38:48 2008 caner candan
 ##
 
 NAME_SRV	=	server
 NAME_CLI	=	client
 NAME_OBS_2D	=	observator_2d
-NAME_OBS_3D	=	observator_3d
 NAME_X		=	x
 NAME_BIN	=	bin
 
 PATH_SRV	=	$(NAME_SRV)/
 PATH_CLI	=	$(NAME_CLI)/
 PATH_OBS_2D	=	$(NAME_OBS_2D)/
-PATH_OBS_3D	=	$(NAME_OBS_3D)/
 PATH_X		=	$(NAME_X)/
 PATH_BIN	=	$(NAME_BIN)/
 
 BIN_SRV		=	$(PATH_BIN)$(NAME_SRV)
 BIN_CLI		=	$(PATH_BIN)$(NAME_CLI)
 BIN_OBS_2D	=	$(PATH_BIN)$(NAME_OBS_2D)
-BIN_OBS_3D	=	$(PATH_BIN)$(NAME_OBS_3D)
 
 SRCS_X		=	$(PATH_X)xaccept.c				\
 			$(PATH_X)xbind.c				\
@@ -128,7 +125,8 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)send_to_obs.c			\
 			$(PATH_SRV)init_signal.c			\
 			$(PATH_SRV)is_levelmax.c			\
-			$(PATH_SRV)get_position_from_list.c
+			$(PATH_SRV)get_position_from_list.c		\
+			$(PATH_SRV)check_death_clients.c
 
 SRCS_CLI	=	$(PATH_CLI)main.c				\
 			$(PATH_CLI)enter_in_the_world.c			\
@@ -191,40 +189,16 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)draw_gfx.c			\
 			$(PATH_OBS_2D)round_nbr.c
 
-SRCS_OBS_3D	=	$(PATH_OBS_3D)main.cpp				\
-			$(PATH_OBS_3D)main_usage.cpp			\
-			$(PATH_OBS_3D)init_obs.cpp			\
-			$(PATH_OBS_3D)init_window.cpp			\
-			$(PATH_OBS_3D)init_socket.cpp			\
-			$(PATH_OBS_3D)init_matrix.cpp			\
-			$(PATH_OBS_3D)init_map_size.cpp			\
-			$(PATH_OBS_3D)init_case.cpp			\
-			$(PATH_OBS_3D)init_item.cpp			\
-			$(PATH_OBS_3D)draw_all.cpp			\
-			$(PATH_OBS_3D)draw_rock.cpp			\
-			$(PATH_OBS_3D)draw_player.cpp			\
-			$(PATH_OBS_3D)rm_rock.cpp			\
-			$(PATH_OBS_3D)extract_num.cpp			\
-			$(PATH_OBS_3D)free_obs.cpp			\
-			$(PATH_OBS_3D)msg_reception.cpp			\
-			$(PATH_OBS_3D)parse_args.cpp
-
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)
 OBJS_CLI	=	$(SRCS_CLI:.c=.o) $(OBJS_X)
 OBJS_OBS_2D	=	$(SRCS_OBS_2D:.c=.o) $(OBJS_X)
-OBJS_OBS_3D	=	$(SRCS_OBS_3D:.cpp=.o)
 
 INCLUDES	=	-I./include
 LIBRARY		=	-L.
 
 INCLUDES_OBS_2D	=	`pkg-config --cflags sdl`
 LIBRARY_OBS_2D	=	`pkg-config --libs sdl`
-
-INCLUDES_OBS_3D	=	-I/usr/local/include/irrlicht -I/usr/X11R6/include
-LIBRARY_OBS_3D	=	-L/usr/X11R6/lib -L/usr/local/lib 		\
-			-lGL -lGLU -lXxf86vm -lXext -lX11 -lpng -ljpeg	\
-			-lIrrlicht
 
 DEBUG_42	=	-g
 PANIC		=	-Wall -W -Werror -pedantic -ansi
@@ -235,9 +209,6 @@ LDFLAGS		=	$(LIBRARY)
 
 CFLAGS_OBS_2D	=	$(INCLUDES_OBS_2D)
 LDFLAGS_OBS_2D	=	$(LIBRARY_OBS_2D)
-
-CFLAGS_OBS_3D	=	$(INCLUDES) $(INCLUDES_OBS_3D) $(MINOR) $(DEBUG_$(DEBUG))
-LDFLAGS_OBS_3D	=	$(LIBRARY_OBS_3D)
 
 CC		=	gcc
 RM		=	rm -f
@@ -253,17 +224,13 @@ RM_CORE		=	$(FIND) '*.core' $(FIND_RM)
 KEY_VALUE	=	42
 
 .SUFFIXES	:	.c.o
-.SUFFIXES	:	.cpp.o
 
 all		:
 			@$(MKD) $(PATH_BIN)
 			@$(MK) $(BIN_SRV)
 			@$(MK) $(BIN_CLI)
 			@if [ "$(OBS_2D)" = "$(KEY_VALUE)" ]; then	\
-				$(MK) $(BIN_OBS_2D);		\
-			fi
-			@if [ "$(OBS_3D)" = "$(KEY_VALUE)" ]; then	\
-				$(MK) $(BIN_OBS_3D);		\
+				$(MK) $(BIN_OBS_2D);			\
 			fi
 
 $(BIN_SRV)	:	$(OBJS_SRV)
@@ -278,10 +245,6 @@ $(BIN_OBS_2D)	:	$(OBJS_OBS_2D)
 			@$(MKD) $(PATH_OBS_2D)
 			@$(CC) $(CFLAGS_OBS_2D) -o $@ $(OBJS_OBS_2D) $(LDFLAGS) $(LDFLAGS_OBS_2D)
 
-$(BIN_OBS_3D)	:	$(OBJS_OBS_3D)
-			@$(MKD) $(PATH_OBS_3D)
-			@$(CC) $(CFLAGS_OBS_3D) -o $@ $(OBJS_OBS_3D) $(LDFLAGS) $(LDFLAGS_OBS_3D)
-
 clean		:
 			@$(RM_O)
 			@$(RM_TILD)
@@ -291,7 +254,6 @@ fclean		:	clean
 			$(RM) $(BIN_SRV)
 			$(RM) $(BIN_CLI)
 			$(RM) $(BIN_OBS_2D)
-			$(RM) $(BIN_OBS_3D)
 
 re		:	fclean all
 
@@ -305,6 +267,3 @@ re		:	fclean all
 				$(CC) $(CFLAGS) -c $< -o $@;				\
 				echo $(CC) $(CFLAGS) -c $< -o $@;			\
 			fi
-
-.cpp.o		:
-			$(CC) $(CFLAGS_OBS_3D) -c $< -o $@

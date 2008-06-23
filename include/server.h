@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon Jun 23 02:35:54 2008 florent hochwelker
+** Last update Mon Jun 23 03:44:40 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -273,6 +273,7 @@ int		scheduler_exec(t_info *info, void *tp);
 void		calculate_timeout(t_info *info, void *tp);
 int		send_buf_to_client(t_client *client, char *buf);
 void		send_info_to_obs(t_client *client, t_info *info);
+void		check_death_clients(t_info *info, void *tp);
 
 /*
 ** Observator's functions

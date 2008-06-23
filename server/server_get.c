@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue Apr 22 10:20:01 2008 caner candan
-** Last update Wed May 14 09:17:58 2008 majdi
+** Last update Mon Jun 23 03:47:26 2008 caner candan
 */
 
 #include <sys/select.h>
@@ -13,8 +13,8 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <string.h>
-#include "common.h"
 #include "server.h"
+#include "common.h"
 
 static void	get_set_fd(t_list *t, fd_set *fd_read,
 			   fd_set *fd_write, int *fd_max)
@@ -64,44 +64,8 @@ static void		*get_timeout(t_info *info)
 {
   if (((struct timeval *)info->timeout)->tv_sec == -1 &&
       ((struct timeval *)info->timeout)->tv_usec == -1)
-    {
-      printf("timeout NULL\n");
-      return (NULL);
-    }
-  printf("timeout->tv_sec = %ld, timeout->tv_usec = %ld\n",
-	 (long)TIMEVAL(info->timeout)->tv_sec, (long)TIMEVAL(info->timeout)->tv_usec);
+    return (NULL);
   return (info->timeout);
-}
-
-static void		check_death_clients(t_info *info, struct timeval *tp)
-{				/* A METTRE A LA NORME */
-  t_list		*clients;
-  t_client		*cli;
-
-  clients = info->clients;
-  while (clients && (cli = clients->data))
-    {
-      if ((cli->status == ST_CLIENT || cli->status == ST_DISCONNECT)
-	  && ((((int)cli->hp) < tp->tv_sec) ||
-	      (((int)cli->hp) == tp->tv_sec &&
-	       (cli->hp - (int)CLIENT(clients->data)->hp) * 1e6 < tp->tv_usec)))
-	{
-	  rm_client_from_queue(&info->queue, cli->socket, info);
-	  if (cli->status == ST_DISCONNECT)
-	    {
-	      rm_data_from_list(&info->clients, clients->data);
-	      free_client(clients->data);
-	      cli->team->nb++;
-	    }
-	  else
-	    {
-	      cli->status = ST_DEAD;
-	      strcpy(cli->buf_write, DEAD);
-	      obs_send_action(cli->id, info, DEATH, "");
-	    }
-	}
-      clients = clients->next;
-    }
 }
 
 void			server_get(t_info *info)
@@ -120,8 +84,7 @@ void			server_get(t_info *info)
       if (select(fd_max + 1, &fd_read, &fd_write, NULL,
 		 get_timeout(info)) < 0)
 	{
-	  printf("Error with select()\n");
-	  perror("select:");
+	  perror("select");
 	  exit(-1);
 	}
       gettimeofday(&tp, NULL);

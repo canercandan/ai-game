@@ -5,10 +5,9 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Wed May  7 15:24:54 2008 majdi toumi
-** Last update Mon Jun 23 00:41:15 2008 majdi toumi
+** Last update Mon Jun 23 03:19:38 2008 caner candan
 */
 
-#include <stdio.h>
 #include <string.h>
 #include "server.h"
 #include "common.h"
@@ -46,7 +45,6 @@ int		send_ressources(t_info *info, t_client *client, char *buff,
   x = get_x(client, diff[0], diff[1]);
   y = get_y(client, diff[0], diff[1]);
   is_in_map(info, &x, &y);
-  printf("x: [%d], y: [%d]\n", x, y);
   ressources = info->zone[x][y].ressources;
   players = info->zone[x][y].clients;
   i = cat_players(players, buff, diff);
@@ -60,4 +58,3 @@ int		send_ressources(t_info *info, t_client *client, char *buff,
     }
   return (0);
 }
-
