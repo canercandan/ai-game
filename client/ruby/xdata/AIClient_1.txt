@@ -1,0 +1,36 @@
+##
+ # ZAPPY - ARTIFICIAL INTELLIGENCE -->
+ ##
+
+## LEVEL1:
+
+'Niveau HP faible ?'	+- OUI -> {TROUVER NOURRITURE}
+			|
+			+- NON -> {TROUVER PIERRE}
+
+
+1
+{TROUVER NOURRITURE} ---+- 'Arrive a voir nourriture ?' +- OUI -> {PRENDRE NOURRITURE}
+	 	     	   	     	  	     	|
+							+- NON -> {DEPLACEMENT} + {TROUVER NOURRITURE}
+
+2
+{TROUVER PIERRE} -------+- 'Assez de pierre pour evoluer ?' +- OUI -> {GO TO LEVEL UP}
+							    |
+							    +- NON -> {COLLECTER PIERRES} -- {TROUVER PIERRE}
+
+
+3.
+{GO TO LEVEL UP} -+- 'Assez de Trantoriens ?' +- OUI -> {EVOLUTION}
+      	       	   	     		      |
+					      +- NON -> 'Trantoriens deja en attente ?' +- OUI -> {ALLER CHEZ TRANTORIENS}
+	  	       	   		     	          		   	        |
+											+- NON -> {TROUVER CASE IDEALE} -- {BROADCASTER DRONES}
+
+4.
+{BROADCASTER DRONE} ----+- [BROADCAST] -- 'Assez de Reponses ?' +- OUI -> [ATTENDRE TRANTORIENS] + {EVOLUTION}
+	     	    	   	     		     	     	|
+								+- NON -> {BROADCASTER DRONE}
+
+5.
+{EVOLUTION} ------------+- {DEPOSER PIERRES INTELLIGEMENT} + {DEMARRER INCANTATION}

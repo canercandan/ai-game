@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon Jun 23 04:52:46 2008 florent hochwelker
+** Last update Mon Jun 23 06:45:40 2008 Charlie Root
 */
 
 #ifndef __SERVER_H__
@@ -175,8 +175,6 @@ typedef struct	s_client
 */
 typedef struct	s_zone
 {
-  /*   char		is_moveable; */
-  /*   int		id_deco; */
   t_list	*ressources;
   t_list	*clients;
   int		nb_egg;
