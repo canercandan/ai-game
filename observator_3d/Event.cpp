@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Sun Jun 22 21:49:55 2008 florent hochwelker
-// Last update Mon Jun 23 01:24:16 2008 florent hochwelker
+// Last update Mon Jun 23 01:59:56 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -24,6 +24,20 @@ MyEventReceiver::MyEventReceiver(scene::ISceneManager* smgr, gui::ICursorControl
 
 bool MyEventReceiver::OnEvent(const SEvent& event)
 {
+  if (event.EventType == EET_KEY_INPUT_EVENT &&
+      event.KeyInput.Key == irr::KEY_ESCAPE &&
+      event.KeyInput.PressedDown == false)
+    {
+      if (this->_obs->GetDevice())
+	{
+	  scene::ICameraSceneNode * camera = this->_obs->GetDevice()->getSceneManager()->getActiveCamera();
+	  if (camera)
+	    {
+	      camera->setInputReceiverEnabled(!camera->isInputReceiverEnabled());
+	    }
+	  return true;
+	}
+    }
   if (event.EventType == EET_MOUSE_INPUT_EVENT && event.MouseInput.Event == EMIE_RMOUSE_LEFT_UP)
     {
       core::vector3df intersection;
@@ -84,5 +98,5 @@ bool MyEventReceiver::OnEvent(const SEvent& event)
 	    }
 	}
     }
-  return (true);
+  return (false);
 }
