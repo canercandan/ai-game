@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Fri May  2 17:54:35 2008 jordan aubry
-** Last update Mon Jun 23 04:36:16 2008 jordan aubry
+** Last update Mon Jun 23 05:13:48 2008 florent hochwelker
 */
 
 #ifndef __OBSERVATOR_3D_H__
@@ -19,7 +19,7 @@
 
 #define MODE_GRAPH		EDT_BURNINGSVIDEO
 #define FAR_VALUE		100000
-#define WIN_WEIGHT		640
+#define WIN_WEIGHT		800
 #define WIN_HEIGHT		480
 #define	CAMERA_SPEED		100.0f
 

@@ -5,7 +5,7 @@
 // Login   <aubry_j@epitech.net>
 // 
 // Started on  Mon Jun 23 04:39:58 2008 jordan aubry
-// Last update Mon Jun 23 04:40:00 2008 jordan aubry
+// Last update Mon Jun 23 07:12:35 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -116,12 +116,13 @@ void			Obs::Auth(Socket& socket)
       ss.clear();
       ss.str("");
       ss << tmp;
+      while (ss.str().find("TIME") == std::string::npos)
+	ss << socket.recv(true);
       ss >> tmp >> this->_time;
-      std::cout << "LE TIME EST " << this->_time << std::endl;
       this->_time = 1 / this->_time * 1000;
-      std::cout << "LE TIME EST " << this->_time << std::endl;
       this->DrawPlate();
     }
+  
 }
 
 void				Obs::DrawEgg(int x, int y)
@@ -169,6 +170,7 @@ void				Obs::DrawPlate()
   int				x;
   int				y;
 
+  //  this->_box = this->_env->addEditBox(L"test", irr::core::rect<irr::s32>(10, 40, 160, 390), true, 0, -1);
   for (x = 0; x < this->_x; x++)
     {
       for (y = 0; y < this->_y; y++)
@@ -298,7 +300,7 @@ void		Obs::ExecuteAction(std::string& line)
   int			id, idx_action, x, y, type;
   std::string		param;
 
-  std::cout << "J'ai recu = [" << line  << "]" << std::endl;
+  //  std::cout << "J'ai recu = [" << line  << "]" << std::endl;
   while (!line.empty())
     {
       ss.clear();
@@ -307,6 +309,13 @@ void		Obs::ExecuteAction(std::string& line)
 	{
 	  ss << line;
 	  this->AddPlayer(ss);
+	}
+      else if (line.substr(0, line.find_first_of(" ")) == WIN)
+	{
+	  char* red = "\033[1;40;31m";
+	  char* normal = "\033[0m";
+	  std::cout << red << "Team " << line.substr(line.find_first_of(" ") + 1) << "WIN ! Congrats !"
+		    << normal << std::endl;
 	}
       else if (line.substr(0, line.find_first_of(" ")) == NEW_ITEM)
 	{
@@ -320,7 +329,7 @@ void		Obs::ExecuteAction(std::string& line)
 	{
 	  ss << line;
 	  ss >> id >> idx_action >> param;
-	  std::cout << "Execution de " << idx_action << " par " << id << std::endl;
+	  //	  std::cout << "Execution de " << idx_action << " par " << id << std::endl;
 	  action.ApplyAction(this->_player[id], idx_action, param);
 	}
       line = line.substr(line.find_first_of("\n") + 1);

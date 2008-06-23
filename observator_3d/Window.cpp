@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Fri Jun  6 18:04:30 2008 florent hochwelker
-// Last update Mon Jun 23 02:36:36 2008 jordan aubry
+// Last update Mon Jun 23 06:29:44 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -42,4 +42,5 @@ Window::Window()
 			     _driver->getTexture(SKY_BK));
   _driver->setTextureCreationFlag(ETCF_OPTIMIZED_FOR_SPEED, true);
   _device->getCursorControl()->setVisible(false);
+  _device->setWindowCaption(L"ZaPPy - 3D Observator");
 }

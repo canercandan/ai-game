@@ -5,7 +5,7 @@
 ** Login   <aubry_j@epitech.net>
 ** 
 ** Started on  Tue Jun  3 14:11:25 2008 jordan aubry
-** Last update Mon Jun 23 02:35:28 2008 jordan aubry
+** Last update Mon Jun 23 05:05:37 2008 florent hochwelker
 */
 
 #ifndef __OBS_H__
@@ -50,6 +50,7 @@ class	Obs : public Window
   std::vector< std::vector< std::vector<Item> > >	_item;
   std::map<int, Player*>				_player;
   std::vector<std::vector<irr::core::vector3df> >	_case;
+  irr::gui::IGUIEditBox					*_box;
 
  private:
   int					_x;

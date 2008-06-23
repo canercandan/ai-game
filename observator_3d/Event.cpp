@@ -5,12 +5,13 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Sun Jun 22 21:49:55 2008 florent hochwelker
-// Last update Mon Jun 23 04:42:32 2008 florent hochwelker
+// Last update Mon Jun 23 06:39:34 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
 #include <iostream>
 #include <map>
+#include <sstream>
 #include "Event.h"
 
 using namespace irr;
@@ -52,6 +53,7 @@ bool MyEventReceiver::OnEvent(const SEvent& event)
     {
       core::vector3df intersection;
       core::triangle3df tri;
+      std::stringstream	ss;
 
       selectedSceneNode = m_smgr->getSceneCollisionManager()->getSceneNodeFromScreenCoordinatesBB(m_curseur->getPosition());
 
@@ -68,7 +70,8 @@ bool MyEventReceiver::OnEvent(const SEvent& event)
 		      char* red = "\033[1;40;31m";
 		      char* blue = "\033[1;40;34m";
 		      char* normal = "\033[0m";
-		      std::cout << green  << "[" << blue << "contenu de la case " << x << " " << y
+
+		      std::cout << green  << "[" << blue << "Contenu de la case " << x << " " << y
 				<< green << "]" << normal << std::endl;
 		      std::cout << " .Linemate: " << this->_obs->_item[x][y][LINEMATE]._qte << std::endl;
 		      std::cout << " .Deraumere: " << this->_obs->_item[x][y][DERAUMERE]._qte << std::endl;
@@ -76,6 +79,7 @@ bool MyEventReceiver::OnEvent(const SEvent& event)
 		      std::cout << " .Mendiane: " << this->_obs->_item[x][y][MENDIANE]._qte << std::endl;
 		      std::cout << " .Phiras: " << this->_obs->_item[x][y][PHIRAS]._qte << std::endl;
 		      std::cout << " .Thystame: " << this->_obs->_item[x][y][THYSTAME]._qte << std::endl;
+
 
 		      std::map<int, Player*>::iterator	it = this->_obs->_player.begin();
 		      std::map<int, Player*>::iterator	it_end = this->_obs->_player.end();
@@ -99,6 +103,7 @@ bool MyEventReceiver::OnEvent(const SEvent& event)
 			      
 			    }
 			}
+		      std::cout << std::endl;
 		      x = this->_obs->GetX();
 		      y = this->_obs->GetY();
 		    }
