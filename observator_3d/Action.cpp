@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Mon Jun 23 01:24:24 2008 florent hochwelker
+// Last update Mon Jun 23 02:37:59 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -69,8 +69,8 @@ void		Action::MovePlayer(Player* player, int x, int y)
 
 void		Action::ActionUp(Player* player, std::string&)
 {
-  std::cout << "Je suis bien dans ActionUp" << std::endl;
-  std::cout << "Ma direction est: " << player->_z << std::endl;
+  //  std::cout << "Je suis bien dans ActionUp" << std::endl;
+  //  std::cout << "Ma direction est: " << player->_z << std::endl;
   switch (player->_z)
     {
     case OBS_NORTH:

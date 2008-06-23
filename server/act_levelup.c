@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sat Jun 14 15:01:06 2008 florent hochwelker
+** Last update Mon Jun 23 02:33:15 2008 florent hochwelker
 */
 
 #include <string.h>
@@ -150,8 +150,8 @@ int		act_levelup(char *param, t_client *client, t_info *info)
   levelup(client, info);
   if (!is_levelmax(client, info))
     {
-      free_info(info);
-      exit(0);
+      /*           free_info(info); */
+      /*            exit(0); */
     }
   return (0);
 }

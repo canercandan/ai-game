@@ -5,10 +5,12 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 17:31:24 2008 caner candan
-** Last update Mon Jun 23 01:34:53 2008 florent hochwelker
+** Last update Mon Jun 23 02:34:08 2008 florent hochwelker
 */
 
+#include <string.h>
 #include "server.h"
+#include "common.h"
 
 int		is_levelmax(t_client *client, t_info *info)
 {
@@ -22,7 +24,13 @@ int		is_levelmax(t_client *client, t_info *info)
 					    CLIENT(t->data)->team,
 					    CLIENT(t->data)->level) ==
 	    6)
-	  return (0);
+	  {
+	    char msg[1024] = WIN;
+	    strcat(msg, " ");
+	    strcat(msg, client->team->name);
+	    send_to_obs(info->observator, msg);
+	    return (0);
+	  }
       t = t->next;
     }
   return (-1);

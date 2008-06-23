@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-// Last update Mon Jun 23 01:26:59 2008 majdi toumi
+** Last update Mon Jun 23 02:35:54 2008 florent hochwelker
 */
 
 #ifndef __SERVER_H__
@@ -281,6 +281,7 @@ void		obs_add_client_in_char(char *buf, t_client *client, t_info *info, char is_
 void		obs_new_client(t_list *obs, t_client *client, t_info *info, char is_a_bird);
 void		obs_send_action(int id, t_info *info, char idx_f, char *param);
 void		obs_send_new_item(t_list *obs, int x, int y, void *data);
+void		send_to_obs(t_list *obs, char *str);
 
 /*
 ** Options' functions

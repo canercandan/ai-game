@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Sun May  4 14:46:59 2008 florent hochwelker
-// Last update Thu Jun 12 19:44:31 2008 caner candan
+** Last update Mon Jun 23 02:30:16 2008 florent hochwelker
 */
 
 #ifndef __COMMON_H__
@@ -38,6 +38,7 @@
 # define MESSAGE	"message "
 # define KICKIT		"deplacement "
 # define LVLUP_OK	"niveau actuel : "
+# define WIN		"WIN"
 
 /*
 ** Default's values
