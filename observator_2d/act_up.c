@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 19:05:32 2008 caner candan
-** Last update Mon Jun 23 03:09:54 2008 caner candan
+** Last update Mon Jun 23 06:28:16 2008 caner candan
 */
 
 #include "observator_2d.h"
@@ -77,7 +77,7 @@ static void	anim_to_west(int dst, t_client *client, t_info *info)
 
 int	act_up(t_info *info, t_client *client, char *param)
 {
-  (void) param;
+  (void)param;
   if (!client)
     return (-1);
   if (client->direction == NORTH)

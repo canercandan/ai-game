@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Tue May 13 16:43:47 2008 caner candan
-** Last update Mon Jun 23 00:25:49 2008 caner candan
+** Last update Mon Jun 23 06:33:46 2008 caner candan
 */
 
 #include <stdio.h>
@@ -37,6 +37,8 @@ void		execute_action(t_info *info, char **buf, char *first)
   char		*param;
   int		i;
 
+  param = NULL;
+  id = 0;
   put_int_from_buf(&id, &first);
   put_int_from_buf(&action, buf);
   put_char_from_buf(&param, buf);
