@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed May 14 08:56:50 2008 caner candan
-** Last update Fri Jun 13 15:47:42 2008 caner candan
+** Last update Mon Jun 23 03:16:58 2008 caner candan
 */
 
 #include <SDL.h>
@@ -105,6 +105,6 @@ int	draw_gfx(t_info *info, int anim)
     put_clients(info, anim);
   put_status(info);
   SDL_Flip(info->gfx->video);
-  SDL_Delay(100 / info->time);
+  SDL_Delay(1);
   return (0);
 }
