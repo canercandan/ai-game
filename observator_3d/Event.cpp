@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Sun Jun 22 21:49:55 2008 florent hochwelker
-// Last update Mon Jun 23 02:30:29 2008 jordan aubry
+// Last update Mon Jun 23 04:42:32 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -76,7 +76,6 @@ bool MyEventReceiver::OnEvent(const SEvent& event)
 		      std::cout << " .Mendiane: " << this->_obs->_item[x][y][MENDIANE]._qte << std::endl;
 		      std::cout << " .Phiras: " << this->_obs->_item[x][y][PHIRAS]._qte << std::endl;
 		      std::cout << " .Thystame: " << this->_obs->_item[x][y][THYSTAME]._qte << std::endl;
-		      std::cout << " .Nourriture: " << this->_obs->_item[x][y][NOURRITURE]._qte << std::endl;
 
 		      std::map<int, Player*>::iterator	it = this->_obs->_player.begin();
 		      std::map<int, Player*>::iterator	it_end = this->_obs->_player.end();
@@ -97,7 +96,6 @@ bool MyEventReceiver::OnEvent(const SEvent& event)
 			      std::cout << "   .Mendiane: " << it->second->_inventory[MENDIANE] << std::endl;
 			      std::cout << "   .Phiras: " << it->second->_inventory[PHIRAS] << std::endl;
 			      std::cout << "   .Thystame: " << it->second->_inventory[THYSTAME] << std::endl;
-			      std::cout << "   .Nourriture: " << it->second->_inventory[NOURRITURE] << std::endl;
 			      
 			    }
 			}
