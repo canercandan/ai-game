@@ -1,11 +1,11 @@
 //
-// Obs.cpp for Obs3D in /home/hochwe_f/zappy/observator_3d
+// Obs.cpp for zappy in /home/aubry_j/zappy/observator_3d
 // 
-// Made by florent hochwelker
-// Login   <hochSrecwe_f@epitech.net>
+// Made by jordan aubry
+// Login   <aubry_j@epitech.net>
 // 
-// Started on  Fri Jun  6 13:59:02 2008 florent hochwelker
-// Last update Mon Jun 23 04:22:11 2008 florent hochwelker
+// Started on  Mon Jun 23 04:39:58 2008 jordan aubry
+// Last update Mon Jun 23 04:40:00 2008 jordan aubry
 //
 
 #include <irrlicht.h>
@@ -187,9 +187,9 @@ void				Obs::DrawPlate()
   node = this->_scene->addSphereSceneNode(5, 16, 0, -1,
 					  irr::core::vector3df((this->_y * 50 - 164), -35, 0),
 					  irr::core::vector3df(0, 0, 0),
-					  irr::core::vector3df(LOC(this->_y), 0.1, LOC(this->_x)));
+					  irr::core::vector3df(500000, 0.1, 500000));
   node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-  node->setMaterialTexture(0, _driver->getTexture(MAP_CASE));
+  node->setMaterialTexture(0, _driver->getTexture(MAP_FOND));
 }
 
 void					Obs::DrawAll(Socket &socket)
