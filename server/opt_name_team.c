@@ -5,10 +5,9 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:36 2008 majdi toumi
-** Last update Mon Jun 23 02:00:08 2008 caner candan
+** Last update Mon Jun 23 03:02:37 2008 caner candan
 */
 
-#include <stdio.h>
 #include "server.h"
 #include "x.h"
 
@@ -18,13 +17,11 @@ int		opt_name_team(t_info *info, char **argv, int i)
   void		*data;
   int		flag;
 
-  while ((data = pop_list(&info->team)))
-    printf("Team removed: [%s]\n", ((t_team *) (data))->name);
+  while ((data = pop_list(&info->team)));
   flag = 0;
   while (argv[i] && (is_options(argv[i]) == -1))
     {
       flag = 1;
-      printf("Name %s is added\n", argv[i]);
       team = xmalloc(sizeof(*team));
       team->name = argv[i];
       team->nb = 0;
