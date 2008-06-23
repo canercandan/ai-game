@@ -5,11 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr 22 16:24:30 2008 florent hochwelker
-** Last update Sat Jun  7 16:51:25 2008 majdi toumi
+** Last update Mon Jun 23 01:34:15 2008 caner candan
 */
 
 #include <string.h>
-#include <stdio.h>
 #include "server.h"
 #include "common.h"
 

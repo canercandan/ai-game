@@ -5,11 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 15:49:07 2008 florent hochwelker
-** Last update Mon Jun  9 18:22:04 2008 florent hochwelker
+** Last update Mon Jun 23 01:36:47 2008 caner candan
 */
 
 #include <string.h>
-#include <stdio.h>
 #include "server.h"
 #include "common.h"
 
@@ -17,7 +16,6 @@ static int	send_param(t_list *obs, char idx_f, char *param)
 {
   int		i;
 
-  printf("send_param: [%d]\n", idx_f);
   if (idx_f == TAKE_OBJ ||
       idx_f == DROP_OBJ)
     for (i = 0; gl_ressource[i].idx >= 0; i++)
@@ -30,7 +28,8 @@ static int	send_param(t_list *obs, char idx_f, char *param)
   return (0);
 }
 
-void		obs_send_action(int id, t_info *info, char idx_f, char *param)
+void		obs_send_action(int id, t_info *info,
+				char idx_f, char *param)
 {
   t_list	*obs;
 

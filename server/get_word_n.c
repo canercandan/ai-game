@@ -5,8 +5,10 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Tue Apr  1 11:13:29 2008 florent hochwelker
-** Last update Tue May  6 18:49:40 2008 florent hochwelker
+** Last update Mon Jun 23 01:33:48 2008 caner candan
 */
+
+#include "server.h"
 
 char	*get_word_n(char *str, int n)
 {

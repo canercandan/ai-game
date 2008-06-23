@@ -5,10 +5,9 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue May  6 16:32:45 2008 majdi toumi
-** Last update Tue May  6 17:42:37 2008 majdi toumi
+** Last update Mon Jun 23 01:39:28 2008 caner candan
 */
 
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "server.h"

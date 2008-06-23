@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:42:27 2008 majdi toumi
-** Last update Fri Jun 13 19:22:14 2008 majdi toumi
+** Last update Mon Jun 23 01:59:55 2008 caner candan
 */
 
 #include <stdlib.h>
@@ -13,7 +13,6 @@
 
 int	opt_port(t_info *info, char **argv, int i)
 {
-  debug("opt_port()", -1);
   if (argv[i])
     {
       info->port = atoi(argv[i]);

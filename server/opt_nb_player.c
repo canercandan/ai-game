@@ -5,11 +5,10 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:57 2008 majdi toumi
-** Last update Fri Jun 13 19:24:53 2008 majdi toumi
+** Last update Mon Jun 23 02:00:00 2008 caner candan
 */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "server.h"
 
 int	opt_nb_player(t_info *info, char **argv, int i)

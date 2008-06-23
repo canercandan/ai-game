@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  9 00:43:10 2008 florent hochwelker
-** Last update Tue May 13 11:15:11 2008 caner candan
+** Last update Mon Jun 23 01:32:05 2008 caner candan
 */
 
 #include <string.h>
@@ -13,7 +13,8 @@
 #include "server.h"
 #include "common.h"
 
-void			get_inventory(t_client *client, char *buff,
+void			get_inventory(t_client *client,
+				      char *buff,
 				      t_info *info)
 {
   int			i;
