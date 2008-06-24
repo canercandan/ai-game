@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 13:05:25 2008 caner candan
-// Last update Mon Jun 16 20:40:23 2008 caner candan
+// Last update Tue Jun 24 12:52:42 2008 caner candan
 //
 
 #include <string>
@@ -27,7 +27,7 @@ std::string	AI::actionsMove[NB_ACTIONS_MOVE] =
   {"avance", "droite", "gauche"};
 
 std::string	AI::actionsReply[] =
-  {"ok", "ko", "message", "niveau actuel"};
+  {"ok", "ko", "message", "niveau actuel", "mort"};
 
 std::string	AI::protocolMesg[] =
   {"level ?", "level ok"};
@@ -217,22 +217,28 @@ void	AI::actionLoop(void)
   while (42)
     {
       this->headMessage();
-      std::cout << "buf [" << this->_buf << "]"
-		<< std::endl;
+      if (this->_buf.find(actionsReply[KO])
+	  != std::string::npos)
+	break;
+      if (this->_isNeedFood(SEE))
+	this->_seekForObject(FOOD);
       if (!this->_level)
-	this->_foundLevel();
-// 	  if (this->_isNeedFood(SEE))
-// 	    this->_seekForObject(FOOD);
+	if (!this->_foundLevel())
+	  break;
       if (this->_prepareToLevelUp())
-	if (this->_isLockToLevelUp())
-	  this->_waitLevelUp();
-	else
-	  {
-	    this->_seekForPlayerToLevelUp();
- 	    this->_emptyCase();
- 	    this->_dropNeedsOnCase();
- 	    this->_goToLevelUp();
-	  }
+	{
+	  if (this->_isNeedFood(LEVELUP))
+	    this->_seekForObject(FOOD);
+	  if (this->_isLockToLevelUp())
+	    this->_waitLevelUp();
+	  else
+	    {
+	      this->_seekForPlayerToLevelUp();
+	      this->_emptyCase();
+	      this->_dropNeedsOnCase();
+	      this->_goToLevelUp();
+	    }
+	}
     }
 }
 
@@ -245,7 +251,7 @@ void	AI::_goToLevelUp(void)
     this->_level++;
 }
 
-void		AI::_foundLevel(void)
+bool		AI::_foundLevel(void)
 {
   std::string	mesg;
   size_t	size;
@@ -253,9 +259,13 @@ void		AI::_foundLevel(void)
   size_t	add;
   size_t	i;
 
+  if (this->_isNeedFood(SEE))
+    this->_seekForObject(FOOD);
   mesg = this->_socket.sendRecv(actionsName[SEE] + END);
   if (this->_socket.isGoodRecv())
     {
+      if (mesg.find(actionsName[KO]) != std::string::npos)
+	return (false);
       size = mesg.size();
       cnt = 0;
       for (i = 0; i < size; i++)
@@ -268,6 +278,7 @@ void		AI::_foundLevel(void)
 	  add += 2;
 	}
     }
+  return (true);
 }
 
 bool			AI::_isLockToLevelUp(void)
@@ -340,7 +351,7 @@ void	AI::_dropNeedsOnCase(void)
 			     + objectName[i] + END);
 }
 
-void		AI::_emptyCase(void)
+bool		AI::_emptyCase(void)
 {
   std::string	mesg;
   int		fnd;
@@ -355,6 +366,8 @@ void		AI::_emptyCase(void)
 	  mesg = this->_socket.sendRecv(actionsName[SEE] + END);
 	  if (!this->_socket.isGoodRecv())
 	    throw true;
+	  if (mesg.find(actionsReply[KO]) != std::string::npos)
+	    return (false);
 	  mesg = mesg.substr(0, mesg.find(CM));
 	  for (i = 0; i < NB_ROCK + 1; i++)
 	    {
@@ -365,6 +378,7 @@ void		AI::_emptyCase(void)
 	      fnd = 1;
 	    }
 	}
+      return (true);
     }
   catch (bool)
     {
@@ -372,6 +386,7 @@ void		AI::_emptyCase(void)
       std::cout << "trame incorrect to empty case"
 		<< std::endl;
     }
+  return (false);
 }
 
 bool			AI::_prepareToLevelUp(void)
@@ -387,6 +402,8 @@ bool			AI::_prepareToLevelUp(void)
       mesg = this->_socket.sendRecv(actionsName[INVENTORY] + END);
       if (!this->_socket.isGoodRecv())
 	throw true;
+      if (mesg.find(actionsReply[KO]) != std::string::npos)
+	return (false);
       for (i = 0; i < NB_ROCK; i++)
 	{
 	  if ((pos = mesg.find(objectName[i])) == std::string::npos)
@@ -424,6 +441,8 @@ bool			AI::_isNeedFood(AI::Action idx)
   try
     {
       mesg = this->_socket.sendRecv(actionsName[INVENTORY] + END);
+      if (mesg.find(actionsReply[KO]) != std::string::npos)
+	return (false);
       if ((pos = mesg.find(objectName[FOOD]))
 	  == std::string::npos)
 	throw true;
@@ -443,15 +462,19 @@ bool			AI::_isNeedFood(AI::Action idx)
   return (true);
 }
 
-void		AI::_seekForObject(AI::Object idx)
+bool		AI::_seekForObject(AI::Object idx)
 {
   std::string	mesg;
 
   while (42)
     {
+      if (this->_isNeedFood(SEE))
+	this->_seekForObject(FOOD);
       mesg = this->_socket.sendRecv(actionsName[SEE] + END);
+      if (mesg.find(actionsReply[KO]) != std::string::npos)
+	return (false);
       if (!this->_socket.isGoodRecv())
-	return;
+	return (false);
       if (mesg.find(objectName[idx]) != std::string::npos)
 	{
 	  this->_goToGoodCase(mesg, idx);
@@ -462,9 +485,10 @@ void		AI::_seekForObject(AI::Object idx)
 	}
       this->_randomMove();
     }
+  return (true);
 }
 
-void		AI::_seekForPlayerToLevelUp(void)
+bool		AI::_seekForPlayerToLevelUp(void)
 {
   std::string	mesg;
 
@@ -474,9 +498,13 @@ void		AI::_seekForPlayerToLevelUp(void)
 	throw 1;
       while (42)
 	{
+	  if (this->_isNeedFood(SEE))
+	    this->_seekForObject(FOOD);
 	  mesg = this->_socket.sendRecv(actionsName[SEE] + END);
 	  if (!this->_socket.isGoodRecv())
 	    throw 3;
+	  if (mesg.find(actionsReply[KO]) != std::string::npos)
+	    return (false);
 	  mesg = mesg.substr(objectName[PLAYER].size());
 	  if (mesg.empty())
 	    {
@@ -503,6 +531,7 @@ void		AI::_seekForPlayerToLevelUp(void)
 	std::cout << "trame incorrect to seek for player to level up";
       std::cout << std::endl;
     }
+  return (true);
 }
 
 void	AI::_goToGoodCase(const std::string& mesg,

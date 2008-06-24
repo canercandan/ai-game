@@ -1,12 +1,12 @@
-//
-// AI.h for AI in /home/candan_c/cu/rendu/project/zappy/clientAI
-// 
-// Made by caner candan
-// Login   <candan_c@epitech.net>
-// 
-// Started on  Mon Jun  2 13:02:35 2008 caner candan
-// Last update Mon Jun 16 20:22:32 2008 caner candan
-//
+/*
+** AI.h for AI in /home/candan_c/rendu/c/zappy/client/cpp
+** 
+** Made by caner candan
+** Login   <candan_c@epitech.net>
+** 
+** Started on  Mon Jun 23 19:54:10 2008 caner candan
+** Last update Tue Jun 24 12:34:23 2008 caner candan
+*/
 
 #ifndef __AI_H__
 # define __AI_H__
@@ -61,7 +61,8 @@ class	AI
     OK,
     KO,
     MESSAGE,
-    CUR_LEVEL
+    CUR_LEVEL,
+    DEAD
   };
 
   enum	Protocol
@@ -125,20 +126,20 @@ class	AI
   */
   bool	_prepareToLevelUp(void);
   bool	_hasEnoughClientSameCase(void);
-  void	_seekForPlayerToLevelUp(void);
+  bool	_seekForPlayerToLevelUp(void);
   bool	_hasObjectInventoryToLevelUp(void);
   bool	_hasObjectSeeToLevelUp(const std::string& mesg);
-  void	_emptyCase(void);
+  bool	_emptyCase(void);
   void	_dropNeedsOnCase(void);
   void	_waitLevelUp(void);
   bool	_isLockToLevelUp(void);
-  void	_foundLevel(void);
+  bool	_foundLevel(void);
   void	_goToLevelUp(void);
 
   /*
   ** Generic method
   */
-  void	_seekForObject(Object idx);
+  bool	_seekForObject(Object idx);
   void	_takeNeedObject(void);
   void	_moveToK(const std::string& mesg);
   void	_goToGoodCase(const std::string& mesg,
