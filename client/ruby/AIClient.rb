@@ -36,7 +36,6 @@ class   AIClient
     end
     self.initRock();
     self.initLevel();
-
     while (@_level != 8)
       if (!self.enoughHp())
         self.searchFood();
@@ -74,8 +73,11 @@ class   AIClient
 
   def enoughHp()
     mesg = self.doAction(INVENTORY);
+    print "mesg = #{mesg}\n";
     inv = mesg.split(',');
-    hp = inv[0][/(\d+)/].to_i / UNIT_INIT;
+    hp = inv[0][/(\d+)/].to_i;
+    print "#{hp}hp\n";
+    exit(1);
     return (hp > UNIT_MINI ? true : false);
   end
 
@@ -388,7 +390,10 @@ class   AIClient
   def recvMessage()
     print "waiting...\n";
     mesg = @_sck.recv();
-    if (mesg.match(/(BROADCAST)/))
+    if (mesg.match(/mort/))
+      self.printMessage(">> THANK YOU FOR ALL [DIE ANOTHER DAY !!!]");
+      exit(EXIT_SUCC);
+    elsif (mesg.match(/(BROADCAST)/))
       if (@_find == false)
         self.printMessage(">> I INTERCEPT BROADCAST: #{mesg}");
         if (!mesg.match(/RESPONSE/))

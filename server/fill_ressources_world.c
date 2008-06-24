@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Tue Apr 15 14:26:44 2008 majdi toumi
-** Last update Mon Jun 23 01:24:24 2008 caner candan
+** Last update Tue Jun 24 14:04:37 2008 majdi toumi
 */
 
 #include <stdlib.h>
@@ -34,7 +34,7 @@ void		fill_ressources_world(t_zone **world, t_info *info)
   int		x;
   int		y;
 
-  max = info->x * info->y * info->nb_player * COEFFICIENT;
+  max = info->x * info->y * info->nb_player * info->coeff;
   i = 0;
   while (i < max)
     {

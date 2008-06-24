@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Mon May 12 19:23:02 2008 majdi toumi
-** Last update Mon Jun 23 00:42:37 2008 majdi toumi
+** Last update Tue Jun 24 12:24:35 2008 majdi toumi
 */
 
 #include <string.h>
@@ -17,7 +17,6 @@ static int	len_players(t_list *players, int x_diff, int y_diff, int *i)
   t_client	*clt;
   int		len;
 
-  len = 0;
   while (players)
     {
       clt = players->data;
@@ -43,6 +42,7 @@ int		send_len_ressources(t_info *info, t_client *client,
   int		y;
   int		i;
 
+  i = 0;
   x = get_x(client, x_diff, y_diff);
   y = get_y(client, x_diff, y_diff);
   is_in_map(info, &x, &y);

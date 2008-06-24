@@ -13,8 +13,8 @@ FLAG_NAME       = 1;
 FLAG_TEAM       = 2;
 
 BUFF_SIZE       = 1024;
-UNIT_INIT       = 1260;
-UNIT_MINI       = 77;
+UNIT_INIT       = 3;
+UNIT_MINI       = 2;
 NB_ACTION       = 5;
 MAX_BROADCAST   = 5;
 

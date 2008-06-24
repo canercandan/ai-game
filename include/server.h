@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Mon Jun 23 06:45:40 2008 Charlie Root
+// Last update Tue Jun 24 14:04:56 2008 majdi toumi
 */
 
 #ifndef __SERVER_H__
@@ -21,6 +21,7 @@
 # define FLAG_C			16
 # define FLAG_T			32
 # define FLAG_H			64
+# define FLAG_K			128
 
 /*
 ** Defines
@@ -188,6 +189,7 @@ typedef struct	s_info
   int		port;
   int		x;
   int		y;
+  float		coeff;
   t_list	*team;
   int		nb_player;
   float		time;
@@ -295,6 +297,7 @@ int		opt_lenght(t_info *info, char **argv, int i);
 int		opt_name_team(t_info *info, char **argv, int i);
 int		opt_nb_player(t_info *info, char **argv, int i);
 int		opt_delay(t_info *info, char **argv, int i);
+int		opt_coeff(t_info *info, char **argv, int i);
 int		opt_help(t_info *info, char **argv, int i);
 
 /*
