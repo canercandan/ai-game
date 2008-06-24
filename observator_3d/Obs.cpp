@@ -5,7 +5,7 @@
 // Login   <aubry_j@epitech.net>
 // 
 // Started on  Mon Jun 23 04:39:58 2008 jordan aubry
-// Last update Mon Jun 23 07:12:35 2008 florent hochwelker
+// Last update Tue Jun 24 11:42:59 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -225,9 +225,10 @@ void					Obs::DrawAll(Socket &socket)
 		    it->second->_img->setFrameLoop(791, 791);
 		  if (it->second->_anim <= action)
 		    {
-		      this->_player.erase(it);
 		      it->second->_img->remove();
 		      it->second->~Player();
+		      this->_player.erase(it);
+		      continue;
 		    }
 		}
 	    }
@@ -323,14 +324,13 @@ void		Obs::ExecuteAction(std::string& line)
 	  ss >> param >> x >> y >> type;
 	  if (++this->_item[x][y][type]._qte == 1)
 	    this->DrawItem(x, y, type);
-	  //	  std::cout << "Hop les pierres sont dispersee." << std::endl;
 	}
       else
 	{
 	  ss << line;
 	  ss >> id >> idx_action >> param;
-	  //	  std::cout << "Execution de " << idx_action << " par " << id << std::endl;
-	  action.ApplyAction(this->_player[id], idx_action, param);
+	  if (this->_player.count(id))
+	    action.ApplyAction(this->_player[id], idx_action, param);
 	}
       line = line.substr(line.find_first_of("\n") + 1);
     }

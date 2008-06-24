@@ -5,7 +5,7 @@
 // Login   <candan_c@epitech.net>
 // 
 // Started on  Mon Jun  2 11:34:39 2008 caner candan
-// Last update Thu Jun 19 23:09:16 2008 florent hochwelker
+// Last update Tue Jun 24 10:46:55 2008 florent hochwelker
 //
 
 #include <sys/types.h>
@@ -61,8 +61,6 @@ void	Socket::connectSocket(const std::string& host, int port)
 
   try
     {
-//       if (this->isConnected())
-// 	throw 1;
       pe = ::getprotobyname("tcp");
       if ((_socket = ::socket(PF_INET, SOCK_STREAM, pe->p_proto)) < 0)
 	throw 2;
@@ -91,6 +89,7 @@ void	Socket::connectSocket(const std::string& host, int port)
 	std::cout << "connect error";
       std::cout << std::endl;
       this->closeSocket();
+      exit(0);
     }
 }
 

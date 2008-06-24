@@ -5,7 +5,7 @@
 // Login   <hochwe_f@epitech.net>
 // 
 // Started on  Mon Jun  9 19:15:28 2008 florent hochwelker
-// Last update Mon Jun 23 04:29:57 2008 florent hochwelker
+// Last update Tue Jun 24 11:19:16 2008 florent hochwelker
 //
 
 #include <irrlicht.h>
@@ -38,7 +38,7 @@ Action::Action(Obs* obs)
 
 void	Action::ApplyAction(Player* player, int idx, std::string& param)
 {
-  if (this->_map.count(idx) > 0)
+  if (this->_map.count(idx) > 0 && player && player->_life > 0)
     ((*this).*(this->_map[idx]))(player, param);
 }
 
