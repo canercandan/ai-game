@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Mon May 12 19:23:02 2008 majdi toumi
-** Last update Tue Jun 24 12:24:35 2008 majdi toumi
+** Last update Tue Jun 24 17:37:34 2008 caner candan
 */
 
 #include <string.h>
@@ -17,6 +17,7 @@ static int	len_players(t_list *players, int x_diff, int y_diff, int *i)
   t_client	*clt;
   int		len;
 
+  len = 0;
   while (players)
     {
       clt = players->data;
