@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Mon May 12 21:19:27 2008 florent hochwelker
-** Last update Mon Jun 23 00:49:47 2008 caner candan
+** Last update Tue Jun 24 14:23:18 2008 majdi toumi
 */
 
 #include <sys/time.h>
@@ -25,7 +25,7 @@ int			act_bird(char *param, t_client *cli, t_info *info)
   client->team = cli->team;
   client->socket = 0;
   client->status = ST_DISCONNECT;
-  client->hp = tp.tv_sec + START_UNIT_LIFE * FOOD_HP * info->time;
+  client->hp = tp.tv_sec + info->initHp * FOOD_HP * info->time;
   client->team->max++;
   obs_new_client(info->observator, client, info, 1);
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <hochwe_f@epitech.net>
 ** 
 ** Started on  Fri May  2 15:30:40 2008 florent hochwelker
-** Last update Mon Jun 23 01:10:02 2008 caner candan
+** Last update Tue Jun 24 14:23:31 2008 majdi toumi
 */
 
 #include <sys/time.h>
@@ -53,7 +53,7 @@ static int		inc_and_check_max_user(t_team *team,
     }
   else
     {
-      (*client)->hp = tp.tv_sec + START_UNIT_LIFE * FOOD_HP * info->time;
+      (*client)->hp = tp.tv_sec + info->initHp * FOOD_HP * info->time;
       (*client)->status = ST_CLIENT;
     }
   team->nb++;

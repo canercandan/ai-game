@@ -76,8 +76,6 @@ class   AIClient
     print "mesg = #{mesg}\n";
     inv = mesg.split(',');
     hp = inv[0][/(\d+)/].to_i;
-    print "#{hp}hp\n";
-    exit(1);
     return (hp > UNIT_MINI ? true : false);
   end
 

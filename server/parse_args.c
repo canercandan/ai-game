@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 09:18:07 2008 majdi toumi
-** Last update Tue Jun 24 12:20:57 2008 majdi toumi
+** Last update Tue Jun 24 14:22:49 2008 majdi toumi
 */
 
 #include <stdio.h>
@@ -28,6 +28,7 @@ static void	fill_default_info(t_info *info)
   opt_name_team(info, default_name_team, 0);
   info->time = 1.0 / DEFAULT_TIME;
   info->queue = 0;
+  info->initHp = 10;
   info->coeff = 0.5;
 }
 

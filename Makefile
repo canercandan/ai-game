@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Jun 24 12:23:32 2008 majdi toumi
+## Last update Tue Jun 24 14:14:49 2008 majdi toumi
 ##
 
 NAME_SRV	=	server
@@ -47,6 +47,7 @@ SRCS_SRV	=	$(PATH_SRV)main.c				\
 			$(PATH_SRV)opt_name_team.c			\
 			$(PATH_SRV)opt_delay.c				\
 			$(PATH_SRV)opt_help.c				\
+			$(PATH_SRV)opt_life.c				\
 			$(PATH_SRV)opt_coeff.c				\
 			$(PATH_SRV)create_world.c			\
 			$(PATH_SRV)fill_ressources_world.c		\
