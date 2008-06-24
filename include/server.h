@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-// Last update Tue Jun 24 14:19:55 2008 majdi toumi
+** Last update Tue Jun 24 14:29:47 2008 caner candan
 */
 
 #ifndef __SERVER_H__

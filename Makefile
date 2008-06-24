@@ -5,7 +5,7 @@
 ## Login   <candan_c@epitech.net>
 ## 
 ## Started on  Tue Apr 15 11:19:53 2008 caner candan
-## Last update Tue Jun 24 14:14:49 2008 majdi toumi
+## Last update Tue Jun 24 14:29:33 2008 caner candan
 ##
 
 NAME_SRV	=	server
@@ -175,7 +175,8 @@ SRCS_OBS_2D	=	$(PATH_OBS_2D)main.c				\
 			$(PATH_OBS_2D)act_death.c			\
 			$(PATH_OBS_2D)rm_data_from_list.c		\
 			$(PATH_OBS_2D)draw_gfx.c			\
-			$(PATH_OBS_2D)round_nbr.c
+			$(PATH_OBS_2D)round_nbr.c			\
+			$(PATH_OBS_2D)move_up.c
 
 OBJS_X		=	$(SRCS_X:.c=.o)
 OBJS_SRV	=	$(SRCS_SRV:.c=.o) $(OBJS_X)

@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Mon May 12 19:25:12 2008 caner candan
-** Last update Mon Jun 23 04:16:50 2008 caner candan
+** Last update Tue Jun 24 13:56:01 2008 caner candan
 */
 
 #ifndef __OBSERVATOR_2D_H__
@@ -210,6 +210,7 @@ void	*get_client_from_list(t_list *t, int socket);
 /*
 ** Actions' functions
 */
+int	move_up(t_client *client, char direction, t_info *info);
 void	execute_action(t_info *info, char **buf, char *first);
 int	act_up(t_info *info, t_client *client, char *param);
 int	act_right(t_info *info, t_client *client, char *param);
