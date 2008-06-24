@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Wed Apr 30 13:37:20 2008 caner candan
-** Last update Tue Jun 24 14:29:47 2008 caner candan
+** Last update Tue Jun 24 14:40:37 2008 caner candan
 */
 
 #ifndef __SERVER_H__
@@ -191,7 +191,7 @@ typedef struct	s_info
   int		x;
   int		y;
   float		coeff;
-  float		initHp;
+  float		inithp;
   t_list	*team;
   int		nb_player;
   float		time;

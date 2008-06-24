@@ -5,7 +5,7 @@
 ** Login   <candan_c@epitech.net>
 ** 
 ** Started on  Fri May  2 15:01:08 2008 caner candan
-** Last update Fri May  9 02:04:22 2008 florent hochwelker
+** Last update Tue Jun 24 14:41:47 2008 caner candan
 */
 
 #include <sys/time.h>
@@ -26,5 +26,6 @@ t_info			*init_info()
   info->queue = NULL;
   info->clients = NULL;
   info->team = NULL;
+  info->inithp = START_UNIT_LIFE;
   return (info);
 }

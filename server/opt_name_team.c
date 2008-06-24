@@ -5,7 +5,7 @@
 ** Login   <toumi_m@epitech.net>
 ** 
 ** Started on  Thu Apr 10 18:43:36 2008 majdi toumi
-** Last update Mon Jun 23 03:02:37 2008 caner candan
+** Last update Tue Jun 24 14:44:07 2008 caner candan
 */
 
 #include "server.h"
@@ -14,10 +14,9 @@
 int		opt_name_team(t_info *info, char **argv, int i)
 {
   t_team	*team;
-  void		*data;
   int		flag;
 
-  while ((data = pop_list(&info->team)));
+  while (pop_list(&info->team));
   flag = 0;
   while (argv[i] && (is_options(argv[i]) == -1))
     {
